@@ -1,33 +1,95 @@
+# Portfolio
+
+A modern, elegant portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. This project was inspired by and based on the open-source work of Andreas Thomas (chronark).
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/portfolio)
+
+## 🎯 About This Project
+
+This portfolio website showcases projects with a clean, minimalist design featuring particle animations, project cards, and smooth transitions. The architecture follows modern best practices with TypeScript, server-side rendering, and content management through MDX files.
+
+## ✨ Features
+
+- **Modern Tech Stack**: Built with Next.js 13 App Router, TypeScript, and Tailwind CSS
+- **Content Management**: MDX-powered project pages with Contentlayer
+- **Analytics**: Page view tracking with Redis-based analytics
+- **Responsive Design**: Mobile-first responsive design with dark theme
+- **Interactive Elements**: Particle animations and smooth transitions
+- **Performance Optimized**: Server-side rendering and edge-ready deployment
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 13](https://nextjs.org/) with App Router
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Content**: [Contentlayer](https://www.contentlayer.dev/) for MDX processing
+- **Database**: [Upstash Redis](https://upstash.com/) for analytics
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Deployment**: [Vercel](https://vercel.com/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm/pnpm
+- An Upstash Redis database (optional, for analytics)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/portfolio.git
+   cd portfolio/site
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   pnpm install
+   ```
+
+3. **Set up environment variables**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   # Upstash Redis (optional - for analytics)
+   UPSTASH_REDIS_REST_URL=your_redis_url
+   UPSTASH_REDIS_REST_TOKEN=your_redis_token
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   # or
+   pnpm dev
+   ```
+
+5. **Open your browser**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the result.
+
+### Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+## 🙏 Attribution & Inspiration
+
+This project was **inspired by and built upon the exceptional open-source work** of [**Andreas Thomas**](https://chronark.com) (chronark). 
+
+### Connect with Andreas
+
+- **Website**: [chronark.com](https://chronark.com)
+- **GitHub**: [@chronark](https://github.com/chronark)
+- **Twitter**: [@chronark_](https://twitter.com/chronark_)
+
+---
+
 <div align="center">
-    <a href="https://chronark.com"><h1 align="center">chronark.com</h1></a>
-
-My personal website, built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Upstash](https://upstash.com?ref=chronark.com), [Contentlayer](https://www.contentlayer.dev/) and deployed to [Vercel](https://vercel.com/).
-
+  <p>Built with ❤️ by the open-source community</p>
+  <p>Original design and inspiration by <a href="https://chronark.com">Andreas Thomas</a></p>
 </div>
-
-<br/>
-
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/upstash/clone?demo-title=Next.js%20Portfolio%20with%20Pageview%20Counter&demo-description=Portfolio%20site%20with%20pageview%20counter%2C%20built%20with%20Next.js%2013%20App%20Router%2C%20Contentlayer%2C%20and%20Upstash%20Redis.&demo-url=https%3A%2F%2Fchronark.com%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1DA8n5a6WaP9p1FXf9LmUY%2Fc6264fa2732355787bf657df92dda8a1%2FCleanShot_2023-04-17_at_14.17.37.png&project-name=Next.js%20Portfolio%20with%20Pageview%20Counter&repository-name=nextjs-portfolio-pageview-counter&repository-url=https%3A%2F%2Fgithub.com%2Fchronark%2Fchronark.com&from=templates&integration-ids=oac_V3R1GIpkoJorr6fqyiwdhl17)
-
-## Running Locally
-
-
-```sh-session
-git clone https://github.com/chronark/chronark.com.git
-cd chronark.com
-```
-
-
-Create a `.env` file similar to [`.env.example`](https://github.com/chronark/chronark.com/blob/main/.env.example).
-
-Then install dependencies and run the development server:
-```sh-session
-pnpm install
-pnpm dev
-```
-
-
-## Cloning / Forking
-
-Please remove all of my personal information (projects, images, etc.) before deploying your own version of this site.
