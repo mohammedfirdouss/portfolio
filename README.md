@@ -2,7 +2,7 @@
 
 A modern, elegant portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. This project was inspired by and based on the open-source work of Andreas Thomas (chronark).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/portfolio)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedfirdouss/portfolio)
 
 ## 🎯 About This Project
 
@@ -39,7 +39,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/portfolio.git
+   git clone https://github.com/mohammedfirdouss/portfolio.git
    cd portfolio/site
    ```
 
