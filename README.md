@@ -40,7 +40,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
 1. **Clone the repository**
    ```bash
    git clone https://github.com/your-username/portfolio.git
-   cd portfolio/site
+   cd portfolio
    ```
 
 2. **Install dependencies**
