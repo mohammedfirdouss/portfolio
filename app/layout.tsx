@@ -14,11 +14,11 @@ export const metadata: Metadata = {
     title: "Mohammed Firdous",
     description:
       "Co-founder of unkey.dev and founder of planetfall.io",
-    url: "https://chronark.com",
+    url: "https://mohammedfirdouss.github.io/portfolio",
     siteName: "Mohammed Firdous",
     images: [
       {
-        url: "https://chronark.com/og.png",
+        url: "/og.png",
         width: 1920,
         height: 1080,
       },
