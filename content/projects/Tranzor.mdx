@@ -1,0 +1,56 @@
+---
+title: "Tranzor"
+description: "Tranzor is a serverless, real-time financial transaction processing system."
+repository: mohammedfirdouss/Tranzor
+date: "2025-07-03"
+published: true
+
+---
+Tranzor is a serverless, real-time financial transaction processing system.
+
+Check the repository for more details: [Tranzor GitHub Repository](https://github.com/mohammedfirdouss/Tranzor)
+
+## Install
+
+To set up Tranzor locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mohammedfirdouss/Tranzor.git
+   cd Tranzor
+   ```
+
+2. Set up the frontend:
+   ```bash
+   cd frontend
+   npm install
+   cp env.example .env.local
+   npm run dev
+   ```
+
+3. Set up the backend:
+   ```bash
+   cd backend/tranzor-api
+   npm install
+   sam build
+   sam deploy --guided
+   ```
+
+## Usage
+
+Tranzor allows financial institutions to:
+- Process transactions in real-time with low latency.
+- Detect fraud using automated scoring algorithms.
+- Maintain detailed audit logs for compliance.
+- Scale to handle large transaction volumes.
+- Monitor system performance and metrics.
+
+## Features
+
+### Core Functionality
+- **Real-time Transaction Processing**: Efficient handling of transaction data.
+- **Fraud Detection**: Automated fraud analysis and alerts.
+- **Audit Trail**: Detailed logging of system activities.
+- **User Management**: Secure authentication and access control.
+- **Scalable Architecture**: Dynamic scaling based on demand.
+- **High Availability**: Reliable multi-zone deployment.
