@@ -1,0 +1,56 @@
+---
+title: GitLab AI Gateway Contribution
+summary: My contribution to GitLab's AI Gateway, refactoring middleware code for better organization and maintainability.
+published: true
+---
+
+# GitLab AI Gateway Contribution
+
+I contributed to GitLab AI Gateway, a service that provides AI features to GitLab users across different instance types (self-managed, dedicated, and GitLab.com).
+
+## What is GitLab AI Gateway?
+
+GitLab AI Gateway is a standalone service that powers AI features like Code Suggestions and Duo Chat. It handles requests from various GitLab clients and routes them to appropriate AI models (Anthropic, Vertex AI, etc.). The service is built with Python using FastAPI and follows Clean Architecture principles.
+
+## What I Did
+
+I refactored the `InternalEventMiddleware` class by extracting it from a large base file into its own dedicated module in [merge request !2291](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2291).
+
+## The Problem
+
+The codebase had middleware components scattered in a single large file (`base.py`). There was an [ongoing effort](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/issues/859) to organize middleware components into separate files for better code organization and maintainability.
+
+## My Solution
+
+I extracted the `InternalEventMiddleware` class into its own module:
+- Created `ai_gateway/api/middleware/internal_event.py` 
+- Created `tests/api/middleware/test_internal_event.py`
+- Updated `base.py` to re-export the middleware for backward compatibility
+- Moved related tests from the base test file
+
+## Review Process
+
+The review process was thorough and educational:
+
+**Eduardo Bonet** provided detailed feedback across multiple rounds:
+- Identified a circular import issue in my initial implementation
+- Pointed out test failures and required fixes for logger configuration
+- Provided specific code examples for each fix needed
+- Guided me through proper Python import patterns
+
+**Bruno Cardoso** performed the final review:
+- Reviewed code style and formatting
+- Ensured the changes met project standards
+- Approved and merged the contribution on April 29, 2025
+
+The review process involved multiple iterations where I learned about:
+- Avoiding circular imports in Python
+- Proper test isolation and logger management
+- Following project-specific coding standards
+- Maintaining backward compatibility during refactoring
+
+## Links
+
+- [My contribution (MR !2291)](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2291)
+- [Issue requesting refactoring](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/issues/859)
+- [GitLab AI Gateway repository](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist)
