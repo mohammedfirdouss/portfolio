@@ -1,0 +1,45 @@
+---
+title: GitLab Developer Tutorial Fix
+summary: Fixed broken development environment tutorials by updating outdated search references, helping new contributors get started with GitLab.
+published: true
+---
+
+# GitLab Developer Tutorial Fix
+
+I contributed to GitLab's main repository by fixing broken developer tutorials that were preventing new contributors from setting up their development environments successfully.
+
+## What is GitLab?
+
+GitLab is the complete DevOps platform used by over 100,000 organizations. It's a Ruby on Rails application that provides Git repository management, continuous integration/deployment, issue tracking, and project management. The main repository contains both the Community Edition (open source) and Enterprise Edition features.
+
+## The Problem
+
+GitLab's development environment tutorials were instructing new contributors to search for "Customize the color of GitLab" - text that no longer existed in the codebase. This meant new developers following the setup guides would hit a dead end, creating a barrier to contributing to GitLab.
+
+## What I Did
+
+I updated the development tutorials to reference text that actually exists in the current codebase. I replaced the outdated search string with "Syntax highlighting theme" which developers can find and use to complete the tutorial exercises.
+
+The fix covered both major development environments:
+- GitLab Development Kit (GDK) tutorial
+- Gitpod tutorial
+
+## Why This Matters
+
+This contribution directly impacts new contributor onboarding. When tutorials break, it creates unnecessary friction for people trying to contribute to GitLab for the first time. By fixing these references, I helped ensure new developers can successfully complete the setup process and start contributing.
+
+## Review Process
+
+The merge request was reviewed by **Lee Tickett** and **Brendan Lynch** from GitLab's team:
+
+**Lee Tickett** provided initial feedback and suggestions to improve the fix. He helped identify additional places where the search references needed updating and guided the solution.
+
+**Brendan Lynch** performed technical writing review, ensuring the documentation updates met GitLab's standards. He confirmed the changes improved the new contributor experience.
+
+Both reviewers were supportive and provided clear feedback that helped refine the contribution.
+
+## Impact
+
+This fix removes a roadblock for new GitLab contributors. Instead of getting stuck on broken tutorial instructions, developers can now follow the guides successfully and start contributing to one of the world's largest open source projects.
+
+**Links:** [Merge Request !187663](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/187663) • [Issue #526914](https://gitlab.com/gitlab-org/gitlab/-/issues/526914) • [Repository](https://gitlab.com/gitlab-org/gitlab)
