@@ -1,0 +1,53 @@
+---
+title: GitLab Pages TLS Refactoring
+summary: Contributed to GitLab Pages by refactoring TLS certificate handling code to improve organization and maintainability.
+published: true
+---
+
+# GitLab Pages TLS Refactoring
+
+I contributed to GitLab Pages by refactoring TLS certificate handling code to improve organization and maintainability. This involved moving certificate retrieval logic from the main application file into a dedicated TLS package.
+
+## What is GitLab Pages?
+
+GitLab Pages is a service that hosts static websites directly from GitLab repositories. It's a Go-based HTTP server that serves millions of static sites with custom domains and SSL certificates. Users can deploy websites from their GitLab projects using static site generators like Jekyll, Hugo, or plain HTML.
+
+## The Problem
+
+GitLab Pages serves millions of static websites with custom TLS certificates. The certificate retrieval logic was embedded in the main application file (`app.go`), creating tight coupling between packages and making the codebase harder to maintain and test.
+
+## My Solution
+
+I extracted the certificate handling logic into a dedicated `internal/tls` package:
+
+- **Created `GetCertificateForDomain`** function to handle domain certificate retrieval
+- **Moved anonymous logic** into named methods for better clarity
+- **Added structured logging** with proper error handling
+- **Updated `GetTLSConfig`** to use the new domain lookup function
+- **Fixed import issues** and type mismatches
+- **Added comprehensive tests** for the core certificate logic
+
+## Review Process
+
+The merge request went through thorough review by GitLab maintainers Naman Jagdish Gala and Jaime Martinez. They provided detailed feedback on:
+
+- Error handling patterns
+- Function signatures and return types
+- Test coverage improvements
+- Code organization best practices
+
+I addressed all feedback through multiple iterations, ensuring the final implementation met GitLab's quality standards.
+
+## Technical Details
+
+The refactoring improved code organization by:
+- Reducing coupling between the main application and TLS logic
+- Making certificate handling more testable and maintainable
+- Adding proper error visibility through structured logging
+- Following Go best practices for package organization
+
+## Impact
+
+This change makes GitLab Pages more maintainable for future TLS-related features and easier for other contributors to understand and extend.
+
+**Links:** [Merge Request !1139](https://gitlab.com/gitlab-org/gitlab-pages/-/merge_requests/1139) • [Issue #708](https://gitlab.com/gitlab-org/gitlab-pages/-/issues/708) • [Repository](https://gitlab.com/gitlab-org/gitlab-pages)
