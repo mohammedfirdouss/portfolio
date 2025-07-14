@@ -1,21 +1,17 @@
-import { allDocuments } from "contentlayer/generated";
-import Link from "next/link";
+import { allOpenSource } from "contentlayer/generated";
+import { OpenSourceArticle } from "./article";
 
 export default function OpenSourcePage() {
-  // Filter for open-source documents
-  const openSourceDocs = allDocuments.filter(doc => doc._raw.sourceFilePath.startsWith("open-source/"));
+  // Filter for published open-source entries
+  const openSourceEntries = allOpenSource.filter(entry => entry.published);
 
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Open Source</h1>
       <ul className="space-y-4">
-        {openSourceDocs.map(doc => (
-          <li key={doc._id}>
-            <Link href={"/open-source/" + (doc.slug || "")}
-              className="text-lg font-semibold hover:underline">
-              {doc.title}
-            </Link>
-            <p className="text-gray-500 dark:text-gray-400">{doc.summary}</p>
+        {openSourceEntries.map(entry => (
+          <li key={entry._id}>
+            <OpenSourceArticle entry={entry} views={0} />
           </li>
         ))}
       </ul>
