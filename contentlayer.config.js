@@ -42,6 +42,7 @@ export const OpenSource = defineDocumentType(() => ({
 	date: { type: "date" },
 	url: { type: "string" },
 	repository: { type: "string" },
+	published: { type: "boolean" },
   },
   computedFields,
 }));
