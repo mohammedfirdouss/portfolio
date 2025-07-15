@@ -31,7 +31,7 @@ export function OpenSourceArticle({ entry, views }: Props) {
           {entry.title}
         </h2>
         <p className="mt-4 text-sm text-zinc-400">
-          {entry.summary}
+          {entry.summary || "No summary available."}
         </p>
       </article>
     </Link>
