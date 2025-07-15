@@ -7,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function DiagramsLayout({ children }: { children: ReactNode }) {
-  return <section className="mx-auto max-w-2xl px-4 py-8">{children}</section>;
+  return (
+    <div className="relative min-h-screen bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900 ">
+      {children}
+    </div>
+  );
 }
