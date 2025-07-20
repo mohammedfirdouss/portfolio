@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { allDocuments } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
-import "../mdx.css";
+import "./mdx.css";
 
 interface Props {
   params: { slug: string };
