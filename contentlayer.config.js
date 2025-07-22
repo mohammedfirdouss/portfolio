@@ -57,6 +57,7 @@ export const Diagram = defineDocumentType(() => ({
 	date: { type: "date" },
 	url: { type: "string" },
 	repository: { type: "string" },
+	published: { type: "boolean" },
   },
   computedFields,
 }));
