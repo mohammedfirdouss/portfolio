@@ -9,12 +9,15 @@ interface Props {
 
 export default function OpenSourceEntryPage({ params }: Props) {
   const doc = allDocuments.find(
-    (doc) => doc._raw.sourceFilePath === `open-source/${params.slug}/index.mdx`
+    (doc) => doc._raw.sourceFilePath === `open-source/${params.slug}.mdx`
   );
   if (!doc) notFound();
   return (
-    <article className="prose dark:prose-invert">
-      <Mdx code={doc.body.code} />
-    </article>
+    <div className="bg-zinc-50 min-h-screen">
+      {/* Add a header or view component here if needed, similar to projects */}
+      <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
+        <Mdx code={doc.body.code} />
+      </article>
+    </div>
   );
 }
