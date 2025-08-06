@@ -11,14 +11,16 @@ const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-  const views = (
-    await redis.mget<number[]>(
-      ...allProjects.map((p) => ["pageviews", "projects", p.slug].join(":")),
-    )
-  ).reduce((acc, v, i) => {
-    acc[allProjects[i].slug] = v ?? 0;
-    return acc;
-  }, {} as Record<string, number>);
+    const viewCounts = (await redis.mget(
+    ...allProjects.map((p) => ["pageviews", "projects", p.slug].join(":"))
+  )) as (number | null)[];
+
+  const views: Record<string, number> = {};
+  if (viewCounts) {
+    allProjects.forEach((p, i) => {
+      views[p.slug] = viewCounts[i] ?? 0;
+    });
+  }
 
   const featured = allProjects.find((project) => project.slug === "Cruddur")!;
   const top2 = allProjects.find((project) => project.slug === "Terra Towns")!;
