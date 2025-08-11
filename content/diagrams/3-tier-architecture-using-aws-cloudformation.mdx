@@ -7,3 +7,18 @@ summary: "A visual explanation of the 3-tier architecture implemented using AWS 
 # 3 Tier Architecture using AWS CloudFormation
 
 This section provides a technical diagram and explanation of the 3-tier architecture implemented using AWS CloudFormation. It includes the presentation, application, and data layers, showcasing scalability, high availability, and security.
+
+![3-Tier Architecture](/3-tier.webp)
+*Figure 1: Standard 3-tier architecture deployed on AWS using CloudFormation, detailing presentation, application, and data layers.*
+
+## Overview (Cloud Engineer Perspective)
+
+This diagram illustrates a classic 3-tier application architecture deployed on AWS using CloudFormation. It separates concerns into presentation (public subnets with load balancer), application (private subnets with EC2 instances), and data (private DB subnets with RDS). This design ensures modularity, scalability, and enhanced security by isolating different layers.
+
+## Importance
+
+The 3-tier architecture is fundamental for building robust and scalable enterprise applications. CloudFormation automates the provisioning of all infrastructure components, ensuring consistent deployments, reducing manual errors, and enabling rapid environment replication for development, testing, and production. This approach is critical for maintaining infrastructure as code best practices.
+
+## Project Link
+
+For a practical implementation of this architecture, refer to the [Cruddur Project](https://github.com/your-cruddur-repo).

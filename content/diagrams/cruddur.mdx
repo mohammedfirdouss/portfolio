@@ -8,15 +8,35 @@ summary: "A visual explanation of the Cruddur microblogging platform."
 
 This section provides a technical diagram and explanation of the Cruddur microblogging platform, highlighting its simplicity, scalability, and modern technology stack.
 
-## Features
-- User authentication and profiles
-- Real-time updates
-- Scalable backend using modern cloud technologies
+![Cruddur Diagram](/cruddur-mohammed-firdous.jpg)
+*Figure 1: High-level architectural overview of the Cruddur platform, illustrating key service interactions.*
 
-## Technology Stack
-- **Frontend**: React.js
-- **Backend**: Node.js with Express
-- **Database**: PostgreSQL
+![Cruddur Screenshot 1](/cruddur-screenshot-1.png)
+*Figure 2: Detailed view of the networking and cluster exports within the Cruddur deployment.*
 
-## Deployment
-Cruddur is deployed using containerized services and managed through Kubernetes for high availability and fault tolerance.
+![Cruddur Screenshot 2](/cruddur-screenshot-2.png)
+*Figure 3: Frontend distribution and DNS routing for the Cruddur application, showing CloudFront and Route 53 integration.*
+
+![Cruddur Screenshot 3](/cruddur-screenshot-3.png)
+*Figure 4: Application Load Balancer (ALB) configuration and target group routing for backend services in Cruddur.*
+
+![Cruddur Screenshot 4](/cruddur-screenshot-4.png)
+*Figure 5: CI/CD pipeline for Cruddur, demonstrating automated build and deployment processes.*
+
+![Cruddur Screenshot 5](/cruddur-screenshot-5.png)
+*Figure 6: Detailed view of the CodePipeline stages for source, build, and deploy within the Cruddur project.*
+
+![Cruddur Screenshot 6](/cruddur-screenshot-6.png)
+*Figure 7: Data flow and persistence layers, including DynamoDB and stream processing for Cruddur messages.*
+
+## Overview (Cloud Engineer Perspective)
+
+The Cruddur diagram outlines a microblogging platform's architecture, emphasizing its cloud-native design. It typically involves a decoupled frontend and backend, leveraging containerization (e.g., Docker, Kubernetes) for scalable deployment. Data persistence is handled by a relational database, and API gateways manage traffic flow and security. This setup supports high concurrency and agile development.
+
+## Importance
+
+This architecture demonstrates best practices for building modern web applications, focusing on scalability, resilience, and maintainability. The use of container orchestration simplifies deployment and scaling, while a clear separation of concerns allows independent development and scaling of services. This is crucial for applications expecting fluctuating user loads and continuous feature delivery.
+
+## Project Link
+
+For the full source code and deployment details, visit the [Cruddur GitHub Repository](https://github.com/your-cruddur-repo).

@@ -1,36 +1,42 @@
 ---
 title: Cruddur
-description: QStash is a fully managed serverless queue and messaging service designed for the serverless era.
-date: "2022-07-18"
-url: https://upstash.com/qstash
+description: A social media platform built with a focus on cloud-native development and microservices architecture.
+date: "2024-02-01"
+url: https://your-cruddur-project-url.com
+repository: your-cruddur-repo
 published: true
-
 ---
 
-QStash is an HTTP based messaging and scheduling solution for the serverless and edge runtimes.
+# Cruddur Project
 
-- 100% serverless, no stateful connections required. Messages are pushed to your API.
-- At-least-once delivery guaranteed to any public API
-- Pubsub via topics
-- Delay message delivery
-- Message deduplication
-- Scheduling via CRON
+Cruddur is a microblogging social media platform designed to demonstrate cloud-native development principles, including microservices, containerization, and serverless patterns.
 
+![Cruddur Project Image](/cruddur.webp)
 
-Formally, QStash is a message queue and task scheduler designed for serverless runtimes. Informally, QStash is a glue for your serverless functions.
+## Overview (Cloud Engineer Perspective)
 
-There was a perception serverless was only good for simple tasks. Not anymore. People build powerful systems with serverless stack. Powerful systems are composed of multiple components. Communication among those components is a big engineering problem. There are already great solutions for this problem. But we think existing solutions do not fit in serverless space. Either they are too complex or not designed to work with stateless runtimes. So we want a solution which (is):
+The Cruddur project showcases a modern, distributed application architecture. It typically involves a frontend served by a static site generator or a lightweight framework, communicating with a set of independent microservices for user management, post creation, and feed generation. These services are deployed as containers on a managed Kubernetes service or serverless functions, utilizing API Gateway for routing and authentication. Data is persisted across various specialized databases, optimized for each service's needs.
 
-- Works anywhere including serverless and edge.
-- Messaging as a service with no backend for users to run.
-- Lightweight, easy to understand, requires nothing to learn.
-- Price scales to zero.
+## Features
 
-Let's talk about a real world example. We have an e-commerce app and we want to send an informational email after each purchase. We have a service (an API route) for new purchases (newPurchase) and a second service for sending emails and notifications (sendEmail). We can call the sendEmail service from the newPurchase service. But what if the call fails? Should we wait for the response and retry? What if too many calls congest the sendEmail service and the service does not respond on time? You need to handle all these cases in your newPurchase service. Moreover, when you change the contract of sendEmail service; you have to update your newPurchase service too.
+-   **User Authentication & Profiles:** Secure user registration and profile management.
+-   **Post Creation & Feed:** Users can create short posts and view personalized feeds.
+-   **Microservices Architecture:** Decoupled services for scalability and independent development.
+-   **Real-time Updates:** Potentially uses WebSockets or server-sent events for live content.
 
-If you use QStash in the above example, you simply send a request to QStash from the newPurchase service. QStash will queue the request and call the sendEmail service. If the service does not respond, QStash will retry with a backoff strategy. The latency of sendEmail service will not affect the newPurchase service, because it will not wait for a response from the sendEmail service. QStash decouples the newPurchase and sendEmail services. You can update both services independently as long as you keep the message format compatible.
+## Technology Stack
 
-With QStash, you can add delays to the requests. Send an email 3 days after the shipment to remind the customer to add a review. You can also schedule tasks. You can send the requests with a CRON expression, so it will be run repetitively.
+-   **Frontend:** React, Next.js
+-   **Backend:** Node.js (Express/Fastify), Python (FastAPI) for microservices
+-   **Containerization:** Docker, Kubernetes (EKS/GKE/AKS)
+-   **Databases:** PostgreSQL (for relational data), DynamoDB (for key-value), Redis (for caching)
+-   **Messaging:** Kafka, RabbitMQ (for inter-service communication)
+-   **CI/CD:** GitHub Actions, GitLab CI
 
+## Importance
 
-To learn more about QStash, visit [upstash.com/qstash](upstash.com/qstash).
+Cruddur serves as an excellent example of building scalable and resilient cloud applications. It demonstrates how to break down a monolithic application into manageable microservices, deploy them efficiently using container orchestration, and leverage various cloud services for optimal performance and cost-effectiveness. This project is valuable for understanding modern application development and deployment strategies in a cloud environment.
+
+## Project Link
+
+For the full source code and deployment details, visit the [Cruddur GitHub Repository](https://github.com/your-cruddur-repo).

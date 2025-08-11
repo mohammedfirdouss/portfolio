@@ -11,7 +11,26 @@ const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-      const slugsToFetch = [
+  console.log('All Projects:', allProjects);
+  const featured = allProjects.find((project) => project._raw.sourceFileName === "Cruddur.mdx")!;
+  const top2 = allProjects.find((project) => project._raw.sourceFileName === "TerraTowns.mdx")!;
+  const top3 = allProjects.find((project) => project._raw.sourceFileName === "Tranzor.mdx")!;
+  console.log({ featured, top2, top3 });
+  const sorted = allProjects
+    .filter((p) => p.published)
+    .filter(
+      (project) =>
+        project.slug !== featured.slug &&
+        project.slug !== top2.slug &&
+        project.slug !== top3.slug,
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
+        new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
+    );
+
+  const slugsToFetch = [
     featured.slug,
     top2.slug,
     top3.slug,
@@ -28,23 +47,6 @@ export default async function ProjectsPage() {
       views[p.slug] = viewCounts[i] ?? 0;
     });
   }
-
-  const featured = allProjects.find((project) => project.slug === "Cruddur")!;
-  const top2 = allProjects.find((project) => project.slug === "Terra Towns")!;
-  const top3 = allProjects.find((project) => project.slug === "Tranzor")!;
-  const sorted = allProjects
-    .filter((p) => p.published)
-    .filter(
-      (project) =>
-        project.slug !== featured.slug &&
-        project.slug !== top2.slug &&
-        project.slug !== top3.slug,
-    )
-    .sort(
-      (a, b) =>
-        new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
-        new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
-    );
 
   return (
     <div className="relative pb-16">
