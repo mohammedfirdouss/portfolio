@@ -11,8 +11,15 @@ const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-    const viewCounts = (await redis.mget(
-    ...allProjects.map((p) => ["pageviews", "projects", p.slug].join(":"))
+      const slugsToFetch = [
+    featured.slug,
+    top2.slug,
+    top3.slug,
+    ...sorted.map(p => p.slug)
+  ];
+
+  const viewCounts = (await redis.mget(
+    ...slugsToFetch.map((slug) => ["pageviews", "projects", slug].join(":"))
   )) as (number | null)[];
 
   const views: Record<string, number> = {};
