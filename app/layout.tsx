@@ -4,7 +4,7 @@ import LocalFont from "@next/font/local";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const Analytics = dynamic(() => import("./components/analytics"), {
+const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"), {
   ssr: false,
 });
 
@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
       <head>
-                <Analytics />
+                <AnalyticsWrapper />
       </head>
       <body
         className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined

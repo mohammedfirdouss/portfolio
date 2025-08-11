@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { AnalyticsScript } from "./analytics-script";
 
-export function Analytics({ pathname }: { pathname: string }) {
+export default function Analytics({ pathname }: { pathname: string }) {
   const token = process.env.NEXT_PUBLIC_BEAM_TOKEN;
 
   useEffect(() => {
