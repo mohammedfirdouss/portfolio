@@ -5,7 +5,7 @@ import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { DiagramArticle } from "./article"; // Changed from Article to DiagramArticle
 import { Redis } from "@upstash/redis"; // Added Redis import
-import { Eye } from "lucide-react"; // Added Eye import
+import Eye from "lucide-react/dist/esm/icons/eye"; // Added Eye import
 
 const redis = Redis.fromEnv();
 
