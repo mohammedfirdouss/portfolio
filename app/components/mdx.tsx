@@ -98,14 +98,18 @@ const components = {
 	img: ({
 		className,
 		alt,
+		src,
 		...props
 	}: React.ImgHTMLAttributes<HTMLImageElement>) => (
-		// eslint-disable-next-line @next/next/no-img-element
-		<img
-			className={clsx("rounded-md border border-zinc-200 mx-auto block", className)}
-			alt={alt}
-			{...props}
-		/>
+		<div className={clsx("relative w-full h-96 mx-auto block my-8", className)}>
+			<Image
+				src={src!}
+				alt={alt}
+				fill
+				className="object-contain"
+				{...props}
+			/>
+		</div>
 	),
 	hr: ({ ...props }) => (
 		<hr className="my-4 border-zinc-200 md:my-8" {...props} />
