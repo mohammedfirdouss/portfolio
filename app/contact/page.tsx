@@ -6,10 +6,10 @@ import { Card } from "../components/card";
 
 const socials = [
 	{
-		icon: <Twitter size={20} />,
-		href: "https://twitter.com/iamfirdouss",
-		label: "Twitter",
-		handle: "@iamfirdouss",
+		icon: <Linkedin size={20} />,
+		href: "https://www.linkedin.com/in/mohammedfirdousaraoye/",
+		label: "LinkedIn",
+		handle: "mohammedfirdousaraoye",
 	},
 	{
 		icon: <Mail size={20} />,
@@ -25,10 +25,10 @@ const socials = [
 	},
 	null, // Placeholder for the first column of the second row
 	{
-		icon: <Linkedin size={20} />,
-		href: "https://www.linkedin.com/in/mohammedfirdousaraoye/",
-		label: "LinkedIn",
-		handle: "mohammedfirdousaraoye",
+		icon: <Twitter size={20} />,
+		href: "https://twitter.com/iamfirdouss",
+		label: "Twitter",
+		handle: "@iamfirdouss",
 	},
 ];
 
