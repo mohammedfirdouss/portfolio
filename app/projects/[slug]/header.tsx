@@ -1,5 +1,6 @@
 "use client";
 import { ArrowLeft, Eye, Github, Twitter } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -9,6 +10,8 @@ type Props = {
 		title: string;
 		description: string;
 		repository?: string;
+		banner?: string;
+		screenshot?: string;
 	};
 
 	views: number;
@@ -45,6 +48,19 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 			ref={ref}
 			className="relative isolate overflow-hidden bg-gradient-to-tl from-black via-zinc-900 to-black"
 		>
+			{/* Background banner image with subtle overlay */}
+			{project.banner ? (
+				<div aria-hidden className="absolute inset-0 -z-10">
+					<Image
+						src={project.banner}
+						alt=""
+						fill
+						priority
+						className="object-cover opacity-25 mix-blend-luminosity"
+					/>
+					<div className="absolute inset-0 bg-gradient-to-tl from-black/70 via-zinc-900/70 to-black/70" />
+				</div>
+			) : null}
 			<div
 				className={`fixed inset-x-0 top-0 z-50 backdrop-blur lg:backdrop-blur-none duration-200 border-b lg:bg-transparent ${
 					isIntersecting
@@ -120,6 +136,17 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 						</div>
 					</div>
 				</div>
+
+				{/* Decorative product screenshot on large screens */}
+				{project.screenshot ? (
+					<div aria-hidden className="pointer-events-none absolute right-6 bottom-0 hidden lg:block">
+						<img
+							src={project.screenshot}
+							alt=""
+							className="w-[28rem] max-w-[40vw] translate-y-8 rounded-xl border border-white/10 shadow-2xl ring-1 ring-white/10 backdrop-blur-md"
+						/>
+					</div>
+				) : null}
 			</div>
 		</header>
 	);

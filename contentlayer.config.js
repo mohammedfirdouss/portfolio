@@ -28,6 +28,8 @@ export const Project = defineDocumentType(() => ({
 	date: { type: "date" },
 	url: { type: "string" },
 	repository: { type: "string" },
+    banner: { type: "string" },
+    screenshot: { type: "string" },
   },
   computedFields,
 }));
