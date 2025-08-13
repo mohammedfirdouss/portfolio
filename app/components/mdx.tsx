@@ -95,22 +95,22 @@ const components = {
 			{...props}
 		/>
 	),
-	img: ({
-		className,
-		alt,
-		src,
-		...props
-	}: React.ImgHTMLAttributes<HTMLImageElement>) => (
-		<div className={clsx("relative w-full h-96 mx-auto block my-8", className)}>
-			<Image
-				src={src!}
-				alt={alt}
-				fill
-				className="object-contain"
-				{...props}
-			/>
-		</div>
-	),
+    img: ({
+        className,
+        alt,
+        src,
+        ...props
+    }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+        <span className={clsx("relative block w-full h-96 mx-auto my-8", className)}>
+            <Image
+                src={src!}
+                alt={alt}
+                fill
+                className="object-contain"
+                {...props}
+            />
+        </span>
+    ),
 	hr: ({ ...props }) => (
 		<hr className="my-4 border-zinc-200 md:my-8" {...props} />
 	),
