@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Eye from "lucide-react/dist/esm/icons/eye";
+import { Eye } from "lucide-react";
 import type { OpenSource } from "contentlayer/generated";
 
 type Props = {

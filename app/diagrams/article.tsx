@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Eye from "lucide-react/dist/esm/icons/eye";
+import { Eye } from "lucide-react";
 import type { Diagram } from "contentlayer/generated";
 
 interface Props {

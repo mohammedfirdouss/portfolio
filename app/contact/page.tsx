@@ -1,8 +1,5 @@
 "use client";
-import Github from "lucide-react/dist/esm/icons/github";
-import Mail from "lucide-react/dist/esm/icons/mail";
-import Twitter from "lucide-react/dist/esm/icons/twitter";
-import Linkedin from "lucide-react/dist/esm/icons/linkedin";
+import { Github, Mail, Twitter, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";

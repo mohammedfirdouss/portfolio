@@ -1,8 +1,5 @@
 "use client";
-import ArrowLeft from "lucide-react/dist/esm/icons/arrow-left";
-import Eye from "lucide-react/dist/esm/icons/eye";
-import Github from "lucide-react/dist/esm/icons/github";
-import Twitter from "lucide-react/dist/esm/icons/twitter";
+import { ArrowLeft, Eye, Github, Twitter } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 

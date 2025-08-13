@@ -5,7 +5,7 @@ import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
 import { Redis } from "@upstash/redis";
-import Eye from "lucide-react/dist/esm/icons/eye";
+import { Eye } from "lucide-react";
 
 const redis = Redis.fromEnv();
 
