@@ -1,42 +1,62 @@
 ---
 title: Cruddur
-description: A social media platform built with a focus on cloud-native development and microservices architecture.
+description: A microblogging app I took from a demo to a production-grade, cloud-native system on AWS with Flask, React, RDS, DynamoDB, Cognito, ECS Fargate, and a serverless media pipeline.
 date: "2024-02-01"
-url: https://your-cruddur-project-url.com
-repository: your-cruddur-repo
+repository: mohammedfirdouss/aws-bootcamp-cruddur-2023
 published: true
 ---
 
-# Cruddur Project
+# Cruddur
 
-Cruddur is a microblogging social media platform designed to demonstrate cloud-native development principles, including microservices, containerization, and serverless patterns.
+Cruddur started as a simple demo. The brief was clear: turn it into something real that could scale in the cloud without ballooning costs. I re-architected the app around an API-only backend, a lightweight frontend, and AWS managed services so we get reliability and observability without a heavy ops tax.
 
 ![Cruddur Project Image](/cruddur.webp)
 
-## Overview (Cloud Engineer Perspective)
+<div className="mt-4">
+  <a
+    href="https://github.com/mohammedfirdouss/aws-bootcamp-cruddur-2023"
+    target="_blank"
+    rel="noreferrer"
+    className="inline-flex items-center rounded-md border border-zinc-300 bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    View project on GitHub
+  </a>
+  
+</div>
 
-The Cruddur project showcases a modern, distributed application architecture. It typically involves a frontend served by a static site generator or a lightweight framework, communicating with a set of independent microservices for user management, post creation, and feed generation. These services are deployed as containers on a managed Kubernetes service or serverless functions, utilizing API Gateway for routing and authentication. Data is persisted across various specialized databases, optimized for each service's needs.
+## What it is
 
-## Features
+Cruddur is a microblogging platform with authenticated feeds, profiles, and direct messaging. The frontend is React. The backend is a small Flask API. Data lands in two purpose-fit stores: Postgres (RDS) for relational data and DynamoDB for chat-style messaging. Authentication is handled by Amazon Cognito.
 
--   **User Authentication & Profiles:** Secure user registration and profile management.
--   **Post Creation & Feed:** Users can create short posts and view personalized feeds.
--   **Microservices Architecture:** Decoupled services for scalability and independent development.
--   **Real-time Updates:** Potentially uses WebSockets or server-sent events for live content.
+## Architecture at a glance
 
-## Technology Stack
+- Frontend: React built assets served by Nginx in an ECS Fargate service behind an ALB
+- Backend: Flask API in ECS Fargate, health-checked via ALB target groups
+- Auth: Cognito User Pools; backend verifies Bearer tokens and maps claims to internal users
+- Relational data: Amazon RDS for PostgreSQL
+- Messaging: DynamoDB with a GSI for query patterns and Streams + Lambda to update message-group ordering on new messages
+- Media: S3 for assets and avatars, CloudFront in front of the assets bucket, API Gateway + Lambda for presigned uploads
+- Observability: CloudWatch Logs, AWS X-Ray sidecar, OpenTelemetry (Honeycomb), Rollbar
+- Config/secrets: SSM Parameter Store (no secrets in images)
 
--   **Frontend:** React, Next.js
--   **Backend:** Node.js (Express/Fastify), Python (FastAPI) for microservices
--   **Containerization:** Docker, Kubernetes (EKS/GKE/AKS)
--   **Databases:** PostgreSQL (for relational data), DynamoDB (for key-value), Redis (for caching)
--   **Messaging:** Kafka, RabbitMQ (for inter-service communication)
--   **CI/CD:** GitHub Actions, GitLab CI
+## Notable features
 
-## Importance
+- Message groups ordered by last activity (DynamoDB Streams + Lambda keeps sort keys fresh)
+- Clean auth flow end-to-end (Amplify on the client, JWT verification on the API)
+- Cost-aware by design (Fargate tasks, DynamoDB provisioned capacity, S3+CloudFront for static)
 
-Cruddur serves as an excellent example of building scalable and resilient cloud applications. It demonstrates how to break down a monolithic application into manageable microservices, deploy them efficiently using container orchestration, and leverage various cloud services for optimal performance and cost-effectiveness. This project is valuable for understanding modern application development and deployment strategies in a cloud environment.
+## How I work on it locally
 
-## Project Link
+- Docker Compose brings up frontend, backend, Postgres, and DynamoDB Local
+- One-liners to create/seed Postgres and DynamoDB tables/scripts
+- Health checks and simple bin scripts for fast feedback loops
 
-For the full source code and deployment details, visit the [Cruddur GitHub Repository](https://github.com/your-cruddur-repo).
+## What I learned
+
+- Keeping messaging fast and cheap is about the data model as much as code
+- Small Flask services on Fargate scale well when paired with good ALB health checks
+- Cognito + API Gateway + Lambda is a solid pattern for secure, presigned S3 uploads
+
+## Links
+
+- GitHub: [mohammedfirdouss/aws-bootcamp-cruddur-2023](https://github.com/mohammedfirdouss/aws-bootcamp-cruddur-2023)
