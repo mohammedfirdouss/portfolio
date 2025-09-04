@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Mohammed Firdous",
     description:
       "Co-founder of unkey.dev and founder of planetfall.io",
-    url: "https://mohammedfirdouss.github.io/portfolio",
+    url: "https://mohammedfirdous.me",
     siteName: "Mohammed Firdous",
     images: [
       {
@@ -43,8 +43,10 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "iamfirdouss",
+    title: "Mohammed Firdous",
     card: "summary_large_image",
+    description: "Co-founder of unkey.dev and founder of planetfall.io",
+    images: "/og.png",
   },
   icons: {
     shortcut: "/favicon.png",
