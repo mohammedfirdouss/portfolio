@@ -1,42 +1,64 @@
 ---
-title: "Cruddur Diagram"
+title: "Cruddur Architecture Diagram"
 published: true
-summary: "A visual explanation of the Cruddur microblogging platform."
+summary: "A visual explanation of the Cruddur microblogging platform's cloud architecture."
 ---
 
-# Cruddur
+# Cruddur Architecture
 
-This section provides a technical diagram and explanation of the Cruddur microblogging platform, highlighting its simplicity, scalability, and modern technology stack.
+This section provides a technical deep-dive into the architecture of the Cruddur microblogging platform. The diagrams below illustrate how the system is designed for scalability, reliability, and cost-efficiency using modern cloud technologies.
 
 ![Cruddur Diagram](/cruddur-mohammed-firdous.jpg)
-*Figure 1: High-level architectural overview of the Cruddur platform, illustrating key service interactions.*
+*Figure 1: A high-level look at the Cruddur architecture, showing how users interact with the frontend and how the backend services connect to different AWS resources.*
 
 ![Cruddur Screenshot 1](/cruddur-screenshot-1.png)
-*Figure 2: Detailed view of the networking and cluster exports within the Cruddur deployment.*
+*Figure 2: A detailed view of the Virtual Private Cloud (VPC) networking setup, including public and private subnets that provide a secure foundation for the application.*
 
 ![Cruddur Screenshot 2](/cruddur-screenshot-2.png)
-*Figure 3: Frontend distribution and DNS routing for the Cruddur application, showing CloudFront and Route 53 integration.*
+*Figure 3: The frontend is a React application hosted in an S3 bucket and delivered globally via Amazon CloudFront, with DNS managed by Route 53.*
 
 ![Cruddur Screenshot 3](/cruddur-screenshot-3.png)
-*Figure 4: Application Load Balancer (ALB) configuration and target group routing for backend services in Cruddur.*
+*Figure 4: The Application Load Balancer (ALB) routes traffic to the backend services running on ECS Fargate, with target groups for health checks and routing.*
 
 ![Cruddur Screenshot 4](/cruddur-screenshot-4.png)
-*Figure 5: CI/CD pipeline for Cruddur, demonstrating automated build and deployment processes.*
+*Figure 5: The CI/CD pipeline, built with AWS CodePipeline, which automates the process of building and deploying the application whenever changes are pushed to GitHub.*
 
 ![Cruddur Screenshot 5](/cruddur-screenshot-5.png)
-*Figure 6: Detailed view of the CodePipeline stages for source, build, and deploy within the Cruddur project.*
+*Figure 6: A closer look at the CodePipeline stages, showing the source, build, and deploy steps for the backend service.*
 
 ![Cruddur Screenshot 6](/cruddur-screenshot-6.png)
-*Figure 7: Data flow and persistence layers, including DynamoDB and stream processing for Cruddur messages.*
+*Figure 7: The data layer, showing how DynamoDB is used for real-time messaging and how DynamoDB Streams trigger a Lambda function to process new messages.*
 
-## Overview (Cloud Engineer Perspective)
+## Architectural Overview
 
-The Cruddur diagram outlines a microblogging platform's architecture, emphasizing its cloud-native design. It typically involves a decoupled frontend and backend, leveraging containerization (e.g., Docker, Kubernetes) for scalable deployment. Data persistence is handled by a relational database, and API gateways manage traffic flow and security. This setup supports high concurrency and agile development.
+The Cruddur architecture is designed to be a modern, scalable, and cost-effective web application. It separates the user interface (frontend) from the business logic (backend).
 
-## Importance
+-   The **frontend** is a React application that users interact with in their browser.
+-   The **backend** is a Python Flask application that handles tasks like creating posts, managing user data, and sending messages. It runs in Docker containers managed by AWS Fargate, which automatically handles the server infrastructure.
+-   **Data** is stored in two different databases based on its type:
+    -   **PostgreSQL (RDS):** For structured data like user profiles and posts.
+    -   **DynamoDB:** For real-time chat messages, which require very fast reads and writes.
+-   **Security** is handled by AWS Cognito for user sign-in and sign-up.
 
-This architecture demonstrates best practices for building modern web applications, focusing on scalability, resilience, and maintainability. The use of container orchestration simplifies deployment and scaling, while a clear separation of concerns allows independent development and scaling of services. This is crucial for applications expecting fluctuating user loads and continuous feature delivery.
+## Why This Architecture?
 
-## Project Link
+This design was chosen for several key reasons:
 
-For the full source code and deployment details, visit the [Cruddur GitHub Repository](https://github.com/your-cruddur-repo).
+-   **Scalability:** By using AWS Fargate and serverless components, the application can automatically scale to handle more users and traffic without manual intervention.
+-   **Reliability:** Running services across multiple AWS Availability Zones and using managed services like RDS and DynamoDB makes the application highly available and resilient to failures.
+-   **Cost-Effectiveness:** The serverless-first approach means you only pay for the resources you use, which is more cost-effective than running servers 24/7.
+-   **Maintainability:** Separating the frontend and backend allows different teams to work on them independently, and the use of containers ensures a consistent environment from development to production.
+
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://github.com/mohammedfirdouss/aws-bootcamp-cruddur-2023"
+    target="_blank"
+    rel="noreferrer"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    View Project on GitHub
+  </a>
+</div>

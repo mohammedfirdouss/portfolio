@@ -1,42 +1,65 @@
 ---
 title: Terra Towns
-description: A project focused on building sustainable and smart urban environments using cloud technologies.
+description: A Geocities-style community website where users deploy their own personal websites ("Terra Houses") using Terraform.
 date: "2024-01-01"
-url: https://your-terra-towns-project-url.com
-repository: your-terra-towns-repo
+repository: mohammedfirdouss/terraform-beginner-bootcamp-2023
 published: true
+banner: /terratowns.png
+screenshot: /terratowns.png
 ---
 
-# Terra Towns Project
+TerraTowns is a community project inspired by the creative, self-hosted spirit of Geocities, but with a modern twist. It's a platform where developers, or "Terraformers," can use Infrastructure as Code (IaC) to launch their own personal websites, called "Terra Houses."
 
-This project explores the development of sustainable urban environments leveraging cloud-native solutions. It focuses on integrating smart infrastructure, renewable energy management, and community engagement platforms.
+The project served as a hands-on bootcamp for learning Terraform in a fun and practical way. Each user writes Terraform code to provision and deploy their own simple Content Management System (CMS), which then becomes part of the larger TerraTowns network.
 
-![Terra Towns Project Image](/terratowns.png)
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://github.com/mohammedfirdouss/terraform-beginner-bootcamp-2023"
+    target="_blank"
+    rel="noreferrer"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    View on GitHub
+  </a>
+  <a
+    href="/diagrams/terra-towns-diagram"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M15 15h-1v-1h1v1zm-2 0h-1v-1h1v1zm-2 0h-1v-1h1v1zm-2 0h-1v-1h1v1zm-2 0H6v-1h1v1zm-2 0H4v-1h1v1zm-2 0H2v-1h1v1zM1 14h1V8H1v6zm2 0h1V8H3v6zm2 0h1V8H5v6zm2 0h1V8H7v6zm2 0h1V8H9v6zm2 0h1V8h-1v6zm2 0h1V8h-1v6zM1 7h1V1H1v6zm2 0h1V1H3v6zm2 0h1V1H5v6zm2 0h1V1H7v6zm2 0h1V1H9v6zm2 0h1V1h-1v6zm2 0h1V1h-1v6z"/>
+    </svg>
+    Architecture Diagram
+  </a>
+</div>
 
-## Overview (Cloud Engineer Perspective)
+## What it is
 
-The Terra Towns project demonstrates a scalable and resilient cloud architecture designed for smart city applications. It utilizes serverless functions for event-driven processing, IoT services for data collection from urban sensors, and robust data analytics platforms for urban planning insights. The infrastructure is managed through Infrastructure as Code (IaC) principles, ensuring consistent and automated deployments.
+TerraTowns is a serverless web application with a unique purpose:
 
-## Features
+-   **Community Hub:** A central website to discover and connect with other "Terraformers."
+-   **Terra Houses:** Each user provisions their own personal website—a "Terra House"—using Terraform.
+-   **Infrastructure as Code:** The core of the project is learning and applying IaC principles to create and manage real cloud resources.
 
--   **Smart Infrastructure Integration:** Connects and manages various urban sensors and devices.
--   **Renewable Energy Management:** Optimizes energy consumption and distribution from renewable sources.
--   **Community Engagement Platform:** Facilitates citizen participation and feedback for urban development.
--   **Data Analytics for Urban Planning:** Provides insights for informed decision-making in city management.
+## Key Technical Details
 
-## Technology Stack
+-   **Infrastructure as Code:** The project is built entirely around Terraform for provisioning all cloud infrastructure.
+-   **Custom Terraform Provider:** A key feature is a custom Terraform provider written in Go, which interfaces with the TerraTowns platform.
+-   **Cloud Platform:** The infrastructure is hosted on AWS, leveraging services like S3 for website hosting, CloudFront for content delivery, and Lambda and API Gateway for serverless functions.
+-   **Development Environment:** The project uses Gitpod to provide a consistent, cloud-based development environment for all users.
+-   **Local Testing:** A mock server written in Ruby is included to allow for local development and testing of the Terraform provider.
 
--   **Cloud Platform:** AWS (or other relevant cloud provider)
--   **Serverless:** AWS Lambda, API Gateway
--   **IoT:** AWS IoT Core
--   **Database:** DynamoDB, RDS
--   **Analytics:** AWS Kinesis, S3, Athena
--   **Infrastructure as Code:** AWS CloudFormation, Terraform
+## Screenshots
 
-## Importance
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+  <img src="/terratowns.png" alt="Terra Towns Screenshot 1" class="rounded-lg" />
+</div>
 
-This project highlights the application of cloud engineering principles to real-world urban challenges. It showcases how scalable, secure, and cost-effective cloud solutions can be built to support complex smart city initiatives, promoting sustainability and improving urban living quality. The use of IaC ensures reproducibility and efficient management of the entire urban digital infrastructure.
+## What I Learned
 
-## Project Link
-
-For more details and code, visit the [Terra Towns Project Repository](https://github.com/your-terra-towns-repo).
+-   **Custom Terraform Providers:** I learned how to build a custom Terraform provider from scratch using Go, allowing me to extend Terraform's functionality to interact with a custom API.
+-   **Practical IaC:** This project was a deep dive into using Infrastructure as Code not just for deploying applications, but for empowering users to create their own infrastructure.
+-   **Serverless Integration:** I gained experience integrating various AWS services (S3, CloudFront, Lambda) into a cohesive, serverless application.
+-   **Importance of Mocking:** Building a mock server was crucial for enabling fast local development and testing cycles, especially when developing the custom provider.

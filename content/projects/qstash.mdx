@@ -1,37 +1,48 @@
 ---
-title: QStash
-description: A fully managed serverless queue and messaging service designed for the serverless era.
+title: Serverless Messaging with QStash
+description: An exploration of QStash for building reliable, event-driven systems in a serverless environment.
 date: "2022-07-18"
 url: https://upstash.com/qstash
 published: true
 ---
 
-# QStash
+This project involved building a serverless application that leverages QStash, an HTTP-based messaging and scheduling service from Upstash. The goal was to solve a common problem in distributed systems: reliable communication between serverless functions.
 
-QStash is an HTTP based messaging and scheduling solution for the serverless and edge runtimes.
+In modern serverless architectures, ensuring that events are processed reliably is a major challenge. This project demonstrates how to use a managed messaging service like QStash to decouple services, handle retries, and schedule tasks, without adding complexity to the application code.
 
-- 100% serverless, no stateful connections required. Messages are pushed to your API.
-- At-least-once delivery guaranteed to any public API
-- Pubsub via topics
-- Delay message delivery
-- Message deduplication
-- Scheduling via CRON
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://upstash.com/qstash"
+    target="_blank"
+    rel="noreferrer"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v7A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 14.5 3H9.636a.5.5 0 0 1-.5-.5zM1.5 4a.5.5 0 0 1 .5-.5h6.5a.5.5 0 0 1 0 1H2a.5.5 0 0 1-.5-.5z"/>
+    </svg>
+    Learn more about QStash
+  </a>
+</div>
 
+## The Problem: Serverless Communication
 
-Formally, QStash is a message queue and task scheduler designed for serverless runtimes. Informally, QStash is a glue for your serverless functions.
+In a typical serverless e-commerce application, a `newPurchase` function might need to trigger an `sendEmail` function. A direct API call is risky:
 
-There was a perception serverless was only good for simple tasks. Not anymore. People build powerful systems with serverless stack. Powerful systems are composed of multiple components. Communication among those components is a big engineering problem. There are already great solutions for this problem. But we think existing solutions do not fit in serverless space. Either they are too complex or not designed to work with stateless runtimes. So we want a solution which (is):
+-   What if the `sendEmail` service is down? The `newPurchase` function would have to handle retries and backoff.
+-   What if the `sendEmail` service is slow? It would increase the execution time and cost of the `newPurchase` function.
+-   The services are tightly coupled, making them harder to maintain and update independently.
 
-- Works anywhere including serverless and edge.
-- Messaging as a service with no backend for users to run.
-- Lightweight, easy to understand, requires nothing to learn.
-- Price scales to zero.
+## The Solution: Using QStash
 
-Let's talk about a real world example. We have an e-commerce app and we want to send an informational email after each purchase. We have a service (an API route) for new purchases (newPurchase) and a second service for sending emails and notifications (sendEmail). We can call the sendEmail service from the newPurchase service. But what if the call fails? Should we wait for the response and retry? What if too many calls congest the sendEmail service and the service does not respond on time? You need to handle all these cases in your newPurchase service. Moreover, when you change the contract of sendEmail service; you have to update your newPurchase service too.
+By integrating QStash, the `newPurchase` function simply sends a message to a QStash topic. QStash then guarantees at-least-once delivery of that message to the `sendEmail` service.
 
-If you use QStash in the above example, you simply send a request to QStash from the newPurchase service. QStash will queue the request and call the sendEmail service. If the service does not respond, QStash will retry with a backoff strategy. The latency of sendEmail service will not affect the newPurchase service, because it will not wait for a response from the sendEmail service. QStash decouples the newPurchase and sendEmail services. You can update both services independently as long as you keep the message format compatible.
+-   **Decoupling:** The two services are now decoupled. The `newPurchase` service doesn't need to know about the `sendEmail` service's availability or performance.
+-   **Reliability:** QStash handles retries with exponential backoff if the `sendEmail` service is unavailable.
+-   **Scheduling:** QStash can be used to schedule tasks, such as sending a review reminder email three days after a purchase.
+-   **Simplicity:** As a fully managed service, QStash requires no infrastructure to manage.
 
-With QStash, you can add delays to the requests. Send an email 3 days after the shipment to remind the customer to add a review. You can also schedule tasks. You can send the requests with a CRON expression, so it will be run repetitively.
+## What I Learned
 
-
-To learn more about QStash, visit [upstash.com/qstash](upstash.com/qstash).
+-   **The Importance of Messaging Queues:** Even in serverless architectures, messaging queues are essential for building robust and scalable distributed systems.
+-   **Managed Services are Powerful:** Services like QStash can significantly reduce development time and operational complexity by handling common infrastructure challenges.
+-   **Event-Driven is the Future:** Building applications around an event-driven model leads to more resilient, scalable, and maintainable systems.

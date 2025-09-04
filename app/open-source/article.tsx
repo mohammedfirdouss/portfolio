@@ -20,7 +20,7 @@ export function OpenSourceArticle({ entry, views }: Props) {
                 )}
               </time>
             ) : (
-              <span>SOON</span>
+              <span></span>
             )}
           </span>
           <span className="text-zinc-500 text-xs flex items-center gap-1">

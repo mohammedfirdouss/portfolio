@@ -1,6 +1,6 @@
 ---
 title: Cruddur
-description: A microblogging app I took from a demo to a production-grade, cloud-native system on AWS with Flask, React, RDS, DynamoDB, Cognito, ECS Fargate, and a serverless media pipeline.
+description: Cruddur is a cloud-based micro-messaging app where users share updates, thoughts, and photos that expire after a set time.
 date: "2024-02-01"
 repository: mohammedfirdouss/aws-bootcamp-cruddur-2023
 published: true
@@ -8,57 +8,68 @@ banner: /cruddur-banner.jpg
 screenshot: /cruddur-screenshot.png
 ---
 
-# Cruddur
+Cruddur is a demo microblogging application. I turned it into a production-grade, cloud-native system on AWS. The goal was to build a scalable and cost-effective application, ready for real-world use.
 
-Cruddur started as my first cloud project. The brief was clear: turn it into something real that could scale in the cloud without costs skyrocketing. I re-architected the app around an API-only backend, a lightweight frontend, and AWS managed services so we get reliability and observability without a heavy ops tax.
+I re-architected the application to be API-driven, with a separate frontend and backend. This separation allowed for better scalability and maintainability. I chose a mix of AWS services to handle everything from authentication to data storage and media uploads, focusing on reliability and keeping operational costs low.
 
-![Cruddur Project Image](/cruddur.webp)
-
-<div className="mt-4">
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
   <a
     href="https://github.com/mohammedfirdouss/aws-bootcamp-cruddur-2023"
     target="_blank"
     rel="noreferrer"
-    className="inline-flex items-center rounded-md border border-zinc-300 bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
   >
-    View project on GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    View on GitHub
   </a>
-  
+  <a
+    href="/diagrams/cruddur"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M15 15h-1v-1h1v1zm-2 0h-1v-1h1v1zm-2 0h-1v-1h1v1zm-2 0h-1v-1h1v1zm-2 0H6v-1h1v1zm-2 0H4v-1h1v1zm-2 0H2v-1h1v1zM1 14h1V8H1v6zm2 0h1V8H3v6zm2 0h1V8H5v6zm2 0h1V8H7v6zm2 0h1V8H9v6zm2 0h1V8h-1v6zm2 0h1V8h-1v6zM1 7h1V1H1v6zm2 0h1V1H3v6zm2 0h1V1H5v6zm2 0h1V1H7v6zm2 0h1V1H9v6zm2 0h1V1h-1v6zm2 0h1V1h-1v6z"/>
+    </svg>
+    Architecture Diagram
+  </a>
 </div>
 
 ## What it is
 
-Cruddur is a microblogging platform with authenticated feeds, profiles, and direct messaging. The frontend is React. The backend is a small Flask API. Data lands in two purpose-fit stores: Postgres (RDS) for relational data and DynamoDB for chat-style messaging. Authentication is handled by Amazon Cognito.
+Cruddur is a microblogging platform with user authentication, feeds, profiles, and direct messaging.
 
-## Architecture at a glance
+-   **Frontend:** A React application that provides the user interface.
+-   **Backend:** A Flask API that handles business logic, running on AWS Fargate.
+-   **Authentication:** Amazon Cognito for secure user sign-up and sign-in.
+-   **Databases:**
+    -   PostgreSQL (on Amazon RDS) for structured data like user profiles and posts.
+    -   DynamoDB for real-time messaging, using Streams and Lambda to update message group orderings.
+-   **Media:** Amazon S3 for storing user-uploaded images and avatars, with Amazon CloudFront for fast delivery.
 
-- Frontend: React built assets served by Nginx in an ECS Fargate service behind an ALB
-- Backend: Flask API in ECS Fargate, health-checked via ALB target groups
-- Auth: Cognito User Pools; backend verifies Bearer tokens and maps claims to internal users
-- Relational data: Amazon RDS for PostgreSQL
-- Messaging: DynamoDB with a GSI for query patterns and Streams + Lambda to update message-group ordering on new messages
-- Media: S3 for assets and avatars, CloudFront in front of the assets bucket, API Gateway + Lambda for presigned uploads
-- Observability: CloudWatch Logs, AWS X-Ray sidecar, OpenTelemetry (Honeycomb), Rollbar
-- Config/secrets: SSM Parameter Store (no secrets in images)
+## Key Technical Details
 
-## Notable features
+-   **Observability:** The system is instrumented for monitoring and debugging with a combination of tools:
+    -   **AWS X-Ray:** For tracing requests across services.
+    -   **CloudWatch Logs:** For centralized logging.
+    -   **OpenTelemetry (Honeycomb):** For distributed tracing and observability.
+    -   **Rollbar:** For real-time error monitoring.
+-   **CI/CD:** A complete CI/CD pipeline using GitHub Actions automates testing, building, and deploying the frontend and backend services.
+-   **Configuration:** AWS Systems Manager (SSM) Parameter Store is used for managing secrets and configuration, ensuring that no sensitive data is hardcoded in the application.
+-   **Networking:** An Application Load Balancer (ALB) distributes traffic to the backend services, with health checks to ensure reliability.
 
-- Message groups ordered by last activity (DynamoDB Streams + Lambda keeps sort keys fresh)
-- Clean auth flow end-to-end (Amplify on the client, JWT verification on the API)
-- Cost-aware by design (Fargate tasks, DynamoDB provisioned capacity, S3+CloudFront for static)
+## Screenshots
 
-## How I work on it locally
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+  <img src="/cruddur-screenshot-1.png" alt="Cruddur Screenshot 1" className="rounded-lg" />
+  <img src="/cruddur-screenshot-2.png" alt="Cruddur Screenshot 2" className="rounded-lg" />
+  <img src="/cruddur-screenshot-3.png" alt="Cruddur Screenshot 3" className="rounded-lg" />
+  <img src="/cruddur-screenshot-4.png" alt="Cruddur Screenshot 4" className="rounded-lg" />
+</div>
 
-- Docker Compose brings up frontend, backend, Postgres, and DynamoDB Local
-- One-liners to create/seed Postgres and DynamoDB tables/scripts
-- Health checks and simple bin scripts for fast feedback loops
+## What I Learned
 
-## What I learned
-
-- Keeping messaging fast and cheap is about the data model as much as code
-- Small Flask services on Fargate scale well when paired with good ALB health checks
-- Cognito + API Gateway + Lambda is a solid pattern for secure, presigned S3 uploads
-
-## Links
-
-- GitHub: [mohammedfirdouss/aws-bootcamp-cruddur-2023](https://github.com/mohammedfirdouss/aws-bootcamp-cruddur-2023)
+-   **Data Modeling is Key:** Choosing the right database for the right job is crucial. Using both a relational database (Postgres) and a NoSQL database (DynamoDB) allowed for a more efficient and scalable system.
+-   **Serverless for the Win:** Using services like AWS Fargate for containers and Lambda for specific tasks (like processing uploads) reduces operational overhead and scales automatically.
+-   **Secure by Design:** Implementing a secure upload system using API Gateway and presigned S3 URLs is a robust pattern for handling user-generated content.
+-   **Local Development Matters:** A smooth local development setup using Docker Compose is essential for productivity and for catching issues before they reach production.
