@@ -14,11 +14,11 @@ export const metadata: Metadata = {
     default: "Mohammed Firdous",
     template: "%s | Mohammed Firdous",
   },
-  description: "Co-founder of unkey.dev and founder of planetfall.io",
+  description: "Cloud Engineer",
   openGraph: {
     title: "Mohammed Firdous",
     description:
-      "Co-founder of unkey.dev and founder of planetfall.io",
+      "Cloud Engineer",
     url: "https://mohammedfirdous.me",
     siteName: "Mohammed Firdous",
     images: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Mohammed Firdous",
     card: "summary_large_image",
-    description: "Co-founder of unkey.dev and founder of planetfall.io",
+    description: "Cloud Engineer",
     images: "/og.png",
   },
   icons: {
