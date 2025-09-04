@@ -1,24 +1,42 @@
 ---
-title: "Terra Towns Diagram"
+title: "Terra Towns Architecture Diagram"
 published: true
-summary: "A visual explanation of the Terra Towns project."
+summary: "A visual explanation of the Terra Towns project's cloud architecture."
 ---
 
-# Terra Towns
+# Terra Towns Architecture
 
-This section provides a technical diagram and explanation of the Terra Towns project.
+This diagram explains the cloud architecture for the Terra Towns project.
 
 ![Terra Towns Diagram](/terratowns.png)
-*Figure 1: High-level architecture of the Terra Towns project, showcasing cloud-native components for sustainable urban environments.*
+*Figure 1: The architecture for Terra Towns, showing how user requests are routed through CloudFront to a static website hosted on S3, with infrastructure managed by Terraform Cloud.*
 
-## Overview (Cloud Engineer Perspective)
+## Architectural Overview
 
-The Terra Towns diagram illustrates a robust, cloud-native architecture for deploying and managing sustainable urban environments. It leverages AWS CloudFront for content delivery, S3 for static website hosting, and Terraform Cloud for infrastructure as code. This setup ensures high availability, scalability, and efficient deployment of the urban infrastructure's digital twin.
+The Terra Towns architecture is designed for simplicity and scalability, using a combination of AWS services and Terraform for infrastructure management.
 
-## Importance
+-   **Content Delivery:** Amazon CloudFront is used as the content delivery network (CDN). It caches the website content at locations around the world, ensuring that users have fast access no matter where they are.
+-   **Website Hosting:** The website itself is a static site hosted in an Amazon S3 bucket. This is a reliable and cost-effective way to host websites that don't require a traditional server.
+-   **Infrastructure as Code:** The entire cloud infrastructure is defined and managed using Terraform. This allows for automated, repeatable, and version-controlled infrastructure deployments.
 
-This architecture is crucial for managing complex smart city initiatives, enabling rapid iteration on urban planning, and providing a scalable platform for citizen engagement and data collection. Its infrastructure-as-code approach ensures consistency and disaster recovery capabilities.
+## Why This Architecture?
 
-## Project Link
+This design was chosen for its efficiency and reliability:
 
-For more details on the Terra Towns project, visit [Terra Towns GitHub Repository](https://github.com/your-terra-towns-repo).
+-   **High Availability:** Both S3 and CloudFront are highly available services, ensuring the website is always accessible.
+-   **Global Scale:** CloudFront provides a global network, which means the platform can scale to serve a worldwide audience with low latency.
+-   **Automated Management:** Using Terraform for infrastructure as code means that the entire environment can be created, updated, or replicated automatically, reducing manual effort and potential errors.
+
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://github.com/mohammedfirdouss/terra-towns"
+    target="_blank"
+    rel="noreferrer"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    View Project on GitHub
+  </a>
+</div>

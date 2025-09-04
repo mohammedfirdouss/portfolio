@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Open Source | Portfolio",
-  description: "A collection of my open-source contributions and projects."
+  description: "A collection of my open-source contributions."
 };
 
 export default function OpenSourceLayout({ children }: { children: ReactNode }) {

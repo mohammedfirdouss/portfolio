@@ -1,24 +1,52 @@
 ---
-title: "Diagram of 3 Tier Architecture using AWS CloudFormation"
+title: "3-Tier Architecture with AWS CloudFormation"
 published: true
-summary: "A visual explanation of the 3-tier architecture implemented using AWS CloudFormation."
+summary: "A visual explanation of a classic 3-tier architecture implemented on AWS using CloudFormation."
 ---
 
-# 3 Tier Architecture using AWS CloudFormation
+# 3-Tier Architecture with AWS CloudFormation
 
-This section provides a technical diagram and explanation of the 3-tier architecture implemented using AWS CloudFormation. It includes the presentation, application, and data layers, showcasing scalability, high availability, and security.
+This diagram explains a classic 3-tier web architecture, a fundamental pattern for building robust and scalable applications. This implementation is deployed on AWS and automated with CloudFormation.
 
-![3-Tier Architecture](/3-tier.webp)
-*Figure 1: Standard 3-tier architecture deployed on AWS using CloudFormation, detailing presentation, application, and data layers.*
+<figure class="my-8 flex flex-col items-center">
+  <img
+    src="/3-tier.webp"
+    alt="Diagram of a 3-tier AWS architecture: public ALB and web tier, private app tier on EC2, and private RDS database across subnets"
+    class="w-full max-w-2xl rounded-lg"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption class="mt-2 text-sm text-zinc-600">
+    Figure 1: A standard 3-tier architecture on AWS, showing the separation of the presentation, application, and data layers across public and private subnets.
+  </figcaption>
+</figure>
+## Architectural Overview
 
-## Overview (Cloud Engineer Perspective)
+The 3-tier architecture separates the application into three logical and physical layers:
 
-This diagram illustrates a classic 3-tier application architecture deployed on AWS using CloudFormation. It separates concerns into presentation (public subnets with load balancer), application (private subnets with EC2 instances), and data (private DB subnets with RDS). This design ensures modularity, scalability, and enhanced security by isolating different layers.
+-   **Presentation Layer (Web Tier):** This is the layer that users interact with. It includes a load balancer that distributes traffic and web servers that serve the user interface. This layer lives in a public subnet, making it accessible from the internet.
+-   **Application Layer (App Tier):** This layer contains the business logic of the application. It runs on application servers (like EC2 instances) in a private subnet. It is not directly accessible from the internet, which enhances security.
+-   **Data Layer (Database Tier):** This layer stores the application's data. It consists of a database (like Amazon RDS) in a separate, private subnet, making it the most secure part of the architecture.
 
-## Importance
+## Why This Architecture?
 
-The 3-tier architecture is fundamental for building robust and scalable enterprise applications. CloudFormation automates the provisioning of all infrastructure components, ensuring consistent deployments, reducing manual errors, and enabling rapid environment replication for development, testing, and production. This approach is critical for maintaining infrastructure as code best practices.
+This design is a standard for building enterprise-level applications for several reasons:
 
-## Project Link
+-   **Security:** By placing the application and database layers in private subnets, you protect them from direct internet access, significantly reducing the attack surface.
+-   **Scalability:** Each layer can be scaled independently. If your application logic becomes a bottleneck, you can add more application servers without touching the other layers.
+-   **Maintainability:** The separation of concerns makes the application easier to develop, update, and maintain. Different teams can work on different layers simultaneously.
+-   **Automation:** Using AWS CloudFormation to define this infrastructure as code allows for fast, reliable, and repeatable deployments, eliminating manual configuration errors.
 
-For a practical implementation of this architecture, refer to the [Cruddur Project](https://github.com/your-cruddur-repo).
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://github.com/mohammedfirdouss/aws-bootcamp-cruddur-2023"
+    target="_blank"
+    rel="noreferrer"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    View Example on GitHub
+  </a>
+</div>

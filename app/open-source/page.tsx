@@ -15,7 +15,7 @@ export default function OpenSourcePage() {
             Open Source
           </h2>
           <p className="mt-4 text-zinc-400">
-            A collection of my open-source contributions and projects.
+            A collection of my open-source contributions.
           </p>
         </div>
         <div className="w-full h-px bg-zinc-800" />

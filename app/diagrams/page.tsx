@@ -73,7 +73,7 @@ export default async function DiagramsPage() {
                         }).format(new Date(featured.date))}
                       </time>
                     ) : (
-                      <span>SOON</span>
+                      <span></span>
                     )}
                   </div>
                   <span className="flex items-center gap-1 text-xs text-zinc-500">
