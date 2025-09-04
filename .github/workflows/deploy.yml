@@ -3,7 +3,7 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
@@ -17,11 +17,16 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Install Vercel CLI
-        run: npm install -g vercel
+        run: pnpm add -g vercel
 
       - name: Pull Vercel Project Settings
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
