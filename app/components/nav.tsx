@@ -35,6 +35,12 @@ export const Navigation: React.FC<{ backLink?: string }> = ({ backLink }) => {
 						Projects
 					</Link>
 					<Link
+						href="/blog"
+						className="duration-200 text-zinc-400 hover:text-zinc-100"
+					>
+						Blog
+					</Link>
+					<Link
 						href="/open-source"
 						className="duration-200 text-zinc-400 hover:text-zinc-100"
 					>

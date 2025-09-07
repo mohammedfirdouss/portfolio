@@ -80,9 +80,24 @@ export const Page = defineDocumentType(() => ({
 	computedFields,
 }));
 
+export const Blog = defineDocumentType(() => ({
+  name: "Blog",
+  filePathPattern: "./blog/**/*.mdx",
+  contentType: "mdx",
+  fields: {
+    published: { type: "boolean" },
+    title: { type: "string", required: true },
+    description: { type: "string", required: true },
+    date: { type: "date" },
+    banner: { type: "string" },
+    screenshot: { type: "string" },
+  },
+  computedFields,
+}));
+
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Page, Project, OpenSource, Diagram],
+  documentTypes: [Page, Project, OpenSource, Diagram, Blog],
   mdx: {
 	remarkPlugins: [remarkGfm],
 	rehypePlugins: [
