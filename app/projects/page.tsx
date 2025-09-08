@@ -14,7 +14,7 @@ export default async function ProjectsPage() {
   console.log('All Projects:', allProjects);
   const featured = allProjects.find((project) => project._raw.sourceFileName === "Cruddur.mdx")!;
   const top2 = allProjects.find((project) => project._raw.sourceFileName === "TerraTowns.mdx")!;
-  const top3 = allProjects.find((project) => project._raw.sourceFileName === "Tranzor.mdx")!;
+  const top3 = allProjects.find((project) => project._raw.sourceFileName === "BloomRefresh.mdx")!;
   console.log({ featured, top2, top3 });
   const sorted = allProjects
     .filter((p) => p.published)
@@ -70,7 +70,7 @@ export default async function ProjectsPage() {
                   <div className="text-xs text-zinc-100">
                     {featured.date ? (
                       <time dateTime={new Date(featured.date).toISOString()}>
-                        {Intl.DateTimeFormat(undefined, {
+                        {Intl.DateTimeFormat("en-US", {
                           dateStyle: "medium",
                         }).format(new Date(featured.date))}
                       </time>

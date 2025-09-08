@@ -68,7 +68,7 @@ export default async function DiagramsPage() {
                   <div className="text-xs text-zinc-100">
                     {featured.date ? (
                       <time dateTime={new Date(featured.date).toISOString()}>
-                        {Intl.DateTimeFormat(undefined, {
+                        {Intl.DateTimeFormat("en-US", {
                           dateStyle: "medium",
                         }).format(new Date(featured.date))}
                       </time>

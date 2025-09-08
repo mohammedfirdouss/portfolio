@@ -27,11 +27,13 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 			href: `https://github.com/${project.repository}`,
 		});
 	}
-	if (project.url) {
+	const website = project.externalUrl ?? project.url;
+	if (website) {
 		links.push({
 			label: "Website",
-			href: project.url,
+			href: website,
 		});
+	}
 	}
 	useEffect(() => {
 		if (!ref.current) return;
