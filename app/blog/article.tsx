@@ -53,8 +53,8 @@ href={`/blog/${project.slug}`}
 className="group block h-full"
 aria-label={project.title}
 >
-
+{content}
+</Link>
 );
 };
-</Link>;
 

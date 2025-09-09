@@ -10,6 +10,7 @@ const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"),
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL("http://localhost:3000"),
   title: {
     default: "Mohammed Firdous",
     template: "%s | Mohammed Firdous",

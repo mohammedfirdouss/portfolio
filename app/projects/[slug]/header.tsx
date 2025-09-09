@@ -27,14 +27,14 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 			href: `https://github.com/${project.repository}`,
 		});
 	}
-	const website = project.externalUrl ?? project.url;
+	const website = project.url;
 	if (website) {
 		links.push({
 			label: "Website",
 			href: website,
 		});
 	}
-	}
+
 	useEffect(() => {
 		if (!ref.current) return;
 		const observer = new IntersectionObserver(([entry]) =>

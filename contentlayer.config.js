@@ -88,11 +88,11 @@ export const Blog = defineDocumentType(() => ({
     title: { type: "string", required: true },
     description: { type: "string", required: true },
     publishedAt: { type: "date", required: true },
+    url: { type: "string" },
     externalUrl: { type: "string" },
     source: { type: "string" },
     draft: { type: "boolean" },
     tags: { type: "list", of: { type: "string" } },
-    slug: { type: "string" },
   },
   computedFields,
 }));
