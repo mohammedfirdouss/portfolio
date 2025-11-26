@@ -81,12 +81,6 @@ npm start
 
 This project was **inspired by and built upon the exceptional open-source work** of [**Andreas Thomas**](https://chronark.com) (chronark). 
 
-### Connect with Andreas
-
-- **Website**: [chronark.com](https://chronark.com)
-- **GitHub**: [@chronark](https://github.com/chronark)
-- **Twitter**: [@chronark_](https://twitter.com/chronark_)
-
 ---
 
 <div align="center">
