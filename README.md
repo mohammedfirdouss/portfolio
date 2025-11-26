@@ -4,11 +4,11 @@ A modern, elegant portfolio website built with Next.js 13, TypeScript, and Tailw
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedfirdouss/portfolio)
 
-## 🎯 About This Project
+## About This Project
 
 This portfolio website showcases projects with a clean, minimalist design featuring particle animations, project cards, and smooth transitions. The architecture follows modern best practices with TypeScript, server-side rendering, and content management through MDX files.
 
-## ✨ Features
+## Features
 
 - **Modern Tech Stack**: Built with Next.js 13 App Router, TypeScript, and Tailwind CSS
 - **Content Management**: MDX-powered project pages with Contentlayer
@@ -17,7 +17,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
 - **Interactive Elements**: Particle animations and smooth transitions
 - **Performance Optimized**: Server-side rendering and edge-ready deployment
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: [Next.js 13](https://nextjs.org/) with App Router
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
@@ -28,7 +28,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Deployment**: [Vercel](https://vercel.com/)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
