@@ -8,6 +8,18 @@ const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"),
   ssr: false,
 });
 
+const CustomCursor = dynamic(() => import("./components/custom-cursor"), {
+  ssr: false,
+});
+
+const SmoothScroll = dynamic(() => import("./components/smooth-scroll"), {
+  ssr: false,
+});
+
+const ScrollProgress = dynamic(() => import("./components/scroll-progress"), {
+  ssr: false,
+});
+
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
@@ -71,13 +83,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
       <head>
-                <AnalyticsWrapper />
+        <AnalyticsWrapper />
       </head>
       <body
         className={`bg-black ${process.env.NODE_ENV === "development" ? "" : undefined
           }`}
       >
-        {children}
+        <SmoothScroll>
+          <ScrollProgress />
+          <CustomCursor />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
