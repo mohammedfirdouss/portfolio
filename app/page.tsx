@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Particles from "./components/particles";
 import MagneticButton from "./components/magnetic-button";
 import TextReveal from "./components/text-reveal";
+import { TechStack } from "./components/tech-stack";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -40,7 +41,9 @@ const itemVariants = {
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col items-center justify-center w-screen min-h-screen overflow-hidden bg-black">
+    <div className="relative w-screen bg-black">
+      {/* Hero Section */}
+      <section className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/50 via-black to-zinc-900/30" />
       
@@ -197,11 +200,62 @@ export default function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Corner decorations */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-zinc-800 opacity-50" />
-      <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-zinc-800 opacity-50" />
-      <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-zinc-800 opacity-50" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-zinc-800 opacity-50" />
+        {/* Corner decorations */}
+        <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-zinc-800 opacity-50" />
+        <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-zinc-800 opacity-50" />
+        <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-zinc-800 opacity-50" />
+        <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-zinc-800 opacity-50" />
+      </section>
+
+      {/* Tech Stack Section */}
+      <TechStack />
+
+      {/* Footer CTA Section */}
+      <section className="relative py-24 md:py-32">
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/50 to-transparent" />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-display mb-6">
+              Let&apos;s Build Something Together
+            </h2>
+            <p className="text-lg text-zinc-400 mb-8 max-w-2xl mx-auto">
+              Whether you need cloud architecture, automation pipelines, or modern web applications &mdash; I&apos;m here to help bring your ideas to life.
+            </p>
+            <MagneticButton strength={0.4}>
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-black bg-white rounded-full overflow-hidden transition-transform duration-300 hover:scale-105"
+                data-cursor="pointer"
+              >
+                <span className="relative z-10">Start a Conversation</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-zinc-200 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </Link>
+            </MagneticButton>
+          </motion.div>
+        </div>
+        
+        {/* Gradient divider */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+      </section>
+
+      {/* Simple Footer */}
+      <footer className="relative py-12 border-t border-zinc-800/50">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-zinc-500">
+            © {new Date().getFullYear()} Mohammed Firdous. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <a href="https://github.com/mohammedfirdouss" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">GitHub</a>
+            <a href="https://linkedin.com/in/mohammedfirdouss" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://twitter.com/mohammedfirdous" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">Twitter</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
