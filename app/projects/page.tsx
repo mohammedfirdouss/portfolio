@@ -5,7 +5,7 @@ import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
 import { Redis } from "@upstash/redis";
-import { Eye } from "lucide-react";
+import { Eye, Sparkles, ArrowRight } from "lucide-react";
 
 const redis = Redis.fromEnv();
 
@@ -49,25 +49,59 @@ export default async function ProjectsPage() {
   }
 
   return (
-    <div className="relative pb-16">
+    <div className="relative min-h-screen bg-black">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/30 via-black to-zinc-900/20" />
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
+        }}
+      />
+      
+      {/* Radial glow */}
+      <div className="absolute top-0 left-1/4 w-[800px] h-[600px] bg-gradient-radial from-zinc-800/20 via-transparent to-transparent rounded-full blur-3xl" />
+      
       <Navigation />
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
+      
+      <div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+        {/* Header */}
         <div className="max-w-2xl mx-auto lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+          <div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
+          <div className="flex items-center gap-3 mb-4">
+            <Sparkles className="w-5 h-5 text-zinc-500" />
+            <span className="text-sm font-medium tracking-widest uppercase text-zinc-500">
+              Portfolio
+            </span>
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl font-display">
             Projects
-          </h2>
-          <p className="mt-4 text-zinc-400">
-            Some of the projects are from work and some are on my own time.
+          </h1>
+          <p className="mt-6 text-lg text-zinc-400 leading-relaxed">
+            Some of the projects are from work and some are on my own time. Each represents a journey of learning and problem-solving.
           </p>
         </div>
-        <div className="w-full h-px bg-zinc-800" />
+        
+        {/* Divider */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-        <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
+        {/* Featured project */}
+        <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2">
           <Card>
-            <Link href={`/projects/${featured.slug}`}>
-              <article className="relative w-full h-full p-4 md:p-8">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="text-xs text-zinc-100">
+            <Link href={`/projects/${featured.slug}`} data-cursor="pointer" data-cursor-text="View">
+              <article className="relative w-full h-full p-6 md:p-10">
+                {/* Featured badge */}
+                <div className="absolute top-6 right-6 md:top-10 md:right-10">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-zinc-400 border border-zinc-800 rounded-full bg-zinc-900/50">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    Featured
+                  </span>
+                </div>
+                
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="text-xs text-zinc-500">
                     {featured.date ? (
                       <time dateTime={new Date(featured.date).toISOString()}>
                         {Intl.DateTimeFormat("en-US", {
@@ -78,7 +112,7 @@ export default async function ProjectsPage() {
                       <span></span>
                     )}
                   </div>
-                  <span className="flex items-center gap-1 text-xs text-zinc-500">
+                  <span className="flex items-center gap-1.5 text-xs text-zinc-500">
                     <Eye className="w-4 h-4" />{" "}
                     {Intl.NumberFormat("en-US", { notation: "compact" }).format(
                       views[featured.slug] ?? 0,
@@ -88,23 +122,22 @@ export default async function ProjectsPage() {
 
                 <h2
                   id="featured-post"
-                  className="mt-4 text-3xl font-bold text-zinc-100 group-hover:text-white sm:text-4xl font-display"
+                  className="mt-4 text-3xl font-bold text-zinc-100 group-hover:text-white sm:text-4xl font-display transition-colors duration-300"
                 >
                   {featured.title}
                 </h2>
-                <p className="mt-4 leading-8 duration-150 text-zinc-400 group-hover:text-zinc-300">
+                <p className="mt-4 leading-7 text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 line-clamp-3">
                   {featured.description}
                 </p>
-                <div className="absolute bottom-4 md:bottom-8">
-                  <p className="hidden text-zinc-200 hover:text-zinc-50 lg:block">
-                    Read more <span aria-hidden="true">&rarr;</span>
-                  </p>
+                <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-400 group-hover:text-white transition-colors duration-300">
+                  Read case study
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </article>
             </Link>
           </Card>
 
-          <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
+          <div className="flex flex-col w-full gap-6 mx-auto lg:mx-0">
             {[top2, top3].map((project) => (
               <Card key={project.slug}>
                 <Article project={project} views={views[project.slug] ?? 0} />
@@ -112,38 +145,26 @@ export default async function ProjectsPage() {
             ))}
           </div>
         </div>
-        <div className="hidden w-full h-px md:block bg-zinc-800" />
+        
+        {/* Divider */}
+        <div className="hidden w-full h-px md:block bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 0)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 1)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 2)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
+        {/* Other projects */}
+        <div className="grid grid-cols-1 gap-6 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-3">
+          {sorted.map((project) => (
+            <Card key={project.slug}>
+              <Article project={project} views={views[project.slug] ?? 0} />
+            </Card>
+          ))}
         </div>
       </div>
+      
+      {/* Bottom padding */}
+      <div className="h-24" />
+      
+      {/* Corner decorations */}
+      <div className="absolute top-24 left-8 w-24 h-24 border-l border-t border-zinc-800/50 rounded-tl-3xl" />
+      <div className="absolute top-24 right-8 w-24 h-24 border-r border-t border-zinc-800/50 rounded-tr-3xl" />
     </div>
   );
 }
