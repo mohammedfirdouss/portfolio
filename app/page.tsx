@@ -9,6 +9,7 @@ import TextReveal from "./components/text-reveal";
 import { TechStack } from "./components/tech-stack";
 
 const navigation = [
+  { name: "Experience", href: "/experience" },
   { name: "Projects", href: "/projects" },
   { name: "Blog", href: "/blog" },
   { name: "Open Source", href: "/open-source" },
