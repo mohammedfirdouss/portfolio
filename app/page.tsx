@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
@@ -7,6 +9,7 @@ import Particles from "./components/particles";
 import MagneticButton from "./components/magnetic-button";
 import TextReveal from "./components/text-reveal";
 import { TechStack } from "./components/tech-stack";
+import { Changelog } from "./components/changelog";
 
 const navigation = [
   { name: "Experience", href: "/experience" },
@@ -210,6 +213,9 @@ export default function Home() {
 
       {/* Tech Stack Section */}
       <TechStack />
+
+      {/* Changelog Section */}
+      <Changelog />
 
       {/* Footer CTA Section */}
       <section className="relative py-24 md:py-32">

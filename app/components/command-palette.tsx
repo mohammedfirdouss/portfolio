@@ -17,6 +17,11 @@ import {
   Twitter,
   ExternalLink,
   X,
+  FileText,
+  Copy,
+  Gamepad2,
+  Moon,
+  Briefcase
 } from "lucide-react";
 
 interface CommandItem {
@@ -84,6 +89,50 @@ export function CommandPalette() {
       action: () => router.push("/contact"),
       category: "navigation",
     },
+    {
+      id: "experience",
+      title: "Experience",
+      subtitle: "My professional journey",
+      icon: <Briefcase className="w-4 h-4" />,
+      action: () => router.push("/experience"),
+      category: "navigation",
+    },
+    // Actions
+    {
+      id: "copy-email",
+      title: "Copy Email",
+      subtitle: "mohammedfirdous682@gmail.com",
+      icon: <Copy className="w-4 h-4" />,
+      action: () => {
+        navigator.clipboard.writeText("mohammedfirdous682@gmail.com");
+      },
+      category: "actions",
+    },
+    {
+      id: "resume",
+      title: "View Resume",
+      subtitle: "Open PDF resume",
+      icon: <FileText className="w-4 h-4" />,
+      action: () => window.open("/resume.pdf", "_blank"), 
+      category: "actions",
+    },
+    // Easter Eggs
+    {
+      id: "game",
+      title: "Play a Game",
+      subtitle: "Launch a secret mini-game",
+      icon: <Gamepad2 className="w-4 h-4" />,
+      action: () => alert("Game mode coming soon! 🎮"),
+      category: "actions",
+    },
+    {
+      id: "theme",
+      title: "Toggle Theme",
+      subtitle: "Switch light/dark mode",
+      icon: <Moon className="w-4 h-4" />, 
+      action: () => alert("You are already on the dark side! 🌑"),
+      category: "actions",
+    },
     // Social
     {
       id: "github",
@@ -119,10 +168,11 @@ export function CommandPalette() {
 
   const groupedCommands = {
     navigation: filteredCommands.filter((c) => c.category === "navigation"),
+    actions: filteredCommands.filter((c) => c.category === "actions"),
     social: filteredCommands.filter((c) => c.category === "social"),
   };
 
-  const flatFiltered = [...groupedCommands.navigation, ...groupedCommands.social];
+  const flatFiltered = [...groupedCommands.navigation, ...groupedCommands.actions, ...groupedCommands.social];
 
   const toggle = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -264,6 +314,23 @@ export function CommandPalette() {
                         </div>
                       )}
 
+                      {groupedCommands.actions.length > 0 && (
+                        <div>
+                          <div className="px-4 py-2 text-xs font-medium text-zinc-500 uppercase tracking-wider mt-2">
+                            Actions & Easter Eggs
+                          </div>
+                          {groupedCommands.actions.map((cmd, idx) => (
+                            <CommandRow
+                              key={cmd.id}
+                              command={cmd}
+                              isSelected={selectedIndex === groupedCommands.navigation.length + idx}
+                              onSelect={() => executeCommand(cmd)}
+                              onHover={() => setSelectedIndex(groupedCommands.navigation.length + idx)}
+                            />
+                          ))}
+                        </div>
+                      )}
+
                       {groupedCommands.social.length > 0 && (
                         <div>
                           <div className="px-4 py-2 text-xs font-medium text-zinc-500 uppercase tracking-wider mt-2">
@@ -273,9 +340,9 @@ export function CommandPalette() {
                             <CommandRow
                               key={cmd.id}
                               command={cmd}
-                              isSelected={selectedIndex === groupedCommands.navigation.length + idx}
+                              isSelected={selectedIndex === groupedCommands.navigation.length + groupedCommands.actions.length + idx}
                               onSelect={() => executeCommand(cmd)}
-                              onHover={() => setSelectedIndex(groupedCommands.navigation.length + idx)}
+                              onHover={() => setSelectedIndex(groupedCommands.navigation.length + groupedCommands.actions.length + idx)}
                             />
                           ))}
                         </div>
