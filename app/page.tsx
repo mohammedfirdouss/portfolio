@@ -110,7 +110,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mb-6 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-zinc-500"
         >
-          Cloud Engineer & Developer
+
         </motion.span>
 
         {/* Main heading */}
