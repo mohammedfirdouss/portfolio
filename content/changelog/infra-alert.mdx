@@ -1,26 +1,38 @@
 ---
-title: "InfraAlert: Real-time Infrastructure Monitoring"
-date: "2023-12-31"
-summary: "Initial release of InfraAlert, a lightweight tool for monitoring cloud infrastructure and sending real-time alerts via Slack and Discord."
+title: "InfraAlert: AI-Powered Infrastructure Management"
+date: "2025-01-24"
+summary: "An AI-powered multi-agent system for infrastructure issue reporting and response coordination in Nigeria, built on Google Cloud Platform."
 ---
 
-# InfraAlert v0.1.0
+# InfraAlert
 
-I'm excited to share what I've been working on: **InfraAlert**. 
+InfraAlert is an **AI-powered multi-agent system** designed for infrastructure issue reporting and response coordination. Built on Google Cloud Platform using the Agent Development Kit (ADK), it transforms citizen reports into coordinated responses through intelligent analysis and automation.
 
-As a cloud engineer, I often found existing monitoring solutions either too complex for small projects or too expensive. InfraAlert is my attempt to bridge that gap.
+## Core Architecture
+
+The system follows a microservice architecture where each agent is an independent Cloud Run service, coordinated by a central Orchestrator:
+
+1.  **Orchestrator Agent**: The central workflow coordinator.
+2.  **Issue Detection Agent**: Analyzes and classifies issues using Vision API, NLP, Speech-to-Text, and Gemini AI.
+3.  **Priority Analysis Agent**: Calculates priority scores based on severity, urgency, and historical patterns.
+4.  **Resource Coordination Agent**: Handles proximity-based team matching and resource allocation.
+5.  **Platform Integration Agent**: Manages external notifications, including cost-effective SMS via Africa's Talking.
+6.  **Policy Agent (RAG)**: Provides RAG-powered Q&A from infrastructure policy documents.
 
 ## Key Features
 
-- **Multi-Cloud Support**: Works with AWS, Azure, and GCP.
-- **Real-time Notifications**: Get alerts instantly on Slack, Discord, or via Email.
-- **Lightweight**: Minimal footprint, easy to deploy as a container or serverless function.
-- **Customizable Thresholds**: Define what "critical" means for your specific workload.
+- **Multi-Channel Intake**: Support for web, mobile, and voice reports in English, Yoruba, Hausa, and Igbo.
+- **AI-Driven Analysis**: Real-time processing of text, photos, and audio to detect and categorize infrastructure failures.
+- **Intelligent Prioritization**: Automated severity assessment to ensure critical issues are addressed first.
+- **Real-Time Tracking**: A citizen-facing web application built with React and Vite for reporting and monitoring issue status.
+- **Serverless & Scalable**: Entirely serverless stack using Cloud Run, Firestore, and BigQuery, scaling to zero when idle.
 
-## Why I built this
+## Tech Stack
 
-The goal was to create something that I could drop into any environment and have basic health checks running in minutes. No complex dashboards, just the data you need when things go wrong.
+- **AI/ML**: Gemini 1.5 Pro, Google Vision API, Speech-to-Text, Natural Language API.
+- **Backend**: Python 3.12, FastAPI, Flask, Google ADK.
+- **Frontend**: React, Vite, TypeScript.
+- **Cloud**: Google Cloud Platform (Cloud Run, Pub/Sub, Firestore, BigQuery, Cloud Build).
+- **Integrations**: Africa's Talking (SMS), Google Maps (Geocoding), Model Context Protocol (MCP).
 
 Check out the repository: [mohammedfirdouss/InfraAlert](https://github.com/mohammedfirdouss/InfraAlert)
-
-Stay tuned for more updates!
