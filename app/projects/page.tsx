@@ -103,8 +103,8 @@ export default async function ProjectsPage() {
                 {(featured.banner || featured.screenshot) && (
                   <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-2xl">
                      <Image
-                        src={featured.banner || featured.screenshot || ""}
-                        alt={featured.title}
+                        src={featured.banner || featured.screenshot || "/placeholder.png"}
+                        alt={featured.title || "Featured Project"}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         priority

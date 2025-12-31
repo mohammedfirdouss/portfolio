@@ -14,22 +14,25 @@ export function getRedis(): Redis | null {
     return null;
   }
 
-  if (!redis) {
-    try {
-      const url = process.env.UPSTASH_REDIS_REST_URL;
-      const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-      
-      if (url && token) {
-        redis = new Redis({
-          url,
-          token,
-        });
-      }
-    } catch (e) {
-      console.warn("Failed to initialize Redis:", e);
-      return null;
-    }
+  if (redis) {
+    return redis;
   }
 
-  return redis;
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  if (!url || !token) {
+    return null;
+  }
+
+  try {
+    redis = new Redis({
+      url,
+      token,
+    });
+    return redis;
+  } catch (e) {
+    console.warn("Failed to initialize Redis:", e);
+    return null;
+  }
 }

@@ -1,6 +1,6 @@
 import type { Blog } from "@/.contentlayer/generated";
 import Link from "next/link";
-import { Eye, ExternalLink, ArrowUpRight, Calendar, Clock } from "lucide-react";
+import { ExternalLink, ArrowUpRight, Calendar } from "lucide-react";
 
 type Props = {
 	project: Blog;
