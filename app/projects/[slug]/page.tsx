@@ -42,13 +42,17 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <div className="bg-zinc-50 min-h-screen">
+    <div className="bg-black min-h-screen">
       <Header project={project} views={views} />
       
-
-      <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
-        <Mdx code={project.body.code} />
-      </article>
+      <div className="relative">
+          {/* Content Background Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 to-black" />
+          
+          <article className="relative z-10 px-6 py-20 mx-auto prose prose-invert prose-zinc max-w-3xl">
+            <Mdx code={project.body.code} />
+          </article>
+      </div>
     </div>
   );
 }
