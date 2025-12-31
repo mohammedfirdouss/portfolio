@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import { allProjects } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
@@ -97,48 +98,64 @@ export default async function ProjectsPage() {
         {/* Featured project */}
         <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2">
           <Card>
-            <Link href={`/projects/${featured.slug}`} data-cursor="pointer" data-cursor-text="View">
-              <article className="relative w-full h-full p-6 md:p-10">
-                {/* Featured badge */}
-                <div className="absolute top-6 right-6 md:top-10 md:right-10">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-zinc-400 border border-zinc-800 rounded-full bg-zinc-900/50">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    Featured
-                  </span>
-                </div>
-                
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="text-xs text-zinc-500">
-                    {featured.date ? (
-                      <time dateTime={new Date(featured.date).toISOString()}>
-                        {Intl.DateTimeFormat("en-US", {
-                          dateStyle: "medium",
-                        }).format(new Date(featured.date))}
-                      </time>
-                    ) : (
-                      <span></span>
-                    )}
+            <Link href={`/projects/${featured.slug}`} className="group block h-full">
+              <article className="relative w-full h-full flex flex-col">
+                {(featured.banner || featured.screenshot) && (
+                  <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-2xl">
+                     <Image
+                        src={featured.banner || featured.screenshot || ""}
+                        alt={featured.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                     />
+                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent" />
                   </div>
-                  <span className="flex items-center gap-1.5 text-xs text-zinc-500">
-                    <Eye className="w-4 h-4" />{" "}
-                    {Intl.NumberFormat("en-US", { notation: "compact" }).format(
-                      views[featured.slug] ?? 0,
-                    )}
-                  </span>
-                </div>
+                )}
+                
+                <div className="p-6 md:p-10 flex flex-col flex-grow relative z-10 -mt-10">
+                  {/* Featured badge */}
+                  <div className="absolute top-0 right-6 md:right-10 -translate-y-[150%]">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-white border border-zinc-500/50 rounded-full bg-zinc-900/80 backdrop-blur-md shadow-lg">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                      Featured
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="text-xs text-zinc-400">
+                      {featured.date ? (
+                        <time dateTime={new Date(featured.date).toISOString()}>
+                          {Intl.DateTimeFormat("en-US", {
+                            dateStyle: "medium",
+                          }).format(new Date(featured.date))}
+                        </time>
+                      ) : (
+                        <span></span>
+                      )}
+                    </div>
+                    <span className="flex items-center gap-1.5 text-xs text-zinc-400">
+                      <Eye className="w-4 h-4" />{" "}
+                      {Intl.NumberFormat("en-US", { notation: "compact" }).format(
+                        views[featured.slug] ?? 0,
+                      )}
+                    </span>
+                  </div>
 
-                <h2
-                  id="featured-post"
-                  className="mt-4 text-3xl font-bold text-zinc-100 group-hover:text-white sm:text-4xl font-display transition-colors duration-300"
-                >
-                  {featured.title}
-                </h2>
-                <p className="mt-4 leading-7 text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 line-clamp-3">
-                  {featured.description}
-                </p>
-                <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-400 group-hover:text-white transition-colors duration-300">
-                  Read case study
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  <h2
+                    className="mt-2 text-3xl font-bold text-zinc-100 group-hover:text-white sm:text-4xl font-display transition-colors duration-300"
+                  >
+                    {featured.title}
+                  </h2>
+                  <p className="mt-4 leading-7 text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 line-clamp-3">
+                    {featured.description}
+                  </p>
+                  
+                  <div className="mt-auto pt-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-400 group-hover:text-white transition-colors duration-300">
+                    Read case study
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
                 </div>
               </article>
             </Link>
