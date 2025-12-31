@@ -3,7 +3,7 @@ import { allBlogs } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
-import { Redis } from "@upstash/redis";
+import { getRedis } from "@/util/redis";
 import ReportView from "@/app/components/report-view-wrapper";
 
 export const revalidate = 60;
@@ -13,8 +13,6 @@ type Props = {
     slug: string;
   };
 };
-
-const redis = Redis.fromEnv();
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
   return allBlogs
@@ -33,11 +31,14 @@ export default async function PostPage({ params }: Props) {
   }
 
   let views = 0;
-  try {
-    views =
-      (await redis.get<number>(["pageviews", "blogs", slug].join(":"))) ?? 0;
-  } catch (e) {
-    console.error(e);
+  const redis = getRedis();
+  if (redis) {
+    try {
+      views =
+        (await redis.get<number>(["pageviews", "blogs", slug].join(":"))) ?? 0;
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   return (

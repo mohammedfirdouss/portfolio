@@ -4,10 +4,8 @@ import { allDiagrams } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { DiagramArticle } from "./article";
-import { Redis } from "@upstash/redis";
+import { getRedis } from "@/util/redis";
 import { Eye, ArrowRight, FileImage } from "lucide-react";
-
-const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function DiagramsPage() {
@@ -35,9 +33,18 @@ export default async function DiagramsPage() {
     ...sorted.map(d => d.slug)
   ];
 
-  const viewCounts = (await redis.mget(
-    ...slugsToFetch.map((slug) => ["pageviews", "diagrams", slug].join(":"))
-  )) as (number | null)[];
+  const redis = getRedis();
+  let viewCounts: (number | null)[] = [];
+  
+  if (redis) {
+    try {
+      viewCounts = (await redis.mget(
+        ...slugsToFetch.map((slug) => ["pageviews", "diagrams", slug].join(":"))
+      )) as (number | null)[];
+    } catch (e) {
+      console.warn("Failed to fetch view counts:", e);
+    }
+  }
 
   const views: Record<string, number> = {};
   if (viewCounts) {

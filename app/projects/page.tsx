@@ -4,10 +4,8 @@ import { allProjects } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
-import { Redis } from "@upstash/redis";
+import { getRedis } from "@/util/redis";
 import { Eye, Sparkles, ArrowRight } from "lucide-react";
-
-const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
@@ -37,9 +35,18 @@ export default async function ProjectsPage() {
     ...sorted.map(p => p.slug)
   ];
 
-  const viewCounts = (await redis.mget(
-    ...slugsToFetch.map((slug) => ["pageviews", "projects", slug].join(":"))
-  )) as (number | null)[];
+  const redis = getRedis();
+  let viewCounts: (number | null)[] = [];
+  
+  if (redis) {
+    try {
+      viewCounts = (await redis.mget(
+        ...slugsToFetch.map((slug) => ["pageviews", "projects", slug].join(":"))
+      )) as (number | null)[];
+    } catch (e) {
+      console.warn("Failed to fetch view counts:", e);
+    }
+  }
 
   const views: Record<string, number> = {};
   if (viewCounts) {
