@@ -221,10 +221,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-display mb-6">
-              Let&apos;s Build Something Together
+              Got a project in mind?
             </h2>
             <p className="text-lg text-zinc-400 mb-8 max-w-2xl mx-auto">
-              Whether you need cloud architecture, automation pipelines, or modern web applications &mdash; I&apos;m here to help bring your ideas to life.
+              Let&apos;s talk about it. I build cloud infrastructure, automation solutions, and web applications.
             </p>
             <MagneticButton strength={0.4}>
               <Link

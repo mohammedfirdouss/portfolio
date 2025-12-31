@@ -32,6 +32,10 @@ const GrainOverlay = dynamic(() => import("./components/noise-texture").then(mod
   ssr: false,
 });
 
+const PageTransition = dynamic(() => import("./components/page-transition").then(mod => ({ default: mod.PageTransition })), {
+  ssr: false,
+});
+
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
@@ -107,7 +111,9 @@ export default function RootLayout({
           <CustomCursor />
           <CommandPalette />
           <BackToTop />
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </SmoothScroll>
       </body>
     </html>
