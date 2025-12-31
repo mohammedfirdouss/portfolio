@@ -64,6 +64,22 @@ export const Diagram = defineDocumentType(() => ({
   computedFields,
 }));
 
+export const Experience = defineDocumentType(() => ({
+  name: "Experience",
+  filePathPattern: "./experience/**/*.mdx",
+  contentType: "mdx",
+  fields: {
+    role: { type: "string", required: true },
+    company: { type: "string", required: true },
+    companyUrl: { type: "string" },
+    startDate: { type: "date", required: true },
+    endDate: { type: "date" },
+    location: { type: "string" },
+    description: { type: "string", required: true },
+  },
+  computedFields,
+}));
+
 export const Page = defineDocumentType(() => ({
 	name: "Page",
 	filePathPattern: "pages/**/*.mdx",
@@ -99,7 +115,7 @@ export const Blog = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Page, Project, OpenSource, Diagram, Blog],
+  documentTypes: [Page, Experience, Project, OpenSource, Diagram, Blog],
   mdx: {
 	remarkPlugins: [remarkGfm],
 	rehypePlugins: [
