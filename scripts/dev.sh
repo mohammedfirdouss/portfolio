@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# dev.sh - Automate pnpm-based development server startup
+# dev.sh - Automate bun-based development server startup
 
 set -e
 
@@ -18,11 +18,11 @@ error()   { echo -e "${RED}[ERROR]${RESET} $1"; }
 
 # Check node_modules
 if [ ! -d node_modules ]; then
-  info "node_modules not found. Installing dependencies with pnpm..."
-  if pnpm install; then
+  info "node_modules not found. Installing dependencies with bun..."
+  if bun install; then
     success "Dependencies installed."
   else
-    error "pnpm install failed. Exiting."
+    error "bun install failed. Exiting."
     exit 1
   fi
 else
@@ -45,8 +45,8 @@ else
 fi
 
 # Start dev server
-info "Starting development server with pnpm dev..."
-if pnpm dev; then
+info "Starting development server with bun dev..."
+if bun dev; then
   success "Development server started."
 else
   error "Failed to start development server. Exiting."
