@@ -251,8 +251,8 @@ export default function Home() {
           </p>
           <div className="flex items-center gap-6">
             <a href="https://github.com/mohammedfirdouss" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">GitHub</a>
-            <a href="https://linkedin.com/in/mohammedfirdouss" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">LinkedIn</a>
-            <a href="https://twitter.com/mohammedfirdous" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">Twitter</a>
+            <a href="https://www.linkedin.com/in/mohammedfirdousaraoye/" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://twitter.com/iamfirdouss" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">Twitter</a>
           </div>
         </div>
       </footer>
