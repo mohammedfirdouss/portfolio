@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
@@ -7,8 +9,10 @@ import Particles from "./components/particles";
 import MagneticButton from "./components/magnetic-button";
 import TextReveal from "./components/text-reveal";
 import { TechStack } from "./components/tech-stack";
+import { Changelog } from "./components/changelog";
 
 const navigation = [
+  { name: "Experience", href: "/experience" },
   { name: "Projects", href: "/projects" },
   { name: "Blog", href: "/blog" },
   { name: "Open Source", href: "/open-source" },
@@ -110,7 +114,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mb-6 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-zinc-500"
         >
-          Cloud Engineer & Developer
+
         </motion.span>
 
         {/* Main heading */}
@@ -210,6 +214,9 @@ export default function Home() {
       {/* Tech Stack Section */}
       <TechStack />
 
+      {/* Changelog Section */}
+      <Changelog />
+
       {/* Footer CTA Section */}
       <section className="relative py-24 md:py-32">
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/50 to-transparent" />
@@ -221,10 +228,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-display mb-6">
-              Let&apos;s Build Something Together
+              Got a project in mind?
             </h2>
             <p className="text-lg text-zinc-400 mb-8 max-w-2xl mx-auto">
-              Whether you need cloud architecture, automation pipelines, or modern web applications &mdash; I&apos;m here to help bring your ideas to life.
+              Let&apos;s talk about it. I build cloud infrastructure, automation solutions, and web applications.
             </p>
             <MagneticButton strength={0.4}>
               <Link

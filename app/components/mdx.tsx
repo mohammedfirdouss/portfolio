@@ -3,6 +3,7 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import { InteractiveDiagram } from "./interactive-diagram";
 
 function clsx(...args: any) {
 	return args.filter(Boolean).join(" ");
@@ -99,17 +100,15 @@ const components = {
         className,
         alt,
         src,
+        title, // Capture title if markdown provides it
         ...props
     }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-        <span className={clsx("relative block w-full h-96 mx-auto my-8", className)}>
-            <Image
-                src={src!}
-                alt={alt}
-                fill
-                className="object-contain"
-                {...props}
-            />
-        </span>
+        <InteractiveDiagram 
+            src={src!} 
+            alt={alt || "Diagram"} 
+            title={alt} // Using alt as title for now as markdown often puts caption in alt
+            description={title} // Sometimes title is used for description
+        />
     ),
 	hr: ({ ...props }) => (
 		<hr className="my-4 border-zinc-200 md:my-8" {...props} />

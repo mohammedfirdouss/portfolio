@@ -1,8 +1,9 @@
 "use client";
-import { ArrowLeft, Eye, Github, Twitter } from "lucide-react";
+import { ArrowLeft, Eye, Github, Twitter, Globe, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 type Props = {
 	project: {
@@ -13,25 +14,30 @@ type Props = {
 		banner?: string;
 		screenshot?: string;
 	};
-
 	views: number;
 };
+
 export const Header: React.FC<Props> = ({ project, views }) => {
 	const ref = useRef<HTMLElement>(null);
 	const [isIntersecting, setIntersecting] = useState(true);
+	
+	const { scrollY } = useScroll();
+	const y = useTransform(scrollY, [0, 500], [0, 150]);
+	const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-	const links: { label: string; href: string }[] = [];
+	const links: { label: string; href: string; icon: React.ReactNode }[] = [];
 	if (project.repository) {
 		links.push({
 			label: "GitHub",
 			href: `https://github.com/${project.repository}`,
+			icon: <Github className="w-4 h-4" />,
 		});
 	}
-	const website = project.url;
-	if (website) {
+	if (project.url) {
 		links.push({
 			label: "Website",
-			href: website,
+			href: project.url,
+			icon: <Globe className="w-4 h-4" />,
 		});
 	}
 
@@ -45,111 +51,116 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 		return () => observer.disconnect();
 	}, []);
 
+	const image = project.banner || project.screenshot;
+
 	return (
 		<header
 			ref={ref}
-			className="relative isolate overflow-hidden bg-gradient-to-tl from-black via-zinc-900 to-black"
+			className="relative min-h-[70vh] flex flex-col items-center justify-center overflow-hidden bg-black"
 		>
-			{/* Background banner image with subtle overlay */}
-			{project.banner ? (
-				<div aria-hidden className="absolute inset-0 -z-10">
-					<Image
-						src={project.banner}
-						alt=""
-						fill
-						priority
-						className="object-cover opacity-25 mix-blend-luminosity"
-					/>
-					<div className="absolute inset-0 bg-gradient-to-tl from-black/70 via-zinc-900/70 to-black/70" />
-				</div>
-			) : null}
+			{/* Navigation Overlay */}
 			<div
-				className={`fixed inset-x-0 top-0 z-50 backdrop-blur lg:backdrop-blur-none duration-200 border-b lg:bg-transparent ${
+				className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b ${
 					isIntersecting
-						? "bg-zinc-900/0 border-transparent"
-						: "bg-white/10  border-zinc-200 lg:border-transparent"
+						? "bg-transparent border-transparent py-6"
+						: "bg-black/80 backdrop-blur-xl border-zinc-800 py-4"
 				}`}
 			>
-				<div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
-					<div className="flex justify-between gap-8">
-						<span
-							title="View counter for this page"
-							className={`duration-200 hover:font-medium flex items-center gap-1 ${
-								isIntersecting
-									? " text-zinc-400 hover:text-zinc-100"
-									: "text-zinc-600 hover:text-zinc-900"
-							} `}
-						>
-							<Eye className="w-5 h-5" />{" "}
-							{Intl.NumberFormat("en-US", { notation: "compact" }).format(
-								views,
-							)}
-						</span>
-						<Link target="_blank" href="https://twitter.com/iamfirdouss" rel="noopener noreferrer">
-							<Twitter
-								className={`w-6 h-6 duration-200 hover:font-medium ${
-									isIntersecting
-										? " text-zinc-400 hover:text-zinc-100"
-										: "text-zinc-600 hover:text-zinc-900"
-								} `}
-							/>
-						</Link>
-						<Link target="_blank" href="https://github.com/mohammedfirdouss" rel="noopener noreferrer">
-							<Github
-								className={`w-6 h-6 duration-200 hover:font-medium ${
-									isIntersecting
-										? " text-zinc-400 hover:text-zinc-100"
-										: "text-zinc-600 hover:text-zinc-900"
-								} `}
-							/>
-						</Link>
-					</div>
-
+				<div className="container flex items-center justify-between px-6 mx-auto">
 					<Link
 						href="/projects"
-						className={`duration-200 hover:font-medium ${
-							isIntersecting
-								? " text-zinc-400 hover:text-zinc-100"
-								: "text-zinc-600 hover:text-zinc-900"
-						} `}
+						className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+							isIntersecting ? "text-zinc-300 hover:text-white" : "text-zinc-400 hover:text-white"
+						}`}
 					>
-						<ArrowLeft className="w-6 h-6 " />
+						<ArrowLeft className="w-5 h-5" />
+						<span>Back to Projects</span>
 					</Link>
+
+					<div className="flex items-center gap-6">
+						<span className="flex items-center gap-2 text-sm text-zinc-400">
+							<Eye className="w-4 h-4" />
+							{Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
+						</span>
+						
+						{links.map((link) => (
+							<Link
+								key={link.href}
+								href={link.href}
+								target="_blank"
+								className="text-zinc-400 hover:text-white transition-colors"
+							>
+								{link.icon}
+							</Link>
+						))}
+					</div>
 				</div>
 			</div>
-			<div className="container mx-auto relative isolate overflow-hidden  py-24 sm:py-32">
-				<div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
-					<div className="mx-auto max-w-2xl lg:mx-0">
-						<h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
-							{project.title}
-						</h1>
-						<p className="mt-6 text-lg leading-8 text-zinc-300">
-							{project.description}
-						</p>
-					</div>
 
-					<div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-						<div className="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-							{links.map((link) => (
-								<Link target="_blank" key={link.label} href={link.href} rel="noopener noreferrer">
-									{link.label} <span aria-hidden="true">&rarr;</span>
-								</Link>
-							))}
-						</div>
+			{/* Immersive Background Image */}
+			{image && (
+				<motion.div 
+					className="absolute inset-0 z-0"
+					style={{ y, scale: 1.1 }}
+				>
+					<Image
+						src={image}
+						alt={project.title}
+						fill
+						priority
+						className="object-cover opacity-50"
+					/>
+					<div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/40" />
+					<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/20 to-black/60" />
+				</motion.div>
+			)}
+
+			{/* Content */}
+			<motion.div 
+				className="relative z-10 container px-6 mx-auto text-center"
+				style={{ opacity }}
+			>
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.8 }}
+					className="max-w-4xl mx-auto space-y-8"
+				>
+					<h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white font-display">
+						{project.title}
+					</h1>
+					
+					<p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed">
+						{project.description}
+					</p>
+
+					{/* Action Buttons */}
+					<div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+						{links.map((link) => (
+							<Link
+								key={link.href}
+								href={link.href}
+								target="_blank"
+								className="group relative inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-medium hover:bg-zinc-200 transition-all duration-300 hover:scale-105"
+							>
+								{link.label}
+								{link.label === "Website" ? <ArrowUpRight className="w-4 h-4" /> : link.icon}
+							</Link>
+						))}
 					</div>
+				</motion.div>
+			</motion.div>
+
+			{/* Scroll Indicator */}
+			<motion.div
+				className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+				animate={{ y: [0, 10, 0], opacity: [0.5, 1, 0.5] }}
+				transition={{ duration: 2, repeat: Infinity }}
+			>
+				<div className="w-6 h-10 border-2 border-zinc-500 rounded-full flex justify-center p-2">
+					<div className="w-1 h-1.5 bg-zinc-300 rounded-full" />
 				</div>
-
-				{/* Decorative product screenshot on large screens */}
-				{project.screenshot ? (
-					<div aria-hidden className="pointer-events-none absolute right-6 bottom-0 hidden lg:block">
-						<img
-							src={project.screenshot}
-							alt=""
-							className="w-[28rem] max-w-[40vw] translate-y-8 rounded-xl border border-white/10 shadow-2xl ring-1 ring-white/10 backdrop-blur-md"
-						/>
-					</div>
-				) : null}
-			</div>
+			</motion.div>
 		</header>
 	);
 };
