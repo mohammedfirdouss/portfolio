@@ -10,11 +10,9 @@ import { Eye, Sparkles, ArrowRight } from "lucide-react";
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-  console.log('All Projects:', allProjects);
   const featured = allProjects.find((project) => project._raw.sourceFileName === "Cruddur.mdx")!;
   const top2 = allProjects.find((project) => project._raw.sourceFileName === "TerraTowns.mdx")!;
   const top3 = allProjects.find((project) => project._raw.sourceFileName === "BloomRefresh.mdx")!;
-  console.log({ featured, top2, top3 });
   const sorted = allProjects
     .filter((p) => p.published)
     .filter(
