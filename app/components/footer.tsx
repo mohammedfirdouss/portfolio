@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import MagneticButton from "./magnetic-button";
 

@@ -4,7 +4,7 @@ import { allExperiences } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Mdx } from "../components/mdx";
-import { Briefcase, Calendar, MapPin, Sparkles, Building2, ArrowUpRight } from "lucide-react";
+import { Calendar, MapPin, Sparkles, Building2, ArrowUpRight } from "lucide-react";
 
 export const metadata = {
   title: "Experience",
