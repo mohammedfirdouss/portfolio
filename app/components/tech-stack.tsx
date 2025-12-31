@@ -7,6 +7,11 @@ import { Cloud, Code2, Terminal, Boxes } from "lucide-react";
 
 interface TechItem {
   name: string;
+
+interface TechItem {
+  name: string;
+  icon: string;
+  color: string;
   category: "cloud" | "devops" | "languages" | "tools";
 }
 
