@@ -18,16 +18,16 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v2
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: 8
+          bun-version: latest
 
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Install Vercel CLI
-        run: pnpm add -g vercel
+        run: bun add -g vercel
 
       - name: Pull Vercel Project Settings
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}

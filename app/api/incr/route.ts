@@ -1,7 +1,5 @@
-import { Redis } from "@upstash/redis";
+import { getRedis } from "@/util/redis";
 import { NextRequest, NextResponse } from "next/server";
-
-const redis = Redis.fromEnv();
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   if (req.headers.get("Content-Type") !== "application/json") {
@@ -16,6 +14,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!slug) {
     return new NextResponse("Slug not found", { status: 400 });
   }
+  
+  const redis = getRedis();
+  if (!redis) {
+    return new NextResponse("Redis not available", { status: 503 });
+  }
+  
   const ip = req.ip;
   if (ip) {
     // Hash the IP in order to not store it directly in your db.
@@ -33,7 +37,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       ex: 24 * 60 * 60,
     });
     if (!isNew) {
-      new NextResponse(null, { status: 202 });
+      return new NextResponse(null, { status: 202 });
     }
   }
   await redis.incr(["pageviews", "projects", slug].join(":"));
