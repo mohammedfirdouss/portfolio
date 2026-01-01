@@ -190,7 +190,8 @@ export default function Home() {
 							className="text-base md:text-lg text-zinc-400 leading-relaxed"
 							delay={0.1}
 						>
-							Cloud Engineer, Open Source and Research, AI, and 3X Hackathon Winner.
+							Cloud Engineer, Open Source and Research, AI, and 3X Hackathon
+							Winner.
 						</TextReveal>
 					</motion.div>
 
