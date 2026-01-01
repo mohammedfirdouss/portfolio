@@ -3,40 +3,51 @@
 import { useEffect, useRef } from "react";
 
 interface SmoothScrollProps {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
-  const lenisRef = useRef<any>(null);
+	const lenisRef = useRef<any>(null);
+	const isInitializedRef = useRef(false);
 
-  useEffect(() => {
-    const initLenis = async () => {
-      const Lenis = (await import("lenis")).default;
-      
-      lenisRef.current = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-      });
+	useEffect(() => {
+		if (isInitializedRef.current) return;
+		isInitializedRef.current = true;
 
-      function raf(time: number) {
-        lenisRef.current?.raf(time);
-        requestAnimationFrame(raf);
-      }
+		const initLenis = async () => {
+			try {
+				const Lenis = (await import("lenis")).default;
 
-      requestAnimationFrame(raf);
-    };
+				lenisRef.current = new Lenis({
+					duration: 1.2,
+					easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+					orientation: "vertical",
+					gestureOrientation: "vertical",
+					smoothWheel: true,
+					wheelMultiplier: 1,
+					touchMultiplier: 2,
+				});
 
-    initLenis();
+				const raf = (time: number) => {
+					lenisRef.current?.raf(time);
+					requestAnimationFrame(raf);
+				};
 
-    return () => {
-      lenisRef.current?.destroy();
-    };
-  }, []);
+				requestAnimationFrame(raf);
+			} catch (e) {
+				console.warn("Lenis smooth scroll failed to initialize:", e);
+			}
+		};
 
-  return <>{children}</>;
+		initLenis();
+
+		return () => {
+			if (lenisRef.current) {
+				lenisRef.current.destroy();
+				lenisRef.current = null;
+			}
+		};
+	}, []);
+
+	return <>{children}</>;
 }

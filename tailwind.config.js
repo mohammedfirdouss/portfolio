@@ -42,8 +42,8 @@ module.exports = {
 			},
 			colors: {
 				zinc: {
-					850: '#1f1f23',
-					950: '#0c0c0f',
+					850: "#1f1f23",
+					950: "#0c0c0f",
 				},
 			},
 			animation: {
@@ -186,10 +186,12 @@ module.exports = {
 				},
 				glow: {
 					"0%": {
-						boxShadow: "0 0 5px rgba(255,255,255,0.1), 0 0 10px rgba(255,255,255,0.05)",
+						boxShadow:
+							"0 0 5px rgba(255,255,255,0.1), 0 0 10px rgba(255,255,255,0.05)",
 					},
 					"100%": {
-						boxShadow: "0 0 20px rgba(255,255,255,0.2), 0 0 40px rgba(255,255,255,0.1)",
+						boxShadow:
+							"0 0 20px rgba(255,255,255,0.2), 0 0 40px rgba(255,255,255,0.1)",
 					},
 				},
 				float: {

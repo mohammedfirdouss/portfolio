@@ -12,9 +12,9 @@ export const Article: React.FC<Props> = ({ project, views }) => {
 	const image = project.banner || project.screenshot;
 
 	return (
-		<Link 
-			href={`/projects/${project.slug}`} 
-			className="group block h-full flex flex-col" 
+		<Link
+			href={`/projects/${project.slug}`}
+			className="group block h-full flex flex-col"
 			aria-label={project.title}
 			data-cursor="pointer"
 			data-cursor-text="View"
@@ -36,7 +36,6 @@ export const Article: React.FC<Props> = ({ project, views }) => {
 
 				{/* Content Section */}
 				<div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 -mt-12 bg-gradient-to-t from-transparent to-transparent">
-					
 					{/* Meta info */}
 					<div className="flex justify-between gap-2 items-center mb-3">
 						<span className="text-xs text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 backdrop-blur-md bg-zinc-900/50 px-2 py-1 rounded-md border border-zinc-800/50">
@@ -52,7 +51,9 @@ export const Article: React.FC<Props> = ({ project, views }) => {
 						</span>
 						<span className="flex items-center gap-1.5 text-xs text-zinc-400 backdrop-blur-md bg-zinc-900/50 px-2 py-1 rounded-md border border-zinc-800/50">
 							<Eye className="w-3.5 h-3.5" />{" "}
-							{Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
+							{Intl.NumberFormat("en-US", { notation: "compact" }).format(
+								views,
+							)}
 						</span>
 					</div>
 
