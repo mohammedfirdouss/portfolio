@@ -28,6 +28,14 @@ export function TerminalModal() {
 					<span>Display profile info</span>
 					<span className="text-emerald-400">projects</span>
 					<span>List projects</span>
+					<span className="text-emerald-400">opensource</span>
+					<span>Show open source contributions</span>
+					<span className="text-emerald-400">experience</span>
+					<span>Show work experience</span>
+					<span className="text-emerald-400">stack</span>
+					<span>Display tech stack</span>
+					<span className="text-emerald-400">blog</span>
+					<span>List blog posts</span>
 					<span className="text-emerald-400">goto</span>
 					<span>Navigate (e.g., goto /blog)</span>
 					<span className="text-emerald-400">clear</span>
@@ -47,6 +55,56 @@ export function TerminalModal() {
 				Cloud Engineer & Backend Developer. 3x Hackathon Winner.
 				<br />
 				Specializing in AWS, Serverless, and Automation.
+			</div>
+		),
+		opensource: () => (
+			<div className="grid grid-cols-1 gap-1 text-zinc-300">
+				<span>- GitLab CLI: Added documentation for fork behavior (Go)</span>
+				<span>- GitLab CLI: Standardized schedule command help formatting</span>
+				<span>- GitLab CLI: Standardized run command help formatting</span>
+			</div>
+		),
+		experience: () => (
+			<div className="grid grid-cols-1 gap-1 text-zinc-300">
+				<span>
+					<span className="text-emerald-400">Swype</span> (Back End Developer)
+				</span>
+				<span className="pl-4 text-zinc-500">
+					Built payments & wallet APIs. Improved transaction speed by 5%.
+				</span>
+				<span>
+					<span className="text-emerald-400">Nithub</span> (DevOps Engineer)
+				</span>
+				<span className="pl-4 text-zinc-500">
+					Automated CI/CD with GitHub Actions. Maintained code quality.
+				</span>
+			</div>
+		),
+		stack: () => (
+			<div className="grid grid-cols-1 gap-1 text-zinc-300">
+				<span>
+					<span className="text-emerald-400">Cloud:</span> AWS, GCP
+				</span>
+				<span>
+					<span className="text-emerald-400">DevOps:</span> Docker, Kubernetes,
+					Terraform, GitHub Actions
+				</span>
+				<span>
+					<span className="text-emerald-400">AI:</span> OpenAI, Anthropic,
+					LangChain, PyTorch
+				</span>
+				<span>
+					<span className="text-emerald-400">Languages:</span> Python, TypeScript,
+					Go, Bash
+				</span>
+			</div>
+		),
+		blog: () => (
+			<div className="grid grid-cols-1 gap-1 text-zinc-300">
+				<span>- 3 Tier Architecture using AWS CloudFormation</span>
+				<span>- Understanding Docker</span>
+				<span>- Why a Serverless Mindset Matters</span>
+				<span>- MCPs and APIs</span>
 			</div>
 		),
 		contact: () => (
