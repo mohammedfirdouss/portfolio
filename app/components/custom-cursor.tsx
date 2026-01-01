@@ -1,19 +1,17 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export default function CustomCursor() {
 	const [isHydrated, setIsHydrated] = useState(false);
 	const [isHovering, setIsHovering] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
-	const [cursorText, setCursorText] = useState("");
-	const cursorRef = useRef<HTMLDivElement>(null);
-
 	const cursorX = useMotionValue(-100);
 	const cursorY = useMotionValue(-100);
 
-	const springConfig = { damping: 25, stiffness: 700 };
+	// Smoother, "floaty" spring physics for the follower effect
+	const springConfig = { damping: 20, stiffness: 300, mass: 0.5 };
 	const cursorXSpring = useSpring(cursorX, springConfig);
 	const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -33,21 +31,22 @@ export default function CustomCursor() {
 		const handleMouseOver = (e: MouseEvent) => {
 			const target = e.target as HTMLElement;
 
+			// Check if the element is interactive
 			if (
 				target.tagName === "A" ||
 				target.tagName === "BUTTON" ||
 				target.closest("a") ||
 				target.closest("button") ||
-				target.dataset.cursor === "pointer"
+				target.dataset.cursor === "pointer" ||
+				// Also check for common interactive classes/roles if needed
+				window.getComputedStyle(target).cursor === "pointer"
 			) {
 				setIsHovering(true);
-				setCursorText(target.dataset.cursorText || "");
 			}
 		};
 
 		const handleMouseOut = () => {
 			setIsHovering(false);
-			setCursorText("");
 		};
 
 		const handleMouseLeave = () => {
@@ -70,62 +69,27 @@ export default function CustomCursor() {
 	if (!isHydrated) return null;
 
 	return (
-		<>
-			{/* Main cursor dot */}
+		<motion.div
+			className="fixed top-0 left-0 pointer-events-none z-[999] mix-blend-difference"
+			style={{
+				x: cursorXSpring,
+				y: cursorYSpring,
+				opacity: isVisible ? 1 : 0,
+			}}
+		>
 			<motion.div
-				ref={cursorRef}
-				className="fixed top-0 left-0 pointer-events-none z-[99] mix-blend-difference"
-				style={{
-					x: cursorXSpring,
-					y: cursorYSpring,
+				className="absolute -top-6 -left-6 w-12 h-12 rounded-full border border-white bg-white/5 backdrop-blur-[1px]"
+				animate={{
+					scale: isHovering ? 1.5 : 1,
+					backgroundColor: isHovering
+						? "rgba(255, 255, 255, 0.1)"
+						: "rgba(255, 255, 255, 0.05)",
+					borderColor: isHovering
+						? "rgba(255, 255, 255, 0.8)"
+						: "rgba(255, 255, 255, 0.4)",
 				}}
-			>
-				<motion.div
-					className="relative flex items-center justify-center"
-					animate={{
-						scale: isHovering ? 2.5 : 1,
-					}}
-					transition={{ duration: 0.2 }}
-				>
-					<div
-						className={`rounded-full bg-white transition-all duration-200 ${
-							isHovering ? "w-12 h-12 -ml-6 -mt-6" : "w-3 h-3 -ml-1.5 -mt-1.5"
-						}`}
-					/>
-					{cursorText && isHovering && (
-						<span className="absolute text-xs font-medium text-black whitespace-nowrap">
-							{cursorText}
-						</span>
-					)}
-				</motion.div>
-			</motion.div>
-
-			{/* Cursor ring/outline */}
-			<motion.div
-				className="fixed top-0 left-0 pointer-events-none z-[98]"
-				style={{
-					x: cursorXSpring,
-					y: cursorYSpring,
-				}}
-			>
-				<motion.div
-					className="w-10 h-10 -ml-5 -mt-5 rounded-full border border-white/30"
-					animate={{
-						scale: isHovering ? 1.5 : 1,
-						opacity: isVisible ? 0.5 : 0,
-					}}
-					transition={{ duration: 0.3 }}
-				/>
-			</motion.div>
-
-			{/* Hide default cursor globally */}
-			<style jsx global>{`
-        @media (pointer: fine) {
-          * {
-            cursor: none !important;
-          }
-        }
-      `}</style>
-		</>
+				transition={{ duration: 0.3, ease: "easeOut" }}
+			/>
+		</motion.div>
 	);
 }
