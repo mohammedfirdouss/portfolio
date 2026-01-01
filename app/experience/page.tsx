@@ -54,8 +54,8 @@ export default function ExperiencePage() {
 						Experience
 					</h1>
 					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						A timeline of my professional roles and the value I've
-						delivered to various organizations.
+						A timeline of my professional roles and the value I've delivered to
+						various organizations.
 					</p>
 				</div>
 

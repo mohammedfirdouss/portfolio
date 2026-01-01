@@ -64,7 +64,10 @@ const components = {
 		/>
 	),
 	strong: ({ className, ...props }) => (
-		<strong className={clsx("font-semibold text-zinc-100", className)} {...props} />
+		<strong
+			className={clsx("font-semibold text-zinc-100", className)}
+			{...props}
+		/>
 	),
 	a: ({ className, ...props }) => (
 		<Link
@@ -77,15 +80,24 @@ const components = {
 	),
 	p: ({ className, ...props }) => (
 		<p
-			className={clsx("leading-7 text-zinc-300 [&:not(:first-child)]:mt-6", className)}
+			className={clsx(
+				"leading-7 text-zinc-300 [&:not(:first-child)]:mt-6",
+				className,
+			)}
 			{...props}
 		/>
 	),
 	ul: ({ className, ...props }) => (
-		<ul className={clsx("my-6 ml-6 list-disc text-zinc-300", className)} {...props} />
+		<ul
+			className={clsx("my-6 ml-6 list-disc text-zinc-300", className)}
+			{...props}
+		/>
 	),
 	ol: ({ className, ...props }) => (
-		<ol className={clsx("my-6 ml-6 list-decimal text-zinc-300", className)} {...props} />
+		<ol
+			className={clsx("my-6 ml-6 list-decimal text-zinc-300", className)}
+			{...props}
+		/>
 	),
 	li: ({ className, ...props }) => (
 		<li className={clsx("mt-2 text-zinc-300", className)} {...props} />

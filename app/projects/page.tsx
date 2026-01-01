@@ -94,8 +94,8 @@ export default async function ProjectsPage() {
 						Projects
 					</h1>
 					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						Most of my projects are my own time. Each
-						represents a journey of learning and problem-solving.
+						Most of my projects are my own time. Each represents a journey of
+						learning and problem-solving.
 					</p>
 				</div>
 
