@@ -4,139 +4,167 @@ import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"), {
-  ssr: false,
-});
+const AnalyticsWrapper = dynamic(
+	() => import("./components/analytics-wrapper"),
+	{
+		ssr: false,
+	},
+);
 
 const CustomCursor = dynamic(() => import("./components/custom-cursor"), {
-  ssr: false,
+	ssr: false,
 });
 
 const SmoothScroll = dynamic(() => import("./components/smooth-scroll"), {
-  ssr: false,
+	ssr: false,
 });
 
 const ScrollProgress = dynamic(() => import("./components/scroll-progress"), {
-  ssr: false,
+	ssr: false,
 });
 
-const CommandPalette = dynamic(() => import("./components/command-palette").then(mod => ({ default: mod.CommandPalette })), {
-  ssr: false,
-});
+const CommandPalette = dynamic(
+	() =>
+		import("./components/command-palette").then((mod) => ({
+			default: mod.CommandPalette,
+		})),
+	{
+		ssr: false,
+	},
+);
 
-const BackToTop = dynamic(() => import("./components/back-to-top").then(mod => ({ default: mod.BackToTop })), {
-  ssr: false,
-});
+const BackToTop = dynamic(
+	() =>
+		import("./components/back-to-top").then((mod) => ({
+			default: mod.BackToTop,
+		})),
+	{
+		ssr: false,
+	},
+);
 
-const GrainOverlay = dynamic(() => import("./components/noise-texture").then(mod => ({ default: mod.GrainOverlay })), {
-  ssr: false,
-});
+const GrainOverlay = dynamic(
+	() =>
+		import("./components/noise-texture").then((mod) => ({
+			default: mod.GrainOverlay,
+		})),
+	{
+		ssr: false,
+	},
+);
 
-const PageTransition = dynamic(() => import("./components/page-transition").then(mod => ({ default: mod.PageTransition })), {
-  ssr: false,
-});
-
+const PageTransition = dynamic(
+	() =>
+		import("./components/page-transition").then((mod) => ({
+			default: mod.PageTransition,
+		})),
+	{
+		ssr: false,
+	},
+);
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
-  title: {
-    default: "Mohammed Firdous",
-    template: "%s | Mohammed Firdous",
-  },
-  description: "Cloud Engineer",
-  openGraph: {
-    title: "Mohammed Firdous",
-    description:
-      "Cloud Engineer",
-    url: "https://mohammedfirdous.me",
-    siteName: "Mohammed Firdous",
-    images: [
-      {
-        url: "/og.png",
-        width: 1920,
-        height: 1080,
-      },
-    ],
-    locale: "en-US",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  twitter: {
-    title: "Mohammed Firdous",
-    card: "summary_large_image",
-    description: "Cloud Engineer",
-    images: "/og.png",
-  },
-  icons: {
-    shortcut: "/favicon.png",
-  },
+	metadataBase: new URL("http://localhost:3000"),
+	title: {
+		default: "Mohammed Firdous",
+		template: "%s | Mohammed Firdous",
+	},
+	description: "Cloud Engineer",
+	openGraph: {
+		title: "Mohammed Firdous",
+		description: "Cloud Engineer",
+		url: "https://mohammedfirdous.me",
+		siteName: "Mohammed Firdous",
+		images: [
+			{
+				url: "/og.png",
+				width: 1920,
+				height: 1080,
+			},
+		],
+		locale: "en-US",
+		type: "website",
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-video-preview": -1,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+		},
+	},
+	twitter: {
+		title: "Mohammed Firdous",
+		card: "summary_large_image",
+		description: "Cloud Engineer",
+		images: "/og.png",
+	},
+	icons: {
+		shortcut: "/favicon.png",
+	},
 };
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+	subsets: ["latin"],
+	variable: "--font-inter",
+	display: "swap",
 });
 
 const calSans = LocalFont({
-  src: "../public/fonts/CalSans-SemiBold.ttf",
-  variable: "--font-calsans",
-  display: "swap",
+	src: "../public/fonts/CalSans-SemiBold.ttf",
+	variable: "--font-calsans",
+	display: "swap",
 });
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" className={[inter.variable, calSans.variable].join(" ")} suppressHydrationWarning>
-      <head>
-        <AnalyticsWrapper />
-        {/* Prevent FOUC by setting dark background immediately */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+	return (
+		<html
+			lang="en"
+			className={[inter.variable, calSans.variable].join(" ")}
+			suppressHydrationWarning
+		>
+			<head>
+				<AnalyticsWrapper />
+				{/* Prevent FOUC by setting dark background immediately */}
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
               (function() {
                 document.documentElement.style.backgroundColor = '#000';
                 document.documentElement.style.colorScheme = 'dark';
               })();
             `,
-          }}
-        />
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
+					}}
+				/>
+				<style
+					dangerouslySetInnerHTML={{
+						__html: `
               html { background-color: #000; }
               body { background-color: #000; visibility: visible; }
             `,
-          }}
-        />
-      </head>
-      <body
-        className={`bg-black ${process.env.NODE_ENV === "development" ? "" : undefined
-          }`}
-      >
-        <SmoothScroll>
-          <GrainOverlay />
-          <ScrollProgress />
-          <CustomCursor />
-          <CommandPalette />
-          <BackToTop />
-          <PageTransition>
-            {children}
-          </PageTransition>
-        </SmoothScroll>
-      </body>
-    </html>
-  );
+					}}
+				/>
+			</head>
+			<body
+				className={`bg-black ${
+					process.env.NODE_ENV === "development" ? "" : undefined
+				}`}
+			>
+				<SmoothScroll>
+					<GrainOverlay />
+					<ScrollProgress />
+					<CustomCursor />
+					<CommandPalette />
+					<BackToTop />
+					<PageTransition>{children}</PageTransition>
+				</SmoothScroll>
+			</body>
+		</html>
+	);
 }
