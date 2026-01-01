@@ -20,7 +20,7 @@ export const Card: React.FC<PropsWithChildren> = ({ children }) => {
 		const { left, top, width, height } = currentTarget.getBoundingClientRect();
 		const x = clientX - left;
 		const y = clientY - top;
-		
+
 		mouseX.set(x);
 		mouseY.set(y);
 
@@ -56,13 +56,13 @@ export const Card: React.FC<PropsWithChildren> = ({ children }) => {
 			{/* Background glow effect */}
 			<div className="pointer-events-none absolute inset-0 z-0">
 				<div className="absolute inset-0 transition duration-1000 [mask-image:linear-gradient(black,transparent)]" />
-				
+
 				{/* Spotlight gradient */}
 				<motion.div
 					className="absolute inset-0 z-10 bg-gradient-to-br opacity-0 via-zinc-100/10 transition duration-500 group-hover:opacity-100"
 					style={style}
 				/>
-				
+
 				{/* Edge highlight */}
 				<motion.div
 					className="absolute inset-0 z-10 opacity-0 mix-blend-overlay transition duration-500 group-hover:opacity-100"
@@ -71,14 +71,12 @@ export const Card: React.FC<PropsWithChildren> = ({ children }) => {
 			</div>
 
 			{/* Shimmer effect on hover */}
-			<div 
+			<div
 				className={`absolute inset-0 z-20 pointer-events-none transition-opacity duration-500 ${
-					isHovered ? 'opacity-100' : 'opacity-0'
+					isHovered ? "opacity-100" : "opacity-0"
 				}`}
 			>
-				<div 
-					className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-				/>
+				<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 			</div>
 
 			{/* Corner accents */}

@@ -1,5 +1,12 @@
 "use client";
-import { ArrowLeft, Eye, Github, Twitter, Globe, ArrowUpRight } from "lucide-react";
+import {
+	ArrowLeft,
+	Eye,
+	Github,
+	Twitter,
+	Globe,
+	ArrowUpRight,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
@@ -20,7 +27,7 @@ type Props = {
 export const Header: React.FC<Props> = ({ project, views }) => {
 	const ref = useRef<HTMLElement>(null);
 	const [isIntersecting, setIntersecting] = useState(true);
-	
+
 	const { scrollY } = useScroll();
 	const y = useTransform(scrollY, [0, 500], [0, 150]);
 	const opacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -70,7 +77,9 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 					<Link
 						href="/projects"
 						className={`flex items-center gap-2 text-sm font-medium transition-colors ${
-							isIntersecting ? "text-zinc-300 hover:text-white" : "text-zinc-400 hover:text-white"
+							isIntersecting
+								? "text-zinc-300 hover:text-white"
+								: "text-zinc-400 hover:text-white"
 						}`}
 					>
 						<ArrowLeft className="w-5 h-5" />
@@ -80,9 +89,11 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 					<div className="flex items-center gap-6">
 						<span className="flex items-center gap-2 text-sm text-zinc-400">
 							<Eye className="w-4 h-4" />
-							{Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
+							{Intl.NumberFormat("en-US", { notation: "compact" }).format(
+								views,
+							)}
 						</span>
-						
+
 						{links.map((link) => (
 							<Link
 								key={link.href}
@@ -99,10 +110,7 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 
 			{/* Immersive Background Image */}
 			{image && (
-				<motion.div 
-					className="absolute inset-0 z-0"
-					style={{ y, scale: 1.1 }}
-				>
+				<motion.div className="absolute inset-0 z-0" style={{ y, scale: 1.1 }}>
 					<Image
 						src={image}
 						alt={project.title}
@@ -116,7 +124,7 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 			)}
 
 			{/* Content */}
-			<motion.div 
+			<motion.div
 				className="relative z-10 container px-6 mx-auto text-center"
 				style={{ opacity }}
 			>
@@ -129,7 +137,7 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 					<h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white font-display">
 						{project.title}
 					</h1>
-					
+
 					<p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed">
 						{project.description}
 					</p>
@@ -144,7 +152,11 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 								className="group relative inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-medium hover:bg-zinc-200 transition-all duration-300 hover:scale-105"
 							>
 								{link.label}
-								{link.label === "Website" ? <ArrowUpRight className="w-4 h-4" /> : link.icon}
+								{link.label === "Website" ? (
+									<ArrowUpRight className="w-4 h-4" />
+								) : (
+									link.icon
+								)}
 							</Link>
 						))}
 					</div>

@@ -96,20 +96,20 @@ const components = {
 			{...props}
 		/>
 	),
-    img: ({
-        className,
-        alt,
-        src,
-        title, // Capture title if markdown provides it
-        ...props
-    }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-        <InteractiveDiagram 
-            src={src!} 
-            alt={alt || "Diagram"} 
-            title={alt} // Using alt as title for now as markdown often puts caption in alt
-            description={title} // Sometimes title is used for description
-        />
-    ),
+	img: ({
+		className,
+		alt,
+		src,
+		title, // Capture title if markdown provides it
+		...props
+	}: React.ImgHTMLAttributes<HTMLImageElement>) => (
+		<InteractiveDiagram
+			src={src!}
+			alt={alt || "Diagram"}
+			title={alt} // Using alt as title for now as markdown often puts caption in alt
+			description={title} // Sometimes title is used for description
+		/>
+	),
 	hr: ({ ...props }) => (
 		<hr className="my-4 border-zinc-200 md:my-8" {...props} />
 	),

@@ -55,10 +55,7 @@ export const Navigation: React.FC<{ backLink?: string }> = ({ backLink }) => {
 							className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors duration-300"
 							data-cursor="pointer"
 						>
-							<motion.div
-								whileHover={{ x: -4 }}
-								transition={{ duration: 0.2 }}
-							>
+							<motion.div whileHover={{ x: -4 }} transition={{ duration: 0.2 }}>
 								<ArrowLeft className="w-5 h-5" />
 							</motion.div>
 							<span className="text-sm font-medium hidden sm:inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -74,16 +71,16 @@ export const Navigation: React.FC<{ backLink?: string }> = ({ backLink }) => {
 								key={item.href}
 								initial={{ opacity: 0, y: -20 }}
 								animate={{ opacity: 1, y: 0 }}
-								transition={{ 
-									duration: 0.5, 
+								transition={{
+									duration: 0.5,
 									delay: index * 0.1,
-									ease: [0.21, 0.47, 0.32, 0.98]
+									ease: [0.21, 0.47, 0.32, 0.98],
 								}}
 							>
 								<MagneticButton strength={0.2}>
 									<Link
 										href={item.href}
-										className="relative px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-300 group"
+										className="relative px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300 ease-out group"
 										data-cursor="pointer"
 									>
 										<span className="relative z-10">{item.name}</span>
@@ -158,7 +155,7 @@ export const Navigation: React.FC<{ backLink?: string }> = ({ backLink }) => {
 									<Link
 										href={item.href}
 										onClick={() => setIsMobileMenuOpen(false)}
-										className="text-3xl font-display font-bold text-zinc-400 hover:text-white transition-colors duration-300"
+										className="text-3xl font-display font-bold text-zinc-400 hover:text-white transition-all duration-300 ease-out"
 										data-cursor="pointer"
 									>
 										{item.name}

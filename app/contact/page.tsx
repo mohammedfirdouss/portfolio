@@ -1,5 +1,12 @@
 "use client";
-import { Github, Mail, Twitter, Linkedin, ArrowUpRight, Sparkles } from "lucide-react";
+import {
+	Github,
+	Mail,
+	Twitter,
+	Linkedin,
+	ArrowUpRight,
+	Sparkles,
+} from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
@@ -71,20 +78,20 @@ export default function ContactPage() {
 		<div className="relative min-h-screen bg-black">
 			{/* Background effects */}
 			<div className="absolute inset-0 bg-gradient-to-br from-zinc-900/30 via-black to-zinc-900/20" />
-			<div 
+			<div
 				className="absolute inset-0 opacity-[0.02]"
 				style={{
 					backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
 									linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-					backgroundSize: '60px 60px',
+					backgroundSize: "60px 60px",
 				}}
 			/>
-			
+
 			{/* Radial glow */}
 			<div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-radial from-zinc-800/30 via-transparent to-transparent rounded-full blur-3xl" />
-			
+
 			<Navigation />
-			
+
 			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
 				{/* Header section */}
 				<motion.div
@@ -109,11 +116,13 @@ export default function ContactPage() {
 						Get in Touch
 					</h1>
 					<div className="mt-6 max-w-xl">
-						<TextReveal 
+						<TextReveal
 							className="text-lg text-zinc-400 leading-relaxed"
 							delay={0.1}
 						>
-							I'm always open to discussing new projects, opportunities, and collaborations. Feel free to reach out through any of these platforms.
+							I'm always open to discussing new projects, opportunities, and
+							collaborations. Feel free to reach out through any of these
+							platforms.
 						</TextReveal>
 					</div>
 				</motion.div>
@@ -135,7 +144,7 @@ export default function ContactPage() {
 					animate="visible"
 					className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
 				>
-					{socials.map((s, index) => (
+					{socials.map((s, index) =>
 						s ? (
 							<motion.div key={index} variants={itemVariants}>
 								<MagneticButton strength={0.1} className="w-full h-full">
@@ -143,28 +152,32 @@ export default function ContactPage() {
 										<Link
 											href={s.href}
 											target="_blank"
-											className={`relative flex flex-col items-center gap-6 p-8 md:p-12 group transition-all duration-500`}
+											className={
+												"relative flex flex-col items-center gap-6 p-8 md:p-12 group transition-all duration-500"
+											}
 											data-cursor="pointer"
 											data-cursor-text="Visit"
 										>
 											{/* Background gradient on hover */}
-											<div className={`absolute inset-0 bg-gradient-to-br ${s.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
-											
+											<div
+												className={`absolute inset-0 bg-gradient-to-br ${s.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`}
+											/>
+
 											{/* Decorative line */}
 											<span
 												className="absolute w-px h-1/2 bg-gradient-to-b from-zinc-600 via-zinc-600/50 to-transparent top-0"
 												aria-hidden="true"
 											/>
-											
+
 											{/* Icon */}
-											<motion.span 
+											<motion.span
 												className={`relative z-10 flex items-center justify-center w-16 h-16 text-zinc-400 group-hover:text-white border ${s.borderColor} border-zinc-700 rounded-2xl bg-zinc-900/50 backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:shadow-glow-sm`}
 												whileHover={{ rotate: [0, -10, 10, 0] }}
 												transition={{ duration: 0.5 }}
 											>
 												{s.icon}
 											</motion.span>
-											
+
 											{/* Content */}
 											<div className="z-10 flex flex-col items-center text-center">
 												<span className="text-xs font-medium tracking-widest uppercase text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300">
@@ -181,8 +194,8 @@ export default function ContactPage() {
 							</motion.div>
 						) : (
 							<div key={index} className="hidden lg:block" />
-						)
-					))}
+						),
+					)}
 				</motion.div>
 			</div>
 
