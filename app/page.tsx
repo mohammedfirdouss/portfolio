@@ -12,6 +12,7 @@ import { TechStack } from "./components/tech-stack";
 import { SelectedProjects } from "./components/selected-projects";
 import { HackerText } from "./components/hacker-text";
 import { TerminalModal } from "./components/terminal-modal";
+import { SystemMonitor } from "./components/system-monitor";
 
 const navigation = [
 	{ name: "Experience", href: "/experience" },
@@ -324,6 +325,7 @@ export default function Home() {
 				</div>
 			</footer>
 
+			<SystemMonitor />
 			<TerminalModal />
 		</div>
 	);

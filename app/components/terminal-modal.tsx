@@ -64,7 +64,8 @@ export function TerminalModal() {
 			</div>
 		),
 		goto: (args) => {
-			if (!args[0]) return <span className="text-red-400">Usage: goto [path]</span>;
+			if (!args[0])
+				return <span className="text-red-400">Usage: goto [path]</span>;
 			const path = args[0].startsWith("/") ? args[0] : `/${args[0]}`;
 			router.push(path);
 			return <span className="text-emerald-400">Navigating to {path}...</span>;
@@ -83,9 +84,13 @@ export function TerminalModal() {
 		const [cmd, ...args] = trimmed.split(" ");
 		const commandFn = commands[cmd.toLowerCase()];
 
-		const output = commandFn
-			? commandFn(args)
-			: <span className="text-red-400">Command not found: {cmd}. Type 'help' for available commands.</span>;
+		const output = commandFn ? (
+			commandFn(args)
+		) : (
+			<span className="text-red-400">
+				Command not found: {cmd}. Type 'help' for available commands.
+			</span>
+		);
 
 		if (cmd.toLowerCase() !== "clear") {
 			setHistory((prev) => [...prev, { input: trimmed, output }]);
@@ -172,7 +177,11 @@ export function TerminalModal() {
 										onClick={() => setIsMaximized(!isMaximized)}
 										className="p-1 hover:text-zinc-300 transition-colors"
 									>
-										{isMaximized ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+										{isMaximized ? (
+											<Minimize2 size={14} />
+										) : (
+											<Maximize2 size={14} />
+										)}
 									</button>
 									<button
 										onClick={() => setIsOpen(false)}
@@ -202,11 +211,16 @@ export function TerminalModal() {
 											<span className="text-blue-400">~</span>
 											<span>{entry.input}</span>
 										</div>
-										<div className="pl-6 mt-1 text-zinc-400">{entry.output}</div>
+										<div className="pl-6 mt-1 text-zinc-400">
+											{entry.output}
+										</div>
 									</div>
 								))}
 
-								<form onSubmit={handleCommand} className="flex gap-2 items-center mt-2">
+								<form
+									onSubmit={handleCommand}
+									className="flex gap-2 items-center mt-2"
+								>
 									<span className="text-emerald-500">➜</span>
 									<span className="text-blue-400">~</span>
 									<input

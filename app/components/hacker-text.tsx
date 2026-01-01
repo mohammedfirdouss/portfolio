@@ -9,9 +9,14 @@ interface HackerTextProps {
 	speed?: number;
 }
 
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
+const letters =
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
 
-export function HackerText({ text, className = "", speed = 30 }: HackerTextProps) {
+export function HackerText({
+	text,
+	className = "",
+	speed = 30,
+}: HackerTextProps) {
 	const [displayText, setDisplayText] = useState(text);
 	const [isHovered, setIsHovered] = useState(false);
 	const intervalRef = useRef<NodeJS.Timeout | null>(null);
