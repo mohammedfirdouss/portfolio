@@ -7,38 +7,39 @@ import { Cloud, Code2, Terminal, Boxes } from "lucide-react";
 
 interface TechItem {
   name: string;
-
-interface TechItem {
-  name: string;
-  icon: string;
-  color: string;
   category: "cloud" | "devops" | "languages" | "tools";
+  level: "primary" | "familiar";
 }
 
 const techStack: TechItem[] = [
   // Cloud
-  { name: "AWS", category: "cloud" },
-  { name: "Azure", category: "cloud" },
-  { name: "GCP", category: "cloud" },
+  { name: "AWS", category: "cloud", level: "primary" },
+  { name: "Azure", category: "cloud", level: "familiar" },
+  { name: "GCP", category: "cloud", level: "familiar" },
   
   // DevOps
-  { name: "Docker", category: "devops" },
-  { name: "Kubernetes", category: "devops" },
-  { name: "Terraform", category: "devops" },
-  { name: "GitLab CI", category: "devops" },
-  { name: "GitHub Actions", category: "devops" },
+  { name: "Docker", category: "devops", level: "primary" },
+  { name: "Kubernetes", category: "devops", level: "primary" },
+  { name: "Terraform", category: "devops", level: "primary" },
+  { name: "GitLab CI", category: "devops", level: "familiar" },
+  { name: "GitHub Actions", category: "devops", level: "primary" },
+  { name: "Ansible", category: "devops", level: "familiar" },
   
   // Languages
-  { name: "Python", category: "languages" },
-  { name: "TypeScript", category: "languages" },
-  { name: "Go", category: "languages" },
-  { name: "Bash", category: "languages" },
+  { name: "Python", category: "languages", level: "primary" },
+  { name: "TypeScript", category: "languages", level: "familiar" },
+  { name: "Go", category: "languages", level: "familiar" },
+  { name: "Bash", category: "languages", level: "primary" },
+  { name: "SQL", category: "languages", level: "familiar" },
+  { name: "YAML", category: "languages", level: "primary" },
   
   // Tools
-  { name: "Linux", category: "tools" },
-  { name: "Git", category: "tools" },
-  { name: "VS Code", category: "tools" },
-  { name: "Next.js", category: "tools" },
+  { name: "Linux", category: "tools", level: "primary" },
+  { name: "Git", category: "tools", level: "primary" },
+  { name: "VS Code", category: "tools", level: "primary" },
+  { name: "Next.js", category: "tools", level: "familiar" },
+  { name: "PostgreSQL", category: "tools", level: "familiar" },
+  { name: "Redis", category: "tools", level: "familiar" },
 ];
 
 const containerVariants = {
@@ -102,9 +103,16 @@ export function TechStack() {
              initial={{ opacity: 0, x: 20 }}
              animate={isInView ? { opacity: 1, x: 0 } : {}}
              transition={{ duration: 0.6, delay: 0.2 }}
-             className="hidden md:block"
+             className="hidden md:flex items-center gap-6"
           >
-             <div className="h-px w-24 bg-gradient-to-r from-zinc-500 to-transparent" />
+             <div className="flex items-center gap-2 text-xs text-zinc-500">
+               <span className="w-2 h-2 rounded-full bg-emerald-500" />
+               <span>Primary</span>
+             </div>
+             <div className="flex items-center gap-2 text-xs text-zinc-500">
+               <span className="w-2 h-2 rounded-full bg-zinc-600" />
+               <span>Familiar</span>
+             </div>
           </motion.div>
         </div>
 
@@ -141,9 +149,16 @@ export function TechStack() {
                       <motion.div
                         key={tech.name}
                         variants={itemVariants}
-                        className="group flex items-center justify-center p-3 rounded-xl bg-zinc-900/30 border border-zinc-800/50 hover:bg-zinc-900/80 hover:border-zinc-700 transition-all duration-300"
+                        className="group relative flex items-center justify-center p-3 rounded-xl bg-zinc-900/30 border border-zinc-800/50 hover:bg-zinc-900/80 hover:border-zinc-700 transition-all duration-300"
                       >
-                        <span className="text-sm font-medium text-zinc-300 group-hover:text-emerald-400 transition-colors text-center">
+                        {tech.level === "primary" && (
+                          <span className="absolute -top-1.5 -right-1.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-black" title="Primary skill" />
+                        )}
+                        <span className={`text-sm font-medium transition-colors text-center ${
+                          tech.level === "primary" 
+                            ? "text-zinc-200 group-hover:text-emerald-400" 
+                            : "text-zinc-400 group-hover:text-zinc-200"
+                        }`}>
                           {tech.name}
                         </span>
                       </motion.div>

@@ -82,7 +82,7 @@ export const Navigation: React.FC<{ backLink?: string }> = ({ backLink }) => {
 								<MagneticButton strength={0.2}>
 									<Link
 										href={item.href}
-										className="relative px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-300 group"
+										className="relative px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300 ease-out group"
 										data-cursor="pointer"
 									>
 										<span className="relative z-10">{item.name}</span>
@@ -157,7 +157,7 @@ export const Navigation: React.FC<{ backLink?: string }> = ({ backLink }) => {
 									<Link
 										href={item.href}
 										onClick={() => setIsMobileMenuOpen(false)}
-										className="text-3xl font-display font-bold text-zinc-400 hover:text-white transition-colors duration-300"
+										className="text-3xl font-display font-bold text-zinc-400 hover:text-white transition-all duration-300 ease-out"
 										data-cursor="pointer"
 									>
 										{item.name}

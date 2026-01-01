@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export default function CustomCursor() {
+  const [isHydrated, setIsHydrated] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [cursorText, setCursorText] = useState("");
@@ -17,6 +18,12 @@ export default function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -58,14 +65,16 @@ export default function CustomCursor() {
       document.removeEventListener("mouseout", handleMouseOut);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [cursorX, cursorY]);
+  }, [isHydrated, cursorX, cursorY]);
+
+  if (!isHydrated) return null;
 
   return (
     <>
       {/* Main cursor dot */}
       <motion.div
         ref={cursorRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[99] mix-blend-difference"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -93,7 +102,7 @@ export default function CustomCursor() {
 
       {/* Cursor ring/outline */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998]"
+        className="fixed top-0 left-0 pointer-events-none z-[98]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,

@@ -62,9 +62,9 @@ export function OpenSourceArticle({ entry, views, featured = false }: Props) {
         
         {/* Read more */}
         <div className="mt-4 pt-4 border-t border-zinc-800/50">
-          <span className="text-xs font-medium text-zinc-500 group-hover:text-white transition-colors duration-300 flex items-center gap-1">
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-zinc-300 bg-zinc-800/50 rounded-full group-hover:bg-emerald-500/20 group-hover:text-emerald-400 transition-all duration-300">
             View contribution
-            <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
           </span>
         </div>
       </article>
