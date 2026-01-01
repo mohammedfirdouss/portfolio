@@ -29,18 +29,18 @@ export const Article: React.FC<Props> = ({ changelog }) => {
 						</span>
 					</div>
 				</div>
-				
+
 				{/* Title */}
 				<h2 className="text-xl lg:text-2xl font-semibold text-zinc-100 group-hover:text-white font-display transition-colors duration-300 flex items-start justify-between gap-2">
 					<span>{changelog.title}</span>
 					<ArrowUpRight className="w-5 h-5 flex-shrink-0 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300 text-zinc-400" />
 				</h2>
-				
+
 				{/* Summary */}
 				<p className="mt-3 text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 flex-grow line-clamp-2">
 					{changelog.summary}
 				</p>
-				
+
 				{/* Read more */}
 				<div className="mt-4 pt-4 border-t border-zinc-800/50">
 					<span className="text-xs font-medium text-zinc-500 group-hover:text-white transition-colors duration-300 flex items-center gap-1">

@@ -64,7 +64,9 @@ const PageTransition = dynamic(
 );
 
 export const metadata: Metadata = {
-	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://mohammedfirdous.me"),
+	metadataBase: new URL(
+		process.env.NEXT_PUBLIC_SITE_URL || "https://mohammedfirdous.me",
+	),
 	title: {
 		default: "Mohammed Firdous",
 		template: "%s | Mohammed Firdous",
