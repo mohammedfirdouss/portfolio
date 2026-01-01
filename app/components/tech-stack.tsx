@@ -3,18 +3,17 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Cloud, Code2, Terminal, Boxes } from "lucide-react";
+import { Cloud, Code2, Terminal, Boxes, BrainCircuit } from "lucide-react";
 
 interface TechItem {
 	name: string;
-	category: "cloud" | "devops" | "languages" | "tools";
+	category: "cloud" | "devops" | "languages" | "tools" | "ai";
 	level: "primary" | "familiar";
 }
 
 const techStack: TechItem[] = [
 	// Cloud
 	{ name: "AWS", category: "cloud", level: "primary" },
-	{ name: "Azure", category: "cloud", level: "familiar" },
 	{ name: "GCP", category: "cloud", level: "familiar" },
 
 	// DevOps
@@ -23,7 +22,6 @@ const techStack: TechItem[] = [
 	{ name: "Terraform", category: "devops", level: "primary" },
 	{ name: "GitLab CI", category: "devops", level: "familiar" },
 	{ name: "GitHub Actions", category: "devops", level: "primary" },
-	{ name: "Ansible", category: "devops", level: "familiar" },
 
 	// Languages
 	{ name: "Python", category: "languages", level: "primary" },
@@ -33,13 +31,18 @@ const techStack: TechItem[] = [
 	{ name: "SQL", category: "languages", level: "familiar" },
 	{ name: "YAML", category: "languages", level: "primary" },
 
+	// AI & ML
+	{ name: "OpenAI API", category: "ai", level: "primary" },
+	{ name: "LangChain", category: "ai", level: "familiar" },
+	{ name: "Hugging Face", category: "ai", level: "familiar" },
+	{ name: "PyTorch", category: "ai", level: "familiar" },
+	{ name: "Anthropic API", category: "ai", level: "primary" },
+
 	// Tools
 	{ name: "Linux", category: "tools", level: "primary" },
 	{ name: "Git", category: "tools", level: "primary" },
 	{ name: "VS Code", category: "tools", level: "primary" },
-	{ name: "Next.js", category: "tools", level: "familiar" },
-	{ name: "PostgreSQL", category: "tools", level: "familiar" },
-	{ name: "Redis", category: "tools", level: "familiar" },
+	{ name: "Cursor", category: "tools", level: "primary" },
 ];
 
 const containerVariants = {
@@ -71,6 +74,7 @@ export function TechStack() {
 	const categories = [
 		{ key: "cloud", label: "Cloud Platforms", icon: Cloud },
 		{ key: "devops", label: "DevOps & CI/CD", icon: Boxes },
+		{ key: "ai", label: "AI & Machine Learning", icon: BrainCircuit },
 		{ key: "languages", label: "Languages", icon: Code2 },
 		{ key: "tools", label: "Tools & Frameworks", icon: Terminal },
 	];

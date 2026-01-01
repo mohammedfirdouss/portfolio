@@ -25,7 +25,7 @@ export function OpenSourceArticle({ entry, views, featured = false }: Props) {
 				{/* Meta info */}
 				<div className="flex justify-between gap-2 items-center mb-4">
 					<div className="flex items-center gap-3">
-						<span className="flex items-center gap-1.5 text-xs text-zinc-500">
+						<span className="flex items-center gap-1.5 text-xs text-zinc-300">
 							<Calendar className="w-3.5 h-3.5" />
 							{entry.date ? (
 								<time dateTime={new Date(entry.date).toISOString()}>
@@ -38,7 +38,7 @@ export function OpenSourceArticle({ entry, views, featured = false }: Props) {
 							)}
 						</span>
 					</div>
-					<span className="flex items-center gap-1.5 text-xs text-zinc-500">
+					<span className="flex items-center gap-1.5 text-xs text-zinc-300">
 						<Eye className="w-3.5 h-3.5" />
 						{Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
 					</span>
@@ -51,7 +51,7 @@ export function OpenSourceArticle({ entry, views, featured = false }: Props) {
 					}`}
 				>
 					<span className="flex items-center gap-2">
-						<GitFork className="w-5 h-5 text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300" />
+						<GitFork className="w-5 h-5 text-zinc-300 group-hover:text-zinc-200 transition-colors duration-300" />
 						{entry.title}
 					</span>
 					<ArrowUpRight

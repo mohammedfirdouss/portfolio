@@ -5,10 +5,8 @@ const OpenSourceHeader: FC<{ title: string; summary?: string }> = ({
 	summary,
 }) => (
 	<header className="mb-8">
-		<h1 className="text-4xl font-bold mb-2">{title}</h1>
-		{summary && (
-			<p className="text-lg text-gray-500 dark:text-gray-400">{summary}</p>
-		)}
+		<h1 className="text-4xl font-bold mb-2 text-zinc-100">{title}</h1>
+		{summary && <p className="text-lg text-zinc-300">{summary}</p>}
 	</header>
 );
 

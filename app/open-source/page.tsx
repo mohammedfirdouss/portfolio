@@ -35,8 +35,8 @@ export default function OpenSourcePage() {
 				<div className="max-w-2xl mx-auto lg:mx-0">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
 					<div className="flex items-center gap-3 mb-4">
-						<GitBranch className="w-5 h-5 text-zinc-500" />
-						<span className="text-sm font-medium tracking-widest uppercase text-zinc-500">
+						<GitBranch className="w-5 h-5 text-zinc-300" />
+						<span className="text-sm font-medium tracking-widest uppercase text-zinc-300">
 							Community Contributions
 						</span>
 					</div>
