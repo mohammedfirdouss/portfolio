@@ -63,6 +63,26 @@ const PageTransition = dynamic(
 	},
 );
 
+const TerminalModal = dynamic(
+	() =>
+		import("./components/terminal-modal").then((mod) => ({
+			default: mod.TerminalModal,
+		})),
+	{
+		ssr: false,
+	},
+);
+
+const SystemMonitor = dynamic(
+	() =>
+		import("./components/system-monitor").then((mod) => ({
+			default: mod.SystemMonitor,
+		})),
+	{
+		ssr: false,
+	},
+);
+
 export const metadata: Metadata = {
 	metadataBase: new URL(
 		process.env.NEXT_PUBLIC_SITE_URL || "https://mohammedfirdous.me",
@@ -165,6 +185,8 @@ export default function RootLayout({
 					<CommandPalette />
 					<BackToTop />
 					<PageTransition>{children}</PageTransition>
+					<TerminalModal />
+					<SystemMonitor />
 				</SmoothScroll>
 			</body>
 		</html>

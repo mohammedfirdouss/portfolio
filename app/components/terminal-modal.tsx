@@ -126,6 +126,7 @@ export function TerminalModal() {
 				return <span className="text-red-400">Usage: goto [path]</span>;
 			const path = args[0].startsWith("/") ? args[0] : `/${args[0]}`;
 			router.push(path);
+			setTimeout(() => setIsOpen(false), 800);
 			return <span className="text-emerald-400">Navigating to {path}...</span>;
 		},
 		clear: () => {
