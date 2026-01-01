@@ -10,7 +10,6 @@ import MagneticButton from "./components/magnetic-button";
 import TextReveal from "./components/text-reveal";
 import { TechStack } from "./components/tech-stack";
 import { SelectedProjects } from "./components/selected-projects";
-import { Changelog } from "./components/changelog";
 
 const navigation = [
 	{ name: "Experience", href: "/experience" },
@@ -258,9 +257,6 @@ export default function Home() {
 
 			{/* Tech Stack Section */}
 			<TechStack />
-
-			{/* Changelog Section */}
-			<Changelog />
 
 			{/* Footer CTA Section */}
 			<section className="relative py-24 md:py-32">
