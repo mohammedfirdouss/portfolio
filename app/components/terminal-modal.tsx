@@ -96,8 +96,8 @@ export function TerminalModal() {
 					LangChain, PyTorch
 				</span>
 				<span>
-					<span className="text-emerald-400">Languages:</span> Python, TypeScript,
-					Go, Bash
+					<span className="text-emerald-400">Languages:</span> Python,
+					TypeScript, Go, Bash
 				</span>
 			</div>
 		),
@@ -112,19 +112,20 @@ export function TerminalModal() {
 		uses: () => (
 			<div className="grid grid-cols-1 gap-1 text-zinc-300">
 				<span>
-					<span className="text-emerald-400">Hardware:</span> Dell Latitude 3600,
-					LG Ultrawide
+					<span className="text-emerald-400">Hardware:</span> Dell Latitude
+					3600, LG Ultrawide
 				</span>
 				<span>
 					<span className="text-emerald-400">IDEs:</span> Kiro (Specs Feature),
 					Cursor, Anigravity
 				</span>
 				<span>
-					<span className="text-emerald-400">CLIs:</span> Gemini CLI, Cursor CLI,
-					Warp
+					<span className="text-emerald-400">CLIs:</span> Gemini CLI, Cursor
+					CLI, Warp
 				</span>
 				<span>
-					<span className="text-emerald-400">Cloud:</span> AWS, Terraform, Docker
+					<span className="text-emerald-400">Cloud:</span> AWS, Terraform,
+					Docker
 				</span>
 			</div>
 		),

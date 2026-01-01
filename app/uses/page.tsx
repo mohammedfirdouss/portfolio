@@ -6,8 +6,10 @@ import { allDocuments } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 
 export default function UsesPage() {
-	const doc = allDocuments.find((doc) => doc._raw.sourceFilePath === "uses/index.mdx");
-	
+	const doc = allDocuments.find(
+		(doc) => doc._raw.sourceFilePath === "uses/index.mdx",
+	);
+
 	if (!doc) return notFound();
 
 	return (
@@ -15,11 +17,10 @@ export default function UsesPage() {
 			{/* Background effects */}
 			<div className="absolute inset-0 bg-gradient-to-br from-zinc-900/30 via-black to-zinc-900/20" />
 			<div className="absolute inset-0 opacity-[0.02] bg-[url('/noise.png')] mix-blend-overlay" />
-			
+
 			<Navigation />
 
 			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-4xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
-				
 				{/* Header */}
 				<div className="max-w-2xl">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
@@ -33,7 +34,8 @@ export default function UsesPage() {
 						/uses
 					</h1>
 					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						Hardware, software, and tools I rely on to design, build, and deploy.
+						Hardware, software, and tools I rely on to design, build, and
+						deploy.
 					</p>
 				</div>
 
@@ -62,9 +64,8 @@ export default function UsesPage() {
 						</p>
 					</div>
 				</div>
-
 			</div>
-			
+
 			<div className="h-24" />
 		</div>
 	);
