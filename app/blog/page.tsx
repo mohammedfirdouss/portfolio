@@ -48,8 +48,7 @@ export default async function BlogPage() {
 					</h1>
 					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
 						A space where I share what I'm learning about building software and
-						working with the cloud. Thoughts on AWS, serverless, and the
-						evolving tech landscape.
+						working with the cloud.
 					</p>
 				</div>
 
