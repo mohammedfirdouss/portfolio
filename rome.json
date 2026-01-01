@@ -1,26 +1,40 @@
 {
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "security": {
-        "noDangerouslySetInnerHtml": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "off",
-        "noArrayIndexKey": "off"
-      },
-      "a11y": {
-        "noSvgWithoutTitle": "off",
-        "noBlankTarget": "off"
-      },
-      "style": {
-        "useConst": "off"
-      }
-    },
-    "ignore": ["node_modules", ".next", "dist", ".devcontainer", ".vscode", ".marscode"]
-  },
-  "formatter": {
-    "ignore": ["node_modules", ".next", "dist", ".devcontainer", ".vscode", ".marscode"]
-  }
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noArrayIndexKey": "off"
+			},
+			"a11y": {
+				"noSvgWithoutTitle": "off",
+				"noBlankTarget": "off"
+			},
+			"style": {
+				"useConst": "off"
+			}
+		},
+		"ignore": [
+			"node_modules",
+			".next",
+			"dist",
+			".devcontainer",
+			".vscode",
+			".marscode"
+		]
+	},
+	"formatter": {
+		"ignore": [
+			"node_modules",
+			".next",
+			"dist",
+			".devcontainer",
+			".vscode",
+			".marscode"
+		]
+	}
 }
