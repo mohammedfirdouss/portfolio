@@ -18,7 +18,7 @@ export default function NotFoundContent() {
 					transition={{ duration: 0.8, delay: 0.2 }}
 					className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8 mx-auto origin-center"
 				/>
-				
+
 				<motion.h1
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -27,7 +27,7 @@ export default function NotFoundContent() {
 				>
 					404
 				</motion.h1>
-				
+
 				<motion.p
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export default function NotFoundContent() {
 				>
 					Page not found
 				</motion.p>
-				
+
 				<motion.p
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ export default function NotFoundContent() {
 				>
 					The page you're looking for doesn't exist or has been moved.
 				</motion.p>
-				
+
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
