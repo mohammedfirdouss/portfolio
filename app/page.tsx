@@ -190,8 +190,7 @@ export default function Home() {
 							className="text-base md:text-lg text-zinc-400 leading-relaxed"
 							delay={0.1}
 						>
-							Specializing in AWS, automation, and scalable serverless systems.
-							Learning more about AI/ML and cloud native technologies.
+							Cloud Engineer, Open Source and Research, AI, and 3X Hackathon Winner.
 						</TextReveal>
 					</motion.div>
 
