@@ -9,6 +9,7 @@ import Particles from "./components/particles";
 import MagneticButton from "./components/magnetic-button";
 import TextReveal from "./components/text-reveal";
 import { TechStack } from "./components/tech-stack";
+import { SelectedProjects } from "./components/selected-projects";
 import { Changelog } from "./components/changelog";
 
 const navigation = [
@@ -252,6 +253,9 @@ export default function Home() {
 				<div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-zinc-800 opacity-50" />
 				<div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-zinc-800 opacity-50" />
 			</section>
+
+			{/* Selected Projects Section */}
+			<SelectedProjects />
 
 			{/* Tech Stack Section */}
 			<TechStack />
