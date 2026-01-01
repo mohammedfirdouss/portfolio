@@ -8,33 +8,44 @@ interface SmoothScrollProps {
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
   const lenisRef = useRef<any>(null);
+  const isInitializedRef = useRef(false);
 
   useEffect(() => {
+    if (isInitializedRef.current) return;
+    isInitializedRef.current = true;
+
     const initLenis = async () => {
-      const Lenis = (await import("lenis")).default;
-      
-      lenisRef.current = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-      });
+      try {
+        const Lenis = (await import("lenis")).default;
+        
+        lenisRef.current = new Lenis({
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: "vertical",
+          gestureOrientation: "vertical",
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          touchMultiplier: 2,
+        });
 
-      function raf(time: number) {
-        lenisRef.current?.raf(time);
+        const raf = (time: number) => {
+          lenisRef.current?.raf(time);
+          requestAnimationFrame(raf);
+        };
+
         requestAnimationFrame(raf);
+      } catch (e) {
+        console.warn("Lenis smooth scroll failed to initialize:", e);
       }
-
-      requestAnimationFrame(raf);
     };
 
     initLenis();
 
     return () => {
-      lenisRef.current?.destroy();
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
     };
   }, []);
 
