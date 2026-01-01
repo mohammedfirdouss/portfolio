@@ -10,6 +10,8 @@ import MagneticButton from "./components/magnetic-button";
 import TextReveal from "./components/text-reveal";
 import { TechStack } from "./components/tech-stack";
 import { SelectedProjects } from "./components/selected-projects";
+import { HackerText } from "./components/hacker-text";
+import { TerminalModal } from "./components/terminal-modal";
 
 const navigation = [
 	{ name: "Experience", href: "/experience" },
@@ -159,12 +161,7 @@ export default function Home() {
 						}}
 						className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold text-white tracking-tight"
 					>
-						<span className="inline-block hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-white hover:via-zinc-300 hover:to-zinc-500 transition-all duration-500">
-							Mohammed
-						</span>{" "}
-						<span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 via-zinc-400 to-zinc-600 hover:from-white hover:via-zinc-200 hover:to-zinc-400 transition-all duration-500">
-							Firdous
-						</span>
+						<HackerText text="Mohammed" /> <HackerText text="Firdous" />
 					</motion.h1>
 
 					{/* Decorative line */}
@@ -326,6 +323,8 @@ export default function Home() {
 					</div>
 				</div>
 			</footer>
+
+			<TerminalModal />
 		</div>
 	);
 }
