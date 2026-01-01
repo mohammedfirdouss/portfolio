@@ -100,6 +100,25 @@ export default function RootLayout({
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
       <head>
         <AnalyticsWrapper />
+        {/* Prevent FOUC by setting dark background immediately */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                document.documentElement.style.backgroundColor = '#000';
+                document.documentElement.style.colorScheme = 'dark';
+              })();
+            `,
+          }}
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              html { background-color: #000; }
+              body { background-color: #000; visibility: visible; }
+            `,
+          }}
+        />
       </head>
       <body
         className={`bg-black ${process.env.NODE_ENV === "development" ? "" : undefined

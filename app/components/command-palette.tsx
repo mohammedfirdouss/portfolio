@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import {
   Command,
   Search,
@@ -17,6 +17,7 @@ import {
   Twitter,
   ExternalLink,
   X,
+  Briefcase,
 } from "lucide-react";
 
 interface CommandItem {
@@ -26,6 +27,7 @@ interface CommandItem {
   icon: React.ReactNode;
   action: () => void;
   category: "navigation" | "social" | "actions";
+  href?: string;
 }
 
 export function CommandPalette() {
@@ -33,6 +35,7 @@ export function CommandPalette() {
   const [search, setSearch] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
+  const pathname = usePathname();
 
   const commands: CommandItem[] = [
     // Navigation
@@ -43,6 +46,16 @@ export function CommandPalette() {
       icon: <Home className="w-4 h-4" />,
       action: () => router.push("/"),
       category: "navigation",
+      href: "/",
+    },
+    {
+      id: "experience",
+      title: "Experience",
+      subtitle: "View career history",
+      icon: <Briefcase className="w-4 h-4" />,
+      action: () => router.push("/experience"),
+      category: "navigation",
+      href: "/experience",
     },
     {
       id: "projects",
@@ -51,6 +64,7 @@ export function CommandPalette() {
       icon: <FolderKanban className="w-4 h-4" />,
       action: () => router.push("/projects"),
       category: "navigation",
+      href: "/projects",
     },
     {
       id: "blog",
@@ -59,6 +73,7 @@ export function CommandPalette() {
       icon: <BookOpen className="w-4 h-4" />,
       action: () => router.push("/blog"),
       category: "navigation",
+      href: "/blog",
     },
     {
       id: "open-source",
@@ -67,6 +82,7 @@ export function CommandPalette() {
       icon: <GitBranch className="w-4 h-4" />,
       action: () => router.push("/open-source"),
       category: "navigation",
+      href: "/open-source",
     },
     {
       id: "diagrams",
@@ -75,6 +91,7 @@ export function CommandPalette() {
       icon: <FileImage className="w-4 h-4" />,
       action: () => router.push("/diagrams"),
       category: "navigation",
+      href: "/diagrams",
     },
     {
       id: "contact",
@@ -83,6 +100,7 @@ export function CommandPalette() {
       icon: <Mail className="w-4 h-4" />,
       action: () => router.push("/contact"),
       category: "navigation",
+      href: "/contact",
     },
     // Social
     {
@@ -259,6 +277,7 @@ export function CommandPalette() {
                               isSelected={selectedIndex === idx}
                               onSelect={() => executeCommand(cmd)}
                               onHover={() => setSelectedIndex(idx)}
+                              isCurrent={cmd.href ? (pathname === cmd.href || pathname.startsWith(cmd.href + '/')) : false}
                             />
                           ))}
                         </div>
@@ -276,6 +295,7 @@ export function CommandPalette() {
                               isSelected={selectedIndex === groupedCommands.navigation.length + idx}
                               onSelect={() => executeCommand(cmd)}
                               onHover={() => setSelectedIndex(groupedCommands.navigation.length + idx)}
+                              isCurrent={false}
                             />
                           ))}
                         </div>
@@ -315,11 +335,13 @@ function CommandRow({
   isSelected,
   onSelect,
   onHover,
+  isCurrent,
 }: {
   command: CommandItem;
   isSelected: boolean;
   onSelect: () => void;
   onHover: () => void;
+  isCurrent: boolean;
 }) {
   return (
     <button
@@ -331,11 +353,14 @@ function CommandRow({
           : "text-zinc-400 hover:bg-zinc-800/50"
       }`}
     >
-      <span className={`${isSelected ? "text-zinc-100" : "text-zinc-500"}`}>
+      <span className={`${isSelected ? "text-zinc-100" : isCurrent ? "text-emerald-400" : "text-zinc-500"}`}>
         {command.icon}
       </span>
       <div className="flex-1 min-w-0">
-        <div className="text-sm font-medium truncate">{command.title}</div>
+        <div className={`text-sm font-medium truncate ${isCurrent ? "text-emerald-400" : ""}`}>
+          {command.title}
+          {isCurrent && <span className="ml-2 text-[10px] text-emerald-500/70 uppercase tracking-wider">Current</span>}
+        </div>
         {command.subtitle && (
           <div className="text-xs text-zinc-500 truncate">{command.subtitle}</div>
         )}

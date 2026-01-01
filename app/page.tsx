@@ -82,16 +82,32 @@ export default function Home() {
               <MagneticButton strength={0.3}>
                 <Link
                   href={item.href}
-                  className="relative px-4 py-2 text-sm font-medium text-zinc-400 transition-colors duration-300 hover:text-white group"
+                  className="relative px-4 py-2 text-sm font-medium text-zinc-400 transition-all duration-300 ease-out hover:text-white group"
                   data-cursor="pointer"
                   data-cursor-text="View"
                 >
                   <span className="relative z-10">{item.name}</span>
-                  <span className="absolute inset-0 rounded-full bg-zinc-800/0 group-hover:bg-zinc-800/50 transition-colors duration-300" />
+                  <span className="absolute inset-0 rounded-full bg-zinc-800/0 group-hover:bg-zinc-800/50 transition-all duration-300 ease-out" />
                 </Link>
               </MagneticButton>
             </motion.li>
           ))}
+          {/* Command Palette Hint */}
+          <motion.li variants={itemVariants}>
+            <button
+              onClick={() => {
+                const event = new KeyboardEvent('keydown', { key: 'k', metaKey: true });
+                window.dispatchEvent(event);
+              }}
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-500 bg-zinc-900/50 border border-zinc-800 rounded-lg hover:text-zinc-300 hover:border-zinc-700 transition-all duration-300 ease-out"
+              data-cursor="pointer"
+            >
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span>⌘K</span>
+            </button>
+          </motion.li>
         </ul>
       </motion.nav>
 
