@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
@@ -13,6 +15,7 @@ const navigation = [
 	{ name: "Experience", href: "/experience" },
 	{ name: "Projects", href: "/projects" },
 	{ name: "Blog", href: "/blog" },
+	{ name: "Changelog", href: "/changelog" },
 	{ name: "Open Source", href: "/open-source" },
 	{ name: "Diagrams", href: "/diagrams" },
 	{ name: "Contact", href: "/contact" },

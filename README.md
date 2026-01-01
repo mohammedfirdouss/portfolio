@@ -11,11 +11,18 @@ This portfolio website showcases projects with a clean, minimalist design featur
 ## Features
 
 - **Modern Tech Stack**: Built with Next.js 13 App Router, TypeScript, and Tailwind CSS
-- **Content Management**: MDX-powered project pages with Contentlayer
+- **Content Management**: MDX-powered content with Contentlayer supporting:
+  - Projects
+  - Blog posts
+  - Open source contributions
+  - Work experience
+  - Diagrams
+  - Changelog entries
 - **Analytics**: Page view tracking with Redis-based analytics
 - **Responsive Design**: Mobile-first responsive design with dark theme
 - **Interactive Elements**: Particle animations and smooth transitions
 - **Performance Optimized**: Server-side rendering and edge-ready deployment
+- **Code Quality**: Rome formatter and linter for consistent code style
 
 ## Tech Stack
 
@@ -26,13 +33,15 @@ This portfolio website showcases projects with a clean, minimalist design featur
 - **Database**: [Upstash Redis](https://upstash.com/) for analytics
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
+- **Package Manager**: [Bun](https://bun.sh/) (recommended)
+- **Formatter/Linter**: [Rome](https://rome.tools/)
 - **Deployment**: [Vercel](https://vercel.com/)
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ and npm/pnpm
+- [Bun](https://bun.sh/) (recommended) or Node.js 18+ with npm/pnpm
 - An Upstash Redis database (optional, for analytics)
 
 ### Installation
@@ -40,11 +49,13 @@ This portfolio website showcases projects with a clean, minimalist design featur
 1. **Clone the repository**
    ```bash
    git clone https://github.com/mohammedfirdouss/portfolio.git
-   cd portfolio/site
+   cd portfolio
    ```
 
 2. **Install dependencies**
    ```bash
+   bun install
+   # or with npm/pnpm
    npm install
    # or
    pnpm install
@@ -61,9 +72,16 @@ This portfolio website showcases projects with a clean, minimalist design featur
 
 4. **Run the development server**
    ```bash
+   bun dev
+   # or
    npm run dev
    # or
    pnpm dev
+   ```
+   
+   Alternatively, use the provided script:
+   ```bash
+   ./scripts/dev.sh
    ```
 
 5. **Open your browser**
@@ -73,8 +91,18 @@ This portfolio website showcases projects with a clean, minimalist design featur
 ### Building for Production
 
 ```bash
+bun run build
+bun start
+# or
 npm run build
 npm start
+```
+
+### Code Formatting
+
+Format and lint code using Rome:
+```bash
+bun run fmt
 ```
 
 ## 🙏 Attribution & Inspiration

@@ -64,7 +64,7 @@ const PageTransition = dynamic(
 );
 
 export const metadata: Metadata = {
-	metadataBase: new URL("http://localhost:3000"),
+	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://mohammedfirdous.me"),
 	title: {
 		default: "Mohammed Firdous",
 		template: "%s | Mohammed Firdous",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
 		siteName: "Mohammed Firdous",
 		images: [
 			{
-				url: "/og.png",
+				url: "/favicon.png",
 				width: 1920,
 				height: 1080,
 			},
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
 		title: "Mohammed Firdous",
 		card: "summary_large_image",
 		description: "Cloud Engineer",
-		images: "/og.png",
+		images: "/favicon.png",
 	},
 	icons: {
 		shortcut: "/favicon.png",
