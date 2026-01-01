@@ -20,6 +20,9 @@ const pageVariants = {
 			duration: 0.25,
 			ease: [0.25, 0.4, 0.25, 1],
 		},
+		transitionEnd: {
+			transform: "none",
+		},
 	},
 	exit: {
 		opacity: 0,

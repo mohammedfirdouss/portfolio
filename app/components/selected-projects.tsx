@@ -67,11 +67,18 @@ export function SelectedProjects() {
 							className="lg:row-span-2"
 						>
 							<Card>
-								<Link href={`/projects/${featured.slug}`} className="group block h-full">
+								<Link
+									href={`/projects/${featured.slug}`}
+									className="group block h-full"
+								>
 									<div className="flex flex-col h-full min-h-[400px] lg:min-h-[600px]">
 										<div className="relative flex-grow overflow-hidden rounded-t-2xl">
 											<Image
-												src={featured.banner || featured.screenshot || "/placeholder.png"}
+												src={
+													featured.banner ||
+													featured.screenshot ||
+													"/placeholder.png"
+												}
 												alt={featured.title}
 												fill
 												className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -112,11 +119,18 @@ export function SelectedProjects() {
 								transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
 							>
 								<Card>
-									<Link href={`/projects/${project.slug}`} className="group block h-full">
+									<Link
+										href={`/projects/${project.slug}`}
+										className="group block h-full"
+									>
 										<div className="flex flex-col md:flex-row h-full">
 											<div className="relative w-full md:w-2/5 h-48 md:h-auto overflow-hidden">
 												<Image
-													src={project.banner || project.screenshot || "/placeholder.png"}
+													src={
+														project.banner ||
+														project.screenshot ||
+														"/placeholder.png"
+													}
 													alt={project.title}
 													fill
 													className="object-cover transition-transform duration-700 group-hover:scale-105"
