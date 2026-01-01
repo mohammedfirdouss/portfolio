@@ -36,6 +36,8 @@ export function TerminalModal() {
 					<span>Display tech stack</span>
 					<span className="text-emerald-400">blog</span>
 					<span>List blog posts</span>
+					<span className="text-emerald-400">uses</span>
+					<span>Display gear & tools</span>
 					<span className="text-emerald-400">goto</span>
 					<span>Navigate (e.g., goto /blog)</span>
 					<span className="text-emerald-400">clear</span>
@@ -105,6 +107,25 @@ export function TerminalModal() {
 				<span>- Understanding Docker</span>
 				<span>- Why a Serverless Mindset Matters</span>
 				<span>- MCPs and APIs</span>
+			</div>
+		),
+		uses: () => (
+			<div className="grid grid-cols-1 gap-1 text-zinc-300">
+				<span>
+					<span className="text-emerald-400">Hardware:</span> Dell Latitude 3600,
+					LG Ultrawide
+				</span>
+				<span>
+					<span className="text-emerald-400">IDEs:</span> Kiro (Specs Feature),
+					Cursor, Anigravity
+				</span>
+				<span>
+					<span className="text-emerald-400">CLIs:</span> Gemini CLI, Cursor CLI,
+					Warp
+				</span>
+				<span>
+					<span className="text-emerald-400">Cloud:</span> AWS, Terraform, Docker
+				</span>
 			</div>
 		),
 		contact: () => (
