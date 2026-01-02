@@ -33,7 +33,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
 - **Database**: [Upstash Redis](https://upstash.com/) for analytics
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **Package Manager**: [Bun](https://bun.sh/) (recommended)
+- **Package Manager**: [Bun](https://bun.sh/)
 - **Formatter/Linter**: [Rome](https://rome.tools/)
 - **Deployment**: [Vercel](https://vercel.com/)
 
@@ -41,7 +41,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
 
 ### Prerequisites
 
-- [Bun](https://bun.sh/) (recommended) or Node.js 18+ with npm/pnpm
+- [Bun](https://bun.sh/)
 - An Upstash Redis database (optional, for analytics)
 
 ### Installation
@@ -55,10 +55,6 @@ This portfolio website showcases projects with a clean, minimalist design featur
 2. **Install dependencies**
    ```bash
    bun install
-   # or with npm/pnpm
-   npm install
-   # or
-   pnpm install
    ```
 
 3. **Set up environment variables**
@@ -73,10 +69,6 @@ This portfolio website showcases projects with a clean, minimalist design featur
 4. **Run the development server**
    ```bash
    bun dev
-   # or
-   npm run dev
-   # or
-   pnpm dev
    ```
    
    Alternatively, use the provided script:
@@ -93,9 +85,6 @@ This portfolio website showcases projects with a clean, minimalist design featur
 ```bash
 bun run build
 bun start
-# or
-npm run build
-npm start
 ```
 
 ### Code Formatting

@@ -94,7 +94,7 @@ export const Changelog = defineDocumentType(() => ({
 
 export const Page = defineDocumentType(() => ({
 	name: "Page",
-	filePathPattern: "pages/**/*.mdx",
+	filePathPattern: "{pages,uses}/**/*.mdx",
 	contentType: "mdx",
 	fields: {
 		title: {
@@ -103,6 +103,9 @@ export const Page = defineDocumentType(() => ({
 		},
 		description: {
 			type: "string",
+		},
+		updatedAt: {
+			type: "date",
 		},
 	},
 	computedFields,
