@@ -186,8 +186,8 @@ export default function Home() {
 							className="text-base md:text-lg text-zinc-400 leading-relaxed"
 							delay={0.1}
 						>
-							Cloud Engineer, Open Source and AI, and 3X Hackathon
-							Winner. I am interested in research as well.
+							Cloud Engineer, Open Source and AI, and 3X Hackathon Winner. I am
+							interested in research as well.
 						</TextReveal>
 					</motion.div>
 
