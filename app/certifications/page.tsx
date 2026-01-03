@@ -31,9 +31,6 @@ export default function CertificationsPage() {
 					<h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl font-display">
 						Certifications
 					</h1>
-					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						Professional certifications and credentials validation.
-					</p>
 				</div>
 
 				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />

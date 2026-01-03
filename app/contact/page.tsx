@@ -120,9 +120,8 @@ export default function ContactPage() {
 							className="text-lg text-zinc-400 leading-relaxed"
 							delay={0.1}
 						>
-							I'm always open to discussing new projects, opportunities, and
-							collaborations. Feel free to reach out through any of these
-							platforms.
+							Always open to discussing new projects, opportunities, and
+							collaborations.
 						</TextReveal>
 					</div>
 				</motion.div>

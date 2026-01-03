@@ -92,8 +92,8 @@ export default async function DiagramsPage() {
 						Diagrams
 					</h1>
 					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						Visual diagrams and technical illustrations. Architecture designs,
-						system flows, and infrastructure documentation.
+						Architecture designs, system flows, and infrastructure
+						documentation.
 					</p>
 				</div>
 

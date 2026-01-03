@@ -44,9 +44,8 @@ export default function OpenSourcePage() {
 						Open Source
 					</h1>
 					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						A collection of my open-source contributions. Giving back to the
-						community through code, documentation, collaboration and so much
-						more.
+						Giving back to the community through code, documentation, and
+						collaboration.
 					</p>
 				</div>
 

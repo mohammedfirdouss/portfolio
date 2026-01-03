@@ -99,8 +99,8 @@ export function TechStack() {
 							Technical Arsenal
 						</h2>
 						<p className="mt-4 text-lg text-zinc-400 max-w-xl leading-relaxed">
-							A curated stack of technologies I use to build robust, scalable,
-							and efficient solutions.
+							A curated collection of my most used tools. I can adapt to any
+							tools or tech, these are just my go-tos.
 						</p>
 					</motion.div>
 

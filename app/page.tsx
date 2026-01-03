@@ -14,6 +14,7 @@ import { HackerText } from "./components/hacker-text";
 
 const navigation = [
 	{ name: "Experience", href: "/experience" },
+	{ name: "Certifications", href: "/certifications" },
 	{ name: "Projects", href: "/projects" },
 	{ name: "Blog", href: "/blog" },
 	{ name: "Open Source", href: "/open-source" },
