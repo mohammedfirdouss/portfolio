@@ -41,8 +41,8 @@ export function SelectedProjects() {
 							Selected Work
 						</h2>
 						<p className="mt-4 text-lg text-zinc-400 max-w-xl leading-relaxed">
-							A glimpse into my portfolio of cloud infrastructure, automation,
-							and full-stack applications.
+							A selection of projects ranging from cloud infrastructure to
+							full-stack applications.
 						</p>
 					</div>
 
