@@ -92,6 +92,21 @@ export const Changelog = defineDocumentType(() => ({
 	computedFields,
 }));
 
+export const Certification = defineDocumentType(() => ({
+	name: "Certification",
+	filePathPattern: "./certifications/**/*.mdx",
+	contentType: "mdx",
+	fields: {
+		title: { type: "string", required: true },
+		organization: { type: "string", required: true },
+		date: { type: "date", required: true },
+		credentialId: { type: "string" },
+		credentialUrl: { type: "string" },
+		image: { type: "string" },
+	},
+	computedFields,
+}));
+
 export const Page = defineDocumentType(() => ({
 	name: "Page",
 	filePathPattern: "{pages,uses}/**/*.mdx",
@@ -138,6 +153,7 @@ export default makeSource({
 		Blog,
 		Experience,
 		Changelog,
+		Certification,
 	],
 	mdx: {
 		remarkPlugins: [remarkGfm],
