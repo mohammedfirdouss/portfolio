@@ -53,11 +53,11 @@ export default function CertificationsPage() {
 										</div>
 									</div>
 									{cert.image && (
-										<div className="w-12 h-12 relative flex-shrink-0">
+										<div className="w-20 h-20 relative flex-shrink-0">
 											<img
 												src={cert.image}
 												alt={cert.organization}
-												className="w-full h-full object-contain opacity-80"
+												className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
 											/>
 										</div>
 									)}
