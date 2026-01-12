@@ -24,3 +24,4 @@ export {
 export { NoiseTexture, StaticNoise, GrainOverlay } from "./noise-texture";
 export { BackToTop } from "./back-to-top";
 export { TechStack, TechStackInline } from "./tech-stack";
+export { ThemeProvider, useTheme } from "./theme-provider";

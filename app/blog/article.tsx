@@ -8,7 +8,8 @@ type Props = {
 };
 
 export const Article: React.FC<Props> = ({ project, featured = false }) => {
-	const isExternal = !!project.url;
+	const isExternal = !!project.url || !!project.externalUrl;
+	const externalLink = project.url || project.externalUrl;
 
 	const content = (
 		<article
@@ -74,7 +75,7 @@ export const Article: React.FC<Props> = ({ project, featured = false }) => {
 	if (isExternal) {
 		return (
 			<a
-				href={project.externalUrl}
+				href={externalLink}
 				target="_blank"
 				rel="noopener noreferrer"
 				className="group block h-full"

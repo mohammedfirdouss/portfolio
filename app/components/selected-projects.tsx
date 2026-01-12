@@ -7,6 +7,12 @@ import { ArrowRight, Eye, Github } from "lucide-react";
 import { allProjects } from "contentlayer/generated";
 import { Card } from "./card";
 
+// Accent color variants for secondary projects
+const projectAccents = [
+	{ accent: "blue", bgGradient: "from-blue-950/30", border: "border-blue-900/50", text: "text-blue-400", badge: "bg-blue-950/30 border-blue-900/50 text-blue-300" },
+	{ accent: "purple", bgGradient: "from-purple-950/30", border: "border-purple-900/50", text: "text-purple-400", badge: "bg-purple-950/30 border-purple-900/50 text-purple-300" },
+];
+
 export function SelectedProjects() {
 	// Sort projects by date descending
 	const sortedProjects = [...allProjects].sort(
@@ -40,7 +46,7 @@ export function SelectedProjects() {
 						<h2 className="text-3xl md:text-5xl font-bold text-white font-display tracking-tight">
 							Selected Work
 						</h2>
-						<p className="mt-4 text-lg text-zinc-400 max-w-xl leading-relaxed">
+						<p className="mt-4 text-lg text-zinc-300 max-w-xl leading-relaxed">
 							A selection of projects ranging from cloud infrastructure to
 							full-stack applications.
 						</p>
@@ -110,49 +116,56 @@ export function SelectedProjects() {
 
 					{/* Secondary Projects - Smaller Cards */}
 					<div className="flex flex-col gap-8">
-						{secondary.map((project, index) => (
-							<motion.div
-								key={project.slug}
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true }}
-								transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-							>
-								<Card>
-									<Link
-										href={`/projects/${project.slug}`}
-										className="group block h-full"
-									>
-										<div className="flex flex-col md:flex-row h-full">
-											<div className="relative w-full md:w-2/5 h-48 md:h-auto overflow-hidden">
-												<Image
-													src={
-														project.banner ||
-														project.screenshot ||
-														"/placeholder.png"
-													}
-													alt={project.title}
-													fill
-													className="object-cover transition-transform duration-700 group-hover:scale-105"
-												/>
-												<div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-zinc-950/80 via-transparent to-transparent" />
+						{secondary.map((project, index) => {
+							const accentConfig = projectAccents[index % projectAccents.length];
+							return (
+								<motion.div
+									key={project.slug}
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									viewport={{ once: true }}
+									transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+								>
+									<Card>
+										<Link
+											href={`/projects/${project.slug}`}
+											className="group block h-full"
+										>
+											<div className="flex flex-col md:flex-row h-full">
+												<div className="relative w-full md:w-2/5 h-48 md:h-auto overflow-hidden">
+													<Image
+														src={
+															project.banner ||
+															project.screenshot ||
+															"/placeholder.png"
+														}
+														alt={project.title}
+														fill
+														className="object-cover transition-transform duration-700 group-hover:scale-105"
+													/>
+													<div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-zinc-950/80 via-transparent to-transparent" />
+												</div>
+												<div className="flex-1 p-6 flex flex-col justify-center">
+													<span className={`inline-flex items-center gap-2 px-3 py-1 mb-3 text-xs font-medium ${accentConfig.badge} border rounded-full w-fit`}>
+														<span className={`w-1.5 h-1.5 rounded-full ${accentConfig.text.replace('text-', 'bg-')}`} />
+														Featured
+													</span>
+													<h3 className={`text-xl font-bold text-white font-display mb-2 group-hover:${accentConfig.text} transition-colors`}>
+														{project.title}
+													</h3>
+													<p className="text-sm text-zinc-400 line-clamp-2 mb-4">
+														{project.description}
+													</p>
+													<span className={`text-sm font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors`}>
+														View Details &rarr;
+													</span>
+												</div>
 											</div>
-											<div className="flex-1 p-6 flex flex-col justify-center">
-												<h3 className="text-xl font-bold text-white font-display mb-2 group-hover:text-emerald-400 transition-colors">
-													{project.title}
-												</h3>
-												<p className="text-sm text-zinc-400 line-clamp-2 mb-4">
-													{project.description}
-												</p>
-												<span className="text-sm font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors">
-													View Details &rarr;
-												</span>
-											</div>
-										</div>
-									</Link>
-								</Card>
-							</motion.div>
-						))}
+										</Link>
+									</Card>
+								</motion.div>
+							);
+						})}
 					</div>
 				</div>
 			</div>

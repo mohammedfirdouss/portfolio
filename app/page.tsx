@@ -147,7 +147,7 @@ export default function Home() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, delay: 0.6 }}
-						className="mb-6 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-zinc-500"
+						className="mb-6 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-zinc-400"
 					/>
 
 					{/* Main heading */}
@@ -184,7 +184,7 @@ export default function Home() {
 						className="max-w-xl"
 					>
 						<TextReveal
-							className="text-base md:text-lg text-zinc-400 leading-relaxed"
+							className="text-base md:text-lg text-zinc-300 leading-relaxed"
 							delay={0.1}
 						>
 							Cloud Engineer, Open Source and AI, and 3X Hackathon Winner. I am
@@ -223,8 +223,6 @@ export default function Home() {
 					</motion.div>
 				</div>
 
-
-
 				{/* Corner decorations */}
 				<div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-zinc-800 opacity-50" />
 				<div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-zinc-800 opacity-50" />
@@ -251,7 +249,7 @@ export default function Home() {
 						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-display mb-6">
 							Got a project in mind?
 						</h2>
-						<p className="text-lg text-zinc-400 mb-8 max-w-2xl mx-auto">
+						<p className="text-lg text-zinc-300 mb-8 max-w-2xl mx-auto">
 							Let&apos;s talk about it. I build cloud infrastructure, automation
 							solutions, and web applications.
 						</p>
@@ -275,7 +273,7 @@ export default function Home() {
 			{/* Simple Footer */}
 			<footer className="relative py-12 border-t border-zinc-800/50">
 				<div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-					<p className="text-sm text-zinc-500">
+					<p className="text-sm text-zinc-400">
 						© {new Date().getFullYear()} Mohammed Firdous. All rights reserved.
 					</p>
 					<div className="flex items-center gap-6">
@@ -283,7 +281,7 @@ export default function Home() {
 							href="https://github.com/mohammedfirdouss"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-sm text-zinc-500 hover:text-white transition-colors"
+							className="text-sm text-zinc-400 hover:text-white transition-colors"
 						>
 							GitHub
 						</a>
@@ -291,7 +289,7 @@ export default function Home() {
 							href="https://www.linkedin.com/in/mohammedfirdousaraoye/"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-sm text-zinc-500 hover:text-white transition-colors"
+							className="text-sm text-zinc-400 hover:text-white transition-colors"
 						>
 							LinkedIn
 						</a>
@@ -299,7 +297,7 @@ export default function Home() {
 							href="https://twitter.com/iamfirdouss"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-sm text-zinc-500 hover:text-white transition-colors"
+							className="text-sm text-zinc-400 hover:text-white transition-colors"
 						>
 							Twitter
 						</a>
