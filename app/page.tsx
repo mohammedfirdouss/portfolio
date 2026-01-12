@@ -181,14 +181,13 @@ export default function Home() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, delay: 1.2 }}
-						className="max-w-xl"
+						className="max-w-2xl"
 					>
 						<TextReveal
 							className="text-base md:text-lg text-zinc-300 leading-relaxed"
 							delay={0.1}
 						>
-							Cloud Engineer, Open Source and AI, and 3X Hackathon Winner. I am
-							interested in research as well.
+							AWS Community Builder. Cloud infrastructure, AI, and open source. 3X Hackathon Winner.
 						</TextReveal>
 					</motion.div>
 

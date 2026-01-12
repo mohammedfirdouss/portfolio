@@ -93,9 +93,8 @@ export default async function ProjectsPage() {
 					<h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl font-display">
 						Projects
 					</h1>
-					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						A collection of work that reflects my journey in learning and
-						problem-solving.
+					<p className="mt-6 text-lg text-zinc-300 leading-relaxed">
+						Cloud infrastructure, automation, and full-stack applications built to solve real-world problems.
 					</p>
 				</div>
 
