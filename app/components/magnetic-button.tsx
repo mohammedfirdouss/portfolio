@@ -42,6 +42,7 @@ export default function MagneticButton({
 			animate={{ x, y }}
 			transition={{ type: "spring", stiffness: 350, damping: 15, mass: 0.5 }}
 			className={className}
+			style={{ pointerEvents: "auto" }}
 		>
 			{children}
 		</motion.div>
