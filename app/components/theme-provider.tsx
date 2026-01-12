@@ -24,7 +24,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 		} else {
 			// Check system preference
 			const prefersDark = window.matchMedia(
-				"(prefers-color-scheme: dark)"
+				"(prefers-color-scheme: dark)",
 			).matches;
 			setTheme(prefersDark ? "dark" : "light");
 		}
@@ -44,7 +44,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 	}
 
 	return (
-		<ThemeContext.Provider value={{ theme, toggleTheme, isDark: theme === "dark" }}>
+		<ThemeContext.Provider
+			value={{ theme, toggleTheme, isDark: theme === "dark" }}
+		>
 			<div data-theme={theme}>{children}</div>
 		</ThemeContext.Provider>
 	);

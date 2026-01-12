@@ -9,8 +9,20 @@ import { Card } from "./card";
 
 // Accent color variants for secondary projects
 const projectAccents = [
-	{ accent: "blue", bgGradient: "from-blue-950/30", border: "border-blue-900/50", text: "text-blue-400", badge: "bg-blue-950/30 border-blue-900/50 text-blue-300" },
-	{ accent: "purple", bgGradient: "from-purple-950/30", border: "border-purple-900/50", text: "text-purple-400", badge: "bg-purple-950/30 border-purple-900/50 text-purple-300" },
+	{
+		accent: "blue",
+		bgGradient: "from-blue-950/30",
+		border: "border-blue-900/50",
+		text: "text-blue-400",
+		badge: "bg-blue-950/30 border-blue-900/50 text-blue-300",
+	},
+	{
+		accent: "purple",
+		bgGradient: "from-purple-950/30",
+		border: "border-purple-900/50",
+		text: "text-purple-400",
+		badge: "bg-purple-950/30 border-purple-900/50 text-purple-300",
+	},
 ];
 
 export function SelectedProjects() {
@@ -117,7 +129,8 @@ export function SelectedProjects() {
 					{/* Secondary Projects - Smaller Cards */}
 					<div className="flex flex-col gap-8">
 						{secondary.map((project, index) => {
-							const accentConfig = projectAccents[index % projectAccents.length];
+							const accentConfig =
+								projectAccents[index % projectAccents.length];
 							return (
 								<motion.div
 									key={project.slug}
@@ -146,17 +159,28 @@ export function SelectedProjects() {
 													<div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-zinc-950/80 via-transparent to-transparent" />
 												</div>
 												<div className="flex-1 p-6 flex flex-col justify-center">
-													<span className={`inline-flex items-center gap-2 px-3 py-1 mb-3 text-xs font-medium ${accentConfig.badge} border rounded-full w-fit`}>
-														<span className={`w-1.5 h-1.5 rounded-full ${accentConfig.text.replace('text-', 'bg-')}`} />
+													<span
+														className={`inline-flex items-center gap-2 px-3 py-1 mb-3 text-xs font-medium ${accentConfig.badge} border rounded-full w-fit`}
+													>
+														<span
+															className={`w-1.5 h-1.5 rounded-full ${accentConfig.text.replace(
+																"text-",
+																"bg-",
+															)}`}
+														/>
 														Featured
 													</span>
-													<h3 className={`text-xl font-bold text-white font-display mb-2 group-hover:${accentConfig.text} transition-colors`}>
+													<h3
+														className={`text-xl font-bold text-white font-display mb-2 group-hover:${accentConfig.text} transition-colors`}
+													>
 														{project.title}
 													</h3>
 													<p className="text-sm text-zinc-400 line-clamp-2 mb-4">
 														{project.description}
 													</p>
-													<span className={`text-sm font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors`}>
+													<span
+														className={`text-sm font-medium text-zinc-500 group-hover:text-zinc-300 transition-colors`}
+													>
 														View Details &rarr;
 													</span>
 												</div>
