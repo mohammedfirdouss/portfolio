@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Color accents for sections */
+    --accent-primary: #10b981; /* emerald */
+    --accent-secondary: #3b82f6; /* blue */
+    --accent-tertiary: #a855f7; /* purple */
+    --accent-highlight: #f97316; /* orange */
+  }
+
   .text-edge-outline {
     -webkit-text-stroke: 1px rgba(255,255,255,0.3);
   }
@@ -14,7 +22,7 @@
   
   /* Selection color */
   ::selection {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(16, 185, 129, 0.3);
     color: white;
   }
   
@@ -34,7 +42,7 @@
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(16, 185, 129, 0.3);
   }
 }
 

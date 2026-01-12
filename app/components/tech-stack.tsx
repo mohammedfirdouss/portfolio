@@ -98,7 +98,7 @@ export function TechStack() {
 						<h2 className="text-3xl md:text-5xl font-bold text-white font-display tracking-tight">
 							Technical Arsenal
 						</h2>
-						<p className="mt-4 text-lg text-zinc-400 max-w-xl leading-relaxed">
+						<p className="mt-4 text-lg text-zinc-300 max-w-xl leading-relaxed">
 							A curated collection of my most used tools. I can adapt to any
 							tools or tech, these are just my go-tos.
 						</p>
@@ -110,11 +110,11 @@ export function TechStack() {
 						transition={{ duration: 0.6, delay: 0.2 }}
 						className="hidden md:flex items-center gap-6"
 					>
-						<div className="flex items-center gap-2 text-xs text-zinc-500">
+						<div className="flex items-center gap-2 text-xs text-zinc-300">
 							<span className="w-2 h-2 rounded-full bg-emerald-500" />
 							<span>Primary</span>
 						</div>
-						<div className="flex items-center gap-2 text-xs text-zinc-500">
+						<div className="flex items-center gap-2 text-xs text-zinc-400">
 							<span className="w-2 h-2 rounded-full bg-zinc-600" />
 							<span>Familiar</span>
 						</div>
@@ -134,10 +134,10 @@ export function TechStack() {
 								className="space-y-6"
 							>
 								<div className="flex items-center gap-3 pb-4 border-b border-zinc-800/50">
-									<span className="p-2 rounded-lg bg-zinc-900/50 text-zinc-400 border border-zinc-800">
+									<span className="p-2 rounded-lg bg-zinc-900/50 text-zinc-300 border border-zinc-800">
 										<Icon size={20} />
 									</span>
-									<h3 className="text-xl font-semibold text-zinc-200">
+									<h3 className="text-xl font-semibold text-zinc-100">
 										{category.label}
 									</h3>
 								</div>
@@ -165,7 +165,7 @@ export function TechStack() {
 												<span
 													className={`text-sm font-medium transition-colors text-center ${
 														tech.level === "primary"
-															? "text-zinc-200 group-hover:text-emerald-400"
+															? "text-zinc-100 group-hover:text-emerald-400"
 															: "text-zinc-400 group-hover:text-zinc-200"
 													}`}
 												>
@@ -190,7 +190,7 @@ export function TechStackInline({ limit = 8 }: { limit?: number }) {
 			{techStack.slice(0, limit).map((tech) => (
 				<span
 					key={tech.name}
-					className="inline-flex items-center px-3 py-1 text-xs font-medium text-zinc-400 bg-zinc-900/50 border border-zinc-800 rounded-full hover:text-zinc-200 hover:border-zinc-700 transition-colors"
+					className="inline-flex items-center px-3 py-1 text-xs font-medium text-zinc-300 bg-zinc-900/50 border border-zinc-800 rounded-full hover:text-zinc-200 hover:border-zinc-700 transition-colors"
 				>
 					{tech.name}
 				</span>
