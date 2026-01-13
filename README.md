@@ -1,6 +1,6 @@
 # Portfolio
 
-A modern, elegant portfolio website built with Next.js 13, TypeScript, and Tailwind CSS. This project was inspired by and based on the open-source work of Andreas Thomas (chronark).
+A modern, elegant portfolio website built with Next.js 13, TypeScript, and Tailwind CSS..
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedfirdouss/portfolio)
 
