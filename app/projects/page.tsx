@@ -94,7 +94,8 @@ export default async function ProjectsPage() {
 						Projects
 					</h1>
 					<p className="mt-6 text-lg text-zinc-300 leading-relaxed">
-						Cloud infrastructure, automation, and full-stack applications built to solve real-world problems.
+						Cloud infrastructure, automation, and full-stack applications built
+						to solve real-world problems.
 					</p>
 				</div>
 

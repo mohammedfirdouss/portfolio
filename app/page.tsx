@@ -187,7 +187,8 @@ export default function Home() {
 							className="text-base md:text-lg text-zinc-300 leading-relaxed"
 							delay={0.1}
 						>
-							AWS Community Builder. Cloud infrastructure, AI, and open source. 3X Hackathon Winner.
+							AWS Community Builder. Cloud infrastructure, AI, and open source.
+							3X Hackathon Winner.
 						</TextReveal>
 					</motion.div>
 

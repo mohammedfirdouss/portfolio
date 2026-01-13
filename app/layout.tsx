@@ -83,6 +83,16 @@ const SystemMonitor = dynamic(
 	},
 );
 
+const MobileBlocker = dynamic(
+	() =>
+		import("./components/mobile-blocker").then((mod) => ({
+			default: mod.MobileBlocker,
+		})),
+	{
+		ssr: false,
+	},
+);
+
 export const metadata: Metadata = {
 	metadataBase: new URL(
 		process.env.NEXT_PUBLIC_SITE_URL || "https://mohammedfirdous.me",
@@ -178,6 +188,7 @@ export default function RootLayout({
 					process.env.NODE_ENV === "development" ? "" : undefined
 				}`}
 			>
+				<MobileBlocker />
 				<SmoothScroll>
 					<GrainOverlay />
 					<ScrollProgress />
