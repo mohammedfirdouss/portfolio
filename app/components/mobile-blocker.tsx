@@ -10,11 +10,7 @@ export function MobileBlocker() {
 			const mobileRegex =
 				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
 			const isTouchDevice = () => {
-				return (
-					navigator.maxTouchPoints > 0 ||
-					navigator.msMaxTouchPoints > 0 ||
-					false
-				);
+				return navigator.maxTouchPoints > 0;
 			};
 
 			const userAgent = navigator.userAgent;
