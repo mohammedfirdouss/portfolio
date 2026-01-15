@@ -1,7 +1,3 @@
-# Portfolio
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedfirdouss/portfolio)
-
 ## About This Project
 
 This portfolio website showcases projects with a clean, minimalist design featuring particle animations, project cards, and smooth transitions. The architecture follows modern best practices with TypeScript, server-side rendering, and content management through MDX files.
