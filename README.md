@@ -46,8 +46,6 @@ This portfolio website showcases projects with a clean, minimalist design featur
    cd portfolio
    ```
 
-2. **Install dependencies**
-   ```bash
    bun install
    ```
 
@@ -59,6 +57,20 @@ This portfolio website showcases projects with a clean, minimalist design featur
    UPSTASH_REDIS_REST_URL=your_redis_url
    UPSTASH_REDIS_REST_TOKEN=your_redis_token
    ```
+
+
+## Tech Stack
+
+- **Framework**: [Next.js 13](https://nextjs.org/) with App Router
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Content**: [Contentlayer](https://www.contentlayer.dev/) for MDX processing
+- **Database**: [Upstash Redis](https://upstash.com/) for analytics
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Package Manager**: [Bun](https://bun.sh/)
+- **Formatter/Linter**: [Rome](https://rome.tools/)
+- **Deployment**: [Vercel](https://vercel.com/)
 
 4. **Run the development server**
    ```bash
