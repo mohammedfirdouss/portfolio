@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "bun next dev",
+    "build": "bun next build",
+    "start": "bun next start",
     "fmt": "bun rome format . --write"
   },
   "dependencies": {
@@ -47,7 +47,7 @@
     "tailwindcss-debug-screens": "^2.2.1"
   },
   "overrides": {
-    "@opentelemetry/api": "1.4.1",
+    "@opentelemetry/api": "1.6.0",
     "@opentelemetry/core": "1.13.0",
     "@opentelemetry/exporter-trace-otlp-grpc": "0.39.1",
     "@opentelemetry/resources": "1.13.0",
