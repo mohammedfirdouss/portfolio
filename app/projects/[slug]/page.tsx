@@ -50,7 +50,7 @@ export default async function PostPage({ params }: Props) {
 				{/* Content Background Gradient */}
 				<div className="absolute inset-0 bg-gradient-to-b from-zinc-950 to-black" />
 
-				<article className="relative z-10 px-6 py-20 mx-auto prose prose-invert prose-zinc max-w-3xl">
+				<article className="relative z-10 px-6 pt-24 pb-20 mx-auto prose prose-invert prose-zinc max-w-3xl">
 					<Mdx code={project.body.code} />
 				</article>
 			</div>

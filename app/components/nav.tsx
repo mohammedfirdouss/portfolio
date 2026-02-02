@@ -78,21 +78,21 @@ export const Navigation: React.FC<{ backLink?: string }> = ({ backLink }) => {
 									ease: [0.21, 0.47, 0.32, 0.98],
 								}}
 							>
-								<MagneticButton strength={0.2}>
-									<Link
-										href={item.href}
-										className="relative px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300 ease-out group"
-										data-cursor="pointer"
-									>
-										<span className="relative z-10">{item.name}</span>
-										<motion.span
-											className="absolute inset-0 rounded-full bg-zinc-800/50"
-											initial={{ scale: 0, opacity: 0 }}
-											whileHover={{ scale: 1, opacity: 1 }}
-											transition={{ duration: 0.2 }}
-										/>
-									</Link>
-								</MagneticButton>
+							<MagneticButton strength={0.2}>
+								<Link
+									href={item.href}
+									className="relative px-6 py-3 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300 ease-out group"
+									data-cursor="pointer"
+								>
+									<span className="relative z-10">{item.name}</span>
+									<motion.span
+										className="absolute inset-0 rounded-full bg-zinc-800/50"
+										initial={{ scale: 0, opacity: 0 }}
+										whileHover={{ scale: 1, opacity: 1 }}
+										transition={{ duration: 0.2 }}
+									/>
+								</Link>
+							</MagneticButton>
 							</motion.div>
 						))}
 					</nav>

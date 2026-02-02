@@ -1,7 +1,14 @@
 "use client";
-import { ArrowLeft, Eye, Github, Twitter } from "lucide-react";
+import { ArrowLeft, Eye, Github } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+
+// Custom X (formerly Twitter) Icon component
+const XIcon = ({ className }: { className?: string }) => (
+	<svg viewBox="0 0 24 24" className={className} fill="currentColor">
+		<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+	</svg>
+);
 
 type Props = {
 	blog: {
@@ -67,19 +74,19 @@ export const Header: React.FC<Props> = ({ blog, views }) => {
 								views,
 							)}
 						</span>
-						<Link
-							target="_blank"
-							href="https://twitter.com/iamfirdouss"
-							rel="noopener noreferrer"
-						>
-							<Twitter
-								className={`w-6 h-6 duration-200 hover:font-medium ${
-									isIntersecting
-										? " text-zinc-400 hover:text-zinc-100"
-										: "text-zinc-600 hover:text-zinc-900"
-								} `}
-							/>
-						</Link>
+					<Link
+						target="_blank"
+						href="https://twitter.com/iamfirdouss"
+						rel="noopener noreferrer"
+					>
+						<XIcon
+							className={`w-6 h-6 duration-200 hover:font-medium ${
+								isIntersecting
+									? " text-zinc-400 hover:text-zinc-100"
+									: "text-zinc-600 hover:text-zinc-900"
+							} `}
+						/>
+					</Link>
 						<Link
 							target="_blank"
 							href="https://github.com/mohammedfirdouss"

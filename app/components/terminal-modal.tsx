@@ -132,7 +132,7 @@ export function TerminalModal() {
 		contact: () => (
 			<div className="text-zinc-300">
 				<p>GitHub: github.com/mohammedfirdouss</p>
-				<p>Twitter: @iamfirdouss</p>
+				<p>X: @iamfirdouss</p>
 				<p>LinkedIn: linkedin.com/in/mohammedfirdousaraoye</p>
 			</div>
 		),
