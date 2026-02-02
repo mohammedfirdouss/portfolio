@@ -3,7 +3,6 @@ import {
 	ArrowLeft,
 	Eye,
 	Github,
-	Twitter,
 	Globe,
 	ArrowUpRight,
 } from "lucide-react";

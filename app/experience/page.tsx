@@ -74,7 +74,7 @@ export default function ExperiencePage() {
 								className="relative pl-0 md:pl-12 group"
 							>
 								{/* Timeline Dot */}
-								<div className="hidden md:flex absolute left-[-4px] top-6 items-center justify-center w-2.5 h-2.5 rounded-full bg-zinc-900 border border-zinc-700 ring-4 ring-black group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-colors duration-300" />
+								<div className="hidden md:flex absolute left-[-4px] top-0 items-center justify-center w-2.5 h-2.5 rounded-full bg-zinc-900 border border-zinc-700 ring-4 ring-black group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-colors duration-300 mt-[0.875rem]" />
 
 								<Card>
 									<article className="p-6 md:p-8 relative overflow-hidden">

@@ -19,6 +19,7 @@ const navigation = [
 	{ name: "Blog", href: "/blog" },
 	{ name: "Open Source", href: "/open-source" },
 	{ name: "Diagrams", href: "/diagrams" },
+	{ name: "Uses", href: "/uses" },
 	{ name: "Contact", href: "/contact" },
 ];
 
@@ -86,7 +87,7 @@ export default function Home() {
 								<MagneticButton strength={0.3}>
 									<Link
 										href={item.href}
-										className="relative px-4 py-2 text-sm font-medium text-zinc-400 transition-all duration-300 ease-out hover:text-white group"
+										className="relative px-6 py-3 text-sm font-medium text-zinc-400 transition-all duration-300 ease-out hover:text-white group"
 										data-cursor="pointer"
 										data-cursor-text="View"
 									>
@@ -299,7 +300,7 @@ export default function Home() {
 							rel="noopener noreferrer"
 							className="text-sm text-zinc-400 hover:text-white transition-colors"
 						>
-							Twitter
+							X
 						</a>
 					</div>
 				</div>
