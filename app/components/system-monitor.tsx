@@ -33,9 +33,9 @@ export function SystemMonitor() {
 			initial={{ opacity: 0, x: -50 }}
 			animate={{ opacity: 1, x: 0 }}
 			transition={{ duration: 1, delay: 2 }}
-			className="fixed bottom-6 left-6 z-40 hidden md:flex flex-col gap-2 font-mono text-[10px] tracking-wider select-none pointer-events-none"
+			className="fixed bottom-24 left-6 z-40 hidden md:flex flex-col gap-2 font-mono text-[10px] tracking-wider select-none pointer-events-none"
 		>
-			<div className="flex flex-col gap-1 p-3 bg-zinc-950/80 backdrop-blur-md border border-zinc-800/50 rounded-lg shadow-2xl w-48">
+			<div className="flex flex-col gap-1 p-3 bg-zinc-950/80 backdrop-blur-md border border-zinc-800/50 rounded-lg shadow-2xl w-56">
 				{/* Header */}
 				<div className="flex items-center justify-between border-b border-zinc-800 pb-2 mb-1">
 					<span className="text-zinc-500 uppercase">System Status</span>
@@ -63,10 +63,7 @@ export function SystemMonitor() {
 						<Wifi size={10} />
 						<span>LATENCY</span>
 					</div>
-					<div className="flex items-center gap-1 text-zinc-200">
-						<span>{latency}ms</span>
-						<span className="text-[8px] text-zinc-600">Avg</span>
-					</div>
+					<span className="text-zinc-200 whitespace-nowrap">{latency}ms avg</span>
 				</div>
 
 				{/* Availability */}
