@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { allExperiences } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Mdx } from "../components/mdx";
@@ -18,6 +17,8 @@ export const metadata = {
 };
 
 export default function ExperiencePage() {
+	// Mock experiences data - replace with real data from your data source
+	const experiences: any[] = [];
 	const experiences = allExperiences.sort(
 		(a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
 	);

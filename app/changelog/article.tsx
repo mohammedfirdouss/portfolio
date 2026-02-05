@@ -1,9 +1,8 @@
-import type { Changelog } from "@/.contentlayer/generated";
 import Link from "next/link";
 import { ArrowUpRight, Calendar } from "lucide-react";
 
 type Props = {
-	changelog: Changelog;
+	changelog: any;
 };
 
 export const Article: React.FC<Props> = ({ changelog }) => {

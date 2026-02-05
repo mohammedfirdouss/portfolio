@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { allProjects } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
@@ -10,57 +9,13 @@ import { Eye, Sparkles, ArrowRight } from "lucide-react";
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-	const featured = allProjects.find(
-		(project) => project._raw.sourceFileName === "Cruddur.mdx",
-	)!;
-	const top2 = allProjects.find(
-		(project) => project._raw.sourceFileName === "TerraTowns.mdx",
-	)!;
-	const top3 = allProjects.find(
-		(project) => project._raw.sourceFileName === "BloomRefresh.mdx",
-	)!;
-	const sorted = allProjects
-		.filter((p) => p.published)
-		.filter(
-			(project) =>
-				project.slug !== featured.slug &&
-				project.slug !== top2.slug &&
-				project.slug !== top3.slug,
-		)
-		.sort(
-			(a, b) =>
-				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
-				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
-		);
-
-	const slugsToFetch = [
-		featured.slug,
-		top2.slug,
-		top3.slug,
-		...sorted.map((p) => p.slug),
-	];
-
-	const redis = getRedis();
-	let viewCounts: (number | null)[] = [];
-
-	if (redis) {
-		try {
-			viewCounts = (await redis.mget(
-				...slugsToFetch.map((slug) =>
-					["pageviews", "projects", slug].join(":"),
-				),
-			)) as (number | null)[];
-		} catch (e) {
-			console.warn("Failed to fetch view counts:", e);
-		}
-	}
+	// Mock projects data - replace with real data from your data source
+	const featured: any = null;
+	const top2: any = null;
+	const top3: any = null;
+	const sorted: any[] = [];
 
 	const views: Record<string, number> = {};
-	if (viewCounts) {
-		allProjects.forEach((p, i) => {
-			views[p.slug] = viewCounts[i] ?? 0;
-		});
-	}
 
 	return (
 		<div className="relative min-h-screen bg-black">
@@ -102,7 +57,8 @@ export default async function ProjectsPage() {
 				{/* Divider */}
 				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-				{/* Featured project */}
+			{/* Featured project - Empty state */}
+			{featured ? (
 				<div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2">
 					<Card>
 						<Link
@@ -174,25 +130,34 @@ export default async function ProjectsPage() {
 					</Card>
 
 					<div className="flex flex-col w-full gap-6 mx-auto lg:mx-0">
-						{[top2, top3].map((project) => (
+						{[top2, top3].filter(Boolean).map((project: any) => (
 							<Card key={project.slug}>
 								<Article project={project} views={views[project.slug] ?? 0} />
 							</Card>
 						))}
 					</div>
 				</div>
+			) : (
+				<div className="text-center py-12">
+					<p className="text-zinc-400">Projects data coming soon</p>
+				</div>
+			)}
 
-				{/* Divider */}
+			{/* Divider */}
+			{sorted.length > 0 && (
 				<div className="hidden w-full h-px md:block bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+			)}
 
-				{/* Other projects */}
+			{/* Other projects */}
+			{sorted.length > 0 && (
 				<div className="grid grid-cols-1 gap-6 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-3">
-					{sorted.map((project) => (
+					{sorted.map((project: any) => (
 						<Card key={project.slug}>
 							<Article project={project} views={views[project.slug] ?? 0} />
 						</Card>
 					))}
 				</div>
+			)}
 			</div>
 
 			{/* Bottom padding */}

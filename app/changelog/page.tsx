@@ -1,4 +1,3 @@
-import { allChangelogs } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
@@ -7,9 +6,8 @@ import { ClipboardList } from "lucide-react";
 export const revalidate = 60;
 
 export default async function ChangelogPage() {
-	const sorted = allChangelogs.sort(
-		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-	);
+	// Mock changelogs data - replace with real data from your data source
+	const sorted: any[] = [];
 
 	return (
 		<div className="relative min-h-screen bg-black">

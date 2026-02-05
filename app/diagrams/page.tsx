@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { allDiagrams } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { DiagramArticle } from "./article";
@@ -9,56 +8,13 @@ import { Eye, ArrowRight, FileImage } from "lucide-react";
 
 export const revalidate = 60;
 export default async function DiagramsPage() {
-	const featured = allDiagrams.find(
-		(diagram) => diagram.slug === "terra-towns-diagram",
-	)!;
-	const top2 = allDiagrams.find(
-		(diagram) =>
-			diagram.slug === "3-tier-architecture-using-aws-cloudformation",
-	)!;
-	const top3 = allDiagrams.find((diagram) => diagram.slug === "cruddur")!;
-	const sorted = allDiagrams
-		.filter((d) => d.published)
-		.filter(
-			(diagram) =>
-				diagram.slug !== featured.slug &&
-				diagram.slug !== top2.slug &&
-				diagram.slug !== top3.slug,
-		)
-		.sort(
-			(a, b) =>
-				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
-				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
-		);
-
-	const slugsToFetch = [
-		featured.slug,
-		top2.slug,
-		top3.slug,
-		...sorted.map((d) => d.slug),
-	];
-
-	const redis = getRedis();
-	let viewCounts: (number | null)[] = [];
-
-	if (redis) {
-		try {
-			viewCounts = (await redis.mget(
-				...slugsToFetch.map((slug) =>
-					["pageviews", "diagrams", slug].join(":"),
-				),
-			)) as (number | null)[];
-		} catch (e) {
-			console.warn("Failed to fetch view counts:", e);
-		}
-	}
+	// Mock diagrams data - replace with real data from your data source
+	const featured: any = null;
+	const top2: any = null;
+	const top3: any = null;
+	const sorted: any[] = [];
 
 	const views: Record<string, number> = {};
-	if (viewCounts) {
-		allDiagrams.forEach((d, i) => {
-			views[d.slug] = viewCounts[i] ?? 0;
-		});
-	}
 
 	return (
 		<div className="relative min-h-screen bg-black">
@@ -100,7 +56,8 @@ export default async function DiagramsPage() {
 				{/* Divider */}
 				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-				{/* Featured diagram */}
+			{/* Featured diagram - Empty state */}
+			{featured ? (
 				<div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2">
 					<Card>
 						<Link
@@ -155,7 +112,7 @@ export default async function DiagramsPage() {
 					</Card>
 
 					<div className="flex flex-col w-full gap-6 mx-auto lg:mx-0">
-						{[top2, top3].map((diagram) => (
+						{[top2, top3].filter(Boolean).map((diagram: any) => (
 							<Card key={diagram.slug}>
 								<DiagramArticle
 									entry={diagram}
@@ -165,13 +122,21 @@ export default async function DiagramsPage() {
 						))}
 					</div>
 				</div>
+			) : (
+				<div className="text-center py-12">
+					<p className="text-zinc-400">Diagrams data coming soon</p>
+				</div>
+			)}
 
-				{/* Divider */}
+			{/* Divider */}
+			{sorted.length > 0 && (
 				<div className="hidden w-full h-px md:block bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+			)}
 
-				{/* Other diagrams */}
+			{/* Other diagrams */}
+			{sorted.length > 0 && (
 				<div className="grid grid-cols-1 gap-6 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-3">
-					{sorted.map((diagram) => (
+					{sorted.map((diagram: any) => (
 						<Card key={diagram.slug}>
 							<DiagramArticle
 								entry={diagram}
@@ -180,6 +145,7 @@ export default async function DiagramsPage() {
 						</Card>
 					))}
 				</div>
+			)}
 			</div>
 
 			{/* Bottom padding */}

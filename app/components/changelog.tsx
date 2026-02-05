@@ -1,14 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { allChangelogs } from "contentlayer/generated";
 import { Mdx } from "../components/mdx";
 import { ArrowRight, Calendar } from "lucide-react";
 
 export function Changelog() {
-	const changelogs = allChangelogs
-		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-		.slice(0, 3); // Show latest 3 updates
+	// Mock changelogs data - replace with real data from your data source
+	const changelogs: any[] = [];
 
 	return (
 		<section className="relative py-24 border-t border-zinc-800/50">

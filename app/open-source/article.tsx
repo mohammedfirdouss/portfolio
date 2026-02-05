@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Eye, ArrowUpRight, Calendar, GitFork } from "lucide-react";
-import type { OpenSource } from "contentlayer/generated";
 
 type Props = {
-	entry: OpenSource;
+	entry: any;
 	views: number;
 	featured?: boolean;
 };
