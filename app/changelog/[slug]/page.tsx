@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { allChangelogs } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import { Navigation } from "@/app/components/nav";
 import { Calendar, ArrowLeft } from "lucide-react";
@@ -15,18 +14,15 @@ type Props = {
 };
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
-	return allChangelogs.map((p) => ({
-		slug: p.slug,
-	}));
+	// No changelogs available - return empty array
+	return [];
 }
 
 export default async function ChangelogEntryPage({ params }: Props) {
 	const slug = params?.slug;
-	const changelog = allChangelogs.find((p) => p.slug === slug);
-
-	if (!changelog) {
-		notFound();
-	}
+	
+	// No changelogs available - always return not found
+	notFound();
 
 	return (
 		<div className="relative min-h-screen bg-black">

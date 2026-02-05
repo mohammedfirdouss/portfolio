@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { InteractiveDiagram } from "./interactive-diagram";
 
-function clsx(...args: any) {
+function clsx(...args: (string | undefined | null | false)[]): string {
 	return args.filter(Boolean).join(" ");
 }
 const components = {

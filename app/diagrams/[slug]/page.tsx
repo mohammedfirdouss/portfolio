@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { allDiagrams } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import "../mdx.css";
 import { Navigation } from "@/app/components/nav";
@@ -10,8 +9,8 @@ interface Props {
 }
 
 export default function DiagramsEntryPage({ params }: Props) {
-	const doc = allDiagrams.find((doc) => doc.slug === params.slug);
-	if (!doc) notFound();
+	// No diagrams available - always return not found
+	notFound();
 
 	return (
 		<div className="relative min-h-screen bg-black">

@@ -1,12 +1,11 @@
-import { allOpenSources } from "contentlayer/generated";
 import { OpenSourceArticle } from "./article";
 import { Card } from "../components/card";
 import { Navigation } from "../components/nav";
 import { GitBranch, Sparkles } from "lucide-react";
 
 export default function OpenSourcePage() {
-	const openSourceEntries =
-		allOpenSources?.filter((entry) => entry.published) || [];
+	// Mock open-source entries - replace with real data from your data source
+	const openSourceEntries: any[] = [];
 
 	// Get featured entry (first one) and rest
 	const featured = openSourceEntries[0];

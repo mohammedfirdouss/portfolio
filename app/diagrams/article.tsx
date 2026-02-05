@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Eye, ArrowUpRight, Calendar, FileImage } from "lucide-react";
-import type { Diagram } from "contentlayer/generated";
 
 interface Props {
-	entry: Diagram;
+	entry: any;
 	views: number;
 	featured?: boolean;
 }

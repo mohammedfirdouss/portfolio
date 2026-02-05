@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { allDocuments } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import "./mdx.css";
 import { Navigation } from "@/app/components/nav"; // Added import
@@ -9,10 +8,8 @@ interface Props {
 }
 
 export default function OpenSourceEntryPage({ params }: Props) {
-	const doc = allDocuments.find(
-		(doc) => doc._raw.sourceFilePath === `open-source/${params.slug}.mdx`,
-	);
-	if (!doc) notFound();
+	// No open-source documents available - always return not found
+	notFound();
 	return (
 		<div className="bg-black min-h-screen">
 			<Navigation backLink="/open-source" />

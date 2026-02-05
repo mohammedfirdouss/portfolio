@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { allProjects } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
@@ -15,20 +14,15 @@ type Props = {
 };
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
-	return allProjects
-		.filter((p) => p.date)
-		.map((p) => ({
-			slug: p.slug,
-		}));
-}
+	// No projects available - return empty array
+	return [];
+	}
 
 export default async function PostPage({ params }: Props) {
 	const slug = params?.slug;
-	const project = allProjects.find((project) => project.slug === slug);
-
-	if (!project) {
-		notFound();
-	}
+	
+	// No projects available - always return not found
+	notFound();
 
 	let views = 0;
 	const redis = getRedis();

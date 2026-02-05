@@ -2,15 +2,11 @@ import { Mdx } from "@/app/components/mdx";
 import { Navigation } from "@/app/components/nav";
 import { Card } from "@/app/components/card";
 import { Laptop, Cpu, Command } from "lucide-react";
-import { allDocuments } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 
 export default function UsesPage() {
-	const doc = allDocuments.find(
-		(doc) => doc._raw.sourceFilePath === "uses/index.mdx",
-	);
-
-	if (!doc) return notFound();
+	// No uses document available - always return not found
+	notFound();
 
 	return (
 		<div className="relative min-h-screen bg-black">

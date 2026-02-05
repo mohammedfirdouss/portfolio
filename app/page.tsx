@@ -130,7 +130,7 @@ export default function Home() {
 				</motion.nav>
 
 				{/* Main content */}
-				<div className="relative z-10 flex flex-col items-center justify-center px-6 text-center">
+				<div className="relative z-10 flex flex-col items-center justify-center px-6 pt-32 md:pt-40 text-center">
 					{/* Decorative line */}
 					<motion.div
 						initial={{ scaleX: 0, opacity: 0 }}
@@ -188,8 +188,7 @@ export default function Home() {
 							className="text-base md:text-lg text-zinc-300 leading-relaxed"
 							delay={0.1}
 						>
-							AWS Community Builder. Cloud infrastructure, AI, and open source.
-							3X Hackathon Winner.
+							AWS Community Builder specializing in cloud infrastructure, AI, and open source. 3X Hackathon Winner.
 						</TextReveal>
 					</motion.div>
 

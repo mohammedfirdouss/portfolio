@@ -29,7 +29,7 @@ export function InteractiveDiagram({
 				onMouseLeave={() => setIsHovered(false)}
 				onClick={() => setIsExpanded(true)}
 			>
-				<div className="relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/50 aspect-video">
+				<div className="relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/50 w-full h-auto">
 					{/* Overlay gradient */}
 					<div
 						className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 ${
@@ -40,9 +40,9 @@ export function InteractiveDiagram({
 					<Image
 						src={src}
 						alt={alt}
-						width={1200}
-						height={675}
-						className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+						width={1600}
+						height={900}
+						className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
 						priority={false}
 					/>
 

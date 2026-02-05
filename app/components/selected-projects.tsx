@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Eye, Github } from "lucide-react";
-import { allProjects } from "contentlayer/generated";
 import { Card } from "./card";
 
 // Accent color variants for secondary projects
@@ -26,8 +25,8 @@ const projectAccents = [
 ];
 
 export function SelectedProjects() {
-	// Sort projects by date descending
-	const sortedProjects = [...allProjects].sort(
+	// Mock projects data - replace with real data from your data source
+	const sortedProjects: any[] = [];
 		(a, b) =>
 			new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
 			new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),

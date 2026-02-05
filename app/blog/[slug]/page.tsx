@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { allBlogs } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
@@ -15,20 +14,15 @@ type Props = {
 };
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
-	return allBlogs
-		.filter((p) => p.publishedAt)
-		.map((p) => ({
-			slug: p.slug,
-		}));
+	// No blogs available - return empty array
+	return [];
 }
 
 export default async function PostPage({ params }: Props) {
 	const slug = params?.slug;
-	const blog = allBlogs.find((p) => p.slug === slug);
-
-	if (!blog) {
-		notFound();
-	}
+	
+	// No blogs available - always return not found
+	notFound();
 
 	let views = 0;
 	const redis = getRedis();

@@ -1,10 +1,9 @@
-import type { Project } from "@/.contentlayer/generated";
 import Link from "next/link";
 import Image from "next/image";
 import { Eye, ArrowUpRight } from "lucide-react";
 
 type Props = {
-	project: Project;
+	project: any;
 	views: number;
 };
 
