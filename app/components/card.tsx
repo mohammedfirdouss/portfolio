@@ -16,7 +16,8 @@ export const Card: React.FC<PropsWithChildren> = ({ children }) => {
 	const rotateX = useSpring(0, { stiffness: 500, damping: 100 });
 	const rotateY = useSpring(0, { stiffness: 500, damping: 100 });
 
-	function onMouseMove({ currentTarget, clientX, clientY }: any) {
+	function onMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+		const { currentTarget, clientX, clientY } = event;
 		const { left, top, width, height } = currentTarget.getBoundingClientRect();
 		const x = clientX - left;
 		const y = clientY - top;

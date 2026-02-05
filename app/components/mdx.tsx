@@ -2,14 +2,10 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useMDXComponent } from "next-contentlayer/hooks";
 import { InteractiveDiagram } from "./interactive-diagram";
 
-// Mock MDX component factory since contentlayer is removed
-const useMDXComponent = (code: string) => {
-	return () => <div dangerouslySetInnerHTML={{ __html: code }} />;
-};
-
-function clsx(...args: any) {
+function clsx(...args: (string | undefined | null | false)[]): string {
 	return args.filter(Boolean).join(" ");
 }
 const components = {

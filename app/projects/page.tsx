@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { allProjects } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
@@ -9,13 +10,57 @@ import { Eye, Sparkles, ArrowRight } from "lucide-react";
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-	// Mock projects data - replace with real data from your data source
-	const featured: any = null;
-	const top2: any = null;
-	const top3: any = null;
-	const sorted: any[] = [];
+	const featured = allProjects.find(
+		(project) => project._raw.sourceFileName === "Cruddur.mdx",
+	)!;
+	const top2 = allProjects.find(
+		(project) => project._raw.sourceFileName === "TerraTowns.mdx",
+	)!;
+	const top3 = allProjects.find(
+		(project) => project._raw.sourceFileName === "BloomRefresh.mdx",
+	)!;
+	const sorted = allProjects
+		.filter((p) => p.published)
+		.filter(
+			(project) =>
+				project.slug !== featured.slug &&
+				project.slug !== top2.slug &&
+				project.slug !== top3.slug,
+		)
+		.sort(
+			(a, b) =>
+				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
+				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
+		);
+
+	const slugsToFetch = [
+		featured.slug,
+		top2.slug,
+		top3.slug,
+		...sorted.map((p) => p.slug),
+	];
+
+	const redis = getRedis();
+	let viewCounts: (number | null)[] = [];
+
+	if (redis) {
+		try {
+			viewCounts = (await redis.mget(
+				...slugsToFetch.map((slug) =>
+					["pageviews", "projects", slug].join(":"),
+				),
+			)) as (number | null)[];
+		} catch (e) {
+			console.warn("Failed to fetch view counts:", e);
+		}
+	}
 
 	const views: Record<string, number> = {};
+	if (viewCounts) {
+		allProjects.forEach((p, i) => {
+			views[p.slug] = viewCounts[i] ?? 0;
+		});
+	}
 
 	return (
 		<div className="relative min-h-screen bg-black">

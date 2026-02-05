@@ -1,12 +1,14 @@
 import React from "react";
 import Link from "next/link";
+import { allCertifications } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { BadgeCheck, Calendar, Building2, ExternalLink } from "lucide-react";
 
 export default function CertificationsPage() {
-	// Mock certifications data - replace with real data from your data source
-	const certifications = [];
+	const certifications = allCertifications.sort((a, b) => {
+		return new Date(b.date).getTime() - new Date(a.date).getTime();
+	});
 
 	return (
 		<div className="relative min-h-screen bg-black">

@@ -1,3 +1,4 @@
+import { allBlogs } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
@@ -5,8 +6,10 @@ import { BookOpen, Sparkles } from "lucide-react";
 
 export const revalidate = 60;
 export default async function BlogPage() {
-	// Mock blogs data - replace with real data from your data source
-	const sorted: any[] = [];
+	const sorted = allBlogs.sort(
+		(a, b) =>
+			new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+	);
 
 	// Get featured/latest post
 	const featured = sorted[0];
