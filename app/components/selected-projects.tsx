@@ -27,10 +27,6 @@ const projectAccents = [
 export function SelectedProjects() {
 	// Mock projects data - replace with real data from your data source
 	const sortedProjects: any[] = [];
-		(a, b) =>
-			new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
-			new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
-	);
 
 	// Select specific projects to feature
 	// Try to find "Cruddur" as featured, otherwise take the most recent one

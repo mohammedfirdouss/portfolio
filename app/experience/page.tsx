@@ -19,9 +19,6 @@ export const metadata = {
 export default function ExperiencePage() {
 	// Mock experiences data - replace with real data from your data source
 	const experiences: any[] = [];
-	const experiences = allExperiences.sort(
-		(a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
-	);
 
 	return (
 		<div className="relative min-h-screen bg-black">
