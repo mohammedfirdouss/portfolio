@@ -2,10 +2,16 @@ import { OpenSourceArticle } from "./article";
 import { Card } from "../components/card";
 import { Navigation } from "../components/nav";
 import { GitBranch, Sparkles } from "lucide-react";
+import { allOpenSources } from "contentlayer/generated";
 
 export default function OpenSourcePage() {
-	// Mock open-source entries - replace with real data from your data source
-	const openSourceEntries: any[] = [];
+	const openSourceEntries = allOpenSources
+		.filter((entry) => entry.published !== false)
+		.sort(
+			(a, b) =>
+				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
+				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
+		);
 
 	// Get featured entry (first one) and rest
 	const featured = openSourceEntries[0];
@@ -63,6 +69,12 @@ export default function OpenSourcePage() {
 						<Card>
 							<OpenSourceArticle entry={featured} views={0} featured />
 						</Card>
+					</div>
+				)}
+
+				{!featured && (
+					<div className="text-center text-zinc-400">
+						Open-source highlights coming soon.
 					</div>
 				)}
 

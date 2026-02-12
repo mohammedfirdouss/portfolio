@@ -39,7 +39,7 @@ const socials = [
 		icon: <Mail size={24} />,
 		href: "mailto:mohammedfirdous682@gmail.com",
 		label: "Email",
-		handle: "mohammedfirdous..",
+		handle: "mohammedfirdous682@gmail.com",
 		color: "from-red-500/20 to-orange-500/20",
 		borderColor: "group-hover:border-red-500/50",
 	},

@@ -1,5 +1,4 @@
 import "../global.css";
-import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
@@ -138,8 +137,9 @@ export const metadata: Metadata = {
 		shortcut: "/favicon.png",
 	},
 };
-const inter = Inter({
-	subsets: ["latin"],
+const inter = LocalFont({
+	src: "../public/fonts/Inter-VariableFont.woff2",
+	weight: "100 900",
 	variable: "--font-inter",
 	display: "swap",
 });

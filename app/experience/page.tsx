@@ -10,6 +10,7 @@ import {
 	Building2,
 	ArrowUpRight,
 } from "lucide-react";
+import { allExperiences } from "contentlayer/generated";
 
 export const metadata = {
 	title: "Experience",
@@ -17,8 +18,12 @@ export const metadata = {
 };
 
 export default function ExperiencePage() {
-	// Mock experiences data - replace with real data from your data source
-	const experiences: any[] = [];
+	const experiences = allExperiences
+		.filter((experience) => !!experience.role)
+		.sort(
+			(a, b) =>
+				new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
+		);
 
 	return (
 		<div className="relative min-h-screen bg-black">
@@ -141,6 +146,11 @@ export default function ExperiencePage() {
 								</Card>
 							</div>
 						))}
+						{experiences.length === 0 && (
+							<div className="text-center text-zinc-400">
+								Experience timeline coming soon.
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

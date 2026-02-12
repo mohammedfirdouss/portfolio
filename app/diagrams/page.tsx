@@ -5,16 +5,42 @@ import { Card } from "../components/card";
 import { DiagramArticle } from "./article";
 import { getRedis } from "@/util/redis";
 import { Eye, ArrowRight, FileImage } from "lucide-react";
+import { allDiagrams } from "contentlayer/generated";
 
 export const revalidate = 60;
 export default async function DiagramsPage() {
-	// Mock diagrams data - replace with real data from your data source
-	const featured: any = null;
-	const top2: any = null;
-	const top3: any = null;
-	const sorted: any[] = [];
+	const diagrams = allDiagrams
+		.filter((diagram) => diagram.published !== false)
+		.sort(
+			(a, b) =>
+				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
+				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
+		);
+
+	const featured = diagrams[0];
+	const [top2, top3] = diagrams.slice(1, 3);
+	const sorted = diagrams.slice(3);
+
+	const slugsToFetch = diagrams.map((diagram) => diagram.slug);
+	const redis = getRedis();
+	let viewCounts: (number | null)[] = [];
+
+	if (redis && slugsToFetch.length) {
+		try {
+			viewCounts = (await redis.mget(
+				...slugsToFetch.map((slug) =>
+					["pageviews", "diagrams", slug].join(":"),
+				),
+			)) as (number | null)[];
+		} catch (e) {
+			console.warn("Failed to fetch diagram view counts:", e);
+		}
+	}
 
 	const views: Record<string, number> = {};
+	slugsToFetch.forEach((slug, index) => {
+		views[slug] = viewCounts[index] ?? 0;
+	});
 
 	return (
 		<div className="relative min-h-screen bg-black">
