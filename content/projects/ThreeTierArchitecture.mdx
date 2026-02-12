@@ -1,0 +1,58 @@
+---
+title: 3-Tier Architecture with CloudFormation
+description: Architecting a Three-Tier LAMP Application on AWS using CloudFormation for Infrastructure as Code.
+date: "2023-10-04"
+repository: mohammedfirdouss/3-Tier-Architecture-with-AWS-CloudFormation
+published: true
+screenshot: https://raw.githubusercontent.com/mohammedfirdouss/3-Tier-Architecture-with-AWS-CloudFormation/main/diagram/Screenshot%20(707).png
+---
+
+This project demonstrates a production-ready three-tier web application architecture deployed on AWS using CloudFormation. The architecture follows best practices for high availability, scalability, and security, implementing a classic LAMP stack across presentation, application, and database tiers.
+
+By using CloudFormation templates, the entire infrastructure is defined as code, making it reproducible, version-controlled, and easy to manage across different environments.
+
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://github.com/mohammedfirdouss/3-Tier-Architecture-with-AWS-CloudFormation"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 no-underline hover:bg-white/80"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    View on GitHub
+  </a>
+</div>
+
+## What it is
+
+A highly available three-tier web application architecture deployed on AWS:
+
+- **Presentation Tier:** Web servers running behind an Application Load Balancer for high availability.
+- **Application Tier:** EC2 instances running the LAMP stack (Linux, Apache, MySQL, PHP) in private subnets.
+- **Database Tier:** Amazon RDS MySQL database with Multi-AZ deployment for redundancy.
+- **Network Architecture:** Custom VPC with public and private subnets across multiple Availability Zones.
+
+## Key Technical Details
+
+- **Infrastructure as Code:** Complete infrastructure defined using AWS CloudFormation templates.
+- **High Availability:** Multi-AZ deployment with resources distributed across multiple Availability Zones.
+- **Security:** Application servers in private subnets, security groups controlling traffic flow, and NAT gateways for outbound internet access.
+- **Scalability:** Auto Scaling groups for the application tier to handle varying loads.
+- **Load Balancing:** Application Load Balancer distributing traffic across multiple application instances.
+- **Database:** Amazon RDS MySQL with automated backups and Multi-AZ deployment for disaster recovery.
+
+## What I Learned
+
+- **Architecture Patterns:** Understanding and implementing the three-tier architecture pattern for web applications.
+- **CloudFormation:** Advanced CloudFormation concepts including nested stacks, intrinsic functions, and resource dependencies.
+- **Network Design:** Designing secure VPC architectures with proper subnet segregation and routing.
+- **High Availability:** Implementing HA patterns using Multi-AZ deployments and load balancing.
+- **Infrastructure as Code:** Benefits of defining infrastructure declaratively for repeatability and version control.
+
+## Screenshots
+
+<div class="grid grid-cols-1 gap-6 my-6 w-full">
+  <img src="https://raw.githubusercontent.com/mohammedfirdouss/3-Tier-Architecture-with-AWS-CloudFormation/main/diagram/Screenshot%20(707).png" alt="3-Tier Architecture Diagram" class="rounded-lg w-full h-auto shadow-lg" />
+</div>
