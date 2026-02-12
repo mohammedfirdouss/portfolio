@@ -9,6 +9,7 @@
     "fmt": "bun rome format . --write"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
     "@next/mdx": "^13.5.4",
     "@upstash/redis": "^1.23.3",
     "contentlayer": "^0.3.4",

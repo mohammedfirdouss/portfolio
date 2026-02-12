@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
@@ -149,7 +147,9 @@ export default function Home() {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, delay: 0.6 }}
 						className="mb-6 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-zinc-400"
-					/>
+					>
+						Cloud Engineer · Builder
+					</motion.span>
 
 					{/* Main heading */}
 					<motion.h1
