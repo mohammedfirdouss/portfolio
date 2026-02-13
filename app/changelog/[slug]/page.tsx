@@ -20,7 +20,7 @@ export async function generateStaticParams(): Promise<Props["params"][]> {
 
 export default async function ChangelogEntryPage({ params }: Props) {
 	const slug = params?.slug;
-	
+
 	// No changelogs available - always return not found
 	notFound();
 }

@@ -1,11 +1,5 @@
 "use client";
-import {
-	ArrowLeft,
-	Eye,
-	Github,
-	Globe,
-	ArrowUpRight,
-} from "lucide-react";
+import { ArrowLeft, Eye, Github, Globe, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";

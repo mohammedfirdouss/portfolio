@@ -74,19 +74,19 @@ export const Header: React.FC<Props> = ({ blog, views }) => {
 								views,
 							)}
 						</span>
-					<Link
-						target="_blank"
-						href="https://twitter.com/iamfirdouss"
-						rel="noopener noreferrer"
-					>
-						<XIcon
-							className={`w-6 h-6 duration-200 hover:font-medium ${
-								isIntersecting
-									? " text-zinc-400 hover:text-zinc-100"
-									: "text-zinc-600 hover:text-zinc-900"
-							} `}
-						/>
-					</Link>
+						<Link
+							target="_blank"
+							href="https://twitter.com/iamfirdouss"
+							rel="noopener noreferrer"
+						>
+							<XIcon
+								className={`w-6 h-6 duration-200 hover:font-medium ${
+									isIntersecting
+										? " text-zinc-400 hover:text-zinc-100"
+										: "text-zinc-600 hover:text-zinc-900"
+								} `}
+							/>
+						</Link>
 						<Link
 							target="_blank"
 							href="https://github.com/mohammedfirdouss"

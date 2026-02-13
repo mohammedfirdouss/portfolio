@@ -176,7 +176,6 @@ export default function Home() {
 						className="w-48 h-px my-12 bg-gradient-to-r from-transparent via-zinc-600 to-transparent"
 					/>
 
-
 					{/* CTA Buttons */}
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}

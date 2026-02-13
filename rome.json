@@ -24,7 +24,8 @@
 			"dist",
 			".devcontainer",
 			".vscode",
-			".marscode"
+			".marscode",
+			".ona"
 		]
 	},
 	"formatter": {
@@ -34,7 +35,8 @@
 			"dist",
 			".devcontainer",
 			".vscode",
-			".marscode"
+			".marscode",
+			".ona"
 		]
 	}
 }

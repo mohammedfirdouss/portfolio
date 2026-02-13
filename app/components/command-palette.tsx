@@ -132,8 +132,7 @@ export function CommandPalette() {
 			title: "X",
 			subtitle: "Follow on X (formerly Twitter)",
 			icon: <XIcon className="w-4 h-4" />,
-			action: () =>
-				window.open("https://twitter.com/iamfirdouss", "_blank"),
+			action: () => window.open("https://twitter.com/iamfirdouss", "_blank"),
 			category: "social",
 		},
 	];

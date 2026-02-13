@@ -35,7 +35,11 @@ const socialLinks = [
 		href: "https://www.linkedin.com/in/mohammedfirdousaraoye/",
 		label: "LinkedIn",
 	},
-	{ icon: XIcon, href: "https://twitter.com/iamfirdouss", label: "X (formerly Twitter)" },
+	{
+		icon: XIcon,
+		href: "https://twitter.com/iamfirdouss",
+		label: "X (formerly Twitter)",
+	},
 	{ icon: Mail, href: "mailto:mohammedfirdous682@gmail.com", label: "Email" },
 ];
 

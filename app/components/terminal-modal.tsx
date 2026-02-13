@@ -140,7 +140,7 @@ export function TerminalModal() {
 			<div className="grid grid-cols-1 gap-1 text-zinc-300">
 				<span>- Cruddur (AWS Serverless Social Media)</span>
 				<span>- TerraTowns (Terraform Learning Platform)</span>
-				<span>- BloomRefresh (Automation Tool)</span>
+				<span>- InfraAlert (AI-Powered Infrastructure Management)</span>
 			</div>
 		),
 		goto: (args) => {

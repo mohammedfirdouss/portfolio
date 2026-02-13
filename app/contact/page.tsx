@@ -1,11 +1,5 @@
 "use client";
-import {
-	Github,
-	Mail,
-	Linkedin,
-	ArrowUpRight,
-	Sparkles,
-} from "lucide-react";
+import { Github, Mail, Linkedin, ArrowUpRight, Sparkles } from "lucide-react";
 
 // Custom X (formerly Twitter) Icon component
 const XIcon = ({ size = 24 }: { size?: number }) => (

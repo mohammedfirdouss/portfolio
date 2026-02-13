@@ -32,7 +32,9 @@ export default async function PostPage({ params }: Props) {
 	let views = 0;
 	if (redis) {
 		try {
-			const result = await redis.get(["pageviews", "blogs", blog.slug].join(":"));
+			const result = await redis.get(
+				["pageviews", "blogs", blog.slug].join(":"),
+			);
 			views = typeof result === "number" ? result : Number(result ?? 0);
 		} catch (e) {
 			console.warn("Failed to fetch blog views:", e);
