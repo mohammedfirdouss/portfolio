@@ -57,9 +57,7 @@ export default function Footer() {
 							</h3>
 						</Link>
 						<p className="mt-4 text-zinc-400 max-w-md leading-relaxed">
-							Cloud Engineer specializing in AWS, automation, and scalable
-							serverless systems. Always exploring new technologies and building
-							innovative solutions.
+							Cloud Engineer · Builder · AI · Open Source · 3X Hackathon Winner
 						</p>
 
 						{/* Social links */}

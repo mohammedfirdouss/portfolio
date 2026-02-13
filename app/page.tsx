@@ -5,7 +5,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import Particles from "./components/particles";
 import MagneticButton from "./components/magnetic-button";
-import TextReveal from "./components/text-reveal";
 import { TechStack } from "./components/tech-stack";
 import { SelectedProjects } from "./components/selected-projects";
 import { HackerText } from "./components/hacker-text";
@@ -148,7 +147,7 @@ export default function Home() {
 						transition={{ duration: 0.8, delay: 0.6 }}
 						className="mb-6 text-xs md:text-sm font-medium tracking-[0.3em] uppercase text-zinc-400"
 					>
-						Cloud Engineer · Builder
+						Cloud Engineer · Builder · AI · Open Source · 3X Hackathon Winner
 					</motion.span>
 
 					{/* Main heading */}
@@ -177,20 +176,6 @@ export default function Home() {
 						className="w-48 h-px my-12 bg-gradient-to-r from-transparent via-zinc-600 to-transparent"
 					/>
 
-					{/* Subtitle */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 1.2 }}
-						className="max-w-2xl"
-					>
-						<TextReveal
-							className="text-base md:text-lg text-zinc-300 leading-relaxed"
-							delay={0.1}
-						>
-							AWS Community Builder specializing in cloud infrastructure, AI, and open source. 3X Hackathon Winner.
-						</TextReveal>
-					</motion.div>
 
 					{/* CTA Buttons */}
 					<motion.div

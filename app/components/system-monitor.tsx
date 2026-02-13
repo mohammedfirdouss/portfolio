@@ -30,10 +30,10 @@ export function SystemMonitor() {
 
 	return (
 		<motion.div
-			initial={{ opacity: 0, x: -50 }}
+			initial={{ opacity: 0, x: 50 }}
 			animate={{ opacity: 1, x: 0 }}
 			transition={{ duration: 1, delay: 2 }}
-			className="fixed bottom-24 left-6 z-40 hidden md:flex flex-col gap-2 font-mono text-[10px] tracking-wider select-none pointer-events-none"
+			className="fixed top-24 right-6 z-40 hidden md:flex flex-col gap-2 font-mono text-[10px] tracking-wider select-none pointer-events-none"
 		>
 			<div className="flex flex-col gap-1 p-3 bg-zinc-950/80 backdrop-blur-md border border-zinc-800/50 rounded-lg shadow-2xl w-56">
 				{/* Header */}
