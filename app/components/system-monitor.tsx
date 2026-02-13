@@ -104,9 +104,7 @@ export function SystemMonitor() {
 										<Activity size={10} />
 										<span>UPTIME</span>
 									</div>
-									<span className="text-emerald-400">
-										{uptime.toFixed(2)}%
-									</span>
+									<span className="text-emerald-400">{uptime.toFixed(2)}%</span>
 								</div>
 
 								{/* Load Bar */}
@@ -140,8 +138,8 @@ export function SystemMonitor() {
 							exit={{ opacity: 0 }}
 							className="px-1 text-zinc-700 text-[9px]"
 						>
-							ID: {Math.random().toString(36).substring(7).toUpperCase()}{" "}
-							// CLOUD_ARCH
+							ID: {Math.random().toString(36).substring(7).toUpperCase()} //
+							CLOUD_ARCH
 						</motion.div>
 					)}
 				</AnimatePresence>

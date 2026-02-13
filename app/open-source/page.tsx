@@ -72,9 +72,7 @@ export default function OpenSourcePage() {
 					</div>
 				) : (
 					<div className="text-center py-12">
-						<p className="text-zinc-400">
-							Open-source highlights coming soon.
-						</p>
+						<p className="text-zinc-400">Open-source highlights coming soon.</p>
 					</div>
 				)}
 
