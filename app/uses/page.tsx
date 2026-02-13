@@ -7,7 +7,9 @@ import { allPages } from "contentlayer/generated";
 
 export default function UsesPage() {
 	const uses = allPages.find(
-		(page) => page._raw.flattenedPath === "uses/index",
+		(page) =>
+			page._raw.flattenedPath === "uses" ||
+			page._raw.flattenedPath === "uses/index",
 	);
 
 	if (!uses) {

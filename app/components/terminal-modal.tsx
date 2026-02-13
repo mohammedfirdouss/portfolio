@@ -119,9 +119,8 @@ export function TerminalModal() {
 					</div>
 				</div>
 				<span className="text-zinc-600 text-xs mt-1">
-					→ type{" "}
-					<span className="text-emerald-400/70">goto /open-source</span> to view
-					details
+					→ type <span className="text-emerald-400/70">goto /open-source</span>{" "}
+					to view details
 				</span>
 			</div>
 		),
