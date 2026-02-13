@@ -60,10 +60,69 @@ export function TerminalModal() {
 			</div>
 		),
 		opensource: () => (
-			<div className="grid grid-cols-1 gap-1 text-zinc-300">
-				<span>- GitLab CLI: Added documentation for fork behavior (Go)</span>
-				<span>- GitLab CLI: Standardized schedule command help formatting</span>
-				<span>- GitLab CLI: Standardized run command help formatting</span>
+			<div className="grid grid-cols-1 gap-2 text-zinc-300">
+				<span className="text-zinc-500 text-xs uppercase tracking-wider">
+					5 contributions across 4 projects
+				</span>
+				<div className="space-y-3 mt-1">
+					<div>
+						<span>
+							<span className="text-emerald-400">PipeCD</span>{" "}
+							<span className="text-zinc-600">·</span>{" "}
+							<span className="text-zinc-500">Jul 2025</span>
+						</span>
+						<p className="pl-4 text-zinc-500 text-xs">
+							Fixed template variable rendering in analysis stage for all
+							deployment strategies (Go)
+						</p>
+					</div>
+					<div>
+						<span>
+							<span className="text-emerald-400">GitLab Pages</span>{" "}
+							<span className="text-zinc-600">·</span>{" "}
+							<span className="text-zinc-500">May 2025</span>
+						</span>
+						<p className="pl-4 text-zinc-500 text-xs">
+							Refactored TLS certificate handling into dedicated package (Go)
+						</p>
+					</div>
+					<div>
+						<span>
+							<span className="text-emerald-400">GitLab AI Gateway</span>{" "}
+							<span className="text-zinc-600">·</span>{" "}
+							<span className="text-zinc-500">Apr 2025</span>
+						</span>
+						<p className="pl-4 text-zinc-500 text-xs">
+							Extracted InternalEventMiddleware into dedicated module (Python)
+						</p>
+					</div>
+					<div>
+						<span>
+							<span className="text-emerald-400">GitLab CLI</span>{" "}
+							<span className="text-zinc-600">·</span>{" "}
+							<span className="text-zinc-500">Oct 2024 – Apr 2025</span>
+						</span>
+						<p className="pl-4 text-zinc-500 text-xs">
+							3 MRs: fork behavior docs, schedule & run command help formatting
+							(Go)
+						</p>
+					</div>
+					<div>
+						<span>
+							<span className="text-emerald-400">GitLab</span>{" "}
+							<span className="text-zinc-600">·</span>{" "}
+							<span className="text-zinc-500">Apr 2025</span>
+						</span>
+						<p className="pl-4 text-zinc-500 text-xs">
+							Fixed broken developer tutorials for new contributor onboarding
+						</p>
+					</div>
+				</div>
+				<span className="text-zinc-600 text-xs mt-1">
+					→ type{" "}
+					<span className="text-emerald-400/70">goto /open-source</span> to view
+					details
+				</span>
 			</div>
 		),
 		experience: () => (
