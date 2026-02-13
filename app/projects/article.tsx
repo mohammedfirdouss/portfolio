@@ -18,7 +18,7 @@ export const Article: React.FC<Props> = ({ project, views }) => {
 			data-cursor="pointer"
 			data-cursor-text="View"
 		>
-			<article className="relative h-full flex flex-col overflow-hidden rounded-2xl">
+			<article className="relative h-full flex flex-col min-h-[320px] overflow-hidden rounded-2xl">
 				{/* Image Section */}
 				{image && (
 					<div className="relative w-full aspect-video overflow-hidden">
@@ -34,7 +34,7 @@ export const Article: React.FC<Props> = ({ project, views }) => {
 				)}
 
 				{/* Content Section */}
-				<div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 -mt-12 bg-gradient-to-t from-transparent to-transparent">
+				<div className="p-6 md:p-8 flex flex-col flex-grow relative z-10 -mt-8 bg-gradient-to-t from-transparent to-transparent">
 					{/* Meta info */}
 					<div className="flex justify-between gap-2 items-center mb-3">
 						<span className="text-xs text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 backdrop-blur-md bg-zinc-900/50 px-2 py-1 rounded-md border border-zinc-800/50">

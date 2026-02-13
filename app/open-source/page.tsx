@@ -1,7 +1,7 @@
 import { OpenSourceArticle } from "./article";
 import { Card } from "../components/card";
 import { Navigation } from "../components/nav";
-import { GitBranch, Sparkles } from "lucide-react";
+import { GitBranch } from "lucide-react";
 import { allOpenSources } from "contentlayer/generated";
 
 export default function OpenSourcePage() {
@@ -31,7 +31,7 @@ export default function OpenSourcePage() {
 			/>
 
 			{/* Radial glow */}
-			<div className="absolute top-0 left-1/3 w-[800px] h-[600px] bg-gradient-radial from-zinc-800/20 via-transparent to-transparent rounded-full blur-3xl" />
+			<div className="absolute top-0 left-1/4 w-[800px] h-[600px] bg-gradient-radial from-zinc-800/20 via-transparent to-transparent rounded-full blur-3xl" />
 
 			<Navigation />
 
@@ -40,15 +40,15 @@ export default function OpenSourcePage() {
 				<div className="max-w-2xl mx-auto lg:mx-0">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
 					<div className="flex items-center gap-3 mb-4">
-						<GitBranch className="w-5 h-5 text-zinc-300" />
-						<span className="text-sm font-medium tracking-widest uppercase text-zinc-300">
+						<GitBranch className="w-5 h-5 text-zinc-500" />
+						<span className="text-sm font-medium tracking-widest uppercase text-zinc-500">
 							Community Contributions
 						</span>
 					</div>
 					<h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl font-display">
 						Open Source
 					</h1>
-					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
+					<p className="mt-6 text-lg text-zinc-300 leading-relaxed">
 						Giving back to the community through code, documentation, and
 						collaboration.
 					</p>
@@ -58,11 +58,11 @@ export default function OpenSourcePage() {
 				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
 				{/* Featured entry */}
-				{featured && (
-					<div className="relative">
-						<div className="absolute -top-4 left-0">
-							<span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-zinc-400 border border-zinc-800 rounded-full bg-zinc-900/50">
-								<Sparkles className="w-3 h-3" />
+				{featured ? (
+					<div className="relative pt-6">
+						<div className="mb-4">
+							<span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-white border border-zinc-500/50 rounded-full bg-zinc-900/80 backdrop-blur-md shadow-lg">
+								<span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
 								Featured
 							</span>
 						</div>
@@ -70,31 +70,33 @@ export default function OpenSourcePage() {
 							<OpenSourceArticle entry={featured} views={0} featured />
 						</Card>
 					</div>
-				)}
-
-				{!featured && (
-					<div className="text-center text-zinc-400">
-						Open-source highlights coming soon.
+				) : (
+					<div className="text-center py-12">
+						<p className="text-zinc-400">
+							Open-source highlights coming soon.
+						</p>
 					</div>
 				)}
 
 				{/* Divider */}
 				{rest.length > 0 && (
-					<div className="hidden w-full h-px md:block bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+					<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 				)}
 
 				{/* Other entries */}
-				<div className="grid grid-cols-1 gap-6 mx-auto lg:grid-cols-2">
-					{rest.map((entry) => (
-						<Card key={entry._id}>
-							<OpenSourceArticle entry={entry} views={0} />
-						</Card>
-					))}
-				</div>
+				{rest.length > 0 && (
+					<div className="grid grid-cols-1 gap-8 mx-auto lg:mx-0 md:grid-cols-2 items-start pt-4 pb-8">
+						{rest.map((entry) => (
+							<Card key={entry._id}>
+								<OpenSourceArticle entry={entry} views={0} />
+							</Card>
+						))}
+					</div>
+				)}
 			</div>
 
 			{/* Bottom padding */}
-			<div className="h-24" />
+			<div className="h-32" />
 
 			{/* Corner decorations */}
 			<div className="absolute top-24 left-8 w-24 h-24 border-l border-t border-zinc-800/50 rounded-tl-3xl" />

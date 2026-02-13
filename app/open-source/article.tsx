@@ -23,22 +23,20 @@ export function OpenSourceArticle({ entry, views, featured = false }: Props) {
 			>
 				{/* Meta info */}
 				<div className="flex justify-between gap-2 items-center mb-4">
-					<div className="flex items-center gap-3">
-						<span className="flex items-center gap-1.5 text-xs text-zinc-300">
-							<Calendar className="w-3.5 h-3.5" />
-							{entry.date ? (
-								<time dateTime={new Date(entry.date).toISOString()}>
-									{Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(
-										new Date(entry.date),
-									)}
-								</time>
-							) : (
-								<span>In Progress</span>
-							)}
-						</span>
-					</div>
-					<span className="flex items-center gap-1.5 text-xs text-zinc-300">
-						<Eye className="w-3.5 h-3.5" />
+					<span className="flex items-center gap-1.5 text-xs text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 backdrop-blur-md bg-zinc-900/50 px-2 py-1 rounded-md border border-zinc-800/50">
+						<Calendar className="w-3.5 h-3.5" />
+						{entry.date ? (
+							<time dateTime={new Date(entry.date).toISOString()}>
+								{Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(
+									new Date(entry.date),
+								)}
+							</time>
+						) : (
+							<span>In Progress</span>
+						)}
+					</span>
+					<span className="flex items-center gap-1.5 text-xs text-zinc-400 backdrop-blur-md bg-zinc-900/50 px-2 py-1 rounded-md border border-zinc-800/50">
+						<Eye className="w-3.5 h-3.5" />{" "}
 						{Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
 					</span>
 				</div>
@@ -50,7 +48,7 @@ export function OpenSourceArticle({ entry, views, featured = false }: Props) {
 					}`}
 				>
 					<span className="flex items-center gap-2">
-						<GitFork className="w-5 h-5 text-zinc-300 group-hover:text-zinc-200 transition-colors duration-300" />
+						<GitFork className="w-5 h-5 text-zinc-500 flex-shrink-0" />
 						{entry.title}
 					</span>
 					<ArrowUpRight
@@ -69,11 +67,11 @@ export function OpenSourceArticle({ entry, views, featured = false }: Props) {
 					{entry.summary || "No summary available."}
 				</p>
 
-				{/* Read more */}
+				{/* View contribution link */}
 				<div className="mt-4 pt-4 border-t border-zinc-800/50">
-					<span className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-zinc-300 bg-zinc-800/50 rounded-full group-hover:bg-emerald-500/20 group-hover:text-emerald-400 transition-all duration-300">
+					<span className="text-xs font-medium text-zinc-500 group-hover:text-white transition-colors duration-300 flex items-center gap-1">
 						View contribution
-						<ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+						<ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
 					</span>
 				</div>
 			</article>

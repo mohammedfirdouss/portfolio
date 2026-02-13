@@ -73,7 +73,7 @@ export default async function ProjectsPage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40 overflow-visible">
 				{/* Header */}
 				<div className="max-w-2xl mx-auto lg:mx-0">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
@@ -185,12 +185,12 @@ export default async function ProjectsPage() {
 
 				{/* Divider */}
 				{sorted.length > 0 && (
-					<div className="hidden w-full h-px md:block bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+					<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 				)}
 
 				{/* Other projects */}
 				{sorted.length > 0 && (
-					<div className="grid grid-cols-1 gap-6 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-3">
+					<div className="grid grid-cols-1 gap-8 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-3 items-start pt-4 pb-8">
 						{sorted.map((project: any) => (
 							<Card key={project.slug}>
 								<Article project={project} views={views[project.slug] ?? 0} />
@@ -201,7 +201,7 @@ export default async function ProjectsPage() {
 			</div>
 
 			{/* Bottom padding */}
-			<div className="h-24" />
+			<div className="h-32" />
 
 			{/* Corner decorations */}
 			<div className="absolute top-24 left-8 w-24 h-24 border-l border-t border-zinc-800/50 rounded-tl-3xl" />
