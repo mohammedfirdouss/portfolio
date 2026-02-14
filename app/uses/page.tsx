@@ -1,6 +1,5 @@
 import { Mdx } from "@/app/components/mdx";
 import { Navigation } from "@/app/components/nav";
-import { Card } from "@/app/components/card";
 import { Laptop, Cpu, Command, Calendar } from "lucide-react";
 import { notFound } from "next/navigation";
 import { allPages } from "contentlayer/generated";
@@ -23,8 +22,8 @@ export default function UsesPage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto max-w-5xl space-y-8 md:space-y-12 md:pt-32 lg:pt-36">
-				<div className="max-w-3xl">
+			<div className="relative z-10 px-6 pt-24 mx-auto max-w-3xl space-y-8 md:space-y-12 md:pt-32 lg:pt-36">
+				<div>
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
 					<div className="flex items-center gap-3 mb-4 text-zinc-500">
 						<Laptop className="w-5 h-5" />
@@ -51,19 +50,17 @@ export default function UsesPage() {
 					)}
 				</div>
 
-				<Card>
-					<article className="p-6 md:p-10 prose prose-zinc prose-invert max-w-none">
-						<div className="flex items-center gap-3 text-sm text-zinc-500 mb-6">
-							<Cpu className="w-4 h-4" />
-							<span>What I rely on to design, build, and ship</span>
-						</div>
-						<Mdx code={uses.body.code} />
-						<div className="mt-8 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-zinc-500">
-							<Command className="w-4 h-4" />
-							Always evolving
-						</div>
-					</article>
-				</Card>
+				<article className="prose prose-zinc prose-invert max-w-none">
+					<div className="flex items-center gap-3 text-sm text-zinc-500 mb-6">
+						<Cpu className="w-4 h-4" />
+						<span>What I rely on to design, build, and ship</span>
+					</div>
+					<Mdx code={uses.body.code} />
+					<div className="mt-8 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-zinc-500">
+						<Command className="w-4 h-4" />
+						Always evolving
+					</div>
+				</article>
 			</div>
 			<div className="h-24" />
 		</div>

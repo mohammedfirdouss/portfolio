@@ -72,15 +72,6 @@ const TerminalModal = dynamic(
 	},
 );
 
-const SystemMonitor = dynamic(
-	() =>
-		import("./components/system-monitor").then((mod) => ({
-			default: mod.SystemMonitor,
-		})),
-	{
-		ssr: false,
-	},
-);
 
 const Footer = dynamic(() => import("./components/footer"), {
 	ssr: false,
@@ -194,7 +185,6 @@ export default function RootLayout({
 					<PageTransition>{children}</PageTransition>
 					<Footer />
 					<TerminalModal />
-					<SystemMonitor />
 				</SmoothScroll>
 			</body>
 		</html>
