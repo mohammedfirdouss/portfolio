@@ -14,6 +14,12 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 		if (isInitializedRef.current) return;
 		isInitializedRef.current = true;
 
+		// Skip smooth scroll if user prefers reduced motion
+		const prefersReducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
+		if (prefersReducedMotion) return;
+
 		const initLenis = async () => {
 			try {
 				const Lenis = (await import("lenis")).default;

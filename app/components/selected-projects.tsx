@@ -13,6 +13,7 @@ const projectAccents = [
 		bgGradient: "from-blue-950/30",
 		border: "border-blue-900/50",
 		text: "text-blue-400",
+		hoverText: "group-hover:text-blue-400",
 		badge: "bg-blue-950/30 border-blue-900/50 text-blue-300",
 	},
 	{
@@ -20,23 +21,44 @@ const projectAccents = [
 		bgGradient: "from-purple-950/30",
 		border: "border-purple-900/50",
 		text: "text-purple-400",
+		hoverText: "group-hover:text-purple-400",
 		badge: "bg-purple-950/30 border-purple-900/50 text-purple-300",
 	},
 ];
 
 export function SelectedProjects() {
-	// Mock projects data - replace with real data from your data source
-	const sortedProjects: any[] = [];
+	const featured = {
+		slug: "Cruddur",
+		title: "Cruddur",
+		description:
+			"A cloud-based micro-messaging app where users share updates, thoughts, and photos that expire after a set time.",
+		date: "2024-02-01",
+		banner: "/cruddur-banner.jpg",
+		screenshot: "/cruddur-screenshot.png",
+	};
 
-	// Select specific projects to feature
-	// Try to find "Cruddur" as featured, otherwise take the most recent one
-	const featured =
-		sortedProjects.find((p) => p.slug === "cruddur") || sortedProjects[0];
-
-	// Take the next 2 projects that aren't the featured one
-	const secondary = sortedProjects
-		.filter((p) => p.slug !== featured?.slug)
-		.slice(0, 2);
+	const secondary = [
+		{
+			slug: "TerraTowns",
+			title: "Terra Towns",
+			description:
+				"A Geocities-style community website where users deploy their own personal websites using Terraform.",
+			date: "2024-01-01",
+			banner: "/terratowns.png",
+			screenshot: "/terratowns.png",
+		},
+		{
+			slug: "EcommerceK8s",
+			title: "E-Commerce Kubernetes Platform",
+			description:
+				"A microservices-based e-commerce platform deployed on Kubernetes, demonstrating modern cloud-native architecture patterns.",
+			date: "2026-02-07",
+			banner:
+				"https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/02-product-catalog.png",
+			screenshot:
+				"https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/05-argocd-apps.png",
+		},
+	];
 
 	return (
 		<section className="relative py-24 md:py-32 w-full">
@@ -54,8 +76,7 @@ export function SelectedProjects() {
 							Selected Work
 						</h2>
 						<p className="mt-4 text-lg text-zinc-300 max-w-xl leading-relaxed">
-							A selection of projects ranging from cloud infrastructure to
-							full-stack applications.
+							Cloud platforms, microservices, and AI — built end to end.
 						</p>
 					</div>
 
@@ -99,10 +120,17 @@ export function SelectedProjects() {
 											<div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
 										</div>
 										<div className="relative p-8 -mt-20 z-10">
-											<span className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-medium text-emerald-300 bg-emerald-950/30 border border-emerald-900/50 rounded-full backdrop-blur-sm">
-												<span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-												Featured Project
-											</span>
+											<div className="flex items-center gap-3 mb-4">
+												<span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium text-emerald-300 bg-emerald-950/30 border border-emerald-900/50 rounded-full backdrop-blur-sm">
+													<span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+													Featured Project
+												</span>
+												<span className="text-xs text-zinc-400">
+													{Intl.DateTimeFormat("en-US", {
+														dateStyle: "medium",
+													}).format(new Date(featured.date))}
+												</span>
+											</div>
 											<h3 className="text-3xl font-bold text-white font-display mb-3 group-hover:text-emerald-400 transition-colors">
 												{featured.title}
 											</h3>
@@ -111,7 +139,7 @@ export function SelectedProjects() {
 											</p>
 											<div className="flex items-center gap-4 text-sm font-medium text-zinc-300">
 												<span className="flex items-center gap-2 group-hover:text-emerald-400 transition-colors">
-													Read Case Study <ArrowRight className="w-4 h-4" />
+													View Project <ArrowRight className="w-4 h-4" />
 												</span>
 											</div>
 										</div>
@@ -154,19 +182,26 @@ export function SelectedProjects() {
 													<div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-zinc-950/80 via-transparent to-transparent" />
 												</div>
 												<div className="flex-1 p-6 flex flex-col justify-center">
-													<span
-														className={`inline-flex items-center gap-2 px-3 py-1 mb-3 text-xs font-medium ${accentConfig.badge} border rounded-full w-fit`}
-													>
+													<div className="flex items-center gap-3 mb-3">
 														<span
-															className={`w-1.5 h-1.5 rounded-full ${accentConfig.text.replace(
-																"text-",
-																"bg-",
-															)}`}
-														/>
-														Featured
-													</span>
+															className={`inline-flex items-center gap-2 px-3 py-1 text-xs font-medium ${accentConfig.badge} border rounded-full w-fit`}
+														>
+															<span
+																className={`w-1.5 h-1.5 rounded-full ${accentConfig.text.replace(
+																	"text-",
+																	"bg-",
+																)}`}
+															/>
+															Featured
+														</span>
+														<span className="text-xs text-zinc-400">
+															{Intl.DateTimeFormat("en-US", {
+																dateStyle: "medium",
+															}).format(new Date(project.date))}
+														</span>
+													</div>
 													<h3
-														className={`text-xl font-bold text-white font-display mb-2 group-hover:${accentConfig.text} transition-colors`}
+														className={`text-xl font-bold text-white font-display mb-2 ${accentConfig.hoverText} transition-colors`}
 													>
 														{project.title}
 													</h3>

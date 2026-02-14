@@ -43,7 +43,7 @@ export default function ExperiencePage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
 				{/* Header */}
 				<div className="max-w-2xl mx-auto lg:mx-0">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
@@ -57,8 +57,7 @@ export default function ExperiencePage() {
 						Experience
 					</h1>
 					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						A timeline of my professional roles and the value I've delivered to
-						various organizations.
+						Where I've worked, what I built, and the impact I made.
 					</p>
 				</div>
 
@@ -157,6 +156,10 @@ export default function ExperiencePage() {
 
 			{/* Bottom padding */}
 			<div className="h-24" />
+
+			{/* Corner decorations */}
+			<div className="absolute top-24 left-8 w-24 h-24 border-l border-t border-zinc-800/50 rounded-tl-3xl" />
+			<div className="absolute top-24 right-8 w-24 h-24 border-r border-t border-zinc-800/50 rounded-tr-3xl" />
 		</div>
 	);
 }

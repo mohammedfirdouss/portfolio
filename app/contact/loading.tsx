@@ -5,25 +5,39 @@ export default function ContactLoading() {
 		<div className="relative min-h-screen bg-black">
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-2xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
 				{/* Header skeleton */}
-				<div>
-					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8 animate-pulse" />
-					<div className="space-y-4">
-						<div className="h-12 bg-zinc-800/50 rounded-lg w-48 animate-pulse" />
-						<div className="h-20 bg-zinc-800/30 rounded-lg w-full animate-pulse" />
+				<div className="max-w-2xl mx-auto lg:mx-0">
+					<div className="h-px w-16 bg-zinc-800 mb-8" />
+					<div className="flex items-center gap-3 mb-4">
+						<div className="w-5 h-5 rounded bg-zinc-800/50 animate-pulse" />
+						<div className="h-3 w-24 bg-zinc-800/50 rounded animate-pulse" />
 					</div>
+					<div className="h-12 bg-zinc-800/40 rounded-lg w-44 animate-pulse" />
+					<div className="h-5 bg-zinc-800/30 rounded w-full mt-6 animate-pulse" />
 				</div>
 
-				{/* Form skeleton */}
-				<div className="space-y-6">
-					{[...Array(4)].map((_, i) => (
-						<div key={i} className="space-y-2">
-							<div className="h-4 bg-zinc-800/50 rounded w-20 animate-pulse" />
-							<div className="h-12 bg-zinc-900/50 border border-zinc-800 rounded-lg animate-pulse" />
+				{/* Divider */}
+				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+			</div>
+
+			{/* Social cards skeleton */}
+			<div className="relative z-10 container px-6 mx-auto py-20 lg:px-8">
+				<div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+					{[...Array(5)].map((_, i) => (
+						<div
+							key={i}
+							className={`border border-zinc-800/50 rounded-2xl p-8 md:p-12 animate-pulse flex flex-col items-center gap-6 ${
+								i === 3 ? "hidden lg:block" : ""
+							}`}
+						>
+							<div className="w-16 h-16 rounded-2xl bg-zinc-800/40" />
+							<div className="space-y-2 text-center">
+								<div className="h-3 w-16 bg-zinc-800/40 rounded mx-auto" />
+								<div className="h-5 w-40 bg-zinc-800/30 rounded mx-auto" />
+							</div>
 						</div>
 					))}
-					<div className="h-12 bg-white/20 rounded-lg animate-pulse mt-8" />
 				</div>
 			</div>
 

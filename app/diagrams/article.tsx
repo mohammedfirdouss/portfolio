@@ -33,7 +33,7 @@ export function DiagramArticle({ entry, views, featured = false }: Props) {
 									)}
 								</time>
 							) : (
-								<span>In Progress</span>
+								<span>—</span>
 							)}
 						</span>
 					</div>

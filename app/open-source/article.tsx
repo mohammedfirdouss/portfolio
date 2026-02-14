@@ -32,7 +32,7 @@ export function OpenSourceArticle({ entry, views, featured = false }: Props) {
 								)}
 							</time>
 						) : (
-							<span>In Progress</span>
+							<span>—</span>
 						)}
 					</span>
 					<span className="flex items-center gap-1.5 text-xs text-zinc-400 backdrop-blur-md bg-zinc-900/50 px-2 py-1 rounded-md border border-zinc-800/50">

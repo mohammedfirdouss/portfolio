@@ -98,7 +98,7 @@ export default function ContactPage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
 				{/* Header section */}
 				<motion.div
 					initial={{ opacity: 0, y: 30 }}

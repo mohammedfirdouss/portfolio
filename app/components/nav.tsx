@@ -4,17 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "./magnetic-button";
-
-const navItems = [
-	{ name: "Experience", href: "/experience" },
-	{ name: "Certifications", href: "/certifications" },
-	{ name: "Projects", href: "/projects" },
-	{ name: "Blog", href: "/blog" },
-	{ name: "Open Source", href: "/open-source" },
-	{ name: "Diagrams", href: "/diagrams" },
-	{ name: "Uses", href: "/uses" },
-	{ name: "Contact", href: "/contact" },
-];
+import { navigationLinks as navItems } from "./navigation-links";
 
 export const Navigation: React.FC<{ backLink?: string }> = ({ backLink }) => {
 	const ref = useRef<HTMLElement>(null);

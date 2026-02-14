@@ -96,11 +96,11 @@ export function TechStack() {
 						transition={{ duration: 0.6 }}
 					>
 						<h2 className="text-3xl md:text-5xl font-bold text-white font-display tracking-tight">
-							Technical Arsenal
+							Tools I Work With
 						</h2>
 						<p className="mt-4 text-lg text-zinc-300 max-w-xl leading-relaxed">
-							A curated collection of my most used tools. I can adapt to any
-							tools or tech, these are just my go-tos.
+							My go-to stack. I pick up new tools fast — these are the ones I
+							reach for most.
 						</p>
 					</motion.div>
 
