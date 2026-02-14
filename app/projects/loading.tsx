@@ -5,26 +5,43 @@ export default function ProjectsLoading() {
 		<div className="relative min-h-screen bg-black">
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
 				{/* Header skeleton */}
 				<div className="max-w-2xl mx-auto lg:mx-0">
-					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8 animate-pulse" />
-					<div className="space-y-4">
-						<div className="h-12 bg-zinc-800/50 rounded-lg w-48 animate-pulse" />
-						<div className="h-20 bg-zinc-800/30 rounded-lg w-full animate-pulse" />
+					<div className="h-px w-16 bg-zinc-800 mb-8" />
+					<div className="flex items-center gap-3 mb-4">
+						<div className="w-5 h-5 rounded bg-zinc-800/50 animate-pulse" />
+						<div className="h-3 w-20 bg-zinc-800/50 rounded animate-pulse" />
 					</div>
+					<div className="h-12 bg-zinc-800/40 rounded-lg w-48 animate-pulse" />
+					<div className="h-5 bg-zinc-800/30 rounded w-full mt-6 animate-pulse" />
+					<div className="h-5 bg-zinc-800/30 rounded w-3/4 mt-2 animate-pulse" />
 				</div>
 
 				{/* Divider */}
 				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-				{/* Content skeleton */}
-				<div className="grid grid-cols-1 gap-6 mx-auto lg:grid-cols-2">
-					{[...Array(4)].map((_, i) => (
+				{/* Grid skeleton */}
+				<div className="grid grid-cols-1 gap-8 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-3">
+					{[...Array(6)].map((_, i) => (
 						<div
 							key={i}
-							className="h-96 bg-zinc-900/50 border border-zinc-800 rounded-2xl animate-pulse"
-						/>
+							className="border border-zinc-800/50 rounded-2xl overflow-hidden animate-pulse"
+						>
+							<div className="w-full aspect-video bg-zinc-800/30" />
+							<div className="p-6 space-y-3">
+								<div className="flex justify-between">
+									<div className="h-3 w-24 bg-zinc-800/40 rounded" />
+									<div className="h-3 w-12 bg-zinc-800/40 rounded" />
+								</div>
+								<div className="h-6 w-3/4 bg-zinc-800/40 rounded" />
+								<div className="h-4 w-full bg-zinc-800/30 rounded" />
+								<div className="h-4 w-2/3 bg-zinc-800/30 rounded" />
+								<div className="pt-4 border-t border-zinc-800/30">
+									<div className="h-3 w-20 bg-zinc-800/40 rounded" />
+								</div>
+							</div>
+						</div>
 					))}
 				</div>
 			</div>

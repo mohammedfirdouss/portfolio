@@ -23,7 +23,7 @@ export default function UsesPage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto max-w-5xl space-y-8 md:space-y-16 md:pt-32 lg:pt-36">
+			<div className="relative z-10 px-6 pt-24 mx-auto max-w-5xl space-y-8 md:space-y-12 md:pt-32 lg:pt-36">
 				<div className="max-w-3xl">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
 					<div className="flex items-center gap-3 mb-4 text-zinc-500">

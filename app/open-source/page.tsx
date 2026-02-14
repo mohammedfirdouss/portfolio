@@ -4,6 +4,12 @@ import { Navigation } from "../components/nav";
 import { GitBranch } from "lucide-react";
 import { allOpenSources } from "contentlayer/generated";
 
+export const metadata = {
+	title: "Open Source",
+	description:
+		"Contributions to open source projects including GitLab, PipeCD, and more.",
+};
+
 export default function OpenSourcePage() {
 	const openSourceEntries = allOpenSources
 		.filter((entry) => entry.published !== false)
@@ -12,10 +18,6 @@ export default function OpenSourcePage() {
 				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
 				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
 		);
-
-	// Get featured entry (first one) and rest
-	const featured = openSourceEntries[0];
-	const rest = openSourceEntries.slice(1);
 
 	return (
 		<div className="relative min-h-screen bg-black">
@@ -35,7 +37,7 @@ export default function OpenSourcePage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
 				{/* Header */}
 				<div className="max-w-2xl mx-auto lg:mx-0">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
@@ -57,38 +59,18 @@ export default function OpenSourcePage() {
 				{/* Divider */}
 				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-				{/* Featured entry */}
-				{featured ? (
-					<div className="relative pt-6">
-						<div className="mb-4">
-							<span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-white border border-zinc-500/50 rounded-full bg-zinc-900/80 backdrop-blur-md shadow-lg">
-								<span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-								Featured
-							</span>
-						</div>
-						<Card>
-							<OpenSourceArticle entry={featured} views={0} featured />
-						</Card>
-					</div>
-				) : (
-					<div className="text-center py-12">
-						<p className="text-zinc-400">Open-source highlights coming soon.</p>
-					</div>
-				)}
-
-				{/* Divider */}
-				{rest.length > 0 && (
-					<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
-				)}
-
-				{/* Other entries */}
-				{rest.length > 0 && (
-					<div className="grid grid-cols-1 gap-8 mx-auto lg:mx-0 md:grid-cols-2 items-start pt-4 pb-8">
-						{rest.map((entry) => (
+				{/* All entries */}
+				{openSourceEntries.length > 0 ? (
+					<div className="grid grid-cols-1 gap-8 mx-auto lg:mx-0 md:grid-cols-2 items-start pb-8">
+						{openSourceEntries.map((entry) => (
 							<Card key={entry._id}>
 								<OpenSourceArticle entry={entry} views={0} />
 							</Card>
 						))}
+					</div>
+				) : (
+					<div className="text-center py-12">
+						<p className="text-zinc-400">Open-source highlights coming soon.</p>
 					</div>
 				)}
 			</div>

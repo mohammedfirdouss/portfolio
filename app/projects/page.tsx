@@ -1,44 +1,33 @@
-import Link from "next/link";
 import React from "react";
-import Image from "next/image";
 import { allProjects } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
 import { getRedis } from "@/util/redis";
-import { Eye, Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles } from "lucide-react";
+
+export const metadata = {
+	title: "Projects",
+	description:
+		"Cloud infrastructure, AI systems, and automation projects — from prototype to production.",
+};
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-	const featured = allProjects.find(
-		(project) => project._raw.sourceFileName === "Cruddur.mdx",
-	);
-	const top2 = allProjects.find(
-		(project) => project._raw.sourceFileName === "TerraTowns.mdx",
-	);
-	const top3 = allProjects.find(
-		(project) => project._raw.sourceFileName === "InfraAlert.mdx",
-	);
-
-	const featuredSlugs = [featured, top2, top3]
-		.filter((p): p is NonNullable<typeof p> => !!p)
-		.map((p) => p.slug);
-
-	const sorted = allProjects
+	const projects = allProjects
 		.filter((p) => p.published)
-		.filter((project) => !featuredSlugs.includes(project.slug))
 		.sort(
 			(a, b) =>
 				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
 				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
 		);
 
-	const slugsToFetch = [...featuredSlugs, ...sorted.map((p) => p.slug)];
+	const slugsToFetch = projects.map((p) => p.slug);
 
 	const redis = getRedis();
 	let viewCounts: (number | null)[] = [];
 
-	if (redis) {
+	if (redis && slugsToFetch.length) {
 		try {
 			viewCounts = (await redis.mget(
 				...slugsToFetch.map((slug) =>
@@ -73,7 +62,7 @@ export default async function ProjectsPage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40 overflow-visible">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
 				{/* Header */}
 				<div className="max-w-2xl mx-auto lg:mx-0">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
@@ -87,115 +76,26 @@ export default async function ProjectsPage() {
 						Projects
 					</h1>
 					<p className="mt-6 text-lg text-zinc-300 leading-relaxed">
-						Cloud infra, AI, automation, and whatever else needs building, from
-						prototypes to production systems.
+						Cloud infrastructure, AI systems, and automation — from prototype to
+						production.
 					</p>
 				</div>
 
 				{/* Divider */}
 				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-				{/* Featured project - Empty state */}
-				{featured ? (
-					<div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2">
-						<Card>
-							<Link
-								href={`/projects/${featured.slug}`}
-								className="group block h-full"
-							>
-								<article className="relative w-full h-full flex flex-col">
-									{(featured.banner || featured.screenshot) && (
-										<div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-2xl">
-											<Image
-												src={
-													featured.banner ||
-													featured.screenshot ||
-													"/placeholder.png"
-												}
-												alt={featured.title || "Featured Project"}
-												fill
-												className="object-cover transition-transform duration-700 group-hover:scale-105"
-												priority
-												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-											/>
-											<div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent" />
-										</div>
-									)}
-
-									<div className="p-6 md:p-10 flex flex-col flex-grow relative z-10 -mt-10">
-										{/* Featured badge */}
-										<div className="absolute top-0 right-6 md:right-10 -translate-y-[150%]">
-											<span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-white border border-zinc-500/50 rounded-full bg-zinc-900/80 backdrop-blur-md shadow-lg">
-												<span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-												Featured
-											</span>
-										</div>
-
-										<div className="flex items-center justify-between gap-2 mb-4">
-											<div className="text-xs text-zinc-400">
-												{featured.date ? (
-													<time
-														dateTime={new Date(featured.date).toISOString()}
-													>
-														{Intl.DateTimeFormat("en-US", {
-															dateStyle: "medium",
-														}).format(new Date(featured.date))}
-													</time>
-												) : (
-													<span />
-												)}
-											</div>
-											<span className="flex items-center gap-1.5 text-xs text-zinc-400">
-												<Eye className="w-4 h-4" />{" "}
-												{Intl.NumberFormat("en-US", {
-													notation: "compact",
-												}).format(views[featured.slug] ?? 0)}
-											</span>
-										</div>
-
-										<h2 className="mt-2 text-3xl font-bold text-zinc-100 group-hover:text-white sm:text-4xl font-display transition-colors duration-300">
-											{featured.title}
-										</h2>
-										<p className="mt-4 leading-7 text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 line-clamp-3">
-											{featured.description}
-										</p>
-
-										<div className="mt-auto pt-8 inline-flex items-center gap-2 text-sm font-medium text-zinc-400 group-hover:text-white transition-colors duration-300">
-											Read case study
-											<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-										</div>
-									</div>
-								</article>
-							</Link>
-						</Card>
-
-						<div className="flex flex-col w-full gap-6 mx-auto lg:mx-0">
-							{[top2, top3].filter(Boolean).map((project: any) => (
-								<Card key={project.slug}>
-									<Article project={project} views={views[project.slug] ?? 0} />
-								</Card>
-							))}
-						</div>
-					</div>
-				) : (
-					<div className="text-center py-12">
-						<p className="text-zinc-400">Projects data coming soon</p>
-					</div>
-				)}
-
-				{/* Divider */}
-				{sorted.length > 0 && (
-					<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
-				)}
-
-				{/* Other projects */}
-				{sorted.length > 0 && (
-					<div className="grid grid-cols-1 gap-8 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-3 items-start pt-4 pb-8">
-						{sorted.map((project: any) => (
+				{/* All projects */}
+				{projects.length > 0 ? (
+					<div className="grid grid-cols-1 gap-8 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-3 items-start pb-8">
+						{projects.map((project: any) => (
 							<Card key={project.slug}>
 								<Article project={project} views={views[project.slug] ?? 0} />
 							</Card>
 						))}
+					</div>
+				) : (
+					<div className="text-center py-12">
+						<p className="text-zinc-400">Projects coming soon.</p>
 					</div>
 				)}
 			</div>
