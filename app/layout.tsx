@@ -72,7 +72,6 @@ const TerminalModal = dynamic(
 	},
 );
 
-
 const Footer = dynamic(() => import("./components/footer"), {
 	ssr: false,
 });
