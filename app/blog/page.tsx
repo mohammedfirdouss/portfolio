@@ -4,6 +4,12 @@ import { Card } from "../components/card";
 import { Article } from "./article";
 import { BookOpen, Sparkles } from "lucide-react";
 
+export const metadata = {
+	title: "Blog",
+	description:
+		"Articles and insights on cloud engineering, software development, and working with AWS.",
+};
+
 export const revalidate = 60;
 export default async function BlogPage() {
 	const sorted = allBlogs.sort(
@@ -33,7 +39,7 @@ export default async function BlogPage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
 				{/* Header */}
 				<div className="max-w-2xl mx-auto lg:mx-0">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
@@ -57,8 +63,8 @@ export default async function BlogPage() {
 
 				{/* Featured post */}
 				{featured && (
-					<div className="relative">
-						<div className="absolute -top-4 left-0">
+					<div className="relative pt-2">
+						<div className="mb-3">
 							<span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-zinc-400 border border-zinc-800 rounded-full bg-zinc-900/50">
 								<Sparkles className="w-3 h-3" />
 								Latest Post

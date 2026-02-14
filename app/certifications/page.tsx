@@ -5,6 +5,12 @@ import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { BadgeCheck, Calendar, Building2, ExternalLink } from "lucide-react";
 
+export const metadata = {
+	title: "Certifications",
+	description:
+		"Professional certifications and credentials in cloud computing and DevOps.",
+};
+
 export default function CertificationsPage() {
 	const certifications = allCertifications.sort((a, b) => {
 		return new Date(b.date).getTime() - new Date(a.date).getTime();
@@ -18,7 +24,7 @@ export default function CertificationsPage() {
 
 			<Navigation />
 
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-32 lg:pt-40">
+			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
 				{/* Header */}
 				<div className="max-w-2xl mx-auto lg:mx-0">
 					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
@@ -31,6 +37,10 @@ export default function CertificationsPage() {
 					<h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl font-display">
 						Certifications
 					</h1>
+					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
+						Professional credentials validating expertise in cloud platforms,
+						DevOps practices, and infrastructure management.
+					</p>
 				</div>
 
 				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
@@ -60,15 +70,7 @@ export default function CertificationsPage() {
 									)}
 								</div>
 
-								<div className="mt-6 flex flex-col gap-4 flex-grow">
-									{/* Description/Body */}
-									<div className="text-zinc-400 text-sm leading-relaxed prose prose-invert prose-sm max-w-none">
-										{/* We can render the MDX content here if needed, or just rely on frontmatter */}
-										{/* For now, simplistic rendering of body if it exists, or just title/org */}
-									</div>
-								</div>
-
-								<div className="mt-8 pt-6 border-t border-zinc-800/50 flex items-center justify-between">
+								<div className="mt-6 pt-6 border-t border-zinc-800/50 flex items-center justify-between">
 									<div className="flex items-center gap-2 text-xs text-zinc-500">
 										<Calendar className="w-4 h-4" />
 										<time dateTime={cert.date}>

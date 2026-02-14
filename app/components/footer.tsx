@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import MagneticButton from "./magnetic-button";
+import { navigationLinks } from "./navigation-links";
 
 // Custom X (formerly Twitter) Icon component
 const XIcon = ({ className }: { className?: string }) => (
@@ -14,13 +15,7 @@ const XIcon = ({ className }: { className?: string }) => (
 const footerLinks = [
 	{
 		title: "Navigation",
-		links: [
-			{ name: "Projects", href: "/projects" },
-			{ name: "Blog", href: "/blog" },
-			{ name: "Open Source", href: "/open-source" },
-			{ name: "Diagrams", href: "/diagrams" },
-			{ name: "Contact", href: "/contact" },
-		],
+		links: navigationLinks,
 	},
 ];
 

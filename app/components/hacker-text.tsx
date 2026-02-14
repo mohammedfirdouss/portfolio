@@ -55,7 +55,7 @@ export function HackerText({
 
 	return (
 		<motion.span
-			className={`inline-block font-mono cursor-default ${className}`}
+			className={`inline-block cursor-default ${className}`}
 			onMouseEnter={() => {
 				setIsHovered(true);
 				scramble();

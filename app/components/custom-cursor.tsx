@@ -7,16 +7,25 @@ export default function CustomCursor() {
 	const [isHydrated, setIsHydrated] = useState(false);
 	const [isHovering, setIsHovering] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
+	const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 	const cursorX = useMotionValue(-100);
 	const cursorY = useMotionValue(-100);
 
-	// Smoother, "floaty" spring physics for the follower effect
-	const springConfig = { damping: 20, stiffness: 300, mass: 0.5 };
-	const cursorXSpring = useSpring(cursorX, springConfig);
-	const cursorYSpring = useSpring(cursorY, springConfig);
+	// Tight spring for the dot (near-instant)
+	const dotConfig = { damping: 40, stiffness: 600, mass: 0.2 };
+	const dotXSpring = useSpring(cursorX, dotConfig);
+	const dotYSpring = useSpring(cursorY, dotConfig);
+
+	// Looser spring for the trailing crosshair arms
+	const trailConfig = { damping: 25, stiffness: 280, mass: 0.4 };
+	const trailXSpring = useSpring(cursorX, trailConfig);
+	const trailYSpring = useSpring(cursorY, trailConfig);
 
 	useEffect(() => {
 		setIsHydrated(true);
+		setPrefersReducedMotion(
+			window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+		);
 	}, []);
 
 	useEffect(() => {
@@ -30,15 +39,12 @@ export default function CustomCursor() {
 
 		const handleMouseOver = (e: MouseEvent) => {
 			const target = e.target as HTMLElement;
-
-			// Check if the element is interactive
 			if (
 				target.tagName === "A" ||
 				target.tagName === "BUTTON" ||
 				target.closest("a") ||
 				target.closest("button") ||
 				target.dataset.cursor === "pointer" ||
-				// Also check for common interactive classes/roles if needed
 				window.getComputedStyle(target).cursor === "pointer"
 			) {
 				setIsHovering(true);
@@ -66,30 +72,67 @@ export default function CustomCursor() {
 		};
 	}, [isHydrated, cursorX, cursorY]);
 
-	if (!isHydrated) return null;
+	if (!isHydrated || prefersReducedMotion) return null;
 
 	return (
-		<motion.div
-			className="fixed top-0 left-0 pointer-events-none z-[999] mix-blend-difference"
-			style={{
-				x: cursorXSpring,
-				y: cursorYSpring,
-				opacity: isVisible ? 1 : 0,
-			}}
-		>
+		<>
+			{/* Center dot - small, precise */}
 			<motion.div
-				className="absolute -top-6 -left-6 w-12 h-12 rounded-full border border-white bg-white/5 backdrop-blur-[1px]"
-				animate={{
-					scale: isHovering ? 1.5 : 1,
-					backgroundColor: isHovering
-						? "rgba(255, 255, 255, 0.1)"
-						: "rgba(255, 255, 255, 0.05)",
-					borderColor: isHovering
-						? "rgba(255, 255, 255, 0.8)"
-						: "rgba(255, 255, 255, 0.4)",
+				className="fixed top-0 left-0 pointer-events-none z-[999] mix-blend-difference"
+				style={{
+					x: dotXSpring,
+					y: dotYSpring,
+					opacity: isVisible ? 1 : 0,
 				}}
-				transition={{ duration: 0.3, ease: "easeOut" }}
-			/>
-		</motion.div>
+			>
+				<motion.div
+					className="absolute rounded-full bg-white"
+					animate={{
+						width: isHovering ? 6 : 4,
+						height: isHovering ? 6 : 4,
+						top: isHovering ? -3 : -2,
+						left: isHovering ? -3 : -2,
+					}}
+					transition={{ duration: 0.2, ease: "easeOut" }}
+				/>
+			</motion.div>
+
+			{/* Crosshair arms - trailing, minimal */}
+			<motion.div
+				className="fixed top-0 left-0 pointer-events-none z-[998] mix-blend-difference"
+				style={{
+					x: trailXSpring,
+					y: trailYSpring,
+					opacity: isVisible ? 1 : 0,
+				}}
+			>
+				{/* Horizontal arms */}
+				<motion.div
+					className="absolute bg-white/60"
+					animate={{
+						width: isHovering ? 20 : 14,
+						height: 1,
+						top: -0.5,
+						left: isHovering ? -10 : -7,
+						opacity: isHovering ? 0.9 : 0.5,
+					}}
+					transition={{ duration: 0.25, ease: "easeOut" }}
+					style={{ transformOrigin: "center" }}
+				/>
+				{/* Vertical arms */}
+				<motion.div
+					className="absolute bg-white/60"
+					animate={{
+						width: 1,
+						height: isHovering ? 20 : 14,
+						left: -0.5,
+						top: isHovering ? -10 : -7,
+						opacity: isHovering ? 0.9 : 0.5,
+					}}
+					transition={{ duration: 0.25, ease: "easeOut" }}
+					style={{ transformOrigin: "center" }}
+				/>
+			</motion.div>
+		</>
 	);
 }

@@ -8,17 +8,7 @@ import MagneticButton from "./components/magnetic-button";
 import { TechStack } from "./components/tech-stack";
 import { SelectedProjects } from "./components/selected-projects";
 import { HackerText } from "./components/hacker-text";
-
-const navigation = [
-	{ name: "Experience", href: "/experience" },
-	{ name: "Certifications", href: "/certifications" },
-	{ name: "Projects", href: "/projects" },
-	{ name: "Blog", href: "/blog" },
-	{ name: "Open Source", href: "/open-source" },
-	{ name: "Diagrams", href: "/diagrams" },
-	{ name: "Uses", href: "/uses" },
-	{ name: "Contact", href: "/contact" },
-];
+import { navigationLinks as navigation } from "./components/navigation-links";
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -45,7 +35,7 @@ const itemVariants = {
 
 export default function Home() {
 	return (
-		<div className="relative w-screen bg-black">
+		<div className="relative w-full bg-black">
 			{/* Hero Section */}
 			<section className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
 				{/* Gradient background */}
@@ -76,15 +66,15 @@ export default function Home() {
 					variants={containerVariants}
 					initial="hidden"
 					animate="visible"
-					className="fixed top-0 left-0 right-0 z-50 p-6 md:p-8"
+					className="fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-6 md:py-6"
 				>
-					<ul className="flex items-center justify-center gap-2 md:gap-8">
+					<ul className="flex items-center justify-center flex-wrap gap-1 md:gap-4 lg:gap-6">
 						{navigation.map((item) => (
 							<motion.li key={item.href} variants={itemVariants}>
 								<MagneticButton strength={0.3}>
 									<Link
 										href={item.href}
-										className="relative px-6 py-3 text-sm font-medium text-zinc-400 transition-all duration-300 ease-out hover:text-white group"
+										className="relative px-3 py-2 md:px-4 md:py-2.5 text-xs md:text-sm font-medium text-zinc-400 transition-all duration-300 ease-out hover:text-white group"
 										data-cursor="pointer"
 										data-cursor-text="View"
 									>
@@ -253,41 +243,6 @@ export default function Home() {
 				{/* Gradient divider */}
 				<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 			</section>
-
-			{/* Simple Footer */}
-			<footer className="relative py-12 border-t border-zinc-800/50">
-				<div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-					<p className="text-sm text-zinc-400">
-						© {new Date().getFullYear()} Mohammed Firdous. All rights reserved.
-					</p>
-					<div className="flex items-center gap-6">
-						<a
-							href="https://github.com/mohammedfirdouss"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-sm text-zinc-400 hover:text-white transition-colors"
-						>
-							GitHub
-						</a>
-						<a
-							href="https://www.linkedin.com/in/mohammedfirdousaraoye/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-sm text-zinc-400 hover:text-white transition-colors"
-						>
-							LinkedIn
-						</a>
-						<a
-							href="https://twitter.com/iamfirdouss"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-sm text-zinc-400 hover:text-white transition-colors"
-						>
-							X
-						</a>
-					</div>
-				</div>
-			</footer>
 		</div>
 	);
 }

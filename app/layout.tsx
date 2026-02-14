@@ -82,15 +82,9 @@ const SystemMonitor = dynamic(
 	},
 );
 
-const MobileBlocker = dynamic(
-	() =>
-		import("./components/mobile-blocker").then((mod) => ({
-			default: mod.MobileBlocker,
-		})),
-	{
-		ssr: false,
-	},
-);
+const Footer = dynamic(() => import("./components/footer"), {
+	ssr: false,
+});
 
 export const metadata: Metadata = {
 	metadataBase: new URL(
@@ -100,17 +94,19 @@ export const metadata: Metadata = {
 		default: "Mohammed Firdous",
 		template: "%s | Mohammed Firdous",
 	},
-	description: "Cloud Engineer",
+	description:
+		"Portfolio of Mohammed Firdous — Cloud Engineer building infrastructure, AI systems, and open source tools.",
 	openGraph: {
 		title: "Mohammed Firdous",
-		description: "Cloud Engineer",
+		description:
+			"Cloud Engineer building infrastructure, AI systems, and open source tools.",
 		url: "https://mohammedfirdous.me",
 		siteName: "Mohammed Firdous",
 		images: [
 			{
 				url: "/favicon.png",
-				width: 1920,
-				height: 1080,
+				width: 512,
+				height: 512,
 			},
 		],
 		locale: "en-US",
@@ -130,7 +126,8 @@ export const metadata: Metadata = {
 	twitter: {
 		title: "Mohammed Firdous",
 		card: "summary_large_image",
-		description: "Cloud Engineer",
+		description:
+			"Cloud Engineer building infrastructure, AI systems, and open source tools.",
 		images: "/favicon.png",
 	},
 	icons: {
@@ -188,7 +185,6 @@ export default function RootLayout({
 					process.env.NODE_ENV === "development" ? "" : undefined
 				}`}
 			>
-				<MobileBlocker />
 				<SmoothScroll>
 					<GrainOverlay />
 					<ScrollProgress />
@@ -196,6 +192,7 @@ export default function RootLayout({
 					<CommandPalette />
 					<BackToTop />
 					<PageTransition>{children}</PageTransition>
+					<Footer />
 					<TerminalModal />
 					<SystemMonitor />
 				</SmoothScroll>
