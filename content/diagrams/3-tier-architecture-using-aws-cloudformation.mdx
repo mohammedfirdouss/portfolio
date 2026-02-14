@@ -7,15 +7,17 @@ summary: "A visual explanation of a classic 3-tier architecture implemented on A
 This diagram explains a classic 3-tier web architecture, a fundamental pattern for building robust and scalable applications. This implementation is deployed on AWS and automated with CloudFormation.
 
 <figure class="my-8 flex flex-col items-center">
-  <img
-    src="/3-tier.webp"
-    alt="Diagram of a 3-tier AWS architecture: public ALB and web tier, private app tier on EC2, and private RDS database across subnets"
-    class="w-full max-w-2xl rounded-lg"
-    loading="lazy"
-    decoding="async"
-  />
-  <figcaption class="mt-2 text-sm text-zinc-600">
-    Figure 1: A standard 3-tier architecture on AWS, showing the separation of the presentation, application, and data layers across public and private subnets.
+  <a href="/3-tier.webp" target="_blank" rel="noopener noreferrer" class="block w-full max-w-2xl">
+    <img
+      src="/3-tier.webp"
+      alt="Diagram of a 3-tier AWS architecture: public ALB and web tier, private app tier on EC2, and private RDS database across subnets"
+      class="w-full rounded-lg hover:opacity-90 transition-opacity cursor-pointer"
+      loading="lazy"
+      decoding="async"
+    />
+  </a>
+  <figcaption class="mt-2 text-sm text-zinc-500">
+    Figure 1: A standard 3-tier architecture on AWS. Click the image to view full size.
   </figcaption>
 </figure>
 ## Architectural Overview

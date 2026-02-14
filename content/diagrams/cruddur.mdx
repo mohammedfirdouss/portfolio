@@ -6,26 +6,40 @@ summary: "A visual explanation of the Cruddur microblogging platform's cloud arc
 
 This section provides a technical deep-dive into the architecture of the Cruddur microblogging platform. The diagrams below illustrate how the system is designed for scalability, reliability, and cost-efficiency using modern cloud technologies.
 
-![Cruddur Diagram](/cruddur-mohammed-firdous.jpg)
-*Figure 1: A high-level look at the Cruddur architecture, showing how users interact with the frontend and how the backend services connect to different AWS resources.*
+<figure class="my-6">
+  <a href="/cruddur-mohammed-firdous.jpg" target="_blank" rel="noopener noreferrer"><img src="/cruddur-mohammed-firdous.jpg" alt="Cruddur architecture overview" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
+  <figcaption class="mt-2 text-sm text-zinc-500">Figure 1: High-level Cruddur architecture — click to view full size.</figcaption>
+</figure>
 
-![Cruddur Screenshot 1](/cruddur-screenshot-1.png)
-*Figure 2: A detailed view of the Virtual Private Cloud (VPC) networking setup, including public and private subnets that provide a secure foundation for the application.*
+<figure class="my-6">
+  <a href="/cruddur-screenshot-1.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-1.png" alt="VPC networking setup" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
+  <figcaption class="mt-2 text-sm text-zinc-500">Figure 2: VPC networking with public and private subnets.</figcaption>
+</figure>
 
-![Cruddur Screenshot 2](/cruddur-screenshot-2.png)
-*Figure 3: The frontend is a React application hosted in an S3 bucket and delivered globally via Amazon CloudFront, with DNS managed by Route 53.*
+<figure class="my-6">
+  <a href="/cruddur-screenshot-2.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-2.png" alt="Frontend hosting on S3 and CloudFront" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
+  <figcaption class="mt-2 text-sm text-zinc-500">Figure 3: React frontend on S3 delivered via CloudFront.</figcaption>
+</figure>
 
-![Cruddur Screenshot 3](/cruddur-screenshot-3.png)
-*Figure 4: The Application Load Balancer (ALB) routes traffic to the backend services running on ECS Fargate, with target groups for health checks and routing.*
+<figure class="my-6">
+  <a href="/cruddur-screenshot-3.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-3.png" alt="ALB routing to ECS Fargate" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
+  <figcaption class="mt-2 text-sm text-zinc-500">Figure 4: ALB routing traffic to ECS Fargate backend services.</figcaption>
+</figure>
 
-![Cruddur Screenshot 4](/cruddur-screenshot-4.png)
-*Figure 5: The CI/CD pipeline, built with AWS CodePipeline, which automates the process of building and deploying the application whenever changes are pushed to GitHub.*
+<figure class="my-6">
+  <a href="/cruddur-screenshot-4.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-4.png" alt="CI/CD pipeline with CodePipeline" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
+  <figcaption class="mt-2 text-sm text-zinc-500">Figure 5: CI/CD pipeline built with AWS CodePipeline.</figcaption>
+</figure>
 
-![Cruddur Screenshot 5](/cruddur-screenshot-5.png)
-*Figure 6: A closer look at the CodePipeline stages, showing the source, build, and deploy steps for the backend service.*
+<figure class="my-6">
+  <a href="/cruddur-screenshot-5.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-5.png" alt="CodePipeline stages" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
+  <figcaption class="mt-2 text-sm text-zinc-500">Figure 6: CodePipeline source, build, and deploy stages.</figcaption>
+</figure>
 
-![Cruddur Screenshot 6](/cruddur-screenshot-6.png)
-*Figure 7: The data layer, showing how DynamoDB is used for real-time messaging and how DynamoDB Streams trigger a Lambda function to process new messages.*
+<figure class="my-6">
+  <a href="/cruddur-screenshot-6.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-6.png" alt="DynamoDB and Lambda data layer" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
+  <figcaption class="mt-2 text-sm text-zinc-500">Figure 7: DynamoDB for messaging with Lambda stream processing.</figcaption>
+</figure>
 
 ## Architectural Overview
 
