@@ -1,41 +1,4 @@
 
-   - **Zone apex** (`yourdomain.com`): usually A/AAAA or CNAME to your host; for Cloudflare Pages/Workers you’ll set this later.
-   - **www** (and other subdomains): point where they should (e.g. same as apex or specific service).
-   - **Email (MX, SPF, DKIM, DMARC)**: keep exactly as required by your email provider; set these records to **DNS only** (grey cloud) so mail isn’t proxied.
-
-
-5. Complete the flow; Cloudflare will show **two nameservers** (e.g. `ada.ns.cloudflare.com`, `bob.ns.cloudflare.com`).
-
-### 1.3 Update Nameservers at Your Registrar
-
-1. Log in at the **registrar** where you bought the domain (GoDaddy, Namecheap, Gandi, etc.).  
-   Don’t know who it is? Use [ICANN Lookup](https://lookup.icann.org/).
-2. Find **DNS / Nameservers / Name servers** for the domain.
-3. Replace the current nameservers with the **two Cloudflare nameservers** from step 1.2.
-4. Save. Propagation often takes 24–48 hours (sometimes minutes).
-
-### 1.4 After DNS Is Active
-
-- In Cloudflare: **SSL/TLS** → set mode (e.g. **Full** or **Full (strict)** if your origin has a valid cert).
-- Optionally **re-enable DNSSEC** in Cloudflare and add the DS record at your registrar (Cloudflare shows the DS value).
-
-**References:**  
-[Add a site](https://developers.cloudflare.com/fundamentals/manage-domains/add-site/) · [Update nameservers](https://developers.cloudflare.com/dns/nameservers/update-nameservers/) · [Full setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/)
-
----
-
-## Part 2: CDN and DDoS Protection
-
-Once your domain uses Cloudflare nameservers and traffic is **proxied** (orange cloud):
-
-- **CDN**: Caching and edge delivery are handled automatically for HTTP(S).
-- **DDoS protection**: Included; no extra setup for typical use.
-- **WAF**: Available in dashboard under **Security** (more options on paid plans).
-
-Ensure the DNS records that serve your website (A, AAAA, or CNAME) have **Proxy status** = **Proxied** (orange cloud) in the DNS table.
-
----
-
 ## Part 3: Hosting — Vercel to Cloudflare
 
 You have two main options for a Next.js app:

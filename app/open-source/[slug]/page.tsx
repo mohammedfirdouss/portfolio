@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
+import "@/app/blog/[slug]/mdx.css";
 import { allOpenSources } from "contentlayer/generated";
 import Link from "next/link";
 

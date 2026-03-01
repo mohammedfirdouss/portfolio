@@ -20,14 +20,15 @@ export default function OpenSourcePage() {
 			</h1>
 			<div className="space-y-6">
 				{contributions.map((contrib) => (
-					<div key={contrib.slug}>
+					<Link
+						key={contrib.slug}
+						href={`/open-source/${contrib.slug}`}
+						className="block group"
+					>
 						<div className="flex items-baseline gap-4">
-							<Link
-								href={`/open-source/${contrib.slug}`}
-								className="text-lg font-semibold text-gray-900 hover:text-sky-600 transition-colors"
-							>
+							<span className="text-lg font-semibold text-gray-900 group-hover:text-sky-600 transition-colors">
 								{contrib.title}
-							</Link>
+							</span>
 							{contrib.date && (
 								<span className="text-sm text-gray-400">
 									{new Date(contrib.date).toLocaleDateString("en-us", {
@@ -40,7 +41,10 @@ export default function OpenSourcePage() {
 						{contrib.summary && (
 							<p className="text-gray-500 mt-1">{contrib.summary}</p>
 						)}
-					</div>
+						<span className="inline-block mt-2 text-sm text-sky-600 group-hover:underline">
+							Read more →
+						</span>
+					</Link>
 				))}
 			</div>
 		</div>
