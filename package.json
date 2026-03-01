@@ -7,8 +7,8 @@
     "build": "bun next build",
     "start": "bun next start",
     "fmt": "bun rome format . --write",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
+    "preview": "rm -rf .next .open-next && opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "rm -rf .next .open-next && opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
