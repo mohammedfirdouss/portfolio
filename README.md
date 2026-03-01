@@ -102,26 +102,6 @@ Every push to `master` will automatically deploy to Cloudflare Workers.
 bun run fmt
 ```
 
-## Project Structure
-
-```
-portfolio/
-├── app/                    # Next.js app directory
-│   ├── blog/              # Blog pages
-│   ├── projects/          # Project pages
-│   ├── components/        # React components
-│   └── ...
-├── content/               # MDX content files
-│   ├── projects/
-│   ├── blog/
-│   ├── open-source/
-│   └── ...
-├── lib/                   # Utility functions
-├── wrangler.jsonc        # Cloudflare Workers config
-├── open-next.config.ts   # OpenNext adapter config
-└── .github/workflows/    # CI/CD workflows
-```
-
 ## 🙏 Attribution & Inspiration
 
 This project was **inspired by and built upon the exceptional open-source work** of [**Andreas Thomas**](https://chronark.com) (chronark). 
