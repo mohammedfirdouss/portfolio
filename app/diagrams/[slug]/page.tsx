@@ -7,6 +7,8 @@ type Props = {
 	params: Promise<{ slug: string }>;
 };
 
+export const dynamicParams = false;
+
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
 	return allDiagrams.map((item) => ({
 		slug: item.slug,

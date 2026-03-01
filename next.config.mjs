@@ -7,7 +7,8 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	output: "standalone",
+	output: "export",
+	// Static export for Cloudflare Pages - avoids Contentlayer 500s on Workers
 	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 	experimental: {
 		// mdxRs: true, // Disabled - causes app-page-turbo.runtime.prod.js ENOENT with OpenNext Cloudflare

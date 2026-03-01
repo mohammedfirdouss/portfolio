@@ -4,11 +4,11 @@ import "./mdx.css";
 import { allBlogs } from "contentlayer/generated";
 import Link from "next/link";
 
-export const revalidate = 60;
-
 type Props = {
 	params: Promise<{ slug: string }>;
 };
+
+export const dynamicParams = false;
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
 	return allBlogs.map((blog) => ({

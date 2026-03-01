@@ -104,11 +104,11 @@ bun run fmt
 
 ## 🙏 Attribution & Inspiration
 
-This project was **inspired by and built upon the exceptional open-source work** of [**Andreas Thomas**](https://chronark.com) (chronark). 
+This project was **inspired by and built upon the exceptional open-source work** of [**Boris Tane**](https://boristane.com). 
 
 ---
 
 <div align="center">
   <p>Built with ❤️ by the open-source community</p>
-  <p>Original design and inspiration by <a href="https://chronark.com">Andreas Thomas</a></p>
+  <p>Original design and inspiration by <a href="https://boristane.com">Boris Tane</a></p>
 </div>

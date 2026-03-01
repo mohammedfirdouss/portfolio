@@ -12,7 +12,6 @@ function isSameYear(a: string, b?: string) {
 	return new Date(a).getFullYear() === new Date(b).getFullYear();
 }
 
-export const revalidate = 60;
 export default async function BlogPage() {
 	const sorted = allBlogs.sort(
 		(a, b) =>

@@ -68,15 +68,35 @@ const components = {
 			{...props}
 		/>
 	),
-	a: ({ className, ...props }) => (
-		<Link
-			className={clsx(
-				"font-medium text-sky-600 underline underline-offset-4 hover:text-sky-800 transition-colors",
-				className,
-			)}
-			{...props}
-		/>
-	),
+	a: ({ className, href, ...props }) => {
+		const isExternal =
+			typeof href === "string" &&
+			(href.startsWith("http://") || href.startsWith("https://"));
+		if (isExternal) {
+			return (
+				<a
+					className={clsx(
+						"font-medium text-sky-600 underline underline-offset-4 hover:text-sky-800 transition-colors",
+						className,
+					)}
+					href={href}
+					target="_blank"
+					rel="noopener noreferrer"
+					{...props}
+				/>
+			);
+		}
+		return (
+			<Link
+				className={clsx(
+					"font-medium text-sky-600 underline underline-offset-4 hover:text-sky-800 transition-colors",
+					className,
+				)}
+				href={href ?? ""}
+				{...props}
+			/>
+		);
+	},
 	p: ({ className, ...props }) => (
 		<p
 			className={clsx(

@@ -8,7 +8,6 @@ export const metadata = {
 		"Cloud infrastructure, AI systems, and automation projects — from prototype to production.",
 };
 
-export const revalidate = 60;
 export default async function ProjectsPage() {
 	const projects = allProjects
 		.filter((p) => p.published)
