@@ -8,7 +8,7 @@
     "start": "next start",
     "fmt": "bun rome format . --write",
     "preview": "bun run build && bunx wrangler pages dev out",
-    "deploy": "bun run build && bunx wrangler pages deploy out --project-name=portfolio --config=wrangler.pages.jsonc"
+    "deploy": "bun run build && bunx wrangler pages deploy out --project-name=portfolio"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
