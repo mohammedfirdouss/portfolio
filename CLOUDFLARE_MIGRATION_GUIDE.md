@@ -158,3 +158,4 @@ All of these are configured in **wrangler** (or dashboard) as **bindings** and a
 | Durable Objects | https://developers.cloudflare.com/durable-objects/ |
 | DO get started | https://developers.cloudflare.com/durable-objects/get-started/ |
 | Wrangler config | https://developers.cloudflare.com/workers/wrangler/configuration/ |
+| Workers Bindings | https://developers.cloudflare.com/workers/platform/bindings/ |
