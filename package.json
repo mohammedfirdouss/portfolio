@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
-    "@next/mdx": "15.4.2",
+    "@next/mdx": "15",
     "@opennextjs/cloudflare": "^1.17.1",
     "contentlayer": "^0.3.4",
-    "lucide-react": "^0.284.0",
-    "next": "15.4.2",
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.10",
     "next-contentlayer": "^0.3.4",
     "react": "19",
     "react-dom": "19",
@@ -25,10 +25,11 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "3.0.1",
     "typescript": "^5.2.2",
-    "undici": "^7.18.2"
+    "undici": "^7.18.2",
+    "update": "^0.7.4"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.4.2",
+    "@next/bundle-analyzer": "15",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.8.4",
     "@types/react": "19",
