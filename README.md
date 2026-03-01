@@ -1,35 +1,33 @@
 ## About This Project
 
-This portfolio website showcases projects with a clean, minimalist design featuring particle animations, project cards, and smooth transitions. The architecture follows modern best practices with TypeScript, server-side rendering, and content management through MDX files.
+This portfolio website showcases projects with a clean, minimalist design featuring particle animations, project cards, and smooth transitions. Built with Next.js 15 and deployed on Cloudflare Workers for edge performance.
 
 ## Features
 
-- **Modern Tech Stack**: Built with Next.js 13 App Router, TypeScript, and Tailwind CSS
+- **Modern Tech Stack**: Next.js 15 App Router, TypeScript, and Tailwind CSS
 - **Content Management**: MDX-powered content with Contentlayer supporting:
   - Projects
   - Blog posts
   - Open source contributions
   - Work experience
   - Diagrams
-  - Changelog entries
 - **Analytics**: Page view tracking with Cloudflare KV
 - **Responsive Design**: Mobile-first responsive design with dark theme
 - **Interactive Elements**: Particle animations and smooth transitions
-- **Performance Optimized**: Server-side rendering and edge-ready deployment
+- **Edge Deployment**: Deployed on Cloudflare Workers for global performance
 - **Code Quality**: Rome formatter and linter for consistent code style
 
 ## Tech Stack
 
-- **Framework**: [Next.js 13](https://nextjs.org/) with App Router
+- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Content**: [Contentlayer](https://www.contentlayer.dev/) for MDX processing
-- **Database**: [Cloudflare KV](https://developers.cloudflare.com/kv/) for analytics
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Analytics**: [Cloudflare KV](https://developers.cloudflare.com/kv/) for page view tracking
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **Package Manager**: [Bun](https://bun.sh/)
+- **Package Manager**: [Bun](https://bun.sh/) / [npm](https://www.npmjs.com/)
 - **Formatter/Linter**: [Rome](https://rome.tools/)
-- **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com/)
+- **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com/) via [OpenNext](https://opennext.js.org/cloudflare)
 
 ## Getting Started
 
@@ -38,7 +36,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
 - [Bun](https://bun.sh/) or [Node.js](https://nodejs.org/)
 - [Cloudflare account](https://dash.cloudflare.com/sign-up) (for deployment)
 
-### Installation
+### Local Development
 
 1. **Clone the repository**
    ```bash
@@ -46,35 +44,82 @@ This portfolio website showcases projects with a clean, minimalist design featur
    cd portfolio
    ```
 
+2. **Install dependencies**
+   ```bash
+   npm install --legacy-peer-deps
+   # or
    bun install
    ```
 
 3. **Run the development server**
    ```bash
+   npm run dev
+   # or
    bun dev
    ```
+
+4. **Open your browser**
    
-   Alternatively, use the provided script:
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Deployment to Cloudflare Workers
+
+1. **Create a Cloudflare KV namespace**
    ```bash
-   ./scripts/dev.sh
+   bunx wrangler kv namespace create ANALYTICS
+   ```
+   Copy the namespace ID and update `wrangler.jsonc`
+
+2. **Login to Cloudflare**
+   ```bash
+   bunx wrangler login
    ```
 
-5. **Open your browser**
-   
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the result.
+3. **Deploy**
+   ```bash
+   bun run deploy
+   # or
+   npm run deploy
+   ```
 
-### Building for Production
+4. **Add custom domain** (optional)
+   - Go to Cloudflare Dashboard → Workers & Pages → portfolio
+   - Settings → Triggers → Custom domains
+   - Add your domain
 
-```bash
-bun run build
-bun start
-```
+### CI/CD with GitHub Actions
+
+The project includes automatic deployment via GitHub Actions. Add these secrets to your repository:
+
+- `CLOUDFLARE_API_TOKEN` - Create at https://dash.cloudflare.com/profile/api-tokens
+- `CLOUDFLARE_ACCOUNT_ID` - Find in Workers & Pages dashboard
+
+Every push to `master` will automatically deploy to Cloudflare Workers.
 
 ### Code Formatting
 
-Format and lint code using Rome:
 ```bash
 bun run fmt
+```
+
+## Project Structure
+
+```
+portfolio/
+├── app/                    # Next.js app directory
+│   ├── blog/              # Blog pages
+│   ├── projects/          # Project pages
+│   ├── components/        # React components
+│   └── ...
+├── content/               # MDX content files
+│   ├── projects/
+│   ├── blog/
+│   ├── open-source/
+│   └── ...
+├── lib/                   # Utility functions
+├── wrangler.jsonc        # Cloudflare Workers config
+├── open-next.config.ts   # OpenNext adapter config
+└── .github/workflows/    # CI/CD workflows
 ```
 
 ## 🙏 Attribution & Inspiration
