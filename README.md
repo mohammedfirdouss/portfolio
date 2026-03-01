@@ -35,8 +35,8 @@ This portfolio website showcases projects with a clean, minimalist design featur
 
 ### Prerequisites
 
-- [Bun](https://bun.sh/)
-- An Upstash Redis database (optional, for analytics)
+- [Bun](https://bun.sh/) or [Node.js](https://nodejs.org/)
+- [Cloudflare account](https://dash.cloudflare.com/sign-up) (for deployment)
 
 ### Installation
 
