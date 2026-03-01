@@ -22,9 +22,9 @@ export const metadata: Metadata = {
 		siteName: "Mohammed Firdous",
 		images: [
 			{
-				url: "/favicon.png",
-				width: 512,
-				height: 512,
+				url: "/favicon.svg",
+				width: 32,
+				height: 32,
 			},
 		],
 		locale: "en-US",
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		description:
 			"Cloud Engineer building infrastructure, AI systems, and open source tools.",
-		images: "/favicon.png",
+		images: "/favicon.svg",
 	},
 	icons: {
-		shortcut: "/favicon.png",
+		icon: "/favicon.svg",
 	},
 };
 const inter = LocalFont({

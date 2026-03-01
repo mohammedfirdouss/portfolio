@@ -11,13 +11,9 @@ const nextConfig = {
 	experimental: {
 		mdxRs: true,
 	},
-	// Performance optimizations
 	compress: true,
-	swcMinify: true,
-	optimizeFonts: true,
 	productionBrowserSourceMaps: false,
 	poweredByHeader: false,
-	// Image optimization
 	images: {
 		formats: ["image/webp", "image/avif"],
 		remotePatterns: [
@@ -26,11 +22,6 @@ const nextConfig = {
 				hostname: "**",
 			},
 		],
-	},
-	// Cache optimization for development
-	onDemandEntries: {
-		maxInactiveAge: 60 * 1000,
-		pagesBufferLength: 5,
 	},
 };
 
