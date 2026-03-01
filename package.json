@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
-    "@next/mdx": "15",
+    "@next/mdx": "15.4.2",
     "@opennextjs/cloudflare": "^1.17.1",
     "contentlayer": "^0.3.4",
     "lucide-react": "^0.284.0",
-    "next": "15",
+    "next": "15.4.2",
     "next-contentlayer": "^0.3.4",
     "react": "19",
     "react-dom": "19",
@@ -28,7 +28,7 @@
     "undici": "^7.18.2"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15",
+    "@next/bundle-analyzer": "15.4.2",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.8.4",
     "@types/react": "19",
