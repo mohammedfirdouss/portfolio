@@ -1,4 +1,6 @@
 import { allExperiences } from "contentlayer/generated";
+import { Mdx } from "@/app/components/mdx";
+import "@/app/blog/[slug]/mdx.css";
 
 export const metadata = {
 	title: "Experience",
@@ -50,6 +52,11 @@ export default function ExperiencePage() {
 								{start} — {end}
 							</div>
 							<p className="text-gray-600 mt-2">{exp.description}</p>
+							{exp.body?.code && (
+								<div className="mt-3 prose prose-sm prose-gray max-w-none">
+									<Mdx code={exp.body.code} />
+								</div>
+							)}
 						</div>
 					);
 				})}
