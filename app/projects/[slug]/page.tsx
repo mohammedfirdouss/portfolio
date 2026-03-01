@@ -3,6 +3,7 @@ import { Mdx } from "@/app/components/mdx";
 import "./mdx.css";
 import { allProjects } from "contentlayer/generated";
 import Link from "next/link";
+import { incrementView } from "@/lib/analytics";
 
 export const revalidate = 60;
 
@@ -23,6 +24,9 @@ export default async function PostPage({ params }: Props) {
 	if (!project) {
 		notFound();
 	}
+
+	// Increment view count
+	await incrementView(slug);
 
 	return (
 		<div>

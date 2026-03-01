@@ -12,7 +12,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
   - Work experience
   - Diagrams
   - Changelog entries
-- **Analytics**: Page view tracking with Redis-based analytics
+- **Analytics**: Page view tracking with Cloudflare KV
 - **Responsive Design**: Mobile-first responsive design with dark theme
 - **Interactive Elements**: Particle animations and smooth transitions
 - **Performance Optimized**: Server-side rendering and edge-ready deployment
@@ -24,12 +24,12 @@ This portfolio website showcases projects with a clean, minimalist design featur
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Content**: [Contentlayer](https://www.contentlayer.dev/) for MDX processing
-- **Database**: [Upstash Redis](https://upstash.com/) for analytics
+- **Database**: [Cloudflare KV](https://developers.cloudflare.com/kv/) for analytics
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Package Manager**: [Bun](https://bun.sh/)
 - **Formatter/Linter**: [Rome](https://rome.tools/)
-- **Deployment**: [Vercel](https://vercel.com/)
+- **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com/)
 
 ## Getting Started
 
@@ -49,30 +49,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
    bun install
    ```
 
-3. **Set up environment variables**
-   
-   Create a `.env.local` file in the root directory:
-   ```env
-   # Upstash Redis (optional - for analytics)
-   UPSTASH_REDIS_REST_URL=your_redis_url
-   UPSTASH_REDIS_REST_TOKEN=your_redis_token
-   ```
-
-
-## Tech Stack
-
-- **Framework**: [Next.js 13](https://nextjs.org/) with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Content**: [Contentlayer](https://www.contentlayer.dev/) for MDX processing
-- **Database**: [Upstash Redis](https://upstash.com/) for analytics
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Package Manager**: [Bun](https://bun.sh/)
-- **Formatter/Linter**: [Rome](https://rome.tools/)
-- **Deployment**: [Vercel](https://vercel.com/)
-
-4. **Run the development server**
+3. **Run the development server**
    ```bash
    bun dev
    ```
