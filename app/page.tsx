@@ -31,23 +31,11 @@ export default function Home() {
 			</div>
 			<div className="text-lg text-gray-700 space-y-4">
 				<p>
-					I&apos;m a Cloud Engineer,3X hackathon winner interested in{" "}
+					I&apos;m a Cloud Engineer, 3X hackathon winner interested in{" "}
 					<span className="font-medium">cloud infrastructure</span>,{" "}
-					<span className="font-medium">AI systems</span>, and{" "}
-					<span className="font-medium">open source</span>
-					<span className="font-medium">and also research :)</span>
-				</p>
-				<p>
-					I hangout on{" "}
-					<a
-						href="https://x.com/iamfirdouss"
-						rel="noopener noreferrer"
-						target="_blank"
-						className="prose-link"
-					>
-						x (twitter)
-					</a>{" "}
-					- hit me up, my dms are open!
+					<span className="font-medium">AI systems</span>,{" "}
+					<span className="font-medium">open source</span>, and{" "}
+					<span className="font-medium">research</span> :)
 				</p>
 			</div>
 
