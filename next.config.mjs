@@ -10,7 +10,7 @@ const nextConfig = {
 	output: "standalone",
 	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 	experimental: {
-		mdxRs: true,
+		// mdxRs: true, // Disabled - causes app-page-turbo.runtime.prod.js ENOENT with OpenNext Cloudflare
 	},
 	compress: true,
 	productionBrowserSourceMaps: false,
