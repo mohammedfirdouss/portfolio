@@ -24,9 +24,10 @@ export default async function ProjectsPage() {
 			<div className="text-lg text-gray-700">
 				<p>That&apos;s why I usually build most random ideas that cross my mind.</p>
 				<p className="mt-4">
-					I like building things I can use, or my friends can use. Here&apos;s a
-					selection of things I actually &quot;finished&quot;; they range from 1 weekend
-					experiments to full projects. I&apos;m always happy to chat :){" "}
+					I like building things I can use or reference, or people can use.
+					Here&apos;s a selection of things I actually &quot;finished&quot;; I tend to
+					take my time with some of them, others are mostly just trying to test out
+					new tech. I&apos;m always happy to chat :){" "}
 					<a
 						href="mailto:mohammedfirdous682@gmail.com"
 						className="prose-link"

@@ -7,19 +7,17 @@ import Link from "next/link";
 export const revalidate = 60;
 
 type Props = {
-	params: {
-		slug: string;
-	};
+	params: Promise<{ slug: string }>;
 };
 
-export async function generateStaticParams(): Promise<Props["params"][]> {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
 	return allProjects.map((project) => ({
 		slug: project.slug,
 	}));
 }
 
 export default async function PostPage({ params }: Props) {
-	const slug = params?.slug;
+	const { slug } = await params;
 	const project = allProjects.find((entry) => entry.slug === slug);
 
 	if (!project) {

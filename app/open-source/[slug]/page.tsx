@@ -5,19 +5,18 @@ import { allOpenSources } from "contentlayer/generated";
 import Link from "next/link";
 
 type Props = {
-	params: {
-		slug: string;
-	};
+	params: Promise<{ slug: string }>;
 };
 
-export async function generateStaticParams(): Promise<Props["params"][]> {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
 	return allOpenSources.map((item) => ({
 		slug: item.slug,
 	}));
 }
 
 export default async function OpenSourceDetailPage({ params }: Props) {
-	const item = allOpenSources.find((entry) => entry.slug === params?.slug);
+	const { slug } = await params;
+	const item = allOpenSources.find((entry) => entry.slug === slug);
 
 	if (!item) {
 		notFound();
