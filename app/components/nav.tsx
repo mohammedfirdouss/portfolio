@@ -7,7 +7,7 @@ export const Navigation: React.FC = () => {
 	const pathname = usePathname();
 
 	return (
-		<header className="text-lg max-w-3xl mx-auto h-18 px-6 flex mt-0 justify-between items-center">
+		<header className="text-lg max-w-3xl mx-auto h-18 px-6 flex mt-8 justify-between items-center">
 			<div>
 				<Link
 					href="/"
@@ -22,7 +22,7 @@ export const Navigation: React.FC = () => {
 						key={link.href}
 						href={link.href}
 						className={`nav-link ${
-							pathname.includes(link.href)
+							pathname?.includes(link.href)
 								? "text-sky-600"
 								: "opacity-60 hover:opacity-100"
 						}`}
