@@ -3,7 +3,6 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
-import { InteractiveDiagram } from "./interactive-diagram";
 
 function clsx(...args: (string | undefined | null | false)[]): string {
 	return args.filter(Boolean).join(" ");
@@ -12,7 +11,7 @@ const components = {
 	h1: ({ className, ...props }) => (
 		<h1
 			className={clsx(
-				"mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-zinc-100",
+				"mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-gray-900",
 				className,
 			)}
 			{...props}
@@ -21,7 +20,7 @@ const components = {
 	h2: ({ className, ...props }) => (
 		<h2
 			className={clsx(
-				"mt-10 scroll-m-20 border-b border-b-zinc-800 pb-1 text-3xl font-semibold tracking-tight text-zinc-100 first:mt-0",
+				"mt-10 scroll-m-20 border-b border-b-gray-200 pb-1 text-3xl font-semibold tracking-tight text-gray-900 first:mt-0",
 				className,
 			)}
 			{...props}
@@ -30,7 +29,7 @@ const components = {
 	h3: ({ className, ...props }) => (
 		<h3
 			className={clsx(
-				"mt-8 scroll-m-20 text-2xl font-semibold tracking-tight text-zinc-100",
+				"mt-8 scroll-m-20 text-2xl font-semibold tracking-tight text-gray-900",
 				className,
 			)}
 			{...props}
@@ -39,7 +38,7 @@ const components = {
 	h4: ({ className, ...props }) => (
 		<h4
 			className={clsx(
-				"mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-zinc-100",
+				"mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-gray-900",
 				className,
 			)}
 			{...props}
@@ -48,7 +47,7 @@ const components = {
 	h5: ({ className, ...props }) => (
 		<h5
 			className={clsx(
-				"mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-zinc-100",
+				"mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-gray-900",
 				className,
 			)}
 			{...props}
@@ -57,7 +56,7 @@ const components = {
 	h6: ({ className, ...props }) => (
 		<h6
 			className={clsx(
-				"mt-8 scroll-m-20 text-base font-semibold tracking-tight text-zinc-100",
+				"mt-8 scroll-m-20 text-base font-semibold tracking-tight text-gray-900",
 				className,
 			)}
 			{...props}
@@ -65,14 +64,14 @@ const components = {
 	),
 	strong: ({ className, ...props }) => (
 		<strong
-			className={clsx("font-semibold text-zinc-100", className)}
+			className={clsx("font-semibold text-gray-900", className)}
 			{...props}
 		/>
 	),
 	a: ({ className, ...props }) => (
 		<Link
 			className={clsx(
-				"font-medium text-zinc-200 underline underline-offset-4 hover:text-white transition-colors",
+				"font-medium text-sky-600 underline underline-offset-4 hover:text-sky-800 transition-colors",
 				className,
 			)}
 			{...props}
@@ -81,7 +80,7 @@ const components = {
 	p: ({ className, ...props }) => (
 		<p
 			className={clsx(
-				"leading-7 text-zinc-300 [&:not(:first-child)]:mt-6",
+				"leading-7 text-gray-700 [&:not(:first-child)]:mt-6",
 				className,
 			)}
 			{...props}
@@ -89,23 +88,23 @@ const components = {
 	),
 	ul: ({ className, ...props }) => (
 		<ul
-			className={clsx("my-6 ml-6 list-disc text-zinc-300", className)}
+			className={clsx("my-6 ml-6 list-disc text-gray-700", className)}
 			{...props}
 		/>
 	),
 	ol: ({ className, ...props }) => (
 		<ol
-			className={clsx("my-6 ml-6 list-decimal text-zinc-300", className)}
+			className={clsx("my-6 ml-6 list-decimal text-gray-700", className)}
 			{...props}
 		/>
 	),
 	li: ({ className, ...props }) => (
-		<li className={clsx("mt-2 text-zinc-300", className)} {...props} />
+		<li className={clsx("mt-2 text-gray-700", className)} {...props} />
 	),
 	blockquote: ({ className, ...props }) => (
 		<blockquote
 			className={clsx(
-				"mt-6 border-l-2 border-zinc-700 pl-6 italic text-zinc-300 [&>*]:text-zinc-400",
+				"mt-6 border-l-2 border-gray-300 pl-6 italic text-gray-600 [&>*]:text-gray-500",
 				className,
 			)}
 			{...props}
@@ -115,28 +114,28 @@ const components = {
 		className,
 		alt,
 		src,
-		title, // Capture title if markdown provides it
 		...props
 	}: React.ImgHTMLAttributes<HTMLImageElement>) => (
-		<InteractiveDiagram
-			src={src!}
-			alt={alt || "Diagram"}
-			title={alt} // Using alt as title for now as markdown often puts caption in alt
-			description={title} // Sometimes title is used for description
+		// eslint-disable-next-line @next/next/no-img-element
+		<img
+			className={clsx("rounded-lg my-6", className)}
+			alt={alt}
+			src={src}
+			{...props}
 		/>
 	),
 	hr: ({ ...props }) => (
-		<hr className="my-4 border-zinc-800 md:my-8" {...props} />
+		<hr className="my-4 border-gray-200 md:my-8" {...props} />
 	),
 	table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
 		<div className="w-full my-6 overflow-y-auto">
-			<table className={clsx("w-full text-zinc-300", className)} {...props} />
+			<table className={clsx("w-full text-gray-700", className)} {...props} />
 		</div>
 	),
 	tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
 		<tr
 			className={clsx(
-				"m-0 border-t border-zinc-800 p-0 even:bg-zinc-900/50",
+				"m-0 border-t border-gray-200 p-0 even:bg-gray-50",
 				className,
 			)}
 			{...props}
@@ -145,7 +144,7 @@ const components = {
 	th: ({ className, ...props }) => (
 		<th
 			className={clsx(
-				"border border-zinc-800 px-4 py-2 text-left font-bold text-zinc-100 [&[align=center]]:text-center [&[align=right]]:text-right",
+				"border border-gray-200 px-4 py-2 text-left font-bold text-gray-900 [&[align=center]]:text-center [&[align=right]]:text-right",
 				className,
 			)}
 			{...props}
@@ -154,7 +153,7 @@ const components = {
 	td: ({ className, ...props }) => (
 		<td
 			className={clsx(
-				"border border-zinc-800 px-4 py-2 text-left text-zinc-300 [&[align=center]]:text-center [&[align=right]]:text-right",
+				"border border-gray-200 px-4 py-2 text-left text-gray-700 [&[align=center]]:text-center [&[align=right]]:text-right",
 				className,
 			)}
 			{...props}
@@ -163,7 +162,7 @@ const components = {
 	pre: ({ className, ...props }) => (
 		<pre
 			className={clsx(
-				"mt-6 mb-4 overflow-x-auto rounded-lg bg-zinc-900/50 border border-zinc-800 py-4",
+				"mt-6 mb-4 overflow-x-auto rounded-lg bg-gray-50 border border-gray-200 py-4",
 				className,
 			)}
 			{...props}
@@ -172,7 +171,7 @@ const components = {
 	code: ({ className, ...props }) => (
 		<code
 			className={clsx(
-				"relative rounded bg-zinc-800 px-[0.3rem] py-[0.2rem] font-mono text-sm text-zinc-200",
+				"relative rounded bg-gray-100 px-[0.3rem] py-[0.2rem] font-mono text-sm text-gray-800",
 				className,
 			)}
 			{...props}

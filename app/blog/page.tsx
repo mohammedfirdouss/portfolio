@@ -1,14 +1,16 @@
+import Link from "next/link";
 import { allBlogs } from "contentlayer/generated";
-import { Navigation } from "../components/nav";
-import { Card } from "../components/card";
-import { Article } from "./article";
-import { BookOpen, Sparkles } from "lucide-react";
 
 export const metadata = {
 	title: "Blog",
 	description:
 		"Articles and insights on cloud engineering, software development, and working with AWS.",
 };
+
+function isSameYear(a: string, b?: string) {
+	if (!a || !b) return false;
+	return new Date(a).getFullYear() === new Date(b).getFullYear();
+}
 
 export const revalidate = 60;
 export default async function BlogPage() {
@@ -17,84 +19,64 @@ export default async function BlogPage() {
 			new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
 	);
 
-	// Get featured/latest post
-	const featured = sorted[0];
-	const rest = sorted.slice(1);
-
 	return (
-		<div className="relative min-h-screen bg-black">
-			{/* Background effects */}
-			<div className="absolute inset-0 bg-gradient-to-br from-zinc-900/30 via-black to-zinc-900/20" />
-			<div
-				className="absolute inset-0 opacity-[0.02]"
-				style={{
-					backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-					backgroundSize: "80px 80px",
-				}}
-			/>
-
-			{/* Radial glow */}
-			<div className="absolute top-0 right-1/4 w-[800px] h-[600px] bg-gradient-radial from-zinc-800/20 via-transparent to-transparent rounded-full blur-3xl" />
-
-			<Navigation />
-
-			<div className="relative z-10 px-6 pt-24 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-12 md:pt-32 lg:pt-40">
-				{/* Header */}
-				<div className="max-w-2xl mx-auto lg:mx-0">
-					<div className="h-px w-16 bg-gradient-to-r from-zinc-500 to-transparent mb-8" />
-					<div className="flex items-center gap-3 mb-4">
-						<BookOpen className="w-5 h-5 text-zinc-500" />
-						<span className="text-sm font-medium tracking-widest uppercase text-zinc-500">
-							Articles & Insights
-						</span>
-					</div>
-					<h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl font-display">
-						Blog
-					</h1>
-					<p className="mt-6 text-lg text-zinc-400 leading-relaxed">
-						A space where I share what I'm learning about building software and
-						working with the cloud.
-					</p>
-				</div>
-
-				{/* Divider */}
-				<div className="w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
-
-				{/* Featured post */}
-				{featured && (
-					<div className="relative pt-2">
-						<div className="mb-3">
-							<span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-zinc-400 border border-zinc-800 rounded-full bg-zinc-900/50">
-								<Sparkles className="w-3 h-3" />
-								Latest Post
-							</span>
-						</div>
-						<Card>
-							<Article project={featured} featured />
-						</Card>
-					</div>
-				)}
-
-				{/* Divider */}
-				<div className="hidden w-full h-px md:block bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
-
-				{/* Other posts */}
-				<div className="grid grid-cols-1 gap-6 mx-auto lg:grid-cols-2 xl:grid-cols-3">
-					{rest.map((project) => (
-						<Card key={project.slug}>
-							<Article project={project} />
-						</Card>
-					))}
-				</div>
-			</div>
-
-			{/* Bottom padding */}
-			<div className="h-24" />
-
-			{/* Corner decorations */}
-			<div className="absolute top-24 left-8 w-24 h-24 border-l border-t border-zinc-800/50 rounded-tl-3xl" />
-			<div className="absolute top-24 right-8 w-24 h-24 border-r border-t border-zinc-800/50 rounded-tr-3xl" />
+		<div>
+			<ul>
+				{sorted.map((post, index) => {
+					const showYear = !isSameYear(
+						post.publishedAt,
+						sorted[index - 1]?.publishedAt,
+					);
+					return (
+						<li key={post.slug} className="mb-6">
+							{showYear && (
+								<div className="select-none relative h-18 pointer-events-none">
+									<span className="text-7xl -ml-2 xl:-ml-18 absolute top-0 relative -z-10 font-display text-gray-200">
+										{new Date(post.publishedAt).getFullYear()}
+									</span>
+								</div>
+							)}
+							<div className="text-lg leading-tight flex flex-col gap-1">
+								<div className="flex flex-col md:flex-row md:items-center flex-wrap text-lg">
+									<Link
+										href={`/blog/${post.slug}`}
+										className="prose-link text-2xl"
+									>
+										{post.title}
+									</Link>
+								</div>
+								<div className="text-gray-500 text-base">
+									{post.description}
+								</div>
+								<div className="text-gray-400 text-sm flex gap-1 items-center flex-wrap">
+									<time>
+										{new Date(post.publishedAt).toLocaleDateString("en-us", {
+											year: "numeric",
+											month: "short",
+											day: "numeric",
+										})}
+									</time>
+									{post.tags && post.tags.length > 0 && (
+										<>
+											<span>·</span>
+											<div className="flex gap-1 flex-wrap">
+												{post.tags.map((tag) => (
+													<span
+														key={tag}
+														className="bg-gray-100 px-2 py-px text-sky-600 rounded text-xs"
+													>
+														{tag}
+													</span>
+												))}
+											</div>
+										</>
+									)}
+								</div>
+							</div>
+						</li>
+					);
+				})}
+			</ul>
 		</div>
 	);
 }

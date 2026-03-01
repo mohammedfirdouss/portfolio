@@ -1,80 +1,8 @@
 import "../global.css";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
-
-const AnalyticsWrapper = dynamic(
-	() => import("./components/analytics-wrapper"),
-	{
-		ssr: false,
-	},
-);
-
-const CustomCursor = dynamic(() => import("./components/custom-cursor"), {
-	ssr: false,
-});
-
-const SmoothScroll = dynamic(() => import("./components/smooth-scroll"), {
-	ssr: false,
-});
-
-const ScrollProgress = dynamic(() => import("./components/scroll-progress"), {
-	ssr: false,
-});
-
-const CommandPalette = dynamic(
-	() =>
-		import("./components/command-palette").then((mod) => ({
-			default: mod.CommandPalette,
-		})),
-	{
-		ssr: false,
-	},
-);
-
-const BackToTop = dynamic(
-	() =>
-		import("./components/back-to-top").then((mod) => ({
-			default: mod.BackToTop,
-		})),
-	{
-		ssr: false,
-	},
-);
-
-const GrainOverlay = dynamic(
-	() =>
-		import("./components/noise-texture").then((mod) => ({
-			default: mod.GrainOverlay,
-		})),
-	{
-		ssr: false,
-	},
-);
-
-const PageTransition = dynamic(
-	() =>
-		import("./components/page-transition").then((mod) => ({
-			default: mod.PageTransition,
-		})),
-	{
-		ssr: false,
-	},
-);
-
-const TerminalModal = dynamic(
-	() =>
-		import("./components/terminal-modal").then((mod) => ({
-			default: mod.TerminalModal,
-		})),
-	{
-		ssr: false,
-	},
-);
-
-const Footer = dynamic(() => import("./components/footer"), {
-	ssr: false,
-});
+import { Navigation } from "./components/nav";
+import Footer from "./components/footer";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(
@@ -85,7 +13,7 @@ export const metadata: Metadata = {
 		template: "%s | Mohammed Firdous",
 	},
 	description:
-		"Portfolio of Mohammed Firdous — Cloud Engineer building infrastructure, AI systems, and open source tools.",
+		"I'm Mohammed Firdous, and I build software.",
 	openGraph: {
 		title: "Mohammed Firdous",
 		description:
@@ -146,45 +74,13 @@ export default function RootLayout({
 		<html
 			lang="en"
 			className={[inter.variable, calSans.variable].join(" ")}
-			suppressHydrationWarning
 		>
-			<head>
-				<AnalyticsWrapper />
-				{/* Prevent FOUC by setting dark background immediately */}
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `
-              (function() {
-                document.documentElement.style.backgroundColor = '#000';
-                document.documentElement.style.colorScheme = 'dark';
-              })();
-            `,
-					}}
-				/>
-				<style
-					dangerouslySetInnerHTML={{
-						__html: `
-              html { background-color: #000; }
-              body { background-color: #000; visibility: visible; }
-            `,
-					}}
-				/>
-			</head>
-			<body
-				className={`bg-black ${
-					process.env.NODE_ENV === "development" ? "" : undefined
-				}`}
-			>
-				<SmoothScroll>
-					<GrainOverlay />
-					<ScrollProgress />
-					<CustomCursor />
-					<CommandPalette />
-					<BackToTop />
-					<PageTransition>{children}</PageTransition>
-					<Footer />
-					<TerminalModal />
-				</SmoothScroll>
+			<body className="bg-white text-gray-800 min-h-screen font-sans w-full">
+				<Navigation />
+				<main className="grow mx-auto py-10 px-6 max-w-3xl">
+					{children}
+				</main>
+				<Footer />
 			</body>
 		</html>
 	);

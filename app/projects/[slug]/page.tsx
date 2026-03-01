@@ -1,17 +1,10 @@
-import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
-import { Header } from "./header";
 import "./mdx.css";
-import { getRedis } from "@/util/redis";
 import { allProjects } from "contentlayer/generated";
+import Link from "next/link";
 
 export const revalidate = 60;
-
-const ProjectView = dynamic(
-	() => import("./view").then((mod) => ({ default: mod.ReportView })),
-	{ ssr: false },
-);
 
 type Props = {
 	params: {
@@ -33,30 +26,53 @@ export default async function PostPage({ params }: Props) {
 		notFound();
 	}
 
-	const redis = getRedis();
-	let views = 0;
-	if (redis) {
-		try {
-			const result = await redis.get(
-				["pageviews", "projects", project.slug].join(":"),
-			);
-			views = typeof result === "number" ? result : Number(result ?? 0);
-		} catch (e) {
-			console.warn("Failed to fetch project views:", e);
-		}
-	}
-
 	return (
-		<div className="bg-black min-h-screen">
-			<Header project={project} views={views} />
-
-			<div className="relative px-6 py-12 md:py-16">
-				<div className="max-w-3xl mx-auto">
-					<ProjectView slug={project.slug} />
-					<article className="prose prose-zinc prose-invert max-w-none">
-						<Mdx code={project.body.code} />
-					</article>
+		<div>
+			<div className="mb-8">
+				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+					{project.title}
+				</h1>
+				<div className="text-gray-400 mt-2 text-sm flex gap-2 items-center flex-wrap">
+					{project.date && (
+						<time>
+							{new Date(project.date).toLocaleDateString("en-us", {
+								year: "numeric",
+								month: "long",
+							})}
+						</time>
+					)}
+					{project.repository && (
+						<>
+							<span>·</span>
+							<a
+								href={project.repository}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="prose-link text-sm"
+							>
+								source
+							</a>
+						</>
+					)}
 				</div>
+				{project.banner && (
+					<div className="my-4">
+						<img
+							src={project.banner}
+							alt={project.title}
+							className="rounded-xl w-full"
+						/>
+					</div>
+				)}
+				<p className="text-gray-500 mt-4 text-lg">{project.description}</p>
+			</div>
+			<article className="prose max-w-none">
+				<Mdx code={project.body.code} />
+			</article>
+			<div className="mt-8 text-sm font-mono text-gray-500">
+				<Link href="/projects" className="prose-link">
+					cd ..
+				</Link>
 			</div>
 		</div>
 	);
