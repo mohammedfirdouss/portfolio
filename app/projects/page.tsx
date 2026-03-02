@@ -21,12 +21,10 @@ export default async function ProjectsPage() {
 		<div>
 			<h1 className="text-title mb-8 sm:mb-12">Building software is fun</h1>
 			<div className="text-lg text-gray-700">
-				<p>That&apos;s why I usually build most random ideas that cross my mind.</p>
-				<p className="mt-4">
-					I like building things I can use or reference, or people can use.
-					Here&apos;s a selection of things I actually &quot;finished&quot;; I tend to
-					take my time with some of them, others are mostly just trying to test out
-					new tech. I&apos;m always happy to chat :){" "}
+				<p>
+					I build things I can use or reference — or that others can. Here are
+					some I actually &quot;finished&quot;; some polished, some quick
+					experiments. Happy to chat —{" "}
 					<a
 						href="mailto:mohammedfirdous682@gmail.com"
 						className="prose-link"
