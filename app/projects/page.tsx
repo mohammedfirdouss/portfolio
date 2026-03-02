@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
 
 	return (
 		<div>
-			<h1 className="text-title mb-8 sm:mb-12">Building software is fun</h1>
+			<h1 className="text-title mb-8 sm:mb-12">Building software is fun and profit</h1>
 			<div className="text-lg text-gray-700">
 				<p>
 					I build things I can use or reference — or that others can. Here are
