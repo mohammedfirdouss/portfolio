@@ -29,19 +29,13 @@ export default function Home() {
 					<br />
 				</p>
 			</div>
-			<div className="flex flex-col gap-3">
-				<div className="inline-flex items-center gap-2 flex-wrap">
-					<span className="inline-flex items-center rounded-md border border-gray-300 bg-gray-50 px-3 py-1 text-sm font-medium text-gray-700">
-						Cloud Engineer · 3X hackathon winner
-					</span>
-				</div>
-				<p className="text-lg text-gray-600">
-					Interested in{" "}
-					<span className="font-medium text-gray-700">cloud infrastructure</span>
-					,{" "}
-					<span className="font-medium text-gray-700">AI systems</span>,{" "}
-					<span className="font-medium text-gray-700">open source</span>, and{" "}
-					<span className="font-medium text-gray-700">research</span> :)
+			<div className="text-lg text-gray-700 space-y-4">
+				<p>
+					I&apos;m a Cloud Engineer interested in{" "}
+					<span className="font-medium">cloud infrastructure</span>,{" "}
+					<span className="font-medium">AI systems</span>,{" "}
+					<span className="font-medium">open source</span>, and{" "}
+					<span className="font-medium">research</span> — 3X hackathon winner :)
 				</p>
 			</div>
 
