@@ -54,7 +54,6 @@ export default async function PostPage({ params }: Props) {
 						</>
 					)}
 				</div>
-				<p className="text-gray-500 mt-4 text-lg">{blog.description}</p>
 			</div>
 			<article className="prose max-w-none">
 				<Mdx code={blog.body.code} />

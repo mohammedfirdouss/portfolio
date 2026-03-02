@@ -25,7 +25,7 @@ export default function Home() {
 					hi !
 				</h1>
 				<p className="text-gray-900 text-2xl sm:text-3xl lg:text-4xl tracking-tight">
-					I&apos;m <span>Mohammed</span>, and I build software
+					I&apos;m <span>Mohammed Firdous</span>, and I build software
 					<br />
 				</p>
 			</div>
