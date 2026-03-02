@@ -10,7 +10,7 @@ const socialLinks = [
 		href: "https://www.linkedin.com/in/mohammedfirdousaraoye/",
 	},
 	{
-		text: "x (twitter)",
+		text: "X(twitter)",
 		href: "https://twitter.com/iamfirdouss",
 	},
 ];
