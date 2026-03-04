@@ -54,7 +54,11 @@ export default async function ProjectsPage() {
 							<>
 								<span>·</span>
 								<a
-									href={project.repository}
+									href={
+										project.repository.startsWith("http")
+											? project.repository
+											: `https://github.com/${project.repository}`
+									}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="prose-link text-sm"

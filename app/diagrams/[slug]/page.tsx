@@ -42,7 +42,11 @@ export default async function DiagramDetailPage({ params }: Props) {
 						<>
 							<span>·</span>
 							<a
-								href={item.repository}
+								href={
+									item.repository.startsWith("http")
+										? item.repository
+										: `https://github.com/${item.repository}`
+								}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="prose-link text-sm"
