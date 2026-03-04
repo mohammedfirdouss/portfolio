@@ -7,8 +7,8 @@ export const Navigation: React.FC = () => {
 	const pathname = usePathname();
 
 	return (
-		<header className="text-lg max-w-3xl mx-auto h-18 px-6 flex mt-8 justify-between items-center">
-			<div>
+		<header className="text-lg max-w-3xl mx-auto px-6 flex flex-wrap mt-8 justify-between items-center gap-x-6 gap-y-3">
+			<div className="flex-shrink-0">
 				<Link
 					href="/"
 					className="nav-link font-medium text-xl hover:text-gray-800"
@@ -16,7 +16,7 @@ export const Navigation: React.FC = () => {
 					mohammed firdous
 				</Link>
 			</div>
-			<div className="flex gap-6">
+			<nav className="flex flex-wrap gap-6 justify-end">
 				{navLinks.map((link) => (
 					<Link
 						key={link.href}
@@ -30,7 +30,7 @@ export const Navigation: React.FC = () => {
 						{link.name}
 					</Link>
 				))}
-			</div>
+			</nav>
 		</header>
 	);
 };
