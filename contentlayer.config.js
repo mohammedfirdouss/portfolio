@@ -92,6 +92,22 @@ export const Changelog = defineDocumentType(() => ({
 	computedFields,
 }));
 
+export const Talk = defineDocumentType(() => ({
+	name: "Talk",
+	filePathPattern: "./talks/**/*.mdx",
+	contentType: "mdx",
+	fields: {
+		title: { type: "string", required: true },
+		event: { type: "string", required: true },
+		date: { type: "date", required: true },
+		url: { type: "string" },
+		topic: { type: "string" },
+		published: { type: "boolean" },
+		summary: { type: "string" },
+	},
+	computedFields,
+}));
+
 export const Certification = defineDocumentType(() => ({
 	name: "Certification",
 	filePathPattern: "./certifications/**/*.mdx",
@@ -150,6 +166,7 @@ export default makeSource({
 		Project,
 		OpenSource,
 		Diagram,
+		Talk,
 		Blog,
 		Experience,
 		Changelog,

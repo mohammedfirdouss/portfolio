@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { allProjects, allBlogs } from "contentlayer/generated";
+import { allProjects, allBlogs, allTalks } from "contentlayer/generated";
 
 export default function Home() {
 	const blogs = allBlogs
@@ -17,6 +17,14 @@ export default function Home() {
 				new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime(),
 		)
 		.slice(0, 6);
+
+	const talks = allTalks
+		.filter((t) => t.published !== false)
+		.sort(
+			(a, b) =>
+				new Date(b.date).getTime() - new Date(a.date).getTime(),
+		)
+		.slice(0, 3);
 
 	return (
 		<div className="text-xl mt-8">
@@ -89,6 +97,33 @@ export default function Home() {
 									className="prose-link text-lg"
 								>
 									{project.title}
+								</Link>
+							</div>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			{/* Talks mini list */}
+			<div className="mt-8">
+				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
+					talks
+				</h2>
+				<ul>
+					{talks.map((talk) => (
+						<li key={talk.slug} className="mb-4">
+							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg">
+								<time className="w-32 text-sm text-gray-400 flex-none">
+									{new Date(talk.date).toLocaleDateString("en-us", {
+										year: "numeric",
+										month: "short",
+									})}
+								</time>
+								<Link
+									href={`/talks/${talk.slug}`}
+									className="prose-link text-lg"
+								>
+									{talk.title}
 								</Link>
 							</div>
 						</li>
