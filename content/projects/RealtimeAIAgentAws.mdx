@@ -1,0 +1,52 @@
+---
+title: Realtime AI Agent Platform
+description: A serverless, event-driven platform for deploying and managing AI agents. Built with AWS CDK, Lambda, Step Functions, EventBridge, and DynamoDB.
+date: "2026-02-16"
+repository: mohammedfirdouss/realtime-ai-agent-aws
+published: true
+---
+
+This project implements a serverless platform for deploying and managing AI agents with real-time capabilities. The architecture uses event-driven patterns with EventBridge, Step Functions for workflow orchestration, and WebSocket APIs for live status updates.
+
+Built with Python and AWS CDK, the infrastructure supports multi-agent collaboration, human-in-the-loop approvals, and integration with OpenAI and Anthropic LLMs.
+
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://github.com/mohammedfirdouss/realtime-ai-agent-aws"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex w-full sm:w-auto items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 no-underline hover:bg-gray-50 hover:border-gray-400 transition-colors"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    View on GitHub
+  </a>
+</div>
+
+## What it is
+
+An event-driven AI agent platform featuring:
+
+- **Agent Management:** CRUD operations for AI agents with DynamoDB persistence.
+- **Task Processing:** Single-agent and multi-agent task execution with Step Functions orchestration.
+- **Real-Time Updates:** WebSocket API for live task progress and status updates.
+- **Human-in-the-Loop:** Approval workflows with wait-for-task-token pattern.
+- **LLM Integration:** Unified interface for OpenAI and Anthropic with retry and circuit breaker patterns.
+
+## Key Technical Details
+
+- **AWS CDK:** Infrastructure as code with Foundation, Database, Events, Auth, and API stacks.
+- **EventBridge:** Event-driven architecture for decoupled, scalable workflows.
+- **Step Functions:** State machines for task execution, multi-agent collaboration, and approval flows.
+- **DynamoDB:** Tables for agents, tasks, context, and WebSocket connections.
+- **API Gateway:** REST API for agents/tasks and WebSocket API for real-time updates.
+- **ElastiCache Redis:** Caching layer for performance.
+
+## What I Learned
+
+- **Event-Driven Architecture:** Designing serverless systems with EventBridge for loose coupling.
+- **Step Functions Patterns:** Orchestrating complex workflows including parallel execution and human approval.
+- **WebSocket at Scale:** Managing real-time connections with API Gateway WebSocket APIs.
+- **Multi-Agent Systems:** Coordinating multiple AI agents with message routing and result aggregation.
+- **LLM Integration:** Building resilient integrations with retry logic and circuit breakers.
