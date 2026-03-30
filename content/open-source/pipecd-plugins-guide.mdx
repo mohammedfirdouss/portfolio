@@ -1,0 +1,62 @@
+---
+title: PipeCD - Plugin Contribution Guide
+summary: Created comprehensive guide for contributing to PipeCD's plugin ecosystem, documenting architecture patterns and development best practices.
+date: 2026-01-17
+published: true
+---
+
+I created a new guide to help developers contribute to PipeCD's plugin ecosystem, documenting the plugin architecture and providing clear development guidelines.
+
+## What is PipeCD?
+
+PipeCD is a CNCF Sandbox GitOps continuous deployment tool with an extensible plugin system. Plugins allow PipeCD to support different deployment platforms and custom functionality.
+
+## The Problem
+
+Issue #6124 identified that PipeCD lacked documentation for plugin contributors:
+- No clear overview of plugin architecture
+- Missing guidelines for developing new plugins
+- Unclear patterns and best practices
+- Developers hesitant to contribute plugins without guidance
+
+## My Solution
+
+I created `contributing-plugins.md` with **138 additions** covering:
+
+### Plugin Architecture Overview
+- How plugins integrate with PipeCD core
+- Communication patterns between plugins and control plane
+- Plugin lifecycle and execution model
+- Interface definitions and contracts
+
+### Development Guidelines
+- Setting up a plugin development environment
+- Directory structure and organization
+- Testing strategies for plugins
+- Debugging techniques
+
+### Best Practices
+- Design patterns for robust plugins
+- Error handling and logging conventions
+- Performance considerations
+- Security best practices
+
+### Documentation Standards
+- Applied changes to both docs-dev and docs-v1.0.x
+- Ensured consistency with other contribution guides
+- Included examples and code snippets
+
+## Impact
+
+- **Enabled Plugin Development**: Developers now have clear guidance on building plugins
+- **Ecosystem Growth**: Lower barrier to extending PipeCD's capabilities
+- **Architecture Clarity**: Documented how plugins fit into PipeCD's design
+- **Quality Standards**: Established expectations for plugin contributions
+
+This was part of the larger effort (issue #6124) to improve contributor documentation across the project.
+
+## Review Process
+
+The PR underwent thorough review by maintainers **Warashi** and **ffjlabo**, with multiple iterations to ensure accuracy and completeness. Merged by **khanhtc1202** after validation.
+
+**Links:** [Pull Request #6398](https://github.com/pipe-cd/pipecd/pull/6398) • [Issue #6124](https://github.com/pipe-cd/pipecd/issues/6124) • [Repository](https://github.com/pipe-cd/pipecd)

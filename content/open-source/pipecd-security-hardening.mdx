@@ -1,0 +1,111 @@
+---
+title: PipeCD - Codegen Image Security Hardening
+summary: Hardened PipeCD's codegen Docker image by fixing CVEs, reducing image size from 800MB to 500MB, and switching to debian:bookworm-slim base while preserving all functionality.
+date: 2026-03-11
+published: true
+---
+
+I improved the security and efficiency of PipeCD's codegen Docker image, which is critical infrastructure for the development workflow. This contribution fixed CVE vulnerabilities, reduced image size by 37%, and maintained full compatibility with all existing tooling.
+
+## What is PipeCD?
+
+PipeCD is a CNCF Sandbox GitOps continuous deployment tool that automates application deployments to Kubernetes, ECS, Lambda, and other platforms. The codegen image is a critical development tool used to generate Go code from protobuf definitions.
+
+## The Problem
+
+The existing codegen image had several issues:
+
+1. **Security Vulnerabilities**: Snyk flagged multiple CVEs related to curl and other dependencies in the `golang:1.25.2` base image
+2. **Large Image Size**: The image was ~800MB, containing many unnecessary dependencies
+3. **Previous Failed Attempts**: PR #6402 attempted to use `debian:bookworm-slim` but was reverted in #6404 because:
+   - Missing `google/protobuf/*.proto` files (protoc needs these standard definitions)
+   - mockgen needs the `go` command at runtime
+
+## My Solution
+
+I implemented a multi-stage Docker build that addresses all issues:
+
+### Security & Size
+- **Base Image**: Switched from `golang:1.25.2` to `debian:bookworm-slim`
+- **Size Reduction**: Reduced from ~800MB to ~500MB (37% smaller)
+- **CVE Fixes**: Eliminated curl-related vulnerabilities and other unnecessary dependencies
+
+### Functionality Preservation
+1. **Proto Files**: Installed `libprotobuf-dev` package to include standard proto files (`google/protobuf/*.proto`)
+2. **Go Runtime**: Copied Go from `golang:1.25.2` image since mockgen requires the `go` command
+3. **Architecture Support**: Maintained both x86_64 and aarch64 support for protoc-gen-js
+4. **All Tools**: Ensured protoc, mockgen, protoc-gen-go, protoc-gen-grpc, and all plugins work correctly
+
+## Comprehensive Testing
+
+I provided extensive testing evidence in the PR:
+
+### Build & Size Validation
+```bash
+docker build -t pipecd-codegen:test .
+docker images pipecd-codegen:test --format "{{.Size}}"
+```
+- ✅ Image builds successfully
+- ✅ Size reduced to ~500MB (vs ~800MB before)
+
+### Binary Verification
+```bash
+protoc --version
+go version
+mockgen --version
+ls /usr/local/bin/protoc-gen-*
+```
+- ✅ All binaries present and functional
+
+### Proto Files Check
+```bash
+ls /usr/include/google/protobuf/*.proto
+ls /go/src/github.com/envoyproxy/protoc-gen-validate/validate/*.proto
+```
+- ✅ Standard proto files available
+- ✅ Validation proto files included
+
+### Compilation Test
+```bash
+protoc -I . \
+  -I /go/src/github.com/envoyproxy/protoc-gen-validate \
+  --go_out=. --go_opt=paths=source_relative \
+  --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+  --validate_out='lang=go:.' --validate_opt=paths=source_relative \
+  pkg/model/common.proto
+```
+- ✅ Protoc compilation works with all plugins
+
+### Full Integration Test
+```bash
+docker run --rm -v $(pwd):/repo pipecd-codegen:test ./tool/codegen/codegen.sh /repo
+```
+- ✅ Complete codegen script executes successfully
+
+## Technical Implementation
+
+The key to solving this where others failed was:
+
+1. **Multi-stage Build**: Use `golang:1.25.2` as builder, copy Go runtime to slim image
+2. **System Dependencies**: Install `libprotobuf-dev` for standard proto definitions
+3. **Comprehensive PATH**: Set up proper Go environment variables and paths
+4. **Architecture Handling**: Properly handle both x86_64 and aarch64 protoc-gen-js binaries
+
+## Impact
+
+- **Security**: Eliminated CVE vulnerabilities from base image
+- **Efficiency**: 37% size reduction speeds up image pulls and reduces storage costs
+- **Developer Experience**: All tools work seamlessly, no workflow disruption
+- **Reliability**: Resolved issues that caused previous PR to be reverted
+
+## Review Process
+
+The maintainers appreciated the thoroughness:
+- Extensive testing documentation with screenshots
+- Clear before/after comparisons
+- Explanation of why previous attempts failed
+- No breaking changes to developer workflow
+
+Merged by **khanhtc1202** after thorough validation.
+
+**Links:** [Pull Request #6461](https://github.com/pipe-cd/pipecd/pull/6461) • [Issue #6429](https://github.com/pipe-cd/pipecd/issues/6429) • [Repository](https://github.com/pipe-cd/pipecd)
