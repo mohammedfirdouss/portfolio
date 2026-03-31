@@ -31,6 +31,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
 
 ## Getting Started
 
+
 ### Prerequisites
 
 - [Bun](https://bun.sh/) or [Node.js](https://nodejs.org/)
