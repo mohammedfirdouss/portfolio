@@ -61,6 +61,7 @@ export const Diagram = defineDocumentType(() => ({
 		url: { type: "string" },
 		repository: { type: "string" },
 		published: { type: "boolean" },
+		screenshot: { type: "string" },
 	},
 	computedFields,
 }));

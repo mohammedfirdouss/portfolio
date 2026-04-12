@@ -17,36 +17,36 @@ export default function CertificationsPage() {
 				certifications
 			</h1>
 			<div className="space-y-6">
-				{certs.map((cert) => (
-					<div key={cert.slug}>
-						<h2 className="text-lg font-semibold text-gray-900">
-							{cert.credentialUrl ? (
-								<a
-									href={cert.credentialUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="prose-link"
-								>
-									{cert.title}
-								</a>
-							) : (
-								cert.title
-							)}
-						</h2>
-						<div className="text-sm text-gray-500 mt-1">
-							{cert.organization} ·{" "}
-							{new Date(cert.date).toLocaleDateString("en-us", {
-								year: "numeric",
-								month: "short",
-							})}
-						</div>
-						{cert.credentialId && (
-							<div className="text-xs text-gray-400 mt-1">
-								ID: {cert.credentialId}
+				{certs.map((cert) => {
+					const inner = (
+						<>
+							<h2 className="text-lg font-semibold text-gray-900 group-hover:text-sky-600 transition-colors">
+								{cert.title}
+							</h2>
+							<div className="text-sm text-gray-500 mt-1">
+								{cert.organization} ·{" "}
+								{new Date(cert.date).toLocaleDateString("en-us", {
+									year: "numeric",
+									month: "short",
+								})}
 							</div>
-						)}
-					</div>
-				))}
+						</>
+					);
+
+					return cert.credentialUrl ? (
+						<a
+							key={cert.slug}
+							href={cert.credentialUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="block group"
+						>
+							{inner}
+						</a>
+					) : (
+						<div key={cert.slug}>{inner}</div>
+					);
+				})}
 			</div>
 		</div>
 	);
