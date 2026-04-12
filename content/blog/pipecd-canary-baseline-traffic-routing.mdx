@@ -4,7 +4,7 @@ description: "A deep dive into implementing canary and baseline traffic routing 
 publishedAt: "2026-04-12"
 source: "dev.to"
 url: "https://dev.to/mohammedfirdouss/building-canary-baseline-traffic-routing-for-pipecds-kubernetes-multi-cluster-plugin-ddi"
-tags: ["kubernetes", "pipecd", "open-source", "canary", "cd"]
+tags: ["kubernetes", "pipecd", "open-source", "canary"]
 ---
 
 Canary deployments depend on being able to split traffic precisely — sending a small percentage to the new version while the rest goes to the stable baseline. This article walks through how I implemented that inside PipeCD's Kubernetes multi-cluster plugin: how the routing logic works, why the baseline variant exists alongside canary, and the specific challenges of making it work across clusters.
