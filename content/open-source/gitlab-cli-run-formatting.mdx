@@ -1,0 +1,35 @@
+---
+title: GitLab CLI — Run Command Help Formatting
+summary: Updated help examples for run commands to match the project's CLI style guide for consistent formatting.
+date: 2025-04-23
+published: true
+project: GitLab
+featured: false
+---
+
+I worked on making the help examples for the run commands consistent with the new style guide in [merge request !2064](https://gitlab.com/gitlab-org/cli/-/merge_requests/2064).
+
+## The Problem
+
+The help examples for the run commands did not follow the updated format. There was an [issue requesting](https://gitlab.com/gitlab-org/cli/-/issues/7840) that these examples be updated for consistency.
+
+## My Solution
+
+I updated the help examples in the run command files to use the new format:
+- Commands start with `$`
+- Results start with `>`
+- Comments start with `#`
+
+I updated these files:
+- `commands/run/run.go`
+- `commands/run/trace.go`
+
+## Review Process
+
+**Gary Holtz** reviewed and approved the changes quickly, as these were straightforward formatting updates. The merge request was merged on April 23, 2025.
+
+## Links
+
+- [My contribution (MR !2064)](https://gitlab.com/gitlab-org/cli/-/merge_requests/2064)
+- [Issue requesting formatting for run commands](https://gitlab.com/gitlab-org/cli/-/issues/7840)
+- [GitLab CLI repository](https://gitlab.com/gitlab-org/cli)

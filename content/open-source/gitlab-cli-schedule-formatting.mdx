@@ -1,0 +1,38 @@
+---
+title: GitLab CLI — Schedule Command Help Formatting
+summary: Standardized CLI help display formatting for all schedule commands to follow the project's style guide.
+date: 2025-04-23
+published: true
+project: GitLab
+featured: false
+---
+
+I contributed to standardizing the CLI help display formatting for schedule commands in [merge request !2063](https://gitlab.com/gitlab-org/cli/-/merge_requests/2063).
+
+## The Problem
+
+GitLab CLI's help examples were inconsistent across different commands. There was an [issue requesting](https://gitlab.com/gitlab-org/cli/-/issues/7841) standardization of the help display format to follow a style guide.
+
+## My Solution
+
+I updated the help examples in all schedule command files to follow the new format:
+- Commands start with `$`
+- Results start with `>`
+- Comments start with `#`
+
+I updated 5 files:
+- `commands/schedule/create/create.go`
+- `commands/schedule/delete/delete.go`
+- `commands/schedule/list/list.go`
+- `commands/schedule/run/run.go`
+- `commands/schedule/update/update.go`
+
+## Review Process
+
+**Gary Holtz** reviewed and approved the changes quickly, recognizing the straightforward nature of the formatting updates. The merge request was merged on April 23, 2025.
+
+## Links
+
+- [My contribution (MR !2063)](https://gitlab.com/gitlab-org/cli/-/merge_requests/2063)
+- [Issue requesting formatting](https://gitlab.com/gitlab-org/cli/-/issues/7841)
+- [GitLab CLI repository](https://gitlab.com/gitlab-org/cli)
