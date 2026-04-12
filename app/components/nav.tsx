@@ -21,10 +21,10 @@ export const Navigation: React.FC = () => {
 					<Link
 						key={link.href}
 						href={link.href}
-						className={`nav-link ${
+						className={`nav-link pb-0.5 ${
 							pathname?.startsWith(link.href)
-								? "text-sky-600"
-								: "opacity-60 hover:opacity-100"
+								? "text-sky-600 border-b-2 border-sky-500"
+								: "opacity-60 hover:opacity-100 border-b-2 border-transparent"
 						}`}
 					>
 						{link.name}
