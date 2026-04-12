@@ -20,13 +20,7 @@ export const metadata: Metadata = {
 			"Cloud Engineer building infrastructure, AI systems, and open source tools.",
 		url: "https://mohammedfirdous.me",
 		siteName: "Mohammed Firdous",
-		images: [
-			{
-				url: "/favicon.svg",
-				width: 32,
-				height: 32,
-			},
-		],
+		images: [{ url: "/opengraph-image" }],
 		locale: "en-US",
 		type: "website",
 	},
@@ -46,7 +40,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		description:
 			"Cloud Engineer building infrastructure, AI systems, and open source tools.",
-		images: "/favicon.svg",
+		images: ["/opengraph-image"],
 	},
 	icons: {
 		icon: "/favicon.svg",
