@@ -20,7 +20,7 @@ export default function TalksPage() {
 			<h1 className="font-display text-8xl text-gray-200 mb-8">talks</h1>
 			<div className="text-lg text-gray-700 mb-12">
 				<p>
-					I talk sometimes — at conferences and meetups. Here are
+					I talk sometimes at conferences and meetups. Here are
 					some of my past presentations.
 				</p>
 			</div>
