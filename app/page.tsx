@@ -81,10 +81,15 @@ export default function Home() {
 						</li>
 					))}
 				</ul>
+				<div className="mt-3">
+					<Link href="/blog" className="text-sm text-sky-600 hover:underline">
+						View all →
+					</Link>
+				</div>
 			</div>
 
 			{/* Projects mini list */}
-			<div className="mt-8">
+			<div className="border-t border-gray-100 pt-12 mt-12">
 				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
 					projects
 				</h2>
@@ -110,10 +115,15 @@ export default function Home() {
 						</li>
 					))}
 				</ul>
+				<div className="mt-3">
+					<Link href="/projects" className="text-sm text-sky-600 hover:underline">
+						View all →
+					</Link>
+				</div>
 			</div>
 
 			{/* Open source mini list */}
-			<div className="mt-8">
+			<div className="border-t border-gray-100 pt-8 mt-8">
 				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
 					open source
 				</h2>
@@ -139,10 +149,15 @@ export default function Home() {
 						</li>
 					))}
 				</ul>
+				<div className="mt-3">
+					<Link href="/open-source" className="text-sm text-sky-600 hover:underline">
+						View all →
+					</Link>
+				</div>
 			</div>
 
 			{/* Talks mini list */}
-			<div className="mt-8">
+			<div className="border-t border-gray-100 pt-8 mt-8">
 				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
 					talks
 				</h2>
@@ -166,6 +181,11 @@ export default function Home() {
 						</li>
 					))}
 				</ul>
+				<div className="mt-3">
+					<Link href="/talks" className="text-sm text-sky-600 hover:underline">
+						View all →
+					</Link>
+				</div>
 			</div>
 		</div>
 	);
