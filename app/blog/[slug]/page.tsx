@@ -26,7 +26,7 @@ export default async function PostPage({ params }: Props) {
 
 	return (
 		<div>
-			<div className="mb-8">
+			<div className="mb-12">
 				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
 					{blog.title}
 				</h1>
@@ -55,7 +55,7 @@ export default async function PostPage({ params }: Props) {
 					)}
 				</div>
 			</div>
-			<article className="prose max-w-none">
+			<article className="prose max-w-none prose-headings:mt-8 prose-headings:mb-3">
 				<Mdx code={blog.body.code} />
 			</article>
 			<div className="mt-8 text-sm font-mono text-gray-500">
