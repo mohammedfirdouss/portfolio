@@ -3,6 +3,8 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 function clsx(...args: (string | undefined | null | false)[]): string {
 	return args.filter(Boolean).join(" ");
@@ -136,13 +138,15 @@ const components = {
 		src,
 		...props
 	}: React.ImgHTMLAttributes<HTMLImageElement>) => (
-		// eslint-disable-next-line @next/next/no-img-element
-		<img
-			className={clsx("rounded-lg my-6", className)}
-			alt={alt}
-			src={src}
-			{...props}
-		/>
+		<Zoom>
+			{/* eslint-disable-next-line @next/next/no-img-element */}
+			<img
+				className={clsx("rounded-lg my-6 cursor-zoom-in", className)}
+				alt={alt}
+				src={src}
+				{...props}
+			/>
+		</Zoom>
 	),
 	hr: ({ ...props }) => (
 		<hr className="my-4 border-gray-200 md:my-8" {...props} />
