@@ -30,7 +30,7 @@ export default function OpenSourcePage() {
 			</h1>
 			<div className="text-lg text-gray-700 mb-12">
 				<p>
-					Contributions to open source projects — mostly around cloud-native tooling and CNCF projects. Some through the LFX Mentorship program, others just because the project was interesting.
+					I contribute where I can — mostly CNCF and cloud-native projects.
 				</p>
 			</div>
 
