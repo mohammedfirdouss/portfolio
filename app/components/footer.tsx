@@ -15,20 +15,32 @@ const socialLinks = [
 	},
 ];
 
+const pageLinks = [
+	{ text: "experience", href: "/experience" },
+	{ text: "certifications", href: "/certifications" },
+];
+
 export default function Footer() {
 	return (
 		<footer className="w-full px-6 pt-4 pb-12 max-w-3xl mx-auto">
-			<div className="mb-6 flex flex-wrap gap-x-4 gap-y-2">
+			<div className="flex flex-wrap gap-x-4 gap-y-2 mb-3">
 				{socialLinks.map((link) => (
 					<a
 						key={link.text}
 						href={link.href}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="prose-link flex items-center"
+						className="prose-link"
 					>
-						<span>{link.text}</span>
+						{link.text}
 					</a>
+				))}
+			</div>
+			<div className="flex flex-wrap gap-x-4 gap-y-2">
+				{pageLinks.map((link) => (
+					<Link key={link.text} href={link.href} className="prose-link text-sm text-gray-400">
+						{link.text}
+					</Link>
 				))}
 			</div>
 		</footer>

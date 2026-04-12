@@ -32,6 +32,9 @@ export default async function BlogPage() {
 						post.publishedAt,
 						sorted[index - 1]?.publishedAt,
 					);
+					const isExternal = !!post.url;
+					const href = isExternal ? post.url! : `/blog/${post.slug}`;
+
 					return (
 						<li key={post.slug} className="mb-6">
 							{showYear && (
@@ -42,13 +45,22 @@ export default async function BlogPage() {
 								</div>
 							)}
 							<div className="text-lg leading-tight flex flex-col gap-1">
-								<div className="flex flex-col md:flex-row md:items-center flex-wrap text-lg">
-									<Link
-										href={`/blog/${post.slug}`}
-										className="prose-link text-2xl"
-									>
-										{post.title}
-									</Link>
+								<div className="flex items-baseline gap-2 flex-wrap">
+									{isExternal ? (
+										<a
+											href={href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="prose-link text-2xl"
+										>
+											{post.title}
+											<span className="text-base ml-1 text-gray-400">↗</span>
+										</a>
+									) : (
+										<Link href={href} className="prose-link text-2xl">
+											{post.title}
+										</Link>
+									)}
 								</div>
 								<div className="text-gray-500 text-base">
 									{post.description}
@@ -61,6 +73,12 @@ export default async function BlogPage() {
 											day: "numeric",
 										})}
 									</time>
+									{post.source && (
+										<>
+											<span>·</span>
+											<span className="text-gray-400">{post.source}</span>
+										</>
+									)}
 									{post.tags && post.tags.length > 0 && (
 										<>
 											<span>·</span>
