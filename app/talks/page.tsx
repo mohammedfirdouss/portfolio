@@ -44,7 +44,6 @@ export default function TalksPage() {
 						</div>
 						<div className="text-sm text-gray-500 mt-1">
 							{talk.event}
-							{talk.topic && ` · ${talk.topic}`}
 						</div>
 						{talk.summary && (
 							<p className="text-gray-500 mt-1">{talk.summary}</p>
