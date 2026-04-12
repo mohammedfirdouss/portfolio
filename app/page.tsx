@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { allProjects, allBlogs, allTalks } from "contentlayer/generated";
+import { allProjects, allBlogs, allTalks, allOpenSources } from "contentlayer/generated";
 
 export default function Home() {
 	const blogs = allBlogs
@@ -17,6 +17,14 @@ export default function Home() {
 				new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime(),
 		)
 		.slice(0, 6);
+
+	const openSource = allOpenSources
+		.filter((c) => c.published !== false)
+		.sort(
+			(a, b) =>
+				new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime(),
+		)
+		.slice(0, 3);
 
 	const talks = allTalks
 		.filter((t) => t.published !== false)
@@ -97,6 +105,35 @@ export default function Home() {
 									className="prose-link text-lg"
 								>
 									{project.title}
+								</Link>
+							</div>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			{/* Open source mini list */}
+			<div className="mt-8">
+				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
+					open source
+				</h2>
+				<ul>
+					{openSource.map((contrib) => (
+						<li key={contrib.slug} className="mb-4">
+							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg">
+								<time className="w-32 text-sm text-gray-400 flex-none">
+									{contrib.date
+										? new Date(contrib.date).toLocaleDateString("en-us", {
+												year: "numeric",
+												month: "short",
+											})
+										: ""}
+								</time>
+								<Link
+									href={`/open-source/${contrib.slug}`}
+									className="prose-link text-lg"
+								>
+									{contrib.title}
 								</Link>
 							</div>
 						</li>

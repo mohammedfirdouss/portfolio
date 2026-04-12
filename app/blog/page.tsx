@@ -20,6 +20,12 @@ export default async function BlogPage() {
 
 	return (
 		<div>
+			<h1 className="font-display text-8xl text-gray-200 mb-8">blog</h1>
+			<div className="text-lg text-gray-700 mb-12">
+				<p>
+					Writing on cloud engineering, Kubernetes, AI systems, and open source. Some pieces are published here, others cross-posted from dev.to or Medium.
+				</p>
+			</div>
 			<ul>
 				{sorted.map((post, index) => {
 					const showYear = !isSameYear(

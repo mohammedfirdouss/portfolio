@@ -22,7 +22,7 @@ export const Navigation: React.FC = () => {
 						key={link.href}
 						href={link.href}
 						className={`nav-link ${
-							pathname?.includes(link.href)
+							pathname?.startsWith(link.href)
 								? "text-sky-600"
 								: "opacity-60 hover:opacity-100"
 						}`}

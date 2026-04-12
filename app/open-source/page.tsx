@@ -3,6 +3,8 @@ import { allOpenSources } from "contentlayer/generated";
 
 export const metadata = {
 	title: "Open Source",
+	description:
+		"Contributions to open source projects — bug fixes, documentation, features, and mentorship through programs like LFX.",
 };
 
 export default function OpenSourcePage() {
@@ -18,6 +20,11 @@ export default function OpenSourcePage() {
 			<h1 className="font-display text-8xl text-gray-200 mb-8">
 				open source
 			</h1>
+			<div className="text-lg text-gray-700 mb-12">
+				<p>
+					Contributions to open source projects — mostly around cloud-native tooling and CNCF projects. Some through the LFX Mentorship program, others just because the project was interesting.
+				</p>
+			</div>
 			<div className="space-y-6">
 				{contributions.map((contrib) => (
 					<Link
