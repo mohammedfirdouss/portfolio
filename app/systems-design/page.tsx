@@ -1,68 +1,56 @@
 export const metadata = {
 	title: "Systems Design",
 	description:
-		"Concise systems design case studies covering requirements, architecture, trade-offs, and future improvements.",
+		"Two practical systems design cases with requirements, architecture, trade-offs, notes, and next steps.",
 };
 
 const caseStudies = [
 	{
-		title: "Real-time AI Code Review Platform",
+		title: "Pull Request Review Queue",
 		problem:
-			"Teams need near-instant pull request feedback without slowing delivery.",
+			"Engineers needed fast feedback on pull requests, but synchronous checks were slowing merges.",
 		requirements: [
-			"p95 response under 2 seconds for common checks",
-			"support burst traffic during release windows",
-			"auditability of comments and decisions",
+			"keep average feedback time under 2 minutes",
+			"handle release-day spikes without dropping jobs",
+			"keep a clear audit trail for every review comment",
 		],
 		architecture:
-			"Git provider webhooks → queue → stateless workers → policy engine + LLM gateway → persistent review store",
+			"Git webhooks → job queue → worker pool → rules + model service → review results store",
 		tradeoffs: [
-			"Queued async processing improves reliability but adds eventual consistency",
-			"Centralized policy engine improves governance but increases coupling",
+			"Queueing improved reliability, but users lost instant responses",
+			"Shared worker pools improved utilization, but noisy repos affected tail latency",
+		],
+		notes: [
+			"Most delays came from retries on very large diffs, not model latency.",
+			"Separate queues per repository priority reduced merge-day complaints.",
 		],
 		improvements: [
-			"Introduce adaptive model routing based on repository risk profile",
-			"Add semantic caching for repeated file patterns",
+			"Add diff-size based routing to dedicated workers",
+			"Cache repeated review hints for common file patterns",
 		],
 	},
 	{
-		title: "Multi-tenant Analytics Pipeline",
+		title: "Tenant Analytics Pipeline",
 		problem:
-			"Product teams need daily and near-real-time usage metrics across tenants.",
+			"Product and support teams needed daily reports plus near real-time usage visibility per tenant.",
 		requirements: [
-			"tenant isolation for data and compute",
-			"low-cost storage for raw events",
-			"hourly freshness for operational dashboards",
+			"strict tenant-level data isolation",
+			"cheap long-term storage for raw events",
+			"dashboard freshness within one hour",
 		],
 		architecture:
-			"SDK events → ingestion API → stream buffer → ETL jobs → warehouse marts → BI dashboards",
+			"Client events → ingestion API → stream bus → ETL jobs → warehouse marts → dashboards",
 		tradeoffs: [
-			"Shared stream reduces cost but requires strict partition controls",
-			"Batch ETL is cheaper than full streaming but lowers freshness",
+			"Shared stream topics cut cost, but partition mistakes became risky",
+			"Hourly batch jobs were simple, but incident analysis felt delayed",
+		],
+		notes: [
+			"Schema drift broke charts more often than pipeline failures.",
+			"Small tenants overpaid when using the same processing profile as large tenants.",
 		],
 		improvements: [
-			"Move critical metrics to incremental processing",
-			"Automate schema drift detection with contract checks",
-		],
-	},
-	{
-		title: "Global API for Portfolio Services",
-		problem:
-			"Public endpoints must stay fast and available across regions during spikes.",
-		requirements: [
-			"99.9% availability target",
-			"global read latency under 250ms",
-			"secure edge authentication and rate limiting",
-		],
-		architecture:
-			"Anycast CDN + WAF → API gateway → regional services → replicated datastore + cache",
-		tradeoffs: [
-			"Multi-region replication improves resilience but raises write complexity",
-			"Aggressive caching lowers latency but increases invalidation overhead",
-		],
-		improvements: [
-			"Add chaos drills for region failover confidence",
-			"Implement cost-aware auto-scaling policies",
+			"Move top KPIs to incremental processing",
+			"Add producer contract tests to catch schema drift early",
 		],
 	},
 ];
@@ -73,8 +61,8 @@ export default function SystemsDesignPage() {
 			<h1 className="font-display text-8xl text-gray-200 mb-8">systems design</h1>
 			<div className="text-lg text-gray-700 mb-12 max-w-2xl">
 				<p>
-					Short architecture case studies that show how I think about
-					requirements, constraints, and trade-offs at system level.
+					Two short system design cases with practical constraints, trade-offs,
+					and implementation notes.
 				</p>
 			</div>
 
@@ -120,6 +108,18 @@ export default function SystemsDesignPage() {
 									))}
 								</ul>
 							</div>
+							<div>
+								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">
+									Notes
+								</h3>
+								<ul className="space-y-1 text-sm text-gray-600">
+									{study.notes.map((item) => (
+										<li key={item}>• {item}</li>
+									))}
+								</ul>
+							</div>
+						</div>
+						<div className="mt-4">
 							<div>
 								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">
 									Future Improvements
