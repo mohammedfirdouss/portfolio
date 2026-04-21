@@ -120,16 +120,14 @@ export default function SystemsDesignPage() {
 							</div>
 						</div>
 						<div className="mt-4">
-							<div>
-								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">
-									Future Improvements
-								</h3>
-								<ul className="space-y-1 text-sm text-gray-600">
-									{study.improvements.map((item) => (
-										<li key={item}>• {item}</li>
-									))}
-								</ul>
-							</div>
+							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">
+								Future Improvements
+							</h3>
+							<ul className="space-y-1 text-sm text-gray-600">
+								{study.improvements.map((item) => (
+									<li key={item}>• {item}</li>
+								))}
+							</ul>
 						</div>
 					</section>
 				))}
