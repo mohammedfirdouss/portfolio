@@ -18,6 +18,7 @@ const socialLinks = [
 const pageLinks = [
 	{ text: "experience", href: "/experience" },
 	{ text: "certifications", href: "/certifications" },
+	{ text: "systems design", href: "/systems-design" },
 ];
 
 export default function Footer() {
