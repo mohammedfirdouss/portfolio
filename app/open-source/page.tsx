@@ -25,13 +25,9 @@ export default function OpenSourcePage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-8xl text-gray-200 mb-8">
-				open source
-			</h1>
+			<h1 className="font-display text-8xl text-gray-200 mb-8">open source</h1>
 			<div className="text-lg text-gray-700 mb-12">
-				<p>
-					I contribute where I can — mostly CNCF and cloud-native projects.
-				</p>
+				<p>I contribute where I can — mostly CNCF and cloud-native projects.</p>
 			</div>
 
 			{featured.length > 0 && (
@@ -70,10 +66,7 @@ function ContributionRow({ contrib }: { contrib: any }) {
 			: "text-gray-500 border-gray-200 bg-gray-50";
 
 	return (
-		<Link
-			href={`/open-source/${contrib.slug}`}
-			className="block group"
-		>
+		<Link href={`/open-source/${contrib.slug}`} className="block group">
 			<div className="flex items-baseline gap-3 flex-wrap">
 				<span className="text-lg font-semibold text-gray-900 group-hover:text-sky-600 transition-colors">
 					{contrib.title}

@@ -10,18 +10,13 @@ export const metadata = {
 export default function TalksPage() {
 	const talks = allTalks
 		.filter((t) => t.published !== false)
-		.sort(
-			(a, b) =>
-				new Date(b.date).getTime() - new Date(a.date).getTime(),
-		);
+		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 	return (
 		<div>
 			<h1 className="font-display text-8xl text-gray-200 mb-8">talks</h1>
 			<div className="text-lg text-gray-700 mb-12">
-				<p>
-					I talk sometimes. Here are some of my past presentations.
-				</p>
+				<p>I talk sometimes. Here are some of my past presentations.</p>
 			</div>
 			<div className="space-y-6">
 				{talks.map((talk) => (
@@ -41,9 +36,7 @@ export default function TalksPage() {
 								})}
 							</span>
 						</div>
-						<div className="text-sm text-gray-500 mt-1">
-							{talk.event}
-						</div>
+						<div className="text-sm text-gray-500 mt-1">{talk.event}</div>
 						{talk.summary && (
 							<p className="text-gray-500 mt-1">{talk.summary}</p>
 						)}

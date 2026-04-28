@@ -8,8 +8,7 @@ export const metadata = {
 
 export default function ExperiencePage() {
 	const experiences = allExperiences.sort(
-		(a, b) =>
-			new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
+		(a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
 	);
 
 	return (
@@ -25,7 +24,7 @@ export default function ExperiencePage() {
 						? new Date(exp.endDate).toLocaleDateString("en-us", {
 								year: "numeric",
 								month: "short",
-							})
+						  })
 						: "Present";
 
 					return (

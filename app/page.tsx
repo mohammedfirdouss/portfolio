@@ -1,6 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import { allProjects, allBlogs, allTalks, allOpenSources } from "contentlayer/generated";
+import {
+	allProjects,
+	allBlogs,
+	allTalks,
+	allOpenSources,
+} from "contentlayer/generated";
 
 export default function Home() {
 	const blogs = allBlogs
@@ -28,10 +33,7 @@ export default function Home() {
 
 	const talks = allTalks
 		.filter((t) => t.published !== false)
-		.sort(
-			(a, b) =>
-				new Date(b.date).getTime() - new Date(a.date).getTime(),
-		)
+		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 		.slice(0, 3);
 
 	return (
@@ -102,7 +104,7 @@ export default function Home() {
 										? new Date(project.date).toLocaleDateString("en-us", {
 												year: "numeric",
 												month: "short",
-											})
+										  })
 										: ""}
 								</time>
 								<Link
@@ -116,7 +118,10 @@ export default function Home() {
 					))}
 				</ul>
 				<div className="mt-3">
-					<Link href="/projects" className="text-sm text-sky-600 hover:underline">
+					<Link
+						href="/projects"
+						className="text-sm text-sky-600 hover:underline"
+					>
 						View all →
 					</Link>
 				</div>
@@ -136,7 +141,7 @@ export default function Home() {
 										? new Date(contrib.date).toLocaleDateString("en-us", {
 												year: "numeric",
 												month: "short",
-											})
+										  })
 										: ""}
 								</time>
 								<Link
@@ -150,7 +155,10 @@ export default function Home() {
 					))}
 				</ul>
 				<div className="mt-3">
-					<Link href="/open-source" className="text-sm text-sky-600 hover:underline">
+					<Link
+						href="/open-source"
+						className="text-sm text-sky-600 hover:underline"
+					>
 						View all →
 					</Link>
 				</div>

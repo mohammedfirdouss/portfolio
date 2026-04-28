@@ -20,7 +20,8 @@ export default function DiagramsPage() {
 			<h1 className="font-display text-8xl text-gray-200 mb-8">diagrams</h1>
 			<div className="text-lg text-gray-700 mb-12">
 				<p>
-					Architecture diagrams for projects I've built — useful for understanding how the pieces fit together.
+					Architecture diagrams for projects I've built — useful for
+					understanding how the pieces fit together.
 				</p>
 			</div>
 			<div className="space-y-8">

@@ -25,10 +25,7 @@ export default async function ProjectsPage() {
 					I build things I can use or reference — or that others can. Here are
 					some I actually &quot;finished&quot;; some polished, some quick
 					experiments. Happy to chat —{" "}
-					<a
-						href="mailto:mohammedfirdous682@gmail.com"
-						className="prose-link"
-					>
+					<a href="mailto:mohammedfirdous682@gmail.com" className="prose-link">
 						hit me up
 					</a>
 					!

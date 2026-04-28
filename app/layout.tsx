@@ -12,8 +12,7 @@ export const metadata: Metadata = {
 		default: "Mohammed Firdous",
 		template: "%s | Mohammed Firdous",
 	},
-	description:
-		"I'm Mohammed Firdous, and I build software.",
+	description: "I'm Mohammed Firdous, and I build software.",
 	openGraph: {
 		title: "Mohammed Firdous",
 		description:
@@ -65,15 +64,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html
-			lang="en"
-			className={[inter.variable, calSans.variable].join(" ")}
-		>
+		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
 			<body className="bg-white text-gray-800 min-h-screen font-sans w-full">
 				<Navigation />
-				<main className="grow mx-auto py-10 px-6 max-w-3xl">
-					{children}
-				</main>
+				<main className="grow mx-auto py-10 px-6 max-w-3xl">{children}</main>
 				<Footer />
 			</body>
 		</html>

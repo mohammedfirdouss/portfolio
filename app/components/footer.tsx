@@ -39,7 +39,11 @@ export default function Footer() {
 			</div>
 			<div className="flex flex-wrap gap-x-4 gap-y-2">
 				{pageLinks.map((link) => (
-					<Link key={link.text} href={link.href} className="prose-link text-sm text-gray-400">
+					<Link
+						key={link.text}
+						href={link.href}
+						className="prose-link text-sm text-gray-400"
+					>
 						{link.text}
 					</Link>
 				))}
