@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
 import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
-import "@/app/blog/[slug]/mdx.css";
+import "./mdx.css";
 import { allOpenSources } from "contentlayer/generated";
 import Link from "next/link";
 
