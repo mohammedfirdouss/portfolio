@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
+import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
 import "./mdx.css";
 import { allBlogs } from "contentlayer/generated";
 import Link from "next/link";
@@ -55,6 +56,11 @@ export default async function PostPage({ params }: Props) {
 					)}
 				</div>
 			</div>
+			<OutcomeProofBlock
+				outcomes={blog.outcomes}
+				roleHighlights={blog.roleHighlights}
+				proofLinks={blog.proofLinks}
+			/>
 			<article className="prose max-w-none prose-headings:mt-8 prose-headings:mb-3">
 				<Mdx code={blog.body.code} />
 			</article>

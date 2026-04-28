@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
+import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
 import "@/app/blog/[slug]/mdx.css";
 import { allOpenSources } from "contentlayer/generated";
 import Link from "next/link";
@@ -61,6 +62,11 @@ export default async function OpenSourceDetailPage({ params }: Props) {
 					<p className="text-gray-500 mt-4 text-lg">{item.summary}</p>
 				)}
 			</div>
+			<OutcomeProofBlock
+				outcomes={item.outcomes}
+				roleHighlights={item.roleHighlights}
+				proofLinks={item.proofLinks}
+			/>
 			<article className="prose max-w-none prose-headings:mt-8 prose-headings:mb-3">
 				<Mdx code={item.body.code} />
 			</article>

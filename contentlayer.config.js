@@ -1,4 +1,8 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import {
+	defineDocumentType,
+	defineNestedType,
+	makeSource,
+} from "contentlayer/source-files";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
@@ -16,6 +20,14 @@ const computedFields = {
 	},
 };
 
+const ProofLink = defineNestedType(() => ({
+	name: "ProofLink",
+	fields: {
+		label: { type: "string", required: true },
+		href: { type: "string", required: true },
+	},
+}));
+
 export const Project = defineDocumentType(() => ({
 	name: "Project",
 	filePathPattern: "./projects/**/*.mdx",
@@ -29,6 +41,12 @@ export const Project = defineDocumentType(() => ({
 		repository: { type: "string" },
 		banner: { type: "string" },
 		screenshot: { type: "string" },
+		outcomes: { type: "list", of: { type: "string" } },
+		roleHighlights: { type: "list", of: { type: "string" } },
+		proofLinks: {
+			type: "list",
+			of: ProofLink,
+		},
 	},
 	computedFields,
 }));
@@ -46,6 +64,12 @@ export const OpenSource = defineDocumentType(() => ({
 		published: { type: "boolean" },
 		project: { type: "string" },
 		featured: { type: "boolean" },
+		outcomes: { type: "list", of: { type: "string" } },
+		roleHighlights: { type: "list", of: { type: "string" } },
+		proofLinks: {
+			type: "list",
+			of: ProofLink,
+		},
 	},
 	computedFields,
 }));
@@ -107,6 +131,12 @@ export const Talk = defineDocumentType(() => ({
 		topic: { type: "string" },
 		published: { type: "boolean" },
 		summary: { type: "string" },
+		outcomes: { type: "list", of: { type: "string" } },
+		roleHighlights: { type: "list", of: { type: "string" } },
+		proofLinks: {
+			type: "list",
+			of: ProofLink,
+		},
 	},
 	computedFields,
 }));
@@ -158,6 +188,12 @@ export const Blog = defineDocumentType(() => ({
 		source: { type: "string" },
 		draft: { type: "boolean" },
 		tags: { type: "list", of: { type: "string" } },
+		outcomes: { type: "list", of: { type: "string" } },
+		roleHighlights: { type: "list", of: { type: "string" } },
+		proofLinks: {
+			type: "list",
+			of: ProofLink,
+		},
 	},
 	computedFields,
 }));

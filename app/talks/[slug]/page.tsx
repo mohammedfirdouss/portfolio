@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
+import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
 import "@/app/blog/[slug]/mdx.css";
 import { allTalks } from "contentlayer/generated";
 import Link from "next/link";
@@ -58,6 +59,11 @@ export default async function TalkDetailPage({ params }: Props) {
 					<p className="text-gray-500 mt-4 text-lg">{talk.summary}</p>
 				)}
 			</div>
+			<OutcomeProofBlock
+				outcomes={talk.outcomes}
+				roleHighlights={talk.roleHighlights}
+				proofLinks={talk.proofLinks}
+			/>
 			<article className="prose max-w-none">
 				<Mdx code={talk.body.code} />
 			</article>
