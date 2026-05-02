@@ -367,9 +367,9 @@ export default function SystemsDesignPage() {
 			</h1>
 			<div className="text-lg text-gray-700 mb-12 max-w-3xl space-y-4">
 				<p>
-					Real case studies pulled from my actual repositories, not
-					placeholders. Each one includes architecture blocks, before/after
-					changes, an incident writeup, and concrete implementation links.
+					Real case studies pulled from my actual repositories. Each one
+					includes architecture blocks, before/after changes, an incident
+					writeup, and concrete implementation links.
 				</p>
 			</div>
 
