@@ -1,17 +1,17 @@
 ---
 title: AWS Analytics Pipeline
-description: Utilizing AWS S3, Glue, Athena, and QuickSight for data exploration and visualization in a serverless analytics pipeline.
+description: A data analytics flow on AWS using S3, Glue, Athena, and QuickSight.
 date: "2023-12-11"
 repository: mohammedfirdouss/aws-analytics-pipeline-viz
 published: true
 outcomes:
-  - Built a full serverless data flow from raw events to dashboards.
+  - Built a full data flow from raw files to dashboards.
   - Improved query speed with partitioning and better file formats.
   - Kept costs low with pay-per-query services.
 roleHighlights:
   - I designed the S3, Glue, Athena, and QuickSight setup.
   - I built the ETL and data catalog flow.
-  - I tuned the pipeline for speed and lower cost.
+  - I tuned the flow for better speed and lower cost.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/aws-analytics-pipeline-viz
@@ -19,9 +19,9 @@ proofLinks:
     href: /systems-design
 ---
 
-This project demonstrates a complete serverless data analytics pipeline on AWS, processing and visualizing data using managed services. The pipeline ingests raw data, transforms it, makes it queryable, and creates interactive visualizations—all without managing any servers.
+This project shows a full data analytics flow on AWS using managed services. It ingests raw data, transforms it, makes it queryable, and creates interactive visualizations without managing servers.
 
-The solution showcases modern data engineering practices using AWS's serverless analytics services, providing a scalable and cost-effective approach to data analytics.
+The setup provides a practical way to build analytics on AWS with low maintenance.
 
 <div class="my-6 flex flex-col sm:flex-row items-center gap-4">
   <a
@@ -39,28 +39,28 @@ The solution showcases modern data engineering practices using AWS's serverless 
 
 ## What it is
 
-A serverless data analytics pipeline featuring:
+A data analytics flow featuring:
 
 - **Data Storage:** Amazon S3 as the central data lake for raw and processed data.
 - **Data Cataloging:** AWS Glue for discovering, cataloging, and transforming data.
 - **Data Querying:** Amazon Athena for interactive SQL queries on S3 data.
 - **Data Visualization:** Amazon QuickSight for creating interactive dashboards and reports.
-- **ETL Processing:** Automated data transformation using AWS Glue ETL jobs.
+- **ETL Processing:** Automated data transformation using AWS Glue jobs.
 
 ## How It's Built
 
-- **Serverless Architecture:** Fully serverless pipeline with no infrastructure to manage.
+- **Managed Services:** Uses AWS managed services with no server management.
 - **Data Lake:** S3-based data lake following best practices for data organization.
 - **Schema Discovery:** Automatic schema detection and cataloging using Glue crawlers.
 - **Query Performance:** Optimized data formats (Parquet) and partitioning for efficient queries.
-- **Visualization:** Interactive dashboards with drill-down capabilities in QuickSight.
+- **Visualization:** Interactive dashboards in QuickSight.
 - **Cost Optimization:** Pay-per-query pricing model, only paying for resources used.
-- **Scalability:** Automatically scales to handle datasets of any size.
+- **Scaling:** Can scale automatically as data grows.
 
 ## What I Learned
 
 - **Data Lake Architecture:** Designing and implementing a data lake on S3 with proper organization.
-- **Serverless Analytics:** Building analytics pipelines without managing servers or clusters.
+- **Managed Analytics:** Building analytics flows without managing servers or clusters.
 - **AWS Glue:** Using Glue for ETL, data cataloging, and schema management.
 - **Query Optimization:** Techniques for optimizing query performance in Athena.
 - **Data Visualization:** Creating effective dashboards that provide actionable insights.

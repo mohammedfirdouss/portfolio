@@ -1,16 +1,16 @@
 ---
 title: K8s Health AI
-description: An AI-assisted Kubernetes operator that detects pod failures, gathers runtime diagnostics, and stores remediation guidance in a custom resource.
+description: A Kubernetes operator that detects pod failures, collects diagnostics, and stores fix guidance in a custom resource.
 date: "2026-04-16"
 repository: mohammedfirdouss/k8s-health-ai
 published: true
 outcomes:
   - Automated diagnosis for pod crashes, init errors, and scheduling failures.
   - Captured logs, events, and spec context into a single diagnosis record.
-  - Added pluggable LLM backends to keep the operator portable across providers.
+  - Added pluggable AI backends so the operator can work across providers.
 roleHighlights:
   - I built the operator flow using controller-runtime and a custom CRD.
-  - I implemented failure classification and context collection for diagnosis quality.
+  - I implemented failure classification and context collection for better diagnosis quality.
   - I added metrics and CLI support to make day-2 operations easier.
 proofLinks:
   - label: Repository
@@ -19,9 +19,9 @@ proofLinks:
     href: https://github.com/mohammedfirdouss/k8s-health-ai/blob/main/docs/configuration.md
 ---
 
-K8s Health AI is an operator-style project for Kubernetes troubleshooting. It watches failing workloads, gathers high-value runtime context, calls a configurable LLM backend, and writes actionable diagnosis output into a `ClusterDiagnosis` custom resource.
+K8s Health AI is an operator-style project for Kubernetes troubleshooting. It watches failing workloads, gathers runtime context, calls a configurable AI backend, and writes diagnosis output into a `ClusterDiagnosis` custom resource.
 
-Instead of manually collecting pod events, specs, and logs under pressure, the system centralizes that workflow and returns concise guidance tied to specific failure classes.
+Instead of manually collecting pod events, specs, and logs under pressure, the system does that work in one place and returns concise guidance for each failure type.
 
 <div class="my-6 flex flex-col sm:flex-row items-center gap-4">
   <a
@@ -44,7 +44,7 @@ A Kubernetes diagnostics assistant with:
 - **Failure Detection:** Watches for common pod failure states and classifies root patterns.
 - **Context Collection:** Pulls events, pod spec details, and logs automatically.
 - **Diagnosis CRD:** Writes findings into `ClusterDiagnosis` objects for team visibility.
-- **Provider Flexibility:** Supports mock and multiple cloud/local LLM providers.
+- **Provider Flexibility:** Supports mock and multiple cloud/local AI providers.
 
 ## How It's Built
 
@@ -57,6 +57,6 @@ A Kubernetes diagnostics assistant with:
 ## What I Learned
 
 - **Kubernetes Controller Patterns:** Building reliable reconciliation loops around noisy cluster events.
-- **AI in Ops Tooling:** Using LLMs where they help most while preserving deterministic context collection.
+- **AI in Ops Tooling:** Using AI where it helps while keeping context collection deterministic.
 - **Production Diagnostics:** Designing output that is short, useful, and connected to real runtime evidence.
-- **Extensible Interfaces:** Abstracting providers without complicating the core diagnosis pipeline.
+- **Extensible Interfaces:** Supporting multiple providers without complicating the core diagnosis flow.

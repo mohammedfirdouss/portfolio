@@ -1,19 +1,19 @@
 ---
 title: E-Commerce Kubernetes Platform
-description: A microservices-based e-commerce platform deployed on Kubernetes, demonstrating modern cloud-native architecture patterns.
+description: An e-commerce platform built with Go services and deployed on Kubernetes.
 date: "2026-02-07"
 repository: mohammedfirdouss/ecommerce-k8s
 published: true
 banner: https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/02-product-catalog.png
 screenshot: https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/05-argocd-apps.png
 outcomes:
-  - Delivered a Kubernetes-based e-commerce platform with independently deployable Go microservices.
-  - Established deployment and operations patterns for scaling, routing, and service reliability.
-  - Demonstrated production-focused observability and CI/CD workflows for cloud-native workloads.
+  - Built an e-commerce platform with Go services on Kubernetes.
+  - Set up deployment and operations patterns for scaling and reliable routing.
+  - Added logging, metrics, and CI/CD for day-to-day operations.
 roleHighlights:
   - I defined service boundaries and implemented core backend services in Go.
-  - I authored and organized Kubernetes deployment resources for container orchestration.
-  - I designed the platform flow around maintainability, scalability, and operational visibility.
+  - I wrote and organized Kubernetes deployment files.
+  - I designed the platform for easier maintenance and scaling.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/ecommerce-k8s
@@ -21,9 +21,9 @@ proofLinks:
     href: https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/05-argocd-apps.png
 ---
 
-This project showcases a production-ready e-commerce platform built using microservices architecture and deployed on Kubernetes. The application demonstrates modern cloud-native development practices, including containerization, orchestration, and service mesh integration.
+This project is an e-commerce platform built with microservices and deployed on Kubernetes.
 
-Written in Go, the platform emphasizes performance, scalability, and maintainability while implementing core e-commerce functionality across multiple independent services.
+Written in Go, it covers core e-commerce features across independent services.
 
 <div class="my-6 flex flex-col sm:flex-row items-center gap-4">
   <a
@@ -41,10 +41,10 @@ Written in Go, the platform emphasizes performance, scalability, and maintainabi
 
 ## What it is
 
-A cloud-native e-commerce platform featuring:
+An e-commerce platform with:
 
 - **Microservices Architecture:** Independent services for products, orders, payments, and user management.
-- **Kubernetes Orchestration:** Deployed on Kubernetes for automated scaling and self-healing.
+- **Kubernetes Deployment:** Runs on Kubernetes with scaling and restart support.
 - **Service Communication:** Inter-service communication using gRPC and REST APIs.
 - **Database Per Service:** Each microservice manages its own database for data isolation.
 - **API Gateway:** Centralized entry point for client requests with routing and authentication.
@@ -52,8 +52,8 @@ A cloud-native e-commerce platform featuring:
 ## How It's Built
 
 - **Language:** Built with Go (Golang) for high performance and concurrency.
-- **Container Orchestration:** Kubernetes manifests for deployment, services, and ingress configuration.
-- **Service Mesh:** Integration patterns for service discovery and load balancing.
+- **Deployment Files:** Kubernetes manifests for deployments, services, and ingress.
+- **Service Networking:** Service discovery and load balancing patterns.
 - **Data Storage:** Multiple database technologies chosen based on service requirements.
 - **CI/CD:** Automated build and deployment pipeline for containerized services.
 - **Observability:** Integrated logging, metrics, and tracing for production monitoring.
@@ -64,4 +64,4 @@ A cloud-native e-commerce platform featuring:
 - **Kubernetes in Production:** Deploying and managing containerized applications at scale using Kubernetes.
 - **Go for Microservices:** Building efficient, concurrent services using Go's strengths.
 - **Service Communication:** Different patterns for inter-service communication and their trade-offs.
-- **Cloud-Native Principles:** Applying the twelve-factor app methodology to build scalable applications.
+- **Scalable Design:** How to design services that are easier to scale and maintain.
