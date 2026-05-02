@@ -61,6 +61,48 @@ const layerToneClasses: Record<DiagramLayer["tone"], string> = {
 	output: "border-amber-200 bg-amber-50",
 };
 
+function SystemBlockDiagram({ layers }: { layers: DiagramLayer[] }) {
+	return (
+		<div className="overflow-x-auto rounded-xl border border-gray-200 bg-gray-50/70 p-3 sm:p-4">
+			<div className="inline-flex items-start gap-3">
+				{layers.map((layer, index) => (
+					<div key={layer.label} className="flex items-start gap-3">
+						<div
+							className={`w-64 shrink-0 rounded-lg border p-3 shadow-sm ${layerToneClasses[layer.tone]}`}
+						>
+							<p className="text-[11px] uppercase tracking-wider text-gray-600">
+								{layer.label}
+							</p>
+							<div className="mt-2 space-y-1.5">
+								{layer.nodes.map((node, nodeIndex) => (
+									<div key={node}>
+										<div className="rounded-md border border-white/90 bg-white px-2.5 py-1.5 text-xs text-gray-800">
+											{node}
+										</div>
+										{nodeIndex < layer.nodes.length - 1 ? (
+											<div className="py-0.5 text-center text-[11px] text-gray-300">
+												↓
+											</div>
+										) : null}
+									</div>
+								))}
+							</div>
+						</div>
+						{index < layers.length - 1 ? (
+							<div
+								className="pt-20 text-xl text-gray-400 select-none"
+								aria-hidden="true"
+							>
+								→
+							</div>
+						) : null}
+					</div>
+				))}
+			</div>
+		</div>
+	);
+}
+
 const caseStudies = [
 	{
 		title: "AI Code Reviewer: Edge Review Pipeline",
@@ -433,54 +475,12 @@ export default function SystemsDesignPage() {
 
 						<div className="mt-4">
 							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-								Architecture Flow
-							</h3>
-							<div className="flex flex-wrap items-center gap-2 text-sm">
-								{study.architectureFlow.map((step, index) => (
-									<div key={step} className="flex items-center gap-2">
-										<span className="rounded border border-gray-200 bg-gray-50 px-2.5 py-1 text-gray-800">
-											{step}
-										</span>
-										{index < study.architectureFlow.length - 1 ? (
-											<span className="text-gray-400">→</span>
-										) : null}
-									</div>
-								))}
-							</div>
-						</div>
-
-						<div className="mt-4">
-							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
 								System Block Diagram
 							</h3>
-							<div className="rounded-xl border border-gray-200 bg-gray-50/70 p-3 sm:p-4">
-								{study.diagramLayers.map((layer, index) => (
-									<div key={layer.label}>
-										<div
-											className={`rounded-lg border p-3 ${
-												layerToneClasses[layer.tone]
-											}`}
-										>
-											<p className="text-[11px] uppercase tracking-wider text-gray-600">
-												{layer.label}
-											</p>
-											<div className="mt-2 flex flex-wrap gap-2">
-												{layer.nodes.map((node) => (
-													<span
-														key={node}
-														className="rounded-md border border-white/80 bg-white/90 px-2 py-1 text-xs text-gray-800"
-													>
-														{node}
-													</span>
-												))}
-											</div>
-										</div>
-										{index < study.diagramLayers.length - 1 ? (
-											<div className="py-1.5 text-center text-gray-400">↓</div>
-										) : null}
-									</div>
-								))}
-							</div>
+							<SystemBlockDiagram layers={study.diagramLayers} />
+							<p className="mt-2 text-xs text-gray-600">
+								Flow summary: {study.architectureFlow.join(" → ")}
+							</p>
 						</div>
 
 						<div className="mt-4">
