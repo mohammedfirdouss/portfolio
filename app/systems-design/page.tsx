@@ -77,9 +77,15 @@ const caseStudies = [
 			"prevent spam and accidental overload with rate limiting",
 		],
 		impact: [
-			{ label: "Review modes", value: "4 (quick, security, performance, docs)" },
+			{
+				label: "Review modes",
+				value: "4 (quick, security, performance, docs)",
+			},
 			{ label: "Model tier", value: "Workers AI Llama 3.3 70B" },
-			{ label: "State bounds", value: "100 reviews / 200 messages cap per agent" },
+			{
+				label: "State bounds",
+				value: "100 reviews / 200 messages cap per agent",
+			},
 		],
 		role: [
 			"Implemented Worker routing for `/agent`, `/api/review`, and operational endpoints.",
@@ -112,7 +118,11 @@ const caseStudies = [
 			},
 			{
 				label: "Output Layer",
-				nodes: ["WebSocket stream chunks", "Saved review list", "Status/analytics endpoints"],
+				nodes: [
+					"WebSocket stream chunks",
+					"Saved review list",
+					"Status/analytics endpoints",
+				],
 				tone: "output",
 			},
 		],
@@ -207,8 +217,14 @@ const caseStudies = [
 		],
 		impact: [
 			{ label: "Dataset", value: "Amazon Sales Dataset (~4.7 MB CSV)" },
-			{ label: "Smoke query", value: "Athena `SELECT ... LIMIT 10` execution path" },
-			{ label: "Focused analysis", value: "Top 15 filtered rows by product_id + rating" },
+			{
+				label: "Smoke query",
+				value: "Athena `SELECT ... LIMIT 10` execution path",
+			},
+			{
+				label: "Focused analysis",
+				value: "Top 15 filtered rows by product_id + rating",
+			},
 		],
 		role: [
 			"Automated S3 bucket creation and dataset upload via shell script.",
@@ -231,17 +247,29 @@ const caseStudies = [
 			},
 			{
 				label: "Processing Layer",
-				nodes: ["S3 bucket bootstrap", "Glue DB creation", "Crawler metadata scan"],
+				nodes: [
+					"S3 bucket bootstrap",
+					"Glue DB creation",
+					"Crawler metadata scan",
+				],
 				tone: "process",
 			},
 			{
 				label: "Intelligence Layer",
-				nodes: ["Athena SQL execution", "Schema-driven queries", "QuickSight dataset setup"],
+				nodes: [
+					"Athena SQL execution",
+					"Schema-driven queries",
+					"QuickSight dataset setup",
+				],
 				tone: "intelligence",
 			},
 			{
 				label: "Output Layer",
-				nodes: ["Query result files in S3", "Filtered insights", "Dashboard visuals"],
+				nodes: [
+					"Query result files in S3",
+					"Filtered insights",
+					"Dashboard visuals",
+				],
 				tone: "output",
 			},
 		],
@@ -249,7 +277,8 @@ const caseStudies = [
 			{
 				label: "Bucket provisioning",
 				before: "manual creation attempts with region mismatch errors",
-				after: "scripted creation flow with explicit location constraint handling",
+				after:
+					"scripted creation flow with explicit location constraint handling",
 			},
 			{
 				label: "Schema discovery",
@@ -259,7 +288,8 @@ const caseStudies = [
 			{
 				label: "Analysis mode",
 				before: "raw file inspection",
-				after: "repeatable SQL queries plus dashboard-ready QuickSight connection",
+				after:
+					"repeatable SQL queries plus dashboard-ready QuickSight connection",
 			},
 		],
 		failureStory: {
@@ -337,9 +367,9 @@ export default function SystemsDesignPage() {
 			</h1>
 			<div className="text-lg text-gray-700 mb-12 max-w-3xl space-y-4">
 				<p>
-					Real case studies pulled from my actual repositories, not placeholders.
-					Each one includes architecture blocks, before/after changes, an incident
-					writeup, and concrete implementation links.
+					Real case studies pulled from my actual repositories, not
+					placeholders. Each one includes architecture blocks, before/after
+					changes, an incident writeup, and concrete implementation links.
 				</p>
 			</div>
 
@@ -350,7 +380,9 @@ export default function SystemsDesignPage() {
 						className="rounded-xl border border-gray-200 bg-white p-5 sm:p-6"
 					>
 						<div className="flex flex-wrap items-center gap-2">
-							<h2 className="text-xl font-semibold text-gray-900">{study.title}</h2>
+							<h2 className="text-xl font-semibold text-gray-900">
+								{study.title}
+							</h2>
 							<span className="text-xs rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-gray-600">
 								{study.projectName}
 							</span>
@@ -370,7 +402,10 @@ export default function SystemsDesignPage() {
 								Open repository →
 							</a>
 							<span className="text-gray-300 mx-2">·</span>
-							<Link href={study.projectHref} className="text-sky-700 hover:underline">
+							<Link
+								href={study.projectHref}
+								className="text-sky-700 hover:underline"
+							>
 								Open project page →
 							</Link>
 						</div>
@@ -388,7 +423,9 @@ export default function SystemsDesignPage() {
 										<p className="text-[11px] uppercase tracking-wide text-sky-700">
 											{item.label}
 										</p>
-										<p className="text-sm font-medium text-sky-900">{item.value}</p>
+										<p className="text-sm font-medium text-sky-900">
+											{item.value}
+										</p>
 									</div>
 								))}
 							</div>
@@ -420,7 +457,9 @@ export default function SystemsDesignPage() {
 								{study.diagramLayers.map((layer, index) => (
 									<div key={layer.label}>
 										<div
-											className={`rounded-lg border p-3 ${layerToneClasses[layer.tone]}`}
+											className={`rounded-lg border p-3 ${
+												layerToneClasses[layer.tone]
+											}`}
 										>
 											<p className="text-[11px] uppercase tracking-wider text-gray-600">
 												{layer.label}
@@ -462,7 +501,9 @@ export default function SystemsDesignPage() {
 											{item.before}
 										</p>
 										<p className="text-sm text-gray-700">
-											<span className="font-medium text-emerald-700">After:</span>{" "}
+											<span className="font-medium text-emerald-700">
+												After:
+											</span>{" "}
 											{item.after}
 										</p>
 									</div>
@@ -606,7 +647,10 @@ export default function SystemsDesignPage() {
 														{item.label} →
 													</a>
 												) : (
-													<Link href={item.href} className="text-sky-700 hover:underline">
+													<Link
+														href={item.href}
+														className="text-sky-700 hover:underline"
+													>
 														{item.label} →
 													</Link>
 												)}
