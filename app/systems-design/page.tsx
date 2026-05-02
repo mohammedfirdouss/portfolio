@@ -3,7 +3,7 @@ import Link from "next/link";
 export const metadata = {
 	title: "Systems Design",
 	description:
-		"Evidence-backed systems design case studies from real project repositories, with architecture diagrams, trade-offs, and failure writeups.",
+		"Clear system design case studies from real project repositories, with block diagrams, decisions, and failure notes.",
 };
 
 type DiagramLayer = {
@@ -105,65 +105,65 @@ function SystemBlockDiagram({ layers }: { layers: DiagramLayer[] }) {
 
 const caseStudies = [
 	{
-		title: "AI Code Reviewer: Edge Review Pipeline",
+		title: "AI Code Reviewer: Review Flow",
 		projectName: "AI Code Reviewer",
 		projectHref: "/projects/AICodeReviewer",
 		repoHref: "https://github.com/mohammedfirdouss/ai_code_reviewer",
 		context:
-			"Built from the ai_code_reviewer repository: Cloudflare Worker routing, Durable Object state, and streaming review responses over WebSocket.",
+			"Built from the ai_code_reviewer repository. It uses a Cloudflare Worker, a Durable Object for saved history, and WebSocket streaming for live output.",
 		problem:
-			"Review feedback needed to feel immediate, while still preserving history and controlling abuse in a public-facing endpoint.",
+			"Reviews felt too slow, and we also needed to save history and block abuse on a public endpoint.",
 		requirements: [
-			"stream review output in real time to the browser",
-			"persist review and conversation state per client session",
-			"prevent spam and accidental overload with rate limiting",
+			"show review output live in the browser",
+			"save review and chat history for each client session",
+			"limit requests to stop spam and overload",
 		],
 		impact: [
 			{
 				label: "Review modes",
 				value: "4 (quick, security, performance, docs)",
 			},
-			{ label: "Model tier", value: "Workers AI Llama 3.3 70B" },
+			{ label: "Model", value: "Workers AI Llama 3.3 70B" },
 			{
-				label: "State bounds",
-				value: "100 reviews / 200 messages cap per agent",
+				label: "Saved history limit",
+				value: "100 reviews / 200 messages per agent",
 			},
 		],
 		role: [
-			"Implemented Worker routing for `/agent`, `/api/review`, and operational endpoints.",
-			"Used Durable Objects for per-client isolation and persisted review history.",
-			"Added language validation guardrails before model execution.",
+			"Built Worker routes for `/agent`, `/api/review`, and support endpoints.",
+			"Used Durable Objects to save each client's review history.",
+			"Added language checks before running the model.",
 		],
 		architectureFlow: [
-			"React frontend",
-			"WebSocket or HTTP entry",
-			"Worker router + rate limiter",
+			"React app",
+			"WebSocket or HTTP request",
+			"Worker router and rate limit",
 			"Durable Object agent",
-			"Code review service + Workers AI",
-			"Streamed result + stored history",
+			"Review service and Workers AI",
+			"Live response and saved history",
 		],
 		diagramLayers: [
 			{
-				label: "Input Layer",
-				nodes: ["Code payload", "Selected language", "Review category"],
+				label: "Input",
+				nodes: ["Code", "Selected language", "Review type"],
 				tone: "input",
 			},
 			{
-				label: "Processing Layer",
-				nodes: ["/agent routing", "Rate limiting", "CORS + API gateway"],
+				label: "Processing",
+				nodes: ["/agent routing", "Rate limiting", "CORS and API entry"],
 				tone: "process",
 			},
 			{
-				label: "Intelligence Layer",
-				nodes: ["Language validation", "CodeReviewService", "Workers AI model"],
+				label: "Review logic",
+				nodes: ["Language check", "CodeReviewService", "Workers AI model"],
 				tone: "intelligence",
 			},
 			{
-				label: "Output Layer",
+				label: "Output",
 				nodes: [
 					"WebSocket stream chunks",
 					"Saved review list",
-					"Status/analytics endpoints",
+					"Status endpoints",
 				],
 				tone: "output",
 			},
@@ -171,61 +171,61 @@ const caseStudies = [
 		beforeAfter: [
 			{
 				label: "Response model",
-				before: "single full response after processing",
-				after: "chunked streaming over WebSocket for faster perceived feedback",
+				before: "one full response at the end",
+				after: "small streamed chunks over WebSocket",
 			},
 			{
 				label: "Session memory",
-				before: "stateless request handling",
-				after: "Durable Object-backed per-client review/history state",
+				before: "no saved session memory",
+				after: "Durable Object saves review history per client",
 			},
 			{
-				label: "Input safety",
-				before: "user-declared language only",
-				after: "language mismatch checks before review execution",
+				label: "Input checks",
+				before: "trusted the selected language",
+				after: "checks for language mismatch before review",
 			},
 		],
 		failureStory: {
-			title: "Language mismatch caused noisy reviews",
+			title: "Wrong language selection gave bad reviews",
 			symptom:
-				"Submissions with mismatched language selection returned low-signal feedback.",
+				"Code sent with the wrong selected language returned poor feedback.",
 			rootCause:
-				"Review execution trusted declared language without enough validation.",
-			fix: "Added language detection + mismatch rejection in the review path before AI call.",
+				"The review flow trusted user input and did not check enough.",
+			fix: "Added language detection and reject-on-mismatch before the AI call.",
 			result:
-				"Invalid requests now fail fast with a language error and detected-language hints.",
+				"Wrong requests now fail early with a clear language error.",
 		},
 		decisionTable: [
 			{
-				topic: "Transport",
+				topic: "Request style",
 				options: "REST polling vs WebSocket streaming",
 				decision: "WebSocket streaming",
-				why: "Improves perceived latency and supports incremental rendering.",
+				why: "Users see output sooner as it arrives.",
 			},
 			{
-				topic: "State layer",
+				topic: "Where to save session data",
 				options: "Stateless Worker vs Durable Object",
 				decision: "Durable Object",
-				why: "Natural fit for per-client history and bounded persistent state.",
+				why: "Easy way to keep per-client history with size limits.",
 			},
 			{
 				topic: "Language handling",
 				options: "Trust user selection vs detect + validate",
 				decision: "Detect + validate",
-				why: "Prevents avoidable low-quality reviews and bad model context.",
+				why: "Stops avoidable bad reviews from wrong language picks.",
 			},
 		],
 		tradeoffs: [
-			"Persistent state helps UX but requires storage bounds and lifecycle management.",
-			"Strict language checks improve quality but can reject borderline mixed snippets.",
+			"Saving history helps users, but you must manage data size.",
+			"Strict language checks improve quality, but may reject mixed snippets.",
 		],
 		notes: [
-			"Worker routes expose both real-time and non-streaming modes.",
-			"State capping in Durable Objects prevents unbounded growth under repeated usage.",
+			"The Worker supports both live streaming and normal requests.",
+			"History caps in Durable Objects stop unbounded growth.",
 		],
 		improvements: [
-			"Expose first-token latency and completion latency as explicit metrics.",
-			"Add structured severity scoring in stored review output.",
+			"Show time-to-first-output and total completion time as metrics.",
+			"Add clear severity levels to saved review output.",
 		],
 		proofLinks: [
 			{ label: "Project page", href: "/projects/AICodeReviewer" },
@@ -244,73 +244,73 @@ const caseStudies = [
 		],
 	},
 	{
-		title: "AWS Analytics Pipeline: S3 → Glue → Athena → QuickSight",
+		title: "AWS Analytics: S3 → Glue → Athena → QuickSight",
 		projectName: "AWS Analytics Pipeline",
 		projectHref: "/projects/AWSAnalyticsPipeline",
 		repoHref: "https://github.com/mohammedfirdouss/aws-analytics-pipeline-viz",
 		context:
-			"Built from scripts and journals in aws-analytics-pipeline-viz, including S3 upload automation, Glue crawler setup, Athena queries, and QuickSight setup.",
+			"Built from scripts and notes in aws-analytics-pipeline-viz. It covers S3 uploads, Glue crawler setup, Athena queries, and QuickSight setup.",
 		problem:
-			"Needed a reproducible way to move from raw CSV data to queryable insights and dashboard visuals using mostly serverless AWS services.",
+			"Needed a repeatable way to move from raw CSV files to SQL queries and dashboard charts.",
 		requirements: [
-			"automate data upload and service setup with scripts",
-			"catalog schema for SQL querying without manual table maintenance",
-			"produce dashboard-ready data flow from the same source bucket",
+			"automate data upload and setup with scripts",
+			"create table metadata for SQL without manual table edits",
+			"build one data flow from source file to dashboard",
 		],
 		impact: [
 			{ label: "Dataset", value: "Amazon Sales Dataset (~4.7 MB CSV)" },
 			{
-				label: "Smoke query",
+				label: "Quick check query",
 				value: "Athena `SELECT ... LIMIT 10` execution path",
 			},
 			{
-				label: "Focused analysis",
+				label: "Focused query",
 				value: "Top 15 filtered rows by product_id + rating",
 			},
 		],
 		role: [
 			"Automated S3 bucket creation and dataset upload via shell script.",
-			"Configured Glue database + crawler to infer schema from S3 data.",
-			"Ran Athena query paths and connected Athena to QuickSight datasets.",
+			"Set up Glue database and crawler to read schema from S3 data.",
+			"Ran Athena queries and connected Athena to QuickSight datasets.",
 		],
 		architectureFlow: [
-			"CSV dataset",
+			"CSV file",
 			"S3 upload script",
-			"Glue database + crawler",
+			"Glue database and crawler",
 			"Athena query scripts",
 			"QuickSight data source",
-			"Dashboards",
+			"Dashboard charts",
 		],
 		diagramLayers: [
 			{
-				label: "Input Layer",
-				nodes: ["Amazon Sales CSV", "Environment variables", "CLI scripts"],
+				label: "Input",
+				nodes: ["Amazon Sales CSV", "Environment variables", "Shell scripts"],
 				tone: "input",
 			},
 			{
-				label: "Processing Layer",
+				label: "Processing",
 				nodes: [
-					"S3 bucket bootstrap",
+					"S3 bucket setup",
 					"Glue DB creation",
-					"Crawler metadata scan",
+					"Crawler scan",
 				],
 				tone: "process",
 			},
 			{
-				label: "Intelligence Layer",
+				label: "Query and reporting",
 				nodes: [
 					"Athena SQL execution",
-					"Schema-driven queries",
+					"SQL queries from catalog schema",
 					"QuickSight dataset setup",
 				],
 				tone: "intelligence",
 			},
 			{
-				label: "Output Layer",
+				label: "Output",
 				nodes: [
 					"Query result files in S3",
-					"Filtered insights",
-					"Dashboard visuals",
+					"Filtered query results",
+					"Dashboard charts",
 				],
 				tone: "output",
 			},
@@ -318,62 +318,60 @@ const caseStudies = [
 		beforeAfter: [
 			{
 				label: "Bucket provisioning",
-				before: "manual creation attempts with region mismatch errors",
-				after:
-					"scripted creation flow with explicit location constraint handling",
+				before: "manual bucket creation with region mismatch errors",
+				after: "script creates bucket with the right region settings",
 			},
 			{
 				label: "Schema discovery",
-				before: "manual assumptions about columns and table shape",
-				after: "Glue crawler-created catalog tables for Athena use",
+				before: "manual guesses about columns and table shape",
+				after: "Glue crawler creates catalog tables for Athena",
 			},
 			{
 				label: "Analysis mode",
 				before: "raw file inspection",
-				after:
-					"repeatable SQL queries plus dashboard-ready QuickSight connection",
+				after: "repeatable SQL queries plus QuickSight dashboard connection",
 			},
 		],
 		failureStory: {
 			title: "S3 bucket creation failed with region constraint error",
 			symptom: "Bucket creation returned IllegalLocationConstraintException.",
 			rootCause:
-				"Bucket creation request did not align location constraint with selected AWS region.",
-			fix: "Updated the script flow to include explicit location constraint in creation path.",
+				"Bucket creation request used location settings that did not match the chosen AWS region.",
+			fix: "Updated scripts to include the correct location setting on create.",
 			result:
-				"Bucket creation and dataset upload succeeded, unlocking the downstream pipeline steps.",
+				"Bucket creation and upload worked, so the next steps could run.",
 		},
 		decisionTable: [
 			{
 				topic: "Data lake location",
 				options: "Local files only vs S3-backed source of truth",
 				decision: "S3-backed source",
-				why: "Needed durable storage compatible with Glue and Athena querying.",
+				why: "Needed durable storage that works with Glue and Athena.",
 			},
 			{
 				topic: "Schema strategy",
 				options: "Manual table definitions vs Glue crawler metadata",
 				decision: "Glue crawler",
-				why: "Reduced manual schema setup and matched serverless workflow goals.",
+				why: "Less manual setup and fewer schema mistakes.",
 			},
 			{
 				topic: "QuickSight query mode",
 				options: "Direct query vs SPICE import",
 				decision: "SPICE for dashboarding path",
-				why: "Prioritized responsive interactive visuals for exploration.",
+				why: "Dashboards load faster for users.",
 			},
 		],
 		tradeoffs: [
-			"Serverless services reduce ops overhead but can spread debugging context across tools.",
-			"CLI automation improves repeatability but requires strict environment variable discipline.",
+			"Managed AWS services reduce ops work, but debugging is split across tools.",
+			"Scripted setup is repeatable, but env vars must be set correctly.",
 		],
 		notes: [
-			"Pipeline proof is split across scripts and service journals rather than one monolithic workflow file.",
-			"Athena scripts include both a quick table scan and a targeted product-level query.",
+			"Proof is spread across scripts and service notes, not one large file.",
+			"Athena scripts include a quick table check and a targeted product query.",
 		],
 		improvements: [
-			"Add scheduled refresh and data-quality assertions for production-like reporting.",
-			"Introduce partitioning and parquet conversion to reduce query scan cost.",
+			"Add scheduled refresh and data quality checks.",
+			"Use partitioning and Parquet to lower query scan cost.",
 		],
 		proofLinks: [
 			{ label: "Project page", href: "/projects/AWSAnalyticsPipeline" },
@@ -409,9 +407,9 @@ export default function SystemsDesignPage() {
 			</h1>
 			<div className="text-lg text-gray-700 mb-12 max-w-3xl space-y-4">
 				<p>
-					Real case studies pulled from my actual repositories. Each one
-					includes architecture blocks, before/after changes, an incident
-					writeup, and concrete implementation links.
+					Real case studies from my own repositories. Each one has a block
+					diagram, before/after changes, one failure story, and direct links
+					to the code.
 				</p>
 			</div>
 
@@ -454,7 +452,7 @@ export default function SystemsDesignPage() {
 
 						<div className="mt-4">
 							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-								Impact Snapshot
+								Quick Facts
 							</h3>
 							<div className="grid gap-2 sm:grid-cols-3">
 								{study.impact.map((item) => (
@@ -540,7 +538,7 @@ export default function SystemsDesignPage() {
 
 						<div className="mt-4">
 							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-								Decision Table
+								Choices Made
 							</h3>
 							<div className="overflow-x-auto rounded-xl border border-gray-200">
 								<table className="min-w-full text-sm">
@@ -574,7 +572,7 @@ export default function SystemsDesignPage() {
 						<div className="mt-4 grid gap-4 sm:grid-cols-2">
 							<div>
 								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-									Requirements / Constraints
+									Requirements
 								</h3>
 								<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
 									{study.requirements.map((item) => (
@@ -584,7 +582,7 @@ export default function SystemsDesignPage() {
 							</div>
 							<div>
 								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-									Role & Decisions
+									What I Did
 								</h3>
 								<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
 									{study.role.map((item) => (
@@ -597,7 +595,7 @@ export default function SystemsDesignPage() {
 						<div className="mt-4 grid gap-4 sm:grid-cols-2">
 							<div>
 								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-									Key Trade-offs
+									Downsides
 								</h3>
 								<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
 									{study.tradeoffs.map((item) => (
