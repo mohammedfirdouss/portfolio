@@ -446,7 +446,7 @@ export default function SystemsDesignPage() {
 						</div>
 
 						<div className="mt-4">
-							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+							<h3 className="text-sm font-semibold text-gray-900 mb-2">
 								Quick Facts
 							</h3>
 							<div className="grid gap-2 sm:grid-cols-3">
@@ -467,7 +467,7 @@ export default function SystemsDesignPage() {
 						</div>
 
 						<div className="mt-4">
-							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+							<h3 className="text-sm font-semibold text-gray-900 mb-2">
 								System Block Diagram
 							</h3>
 							<SystemBlockDiagram layers={study.diagramLayers} />
@@ -477,7 +477,7 @@ export default function SystemsDesignPage() {
 						</div>
 
 						<div className="mt-4">
-							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+							<h3 className="text-sm font-semibold text-gray-900 mb-2">
 								Before → After
 							</h3>
 							<div className="space-y-2">
@@ -505,7 +505,7 @@ export default function SystemsDesignPage() {
 						</div>
 
 						<div className="mt-4 rounded-xl border border-rose-200 bg-rose-50/60 p-4">
-							<h3 className="text-xs font-semibold uppercase tracking-widest text-rose-700 mb-2">
+							<h3 className="text-sm font-semibold text-rose-800 mb-2">
 								Failure Story
 							</h3>
 							<p className="text-sm text-rose-900 font-medium">
@@ -532,7 +532,7 @@ export default function SystemsDesignPage() {
 						</div>
 
 						<div className="mt-4">
-							<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+							<h3 className="text-sm font-semibold text-gray-900 mb-2">
 								Choices Made
 							</h3>
 							<div className="overflow-x-auto rounded-xl border border-gray-200">
@@ -566,7 +566,7 @@ export default function SystemsDesignPage() {
 
 						<div className="mt-4 grid gap-4 sm:grid-cols-2">
 							<div>
-								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+								<h3 className="text-sm font-semibold text-gray-900 mb-2">
 									Requirements
 								</h3>
 								<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
@@ -576,7 +576,7 @@ export default function SystemsDesignPage() {
 								</ul>
 							</div>
 							<div>
-								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+								<h3 className="text-sm font-semibold text-gray-900 mb-2">
 									What I Did
 								</h3>
 								<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
@@ -589,7 +589,7 @@ export default function SystemsDesignPage() {
 
 						<div className="mt-4 grid gap-4 sm:grid-cols-2">
 							<div>
-								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+								<h3 className="text-sm font-semibold text-gray-900 mb-2">
 									Downsides
 								</h3>
 								<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
@@ -599,7 +599,7 @@ export default function SystemsDesignPage() {
 								</ul>
 							</div>
 							<div>
-								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+								<h3 className="text-sm font-semibold text-gray-900 mb-2">
 									Notes
 								</h3>
 								<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
@@ -612,7 +612,7 @@ export default function SystemsDesignPage() {
 
 						<div className="mt-4 grid gap-4 sm:grid-cols-2">
 							<div>
-								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
+								<h3 className="text-sm font-semibold text-gray-900 mb-2">
 									Future Improvements
 								</h3>
 								<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
@@ -622,14 +622,14 @@ export default function SystemsDesignPage() {
 								</ul>
 							</div>
 							<div>
-								<h3 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-									Proof Links
+								<h3 className="text-sm font-semibold text-gray-900 mb-2">
+									References
 								</h3>
-								<ul className="space-y-1 text-sm">
+								<div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
 									{study.proofLinks.map((item) => {
 										const isExternal = item.href.startsWith("http");
 										return (
-											<li key={item.href}>
+											<span key={item.href}>
 												{isExternal ? (
 													<a
 														href={item.href}
@@ -637,20 +637,20 @@ export default function SystemsDesignPage() {
 														rel="noopener noreferrer"
 														className="text-sky-700 hover:underline"
 													>
-														{item.label} →
+														{item.label}
 													</a>
 												) : (
 													<Link
 														href={item.href}
 														className="text-sky-700 hover:underline"
 													>
-														{item.label} →
+														{item.label}
 													</Link>
 												)}
-											</li>
+											</span>
 										);
 									})}
-								</ul>
+								</div>
 							</div>
 						</div>
 					</section>
