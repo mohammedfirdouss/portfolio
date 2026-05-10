@@ -7,30 +7,16 @@ project: GitLab
 featured: false
 ---
 
-I contributed documentation to GitLab CLI (glab), a command-line tool for managing GitLab projects from your terminal.
+I documented how `glab stack sync` behaves on fork-based workflows after the underlying bug fix shipped.
 
-## What I Did
+The original fix prevented broken merge requests, but users still needed clear guidance on why fork users are prompted to choose a repository and what to pick.
 
-I wrote documentation explaining how the `glab stack sync` command works with forked repositories. This was my [first open source contribution](https://gitlab.com/gitlab-org/cli/-/merge_requests/1723).
+I updated the CLI docs to explain:
 
-## The Problem
+- when the prompt appears in fork flows,
+- how to choose the correct remote safely,
+- and how this avoids syncing to the wrong project.
 
-A GitLab maintainer had [fixed a bug](https://gitlab.com/gitlab-org/cli/-/merge_requests/1687) where the stack sync command broke when working with forks. The fix worked, but users needed documentation to understand the new behavior.
+This was my first merged OSS contribution and went through normal maintainer review before merge.
 
-## My Solution
-
-I added clear documentation that explains:
-- Why users get prompted to select a repository when working with forks
-- How to choose the right repository
-- What this prevents (broken merge requests)
-
-## Review Process
-
-My work was reviewed by three GitLab team members. One directed it to the appropriate reviewer, another verified its technical accuracy, and the third ensured it met documentation standards. I made changes based on their feedback and the contribution was merged.
-
-## Links
-
-- [My contribution (MR !1723)](https://gitlab.com/gitlab-org/cli/-/merge_requests/1723)
-- [Original bug fix (MR !1687)](https://gitlab.com/gitlab-org/cli/-/merge_requests/1687)
-- [Issue requesting documentation](https://gitlab.com/gitlab-org/cli/-/issues/7660)
-- [GitLab CLI repository](https://gitlab.com/gitlab-org/cli)
+**Links:** [MR !1723](https://gitlab.com/gitlab-org/cli/-/merge_requests/1723) • [Issue #7660](https://gitlab.com/gitlab-org/cli/-/issues/7660) • [Related fix !1687](https://gitlab.com/gitlab-org/cli/-/merge_requests/1687)
