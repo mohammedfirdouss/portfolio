@@ -6,6 +6,14 @@ const socialLinks = [
 		href: "https://github.com/mohammedfirdouss",
 	},
 	{
+		text: "gitlab",
+		href: "https://gitlab.com/mohammedfirdouss",
+	},
+	{
+		text: "hugging face",
+		href: "https://huggingface.co/mohammedfirdouss",
+	},
+	{
 		text: "linkedin",
 		href: "https://www.linkedin.com/in/mohammedfirdousaraoye/",
 	},

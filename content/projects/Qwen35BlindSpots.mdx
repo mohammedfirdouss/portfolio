@@ -1,0 +1,59 @@
+---
+title: Qwen3.5-4B Base Blind Spots
+description: A curated evaluation dataset of failure cases where Qwen3.5-4B-Base produces incorrect or unreliable outputs.
+date: "2026-05-10"
+repository: https://huggingface.co/datasets/mohammedfirdouss/qwen35-4b-base-blind-spots
+published: true
+outcomes:
+  - Built a compact benchmark with 12 targeted prompts across diverse reasoning categories.
+  - Documented model outputs, expected answers, and failure explanations in one structured dataset.
+  - Mapped failure categories to practical fine-tuning dataset strategies and scale ranges.
+roleHighlights:
+  - I designed the task set to probe arithmetic, logic, commonsense, and coreference weaknesses.
+  - I ran deterministic inference on Qwen3.5-4B-Base and captured raw outputs for analysis.
+  - I documented remediation pathways with concrete data sources for follow-up tuning.
+proofLinks:
+  - label: Dataset
+    href: https://huggingface.co/datasets/mohammedfirdouss/qwen35-4b-base-blind-spots
+  - label: Model tested
+    href: https://huggingface.co/Qwen/Qwen3.5-4B-Base
+---
+
+Qwen3.5-4B Base Blind Spots is a small but targeted dataset that captures where a base model looks fluent but still fails on core reasoning tasks.
+
+Each example includes the exact prompt, expected answer, model output, and a short explanation of why the failure happens. The goal is to turn vague model-quality concerns into concrete, reproducible probes.
+
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://huggingface.co/datasets/mohammedfirdouss/qwen35-4b-base-blind-spots"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="project-cta"
+  >
+    View Dataset
+  </a>
+</div>
+
+## What it is
+
+A focused LLM evaluation dataset with:
+
+- **12 Targeted Cases:** One probe per failure category for fast, interpretable checks.
+- **Grounded Annotations:** Expected outputs plus concise reasoning for each failure.
+- **Cross-Category Coverage:** Arithmetic, logic, Bayesian reasoning, Winograd schema, and more.
+- **Reproducible Setup:** Deterministic generation settings for consistent model comparisons.
+
+## How It's Built
+
+- **Model:** `Qwen/Qwen3.5-4B-Base` loaded via Hugging Face Transformers.
+- **Execution:** Deterministic decoding (`do_sample=False`) to reduce variance.
+- **Schema:** `id`, `category`, `prompt`, `expected_output`, `model_output`, `explanation`.
+- **Packaging:** Published as a Hugging Face dataset for easy reuse and extension.
+- **Analysis:** Includes practical recommendations for tuning data by error type.
+
+## What I Learned
+
+- **Small Benchmarks Can Be High Signal:** A compact set can quickly surface recurring blind spots.
+- **Failure Taxonomy Matters:** Grouping by reasoning type makes remediation more actionable.
+- **Determinism Helps Debugging:** Stable outputs make before/after fine-tuning comparisons clearer.
+- **Data Strategy Beats Guesswork:** Mapping each failure mode to specific training data improves iteration.
