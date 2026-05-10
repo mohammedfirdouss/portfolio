@@ -68,7 +68,9 @@ function SystemBlockDiagram({ layers }: { layers: DiagramLayer[] }) {
 				{layers.map((layer, index) => (
 					<div key={layer.label} className="flex items-start gap-3">
 						<div
-							className={`w-64 shrink-0 rounded-lg border p-3 shadow-sm ${layerToneClasses[layer.tone]}`}
+							className={`w-64 shrink-0 rounded-lg border p-3 shadow-sm ${
+								layerToneClasses[layer.tone]
+							}`}
 						>
 							<p className="text-[11px] uppercase tracking-wider text-gray-600">
 								{layer.label}
@@ -189,11 +191,9 @@ const caseStudies = [
 			title: "Wrong language selection gave bad reviews",
 			symptom:
 				"Code sent with the wrong selected language returned poor feedback.",
-			rootCause:
-				"The review flow trusted user input and did not check enough.",
+			rootCause: "The review flow trusted user input and did not check enough.",
 			fix: "Added language detection and reject-on-mismatch before the AI call.",
-			result:
-				"Wrong requests now fail early with a clear language error.",
+			result: "Wrong requests now fail early with a clear language error.",
 		},
 		decisionTable: [
 			{
@@ -289,11 +289,7 @@ const caseStudies = [
 			},
 			{
 				label: "Processing",
-				nodes: [
-					"S3 bucket setup",
-					"Glue DB creation",
-					"Crawler scan",
-				],
+				nodes: ["S3 bucket setup", "Glue DB creation", "Crawler scan"],
 				tone: "process",
 			},
 			{
@@ -338,8 +334,7 @@ const caseStudies = [
 			rootCause:
 				"Bucket creation request used location settings that did not match the chosen AWS region.",
 			fix: "Updated scripts to include the correct location setting on create.",
-			result:
-				"Bucket creation and upload worked, so the next steps could run.",
+			result: "Bucket creation and upload worked, so the next steps could run.",
 		},
 		decisionTable: [
 			{
@@ -408,8 +403,8 @@ export default function SystemsDesignPage() {
 			<div className="text-lg text-gray-700 mb-12 max-w-3xl space-y-4">
 				<p>
 					Real case studies from my own repositories. Each one has a block
-					diagram, before/after changes, one failure story, and direct links
-					to the code.
+					diagram, before/after changes, one failure story, and direct links to
+					the code.
 				</p>
 			</div>
 
