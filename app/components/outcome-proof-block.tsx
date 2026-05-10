@@ -24,60 +24,65 @@ export function OutcomeProofBlock({
 		return null;
 	}
 
+	const sections = [
+		{
+			title: "What changed",
+			items: outcomes,
+		},
+		{
+			title: "What I worked on",
+			items: roleHighlights,
+		},
+	];
+
 	return (
-		<section className="mb-10 rounded-xl border border-gray-200 bg-white p-5 sm:p-6">
-			<div className="grid gap-6 sm:grid-cols-3">
-				<div>
-					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-						Results
-					</h2>
-					<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
-						{outcomes.map((item) => (
-							<li key={item}>{item}</li>
-						))}
-					</ul>
-				</div>
-				<div>
-					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-						My Role
-					</h2>
-					<ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
-						{roleHighlights.map((item) => (
-							<li key={item}>{item}</li>
-						))}
-					</ul>
-				</div>
-				<div>
-					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
-						Links
-					</h2>
-					<ul className="space-y-1 text-sm">
-						{proofLinks.map((item) => {
-							const isExternal = /^https?:\/\//.test(item.href);
-							return (
-								<li key={`${item.label}-${item.href}`}>
-									{isExternal ? (
-										<a
-											href={item.href}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-sky-700 hover:underline"
-										>
-											{item.label} →
-										</a>
-									) : (
-										<Link
-											href={item.href}
-											className="text-sky-700 hover:underline"
-										>
-											{item.label} →
-										</Link>
-									)}
-								</li>
-							);
-						})}
-					</ul>
-				</div>
+		<section className="mb-10 border-t border-b border-gray-200 py-6">
+			<div className="space-y-6">
+				{sections.map(
+					(section) =>
+						section.items.length > 0 && (
+							<div key={section.title}>
+								<h2 className="text-sm font-semibold text-gray-900 mb-2">
+									{section.title}
+								</h2>
+								<ul className="list-disc pl-5 space-y-2 text-base leading-relaxed text-gray-700">
+									{section.items.map((item) => (
+										<li key={item}>{item}</li>
+									))}
+								</ul>
+							</div>
+						),
+				)}
+				{proofLinks.length > 0 && (
+					<div>
+						<h2 className="text-sm font-semibold text-gray-900 mb-2">Links</h2>
+						<div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+							{proofLinks.map((item) => {
+								const isExternal = /^https?:\/\//.test(item.href);
+								const className = "text-sky-700 hover:underline";
+								return isExternal ? (
+									<a
+										key={`${item.label}-${item.href}`}
+										href={item.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className={className}
+									>
+										{item.label}
+									</a>
+								) : (
+									<Link
+										key={`${item.label}-${item.href}`}
+										href={item.href}
+										className={className}
+									>
+										{item.label}
+									</Link>
+								);
+							})}
+						</div>
+					</div>
+				)}
 			</div>
 		</section>
 	);
