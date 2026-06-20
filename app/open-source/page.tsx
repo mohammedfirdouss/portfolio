@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { allOpenSources } from "contentlayer/generated";
+import { allOpenSources, type OpenSource } from "contentlayer/generated";
 
 export const metadata = {
 	title: "Open Source",
 	description:
-		"Contributions to open source projects — bug fixes, documentation, features, and mentorship through programs like LFX.",
+		"Contributions to open source projects, bug fixes, documentation, features, and mentorship through programs like LFX.",
 };
 
 const projectColors: Record<string, string> = {
@@ -25,9 +25,9 @@ export default function OpenSourcePage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-8xl text-gray-200 mb-8">open source</h1>
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">open source</h1>
 			<div className="text-lg text-gray-700 mb-12">
-				<p>I contribute where I can — mostly CNCF and cloud-native projects.</p>
+				<p>I contribute where I can, mostly CNCF and cloud-native projects.</p>
 			</div>
 
 			{featured.length > 0 && (
@@ -59,7 +59,7 @@ export default function OpenSourcePage() {
 	);
 }
 
-function ContributionRow({ contrib }: { contrib: any }) {
+function ContributionRow({ contrib }: { contrib: OpenSource }) {
 	const badgeClass =
 		contrib.project && projectColors[contrib.project]
 			? projectColors[contrib.project]
@@ -92,9 +92,6 @@ function ContributionRow({ contrib }: { contrib: any }) {
 			{contrib.summary && (
 				<p className="text-gray-500 mt-1">{contrib.summary}</p>
 			)}
-			<span className="inline-block mt-2 text-sm text-sky-600 group-hover:underline">
-				Read more →
-			</span>
 		</Link>
 	);
 }
