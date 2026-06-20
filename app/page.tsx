@@ -44,7 +44,6 @@ export default function Home() {
 				</h1>
 				<p className="text-gray-900 text-2xl sm:text-3xl lg:text-4xl tracking-tight">
 					I&apos;m <span>Mohammed Firdous</span>, and I build software
-					<br />
 				</p>
 			</div>
 			<div className="text-lg text-gray-700 space-y-4">
@@ -58,7 +57,7 @@ export default function Home() {
 			</div>
 
 			{/* Blog posts mini list */}
-			<div className="mt-16">
+			<div className="border-t border-gray-100 pt-12 mt-12">
 				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
 					blog
 				</h2>

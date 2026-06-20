@@ -17,7 +17,7 @@ export default function DiagramsPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-8xl text-gray-200 mb-8">diagrams</h1>
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">diagrams</h1>
 			<div className="text-lg text-gray-700 mb-12">
 				<p>
 					Architecture diagrams for projects I've built, useful for

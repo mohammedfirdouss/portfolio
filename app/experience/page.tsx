@@ -13,7 +13,7 @@ export default function ExperiencePage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-8xl text-gray-200 mb-8">experience</h1>
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">experience</h1>
 			<div className="space-y-10">
 				{experiences.map((exp) => {
 					const start = new Date(exp.startDate).toLocaleDateString("en-us", {
@@ -48,7 +48,7 @@ export default function ExperiencePage() {
 								{exp.location && <span> · {exp.location}</span>}
 							</div>
 							<div className="text-sm text-gray-400 mt-1">
-								{start} — {end}
+								{start} · {end}
 							</div>
 							<p className="text-gray-600 mt-2">{exp.description}</p>
 							{exp.body?.code && (

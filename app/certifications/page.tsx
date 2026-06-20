@@ -13,7 +13,7 @@ export default function CertificationsPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-8xl text-gray-200 mb-8">
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">
 				certifications
 			</h1>
 			<div className="space-y-6">

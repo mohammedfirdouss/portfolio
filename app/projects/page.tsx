@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-8xl text-gray-200 mb-8">projects</h1>
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">projects</h1>
 			<div className="text-lg text-gray-700">
 				<p>
 					I build things I can use or reference — or that others can. Here are
@@ -32,7 +32,7 @@ export default async function ProjectsPage() {
 				</p>
 			</div>
 			{projects.map((project) => (
-				<div key={project.slug} className="my-8 mt-16 sm:mt-12 sm:mb-12">
+				<div key={project.slug} className="my-8 mt-12 sm:mt-16 sm:mb-12">
 					<div className="text-2xl leading-normal text-gray-900">
 						<Link href={`/projects/${project.slug}`} className="prose-link">
 							{project.title}

@@ -20,7 +20,7 @@ export default async function BlogPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-8xl text-gray-200 mb-8">blog</h1>
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">blog</h1>
 			<div className="text-lg text-gray-700 mb-12">
 				<p>
 					Writing on cloud engineering, Kubernetes, AI systems, open source,
