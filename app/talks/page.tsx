@@ -20,27 +20,39 @@ export default function TalksPage() {
 			</div>
 			<div className="divide-y divide-gray-100">
 				{talks.map((talk) => (
-					<Link
-						key={talk.slug}
-						href={`/talks/${talk.slug}`}
-						className="block group pt-6 first:pt-0"
-					>
-						<div className="flex items-baseline gap-4">
-							<span className="text-lg font-semibold text-gray-900 group-hover:text-sky-600 transition-colors">
+					<div key={talk.slug} className="pt-6 first:pt-0">
+						<div className="text-2xl leading-normal text-gray-900">
+							<Link href={`/talks/${talk.slug}`} className="prose-link">
 								{talk.title}
-							</span>
-							<span className="text-sm text-gray-400">
+							</Link>
+						</div>
+						<div className="flex items-center gap-1 flex-wrap text-gray-400 text-sm mt-1">
+							<time>
 								{new Date(talk.date).toLocaleDateString("en-us", {
 									year: "numeric",
 									month: "short",
 								})}
-							</span>
+							</time>
+							<span>·</span>
+							<span>{talk.event}</span>
+							{talk.url && (
+								<>
+									<span>·</span>
+									<a
+										href={talk.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="prose-link text-sm"
+									>
+										watch ↗
+									</a>
+								</>
+							)}
 						</div>
-						<div className="text-sm text-gray-500 mt-1">{talk.event}</div>
 						{talk.summary && (
-							<p className="text-gray-500 mt-1">{talk.summary}</p>
+							<p className="text-lg text-gray-500 mt-2">{talk.summary}</p>
 						)}
-					</Link>
+					</div>
 				))}
 			</div>
 		</div>
