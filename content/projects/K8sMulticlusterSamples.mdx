@@ -1,6 +1,6 @@
 ---
 title: Kubernetes Multicluster Deployment Samples
-description: A collection of PipeCD deployment manifests that validates multicluster pipeline patterns — canary, baseline, traffic shifting, Kustomize overlays, and Helm across geographically distributed clusters.
+description: A collection of PipeCD deployment manifests that validates multicluster pipeline patterns, canary, baseline, traffic shifting, Kustomize overlays, and Helm across geographically distributed clusters.
 date: "2026-05-28"
 repository: mohammedfirdouss/kubernetes-multicluster-samples
 published: true
@@ -54,6 +54,6 @@ A multicluster CD validation suite with:
 
 ## What I Learned
 
-- **Multicluster CD Complexity:** Traffic isolation between regions requires explicit per-stage target filtering — blanket rollouts carry more risk than they appear to.
+- **Multicluster CD Complexity:** Traffic isolation between regions requires explicit per-stage target filtering, blanket rollouts carry more risk than they appear to.
 - **Plugin Validation Practice:** Writing targeted manifests per deployment pattern is more reliable than relying on end-to-end tests alone.
 - **Partial Failure Semantics:** Defining what "success" means in a multi-target rollout (all clusters vs. quorum) is a design decision that affects rollback behaviour.

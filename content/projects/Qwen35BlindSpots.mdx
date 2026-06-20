@@ -5,9 +5,9 @@ date: "2026-06-08"
 repository: mohammedfirdouss/fatima-fellowship-technical-task
 published: true
 outcomes:
-  - Identified a critical float16 numerical overflow that produces incoherent output across all 12 categories — bfloat16 is required for valid evaluation of Qwen-class models.
+  - Identified a critical float16 numerical overflow that produces incoherent output across all 12 categories, bfloat16 is required for valid evaluation of Qwen-class models.
   - Quantified category-level failure rates using 84 prompts (5 failure probes + 2 success controls per category), producing measurable gaps rather than anecdotal examples.
-  - Delivered concrete fine-tuning recommendations — specific datasets and scale ranges — mapped to each root cause for targeted model improvement.
+  - Delivered concrete fine-tuning recommendations, with specific datasets and scale ranges, mapped to each root cause for targeted model improvement.
 roleHighlights:
   - I designed the 84-prompt evaluation suite and dual-axis classification scheme separating coherence failures from correctness failures.
   - I discovered and documented the float16 overflow issue as a reproducible, quantified finding across all 12 reasoning categories.
@@ -21,7 +21,7 @@ proofLinks:
     href: https://huggingface.co/Qwen/Qwen3.5-4B-Base
 ---
 
-Qwen3.5-4B Base Blind Spots is a systematic evaluation framework for probing failure modes in Qwen3.5-4B-Base — a 4B-parameter pre-trained model with Gated DeltaNet attention and sparse MoE architecture. Rather than collecting anecdotal failures, it runs 84 structured prompts across 12 reasoning categories and produces quantified failure rates with actionable remediation paths.
+Qwen3.5-4B Base Blind Spots is a systematic evaluation framework for probing failure modes in Qwen3.5-4B-Base, a 4B-parameter pre-trained model with Gated DeltaNet attention and sparse MoE architecture. Rather than collecting anecdotal failures, it runs 84 structured prompts across 12 reasoning categories and produces quantified failure rates with actionable remediation paths.
 
 <div class="my-6 flex flex-col sm:flex-row items-center gap-4">
   <a
@@ -49,7 +49,7 @@ Qwen3.5-4B Base Blind Spots is a systematic evaluation framework for probing fai
 
 A reproducible LLM failure-mode evaluation framework with:
 
-- **84-Prompt Test Suite:** 5 failure probes + 2 success controls per category across 12 reasoning domains — arithmetic, logic, commonsense, coreference, Bayesian reasoning, Winograd schema, and more.
+- **84-Prompt Test Suite:** 5 failure probes + 2 success controls per category across 12 reasoning domains: arithmetic, logic, commonsense, coreference, Bayesian reasoning, Winograd schema, and more.
 - **Dual-Axis Classification:** Each output labelled independently for coherence (intelligible?) and correctness (accurate?), separating format failures from reasoning failures to make remediation more targeted.
 - **Critical dtype Finding:** float16 triggers numerical overflow across all 12 categories, producing incoherent output even on trivial controls. bfloat16 is required; float16 results are preserved as a reference.
 - **Fine-Tuning Roadmap:** Category-level failure analysis maps each root cause to specific training datasets and scale ranges for targeted improvement.
@@ -59,12 +59,12 @@ A reproducible LLM failure-mode evaluation framework with:
 - **Model:** `Qwen/Qwen3.5-4B-Base` via Hugging Face Transformers.
 - **Execution:** `colab_notebook.ipynb` (Google Colab L4/A10G, bfloat16) or `modal_runner.py` for cloud GPU.
 - **Decoding:** Greedy sampling for reproducibility.
-- **Data Format:** JSONL — `prompts.jsonl` (84 canonical inputs), `train.jsonl` (full records with per-dtype outputs and auto-labels), `blind_spots_data.jsonl` (labelled results).
+- **Data Format:** JSONL: `prompts.jsonl` (84 canonical inputs), `train.jsonl` (full records with per-dtype outputs and auto-labels), `blind_spots_data.jsonl` (labelled results).
 - **Published Artifact:** Training dataset released on Hugging Face for reuse and extension.
 
 ## What I Learned
 
-- **dtype Is a Hard Correctness Requirement:** float16 overflow is not subtle degradation — it invalidates all results. Dtype selection must be verified before any evaluation is trusted.
+- **dtype Is a Hard Correctness Requirement:** float16 overflow is not subtle degradation, it invalidates all results. Dtype selection must be verified before any evaluation is trusted.
 - **Structured Probing Over Anecdote:** Controlled failure/success pairs per category turn vague quality concerns into measurable, comparable failure rates.
-- **Dual-Axis Taxonomy Drives Different Fixes:** Coherence failures point to inference config or instruction tuning; correctness failures point to chain-of-thought or domain-specific data — conflating them wastes remediation effort.
+- **Dual-Axis Taxonomy Drives Different Fixes:** Coherence failures point to inference config or instruction tuning; correctness failures point to chain-of-thought or domain-specific data. Conflating them wastes remediation effort.
 - **Small Benchmarks Can Be High Signal:** 84 prompts across 12 categories surface recurring blind spots faster than large-scale evaluation suites when the goal is targeted fine-tuning.

@@ -3,7 +3,7 @@ import { allCertifications } from "contentlayer/generated";
 export const metadata = {
 	title: "Certifications",
 	description:
-		"Cloud and infrastructure certifications — AWS, Kubernetes, and more.",
+		"Cloud and infrastructure certifications, AWS, Kubernetes, and more.",
 };
 
 export default function CertificationsPage() {

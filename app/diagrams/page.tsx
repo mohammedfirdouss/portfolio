@@ -4,7 +4,7 @@ import { allDiagrams } from "contentlayer/generated";
 export const metadata = {
 	title: "Diagrams",
 	description:
-		"Architecture diagrams for cloud infrastructure projects — AWS, Kubernetes, and serverless systems.",
+		"Architecture diagrams for cloud infrastructure projects, AWS, Kubernetes, and serverless systems.",
 };
 
 export default function DiagramsPage() {

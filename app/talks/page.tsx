@@ -4,7 +4,7 @@ import { allTalks } from "contentlayer/generated";
 export const metadata = {
 	title: "Talks",
 	description:
-		"Conference talks and presentations — sharing knowledge on AWS, serverless, and cloud.",
+		"Conference talks and presentations, sharing knowledge on AWS, serverless, and cloud.",
 };
 
 export default function TalksPage() {
