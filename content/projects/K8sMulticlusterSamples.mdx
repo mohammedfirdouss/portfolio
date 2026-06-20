@@ -1,0 +1,59 @@
+---
+title: Kubernetes Multicluster Deployment Samples
+description: A collection of PipeCD deployment manifests that validates multicluster pipeline patterns — canary, baseline, traffic shifting, Kustomize overlays, and Helm across geographically distributed clusters.
+date: "2026-05-28"
+repository: mohammedfirdouss/kubernetes-multicluster-samples
+published: true
+outcomes:
+  - Validated canary, baseline, and primary rollout strategies across two geographically separated clusters (cluster-eu, cluster-us).
+  - Demonstrated per-stage cluster filtering so canary traffic stays isolated to a single region before full rollout.
+  - Covered StatefulSet, DaemonSet, Init Container, and CronJob workload types alongside standard Deployments.
+roleHighlights:
+  - I authored app manifests and PipeCD pipeline configs for each deployment pattern.
+  - I tested Kustomize per-target overlays and Helm chart integration within the multicluster plugin.
+  - I validated partial failure handling so a single cluster failure does not abort the full multi-target rollout.
+proofLinks:
+  - label: Repository
+    href: https://github.com/mohammedfirdouss/kubernetes-multicluster-samples
+---
+
+Kubernetes Multicluster Samples is a test suite for PipeCD's `kubernetes_multicluster` plugin. Each folder is a self-contained application with a PipeCD pipeline config and Kubernetes manifests, covering the full range of deployment strategies the plugin supports across two clusters.
+
+<div class="my-6 flex flex-col sm:flex-row items-center gap-4">
+  <a
+    href="https://github.com/mohammedfirdouss/kubernetes-multicluster-samples"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="project-cta"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    View on GitHub
+  </a>
+</div>
+
+## What it is
+
+A multicluster CD validation suite with:
+
+- **Deployment Strategies:** Canary (with and without service creation), primary rollout, and baseline deployments for A/B scenarios.
+- **Traffic Routing:** PodSelector-based and Istio-based traffic shifting across clusters.
+- **Per-Stage Filtering:** Canary stages scoped to `cluster-eu` only, with full rollout unlocked in a subsequent stage.
+- **Workload Coverage:** Deployment, StatefulSet, DaemonSet, Init Container image extraction, and CronJob health checks.
+- **Config Flexibility:** Kustomize per-target overlays and Helm chart integration with custom values.
+- **Resilience Testing:** Partial failure handling so one cluster error does not kill the entire multi-target pipeline.
+
+## How It's Built
+
+- **CD Platform:** PipeCD with the `kubernetes_multicluster` plugin.
+- **Clusters:** `cluster-eu` and `cluster-us` as named targets in each pipeline config.
+- **Config Format:** `app.pipecd.yaml` defines pipeline stages; `deployment.yaml` and `service.yaml` define workloads.
+- **Templating:** Go Template manifests for dynamic per-target configuration.
+- **Traffic Management:** Both native PodSelector and Istio VirtualService approaches covered.
+
+## What I Learned
+
+- **Multicluster CD Complexity:** Traffic isolation between regions requires explicit per-stage target filtering — blanket rollouts carry more risk than they appear to.
+- **Plugin Validation Practice:** Writing targeted manifests per deployment pattern is more reliable than relying on end-to-end tests alone.
+- **Partial Failure Semantics:** Defining what "success" means in a multi-target rollout (all clusters vs. quorum) is a design decision that affects rollback behaviour.

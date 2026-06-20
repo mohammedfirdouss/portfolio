@@ -1,0 +1,12 @@
+---
+role: LFX Mentee — Kubernetes Multi-Cluster Plugin
+company: PipeCD · CNCF LFX Mentorship
+startDate: 2026-03-01
+endDate: 2026-06-01
+location: Remote
+description: Developed the Kubernetes multi-cluster plugin for PipeCD as a CNCF LFX Mentee, implementing six production pipeline stages for progressive delivery across geographically distributed clusters.
+---
+
+*   Built the full `kubernetes_multicluster` plugin for PipeCD by implementing six pipeline stages — canary rollout, baseline rollout, primary rollout, traffic routing, canary clean, and baseline clean — enabling coordinated progressive delivery across multiple Kubernetes clusters.
+*   Improved deployment safety by using `pipecd.dev/variant` labels for resource isolation, ensuring canary and baseline workloads can be cleaned up independently without touching production resources.
+*   Increased multi-cluster operation reliability by implementing concurrent cluster operations via Go's `errgroup` pattern and adding per-route logging for full traffic routing visibility.
