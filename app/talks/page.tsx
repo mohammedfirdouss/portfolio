@@ -14,16 +14,16 @@ export default function TalksPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-8xl text-gray-200 mb-8">talks</h1>
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">talks</h1>
 			<div className="text-lg text-gray-700 mb-12">
 				<p>I talk sometimes. Here are some of my past presentations.</p>
 			</div>
-			<div className="space-y-6">
+			<div className="divide-y divide-gray-100">
 				{talks.map((talk) => (
 					<Link
 						key={talk.slug}
 						href={`/talks/${talk.slug}`}
-						className="block group"
+						className="block group pt-6 first:pt-0"
 					>
 						<div className="flex items-baseline gap-4">
 							<span className="text-lg font-semibold text-gray-900 group-hover:text-sky-600 transition-colors">
@@ -40,9 +40,6 @@ export default function TalksPage() {
 						{talk.summary && (
 							<p className="text-gray-500 mt-1">{talk.summary}</p>
 						)}
-						<span className="inline-block mt-2 text-sm text-sky-600 group-hover:underline">
-							{talk.url ? "Watch / Read more →" : "Read more →"}
-						</span>
 					</Link>
 				))}
 			</div>
