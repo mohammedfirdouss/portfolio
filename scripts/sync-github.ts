@@ -13,7 +13,7 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import { join } from "path";
 
 const GITHUB_USER = "mohammedfirdouss";
-const PROJECTS_DIR = join(import.meta.dir, "../content/projects");
+const PROJECTS_DIR = join(process.cwd(), "content/projects");
 const CHECK_DATES = process.argv.includes("--check-dates");
 
 interface GithubRepo {
