@@ -16,7 +16,7 @@ export default function CertificationsPage() {
 			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">
 				certifications
 			</h1>
-			<div className="space-y-6">
+			<div className="divide-y divide-gray-100">
 				{certs.map((cert) => {
 					const inner = (
 						<>
@@ -39,12 +39,12 @@ export default function CertificationsPage() {
 							href={cert.credentialUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="block group"
+							className="block group pt-6 first:pt-0"
 						>
 							{inner}
 						</a>
 					) : (
-						<div key={cert.slug}>{inner}</div>
+						<div key={cert.slug} className="pt-6 first:pt-0">{inner}</div>
 					);
 				})}
 			</div>

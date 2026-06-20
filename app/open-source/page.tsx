@@ -35,9 +35,11 @@ export default function OpenSourcePage() {
 					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">
 						Notable contributions
 					</h2>
-					<div className="space-y-6">
+					<div className="divide-y divide-gray-100">
 						{featured.map((contrib) => (
-							<ContributionRow key={contrib.slug} contrib={contrib} />
+							<div key={contrib.slug} className="pt-6 first:pt-0">
+								<ContributionRow contrib={contrib} />
+							</div>
 						))}
 					</div>
 				</div>
@@ -48,9 +50,11 @@ export default function OpenSourcePage() {
 					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">
 						All contributions
 					</h2>
-					<div className="space-y-6">
+					<div className="divide-y divide-gray-100">
 						{rest.map((contrib) => (
-							<ContributionRow key={contrib.slug} contrib={contrib} />
+							<div key={contrib.slug} className="pt-6 first:pt-0">
+								<ContributionRow contrib={contrib} />
+							</div>
 						))}
 					</div>
 				</div>

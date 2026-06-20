@@ -52,7 +52,7 @@ export default function Home() {
 					<span className="font-medium">cloud infrastructure</span>,{" "}
 					<span className="font-medium">AI systems</span>,{" "}
 					<span className="font-medium">open source</span>, and{" "}
-					<span className="font-medium">research</span> — 3X hackathon winner :)
+					<span className="font-medium">research</span>. 3× hackathon winner.
 				</p>
 			</div>
 
@@ -64,7 +64,7 @@ export default function Home() {
 				<ul>
 					{blogs.map((post) => (
 						<li key={post.slug} className="mb-4">
-							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg">
+							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg -mx-3 px-3 py-1 rounded-lg hover:bg-gray-50 transition-colors">
 								<time className="w-32 text-sm text-gray-400 flex-none">
 									{new Date(post.publishedAt).toLocaleDateString("en-us", {
 										year: "numeric",
@@ -97,7 +97,7 @@ export default function Home() {
 				<ul>
 					{projects.map((project) => (
 						<li key={project.slug} className="mb-4">
-							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg">
+							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg -mx-3 px-3 py-1 rounded-lg hover:bg-gray-50 transition-colors">
 								<time className="w-32 text-sm text-gray-400 flex-none">
 									{project.date
 										? new Date(project.date).toLocaleDateString("en-us", {
@@ -134,7 +134,7 @@ export default function Home() {
 				<ul>
 					{openSource.map((contrib) => (
 						<li key={contrib.slug} className="mb-4">
-							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg">
+							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg -mx-3 px-3 py-1 rounded-lg hover:bg-gray-50 transition-colors">
 								<time className="w-32 text-sm text-gray-400 flex-none">
 									{contrib.date
 										? new Date(contrib.date).toLocaleDateString("en-us", {
@@ -171,7 +171,7 @@ export default function Home() {
 				<ul>
 					{talks.map((talk) => (
 						<li key={talk.slug} className="mb-4">
-							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg">
+							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg -mx-3 px-3 py-1 rounded-lg hover:bg-gray-50 transition-colors">
 								<time className="w-32 text-sm text-gray-400 flex-none">
 									{new Date(talk.date).toLocaleDateString("en-us", {
 										year: "numeric",

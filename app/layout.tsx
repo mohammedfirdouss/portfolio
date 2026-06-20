@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 		default: "Mohammed Firdous",
 		template: "%s | Mohammed Firdous",
 	},
-	description: "I'm Mohammed Firdous, and I build software.",
+	description: "Cloud Engineer building infrastructure, AI systems, and open source tools.",
 	openGraph: {
 		title: "Mohammed Firdous",
 		description:

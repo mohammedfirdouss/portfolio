@@ -14,7 +14,7 @@ export default function ExperiencePage() {
 	return (
 		<div>
 			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">experience</h1>
-			<div className="space-y-10">
+			<div className="divide-y divide-gray-100">
 				{experiences.map((exp) => {
 					const start = new Date(exp.startDate).toLocaleDateString("en-us", {
 						year: "numeric",
@@ -28,7 +28,7 @@ export default function ExperiencePage() {
 						: "Present";
 
 					return (
-						<div key={exp.slug}>
+						<div key={exp.slug} className="pt-10 first:pt-0">
 							<h2 className="text-lg font-semibold text-gray-900">
 								{exp.role}
 							</h2>

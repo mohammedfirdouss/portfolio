@@ -25,8 +25,16 @@ export default async function PostPage({ params }: Props) {
 		notFound();
 	}
 
+	const wordCount = blog.body.raw.split(/\s+/).filter(Boolean).length;
+	const readingTime = wordCount > 100 ? Math.ceil(wordCount / 200) : null;
+
 	return (
 		<div>
+			<div className="mb-6">
+				<Link href="/blog" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">
+					← blog
+				</Link>
+			</div>
 			<div className="mb-12">
 				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
 					{blog.title}
@@ -39,6 +47,12 @@ export default async function PostPage({ params }: Props) {
 							day: "numeric",
 						})}
 					</time>
+					{readingTime && (
+						<>
+							<span>·</span>
+							<span>{readingTime} min read</span>
+						</>
+					)}
 					{blog.tags && blog.tags.length > 0 && (
 						<>
 							<span>·</span>
