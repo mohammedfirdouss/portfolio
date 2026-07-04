@@ -1,4 +1,4 @@
-## About This Project
+## About This
 
 This portfolio website showcases projects with a clean, minimalist design featuring particle animations, project cards, and smooth transitions. Built with Next.js 15 and deployed on Cloudflare Workers for edge performance.
 
