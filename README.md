@@ -4,7 +4,7 @@ A personal portfolio site: projects, blog, open source contributions, talks, and
 
 ## Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) App Router, static export
+- **Framework**: [Next.js 16](https://nextjs.org/) App Router, static export
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Content**: [Contentlayer](https://www.contentlayer.dev/) for MDX
@@ -29,6 +29,10 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+`dev`/`build` run on Webpack, not Turbopack (Next 16's new default) —
+Contentlayer's `withContentlayer()` wrapper injects its own webpack config,
+which Turbopack refuses to build under.
 
 ### Formatting and Linting
 
