@@ -8,6 +8,8 @@ import {
 } from "contentlayer/generated";
 import { siteUrl } from "./lib/site";
 
+export const dynamic = "force-static";
+
 const staticRoutes = [
 	"",
 	"/blog",
