@@ -11,8 +11,7 @@ This portfolio website showcases projects with a clean, minimalist design featur
   - Open source contributions
   - Work experience
   - Diagrams
-- **Analytics**: Page view tracking with Cloudflare KV
-- **Responsive Design**: Mobile-first responsive design with dark theme
+- **Responsive Design**: Mobile-first responsive design
 - **Interactive Elements**: Particle animations and smooth transitions
 - **Edge Deployment**: Deployed on Cloudflare Workers for global performance
 - **Code Quality**: Rome formatter and linter for consistent code style

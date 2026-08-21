@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFileSync } from "fs";
 import { join } from "path";
+import { siteUrl } from "./lib/site";
 
 export const dynamic = "force-static";
 export const alt = "Mohammed Firdous";
@@ -116,8 +117,7 @@ export default function Image() {
 							color: "#9ca3af",
 						}}
 					>
-						{/* mohammedfirdous.me — domain expired, swap back once a new one is bought */}
-						mohammedfirdouss.github.io/portfolio
+						{siteUrl.replace(/^https?:\/\//, "")}
 					</div>
 				</div>
 			</div>

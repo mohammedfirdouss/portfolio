@@ -3,13 +3,10 @@ import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Navigation } from "./components/nav";
 import Footer from "./components/footer";
+import { siteUrl } from "./lib/site";
 
 export const metadata: Metadata = {
-	metadataBase: new URL(
-		process.env.NEXT_PUBLIC_SITE_URL ||
-			// "https://mohammedfirdous.me", // domain expired — swap back once a new one is bought
-			"https://mohammedfirdouss.github.io/portfolio",
-	),
+	metadataBase: new URL(siteUrl),
 	title: {
 		default: "Mohammed Firdous",
 		template: "%s | Mohammed Firdous",
@@ -19,8 +16,7 @@ export const metadata: Metadata = {
 		title: "Mohammed Firdous",
 		description:
 			"Cloud Engineer building infrastructure, AI systems, and open source tools.",
-		// url: "https://mohammedfirdous.me", // domain expired — swap back once a new one is bought
-		url: "https://mohammedfirdouss.github.io/portfolio",
+		url: siteUrl,
 		siteName: "Mohammed Firdous",
 		images: [{ url: "/opengraph-image" }],
 		locale: "en-US",
@@ -46,6 +42,11 @@ export const metadata: Metadata = {
 	},
 	icons: {
 		icon: "/favicon.svg",
+	},
+	alternates: {
+		types: {
+			"application/rss+xml": "/rss.xml",
+		},
 	},
 };
 const inter = LocalFont({
