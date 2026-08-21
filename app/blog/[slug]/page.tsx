@@ -48,7 +48,7 @@ export default async function PostPage({ params }: Props) {
 			: null;
 
 	return (
-		<div>
+		<div id="top">
 			<div className="mb-6">
 				<Link href="/blog" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">
 					← blog
@@ -105,34 +105,31 @@ export default async function PostPage({ params }: Props) {
 					</div>
 				</aside>
 			</div>
-			{(olderPost || newerPost) && (
-				<div className="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row gap-6 sm:justify-between">
-					{olderPost ? (
-						<Link
-							href={`/blog/${olderPost.slug}`}
-							className="group sm:max-w-[48%]"
-						>
-							<div className="text-xs text-gray-400 mb-1">← Older</div>
-							<div className="prose-link text-base">{olderPost.title}</div>
+			<div className="mt-12 pt-8 border-t border-gray-100 text-sm font-mono text-gray-500 space-y-1.5">
+				{olderPost && (
+					<div>
+						<Link href={`/blog/${olderPost.slug}`} className="prose-link">
+							goto {olderPost.slug}
 						</Link>
-					) : (
-						<div />
-					)}
-					{newerPost && (
-						<Link
-							href={`/blog/${newerPost.slug}`}
-							className="group sm:max-w-[48%] sm:text-right"
-						>
-							<div className="text-xs text-gray-400 mb-1">Newer →</div>
-							<div className="prose-link text-base">{newerPost.title}</div>
+					</div>
+				)}
+				{newerPost && (
+					<div>
+						<Link href={`/blog/${newerPost.slug}`} className="prose-link">
+							goto {newerPost.slug}
 						</Link>
-					)}
+					</div>
+				)}
+				<div>
+					<Link href="/blog" className="prose-link">
+						cd ..
+					</Link>
 				</div>
-			)}
-			<div className="mt-8 text-sm font-mono text-gray-500">
-				<Link href="/blog" className="prose-link">
-					cd ..
-				</Link>
+				<div>
+					<a href="#top" className="prose-link">
+						scroll to top
+					</a>
+				</div>
 			</div>
 		</div>
 	);
