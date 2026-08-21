@@ -1,4 +1,5 @@
 export const navigationLinks: { name: string; href: string }[] = [
+	{ name: "about", href: "/about" },
 	{ name: "blog", href: "/blog" },
 	{ name: "projects", href: "/projects" },
 	{ name: "experience", href: "/experience" },

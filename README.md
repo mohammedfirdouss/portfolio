@@ -1,6 +1,6 @@
 ## About This
 
-This portfolio website showcases projects with a clean, minimalist design featuring particle animations, project cards, and smooth transitions. Built with Next.js 15 and deployed on Cloudflare Workers for edge performance.
+This portfolio website showcases projects with a clean, minimalist design. Built with Next.js 15 and deployed on Cloudflare Workers for edge performance.
 
 ## Features
 
@@ -12,7 +12,6 @@ This portfolio website showcases projects with a clean, minimalist design featur
   - Work experience
   - Diagrams
 - **Responsive Design**: Mobile-first responsive design
-- **Interactive Elements**: Particle animations and smooth transitions
 - **Edge Deployment**: Deployed on Cloudflare Workers for global performance
 - **Code Quality**: Rome formatter and linter for consistent code style
 

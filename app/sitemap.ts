@@ -7,11 +7,13 @@ import {
 	allTalks,
 } from "contentlayer/generated";
 import { siteUrl } from "./lib/site";
+import { getTagIndex } from "./lib/tags";
 
 export const dynamic = "force-static";
 
 const staticRoutes = [
 	"",
+	"/about",
 	"/blog",
 	"/projects",
 	"/experience",
@@ -20,6 +22,7 @@ const staticRoutes = [
 	"/talks",
 	"/certifications",
 	"/systems-design",
+	"/tags",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -53,6 +56,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		.filter((talk) => talk.published !== false)
 		.map((talk) => ({ url: `${siteUrl}/talks/${talk.slug}` }));
 
+	const tagEntries = [...getTagIndex().keys()].map((tag) => ({
+		url: `${siteUrl}/tags/${tag}`,
+	}));
+
 	return [
 		...staticEntries,
 		...blogEntries,
@@ -60,5 +67,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		...openSourceEntries,
 		...diagramEntries,
 		...talkEntries,
+		...tagEntries,
 	];
 }

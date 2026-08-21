@@ -27,6 +27,8 @@ const pageLinks = [
 	{ text: "certifications", href: "/certifications" },
 	{ text: "talks", href: "/talks" },
 	{ text: "diagrams", href: "/diagrams" },
+	{ text: "tags", href: "/tags" },
+	{ text: "rss", href: "/rss.xml" },
 ];
 
 export default function Footer() {
