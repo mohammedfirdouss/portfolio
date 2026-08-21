@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchTrigger } from "./search-trigger";
 
 const socialLinks = [
 	{
@@ -47,7 +48,7 @@ export default function Footer() {
 					</a>
 				))}
 			</div>
-			<div className="flex flex-wrap gap-x-4 gap-y-2">
+			<div className="flex flex-wrap gap-x-4 gap-y-2 items-center">
 				{pageLinks.map((link) => (
 					<Link
 						key={link.text}
@@ -57,6 +58,7 @@ export default function Footer() {
 						{link.text}
 					</Link>
 				))}
+				<SearchTrigger />
 			</div>
 		</footer>
 	);

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
 import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
+import { getYoutubeEmbedId } from "@/app/lib/youtube";
 import "@/app/blog/[slug]/mdx.css";
 import { allTalks } from "contentlayer/generated";
 import Link from "next/link";
@@ -25,6 +26,8 @@ export default async function TalkDetailPage({ params }: Props) {
 		notFound();
 	}
 
+	const embedId = talk.url ? getYoutubeEmbedId(talk.url) : null;
+
 	return (
 		<div>
 			<div className="mb-8">
@@ -41,7 +44,7 @@ export default async function TalkDetailPage({ params }: Props) {
 					</time>
 					<span>·</span>
 					<span>{talk.event}</span>
-					{talk.url && (
+					{talk.url && !embedId && (
 						<>
 							<span>·</span>
 							<a
@@ -59,6 +62,27 @@ export default async function TalkDetailPage({ params }: Props) {
 					<p className="text-gray-500 mt-4 text-lg">{talk.summary}</p>
 				)}
 			</div>
+			{embedId && (
+				<div className="mb-8">
+					<div className="relative w-full aspect-video overflow-hidden rounded-lg border border-gray-100">
+						<iframe
+							src={`https://www.youtube-nocookie.com/embed/${embedId}`}
+							title={talk.title}
+							className="absolute inset-0 w-full h-full"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowFullScreen
+						/>
+					</div>
+					<a
+						href={talk.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="prose-link text-sm mt-2 inline-block"
+					>
+						Watch on YouTube ↗
+					</a>
+				</div>
+			)}
 			<OutcomeProofBlock
 				outcomes={talk.outcomes}
 				roleHighlights={talk.roleHighlights}

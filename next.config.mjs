@@ -21,6 +21,11 @@ const nextConfig = {
 	poweredByHeader: false,
 	basePath: isGithubPages ? "/portfolio" : undefined,
 	assetPrefix: isGithubPages ? "/portfolio/" : undefined,
+	env: {
+		// Client components can't see `basePath` from next.config — expose it
+		// explicitly for fetches to static files like /search-index.json.
+		NEXT_PUBLIC_BASE_PATH: isGithubPages ? "/portfolio" : "",
+	},
 	images: {
 		// Static export has no image optimization server on either host.
 		unoptimized: true,
