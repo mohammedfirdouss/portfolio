@@ -7,40 +7,33 @@ screenshot: "/cruddur-mohammed-firdous.jpg"
 
 This section provides a technical deep-dive into the architecture of the Cruddur microblogging platform. The diagrams below illustrate how the system is designed for scalability, reliability, and cost-efficiency using modern cloud technologies.
 
-<figure class="my-6">
-  <a href="/cruddur-mohammed-firdous.jpg" target="_blank" rel="noopener noreferrer"><img src="/cruddur-mohammed-firdous.jpg" alt="Cruddur architecture overview" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
-  <figcaption class="mt-2 text-sm text-zinc-500">Figure 1: High-level Cruddur architecture, click to view full size.</figcaption>
-</figure>
+![Cruddur architecture overview](/cruddur-mohammed-firdous.jpg)
 
-<figure class="my-6">
-  <a href="/cruddur-screenshot-1.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-1.png" alt="VPC networking setup" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
-  <figcaption class="mt-2 text-sm text-zinc-500">Figure 2: VPC networking with public and private subnets.</figcaption>
-</figure>
+*Figure 1: High-level Cruddur architecture, click to view full size.*
 
-<figure class="my-6">
-  <a href="/cruddur-screenshot-2.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-2.png" alt="Frontend hosting on S3 and CloudFront" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
-  <figcaption class="mt-2 text-sm text-zinc-500">Figure 3: React frontend on S3 delivered via CloudFront.</figcaption>
-</figure>
+![VPC networking setup](/cruddur-screenshot-1.png)
 
-<figure class="my-6">
-  <a href="/cruddur-screenshot-3.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-3.png" alt="ALB routing to ECS Fargate" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
-  <figcaption class="mt-2 text-sm text-zinc-500">Figure 4: ALB routing traffic to ECS Fargate backend services.</figcaption>
-</figure>
+*Figure 2: VPC networking with public and private subnets.*
 
-<figure class="my-6">
-  <a href="/cruddur-screenshot-4.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-4.png" alt="CI/CD pipeline with CodePipeline" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
-  <figcaption class="mt-2 text-sm text-zinc-500">Figure 5: CI/CD pipeline built with AWS CodePipeline.</figcaption>
-</figure>
+![Frontend hosting on S3 and CloudFront](/cruddur-screenshot-2.png)
 
-<figure class="my-6">
-  <a href="/cruddur-screenshot-5.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-5.png" alt="CodePipeline stages" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
-  <figcaption class="mt-2 text-sm text-zinc-500">Figure 6: CodePipeline source, build, and deploy stages.</figcaption>
-</figure>
+*Figure 3: React frontend on S3 delivered via CloudFront.*
 
-<figure class="my-6">
-  <a href="/cruddur-screenshot-6.png" target="_blank" rel="noopener noreferrer"><img src="/cruddur-screenshot-6.png" alt="DynamoDB and Lambda data layer" class="w-full rounded-lg hover:opacity-90 transition-opacity" loading="lazy" /></a>
-  <figcaption class="mt-2 text-sm text-zinc-500">Figure 7: DynamoDB for messaging with Lambda stream processing.</figcaption>
-</figure>
+![ALB routing to ECS Fargate](/cruddur-screenshot-3.png)
+
+*Figure 4: ALB routing traffic to ECS Fargate backend services.*
+
+![CI/CD pipeline with CodePipeline](/cruddur-screenshot-4.png)
+
+*Figure 5: CI/CD pipeline built with AWS CodePipeline.*
+
+![CodePipeline stages](/cruddur-screenshot-5.png)
+
+*Figure 6: CodePipeline source, build, and deploy stages.*
+
+![DynamoDB and Lambda data layer](/cruddur-screenshot-6.png)
+
+*Figure 7: DynamoDB for messaging with Lambda stream processing.*
 
 ## Architectural Overview
 
