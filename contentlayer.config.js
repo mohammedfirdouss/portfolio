@@ -7,6 +7,40 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import GithubSlugger from "github-slugger";
+
+function extractToc(raw) {
+	const slugger = new GithubSlugger();
+	const headings = [];
+	let inCodeBlock = false;
+
+	for (const line of raw.split("\n")) {
+		if (/^```/.test(line.trim())) {
+			inCodeBlock = !inCodeBlock;
+			continue;
+		}
+		if (inCodeBlock) continue;
+
+		const match = /^(#{2,3})\s+(.+)$/.exec(line);
+		if (!match) continue;
+
+		const value = match[2]
+			.replace(/`([^`]+)`/g, "$1")
+			.replace(/\*\*([^*]+)\*\*/g, "$1")
+			.replace(/\*([^*]+)\*/g, "$1")
+			.replace(/_([^_]+)_/g, "$1")
+			.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+			.trim();
+
+		headings.push({
+			value,
+			depth: match[1].length,
+			slug: slugger.slug(value),
+		});
+	}
+
+	return headings;
+}
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -195,7 +229,13 @@ export const Blog = defineDocumentType(() => ({
 			of: ProofLink,
 		},
 	},
-	computedFields,
+	computedFields: {
+		...computedFields,
+		toc: {
+			type: "json",
+			resolve: (doc) => extractToc(doc.body.raw),
+		},
+	},
 }));
 
 export default makeSource({

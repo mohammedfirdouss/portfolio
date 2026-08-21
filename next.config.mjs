@@ -5,6 +5,9 @@ const bundleAnalyzer = withBundleAnalyzer({
 	enabled: process.env.ANALYZE === "true",
 });
 
+// GitHub Pages serves this repo from /portfolio instead of the domain root.
+const isGithubPages = process.env.GITHUB_PAGES === "true";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	output: "export",
@@ -16,7 +19,11 @@ const nextConfig = {
 	compress: true,
 	productionBrowserSourceMaps: false,
 	poweredByHeader: false,
+	basePath: isGithubPages ? "/portfolio" : undefined,
+	assetPrefix: isGithubPages ? "/portfolio/" : undefined,
 	images: {
+		// Static export has no image optimization server on either host.
+		unoptimized: true,
 		formats: ["image/webp", "image/avif"],
 		remotePatterns: [
 			{

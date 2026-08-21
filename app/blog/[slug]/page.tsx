@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
 import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
+import {
+	TableOfContents,
+	MobileTableOfContents,
+} from "@/app/components/table-of-contents";
 import "./mdx.css";
 import { allBlogs } from "contentlayer/generated";
 import Link from "next/link";
@@ -75,9 +79,17 @@ export default async function PostPage({ params }: Props) {
 				roleHighlights={blog.roleHighlights}
 				proofLinks={blog.proofLinks}
 			/>
-			<article className="prose max-w-none prose-headings:mt-8 prose-headings:mb-3">
-				<Mdx code={blog.body.code} />
-			</article>
+			<MobileTableOfContents toc={blog.toc} />
+			<div className="relative">
+				<article className="prose max-w-none prose-headings:mt-8 prose-headings:mb-3">
+					<Mdx code={blog.body.code} />
+				</article>
+				<aside className="hidden 2xl:block absolute top-0 left-full ml-16 w-64">
+					<div className="sticky top-24">
+						<TableOfContents toc={blog.toc} />
+					</div>
+				</aside>
+			</div>
 			<div className="mt-8 text-sm font-mono text-gray-500">
 				<Link href="/blog" className="prose-link">
 					cd ..

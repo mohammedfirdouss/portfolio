@@ -116,7 +116,8 @@ export default function Image() {
 							color: "#9ca3af",
 						}}
 					>
-						mohammedfirdous.me
+						{/* mohammedfirdous.me — domain expired, swap back once a new one is bought */}
+						mohammedfirdouss.github.io/portfolio
 					</div>
 				</div>
 			</div>
