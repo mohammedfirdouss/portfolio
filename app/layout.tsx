@@ -70,7 +70,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
-			<body className="bg-white text-gray-800 min-h-screen font-sans w-full">
+			<body className="bg-white text-gray-800 dark:bg-gray-950 dark:text-gray-300 min-h-screen font-sans w-full">
 				<Navigation />
 				<main className="grow mx-auto py-10 px-6 max-w-3xl">{children}</main>
 				<Footer />

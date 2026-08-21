@@ -27,7 +27,7 @@
         "wrangler": "^4.69.0",
       },
       "devDependencies": {
-        "@next/bundle-analyzer": "^15.3.9",
+        "@next/bundle-analyzer": "^16.3.2",
         "@tailwindcss/typography": "^0.5.10",
         "@types/node": "^20.8.4",
         "@types/react": "^19.2.18",
@@ -351,7 +351,7 @@
 
     "@mdx-js/mdx": ["@mdx-js/mdx@2.3.0", "", { "dependencies": { "@types/estree-jsx": "^1.0.0", "@types/mdx": "^2.0.0", "estree-util-build-jsx": "^2.0.0", "estree-util-is-identifier-name": "^2.0.0", "estree-util-to-js": "^1.1.0", "estree-walker": "^3.0.0", "hast-util-to-estree": "^2.0.0", "markdown-extensions": "^1.0.0", "periscopic": "^3.0.0", "remark-mdx": "^2.0.0", "remark-parse": "^10.0.0", "remark-rehype": "^10.0.0", "unified": "^10.0.0", "unist-util-position-from-estree": "^1.0.0", "unist-util-stringify-position": "^3.0.0", "unist-util-visit": "^4.0.0", "vfile": "^5.0.0" } }, ""],
 
-    "@next/bundle-analyzer": ["@next/bundle-analyzer@15.3.9", "", { "dependencies": { "webpack-bundle-analyzer": "4.10.1" } }, "sha512-S/XLTRD7lfyip51VlPcHWR5GiYoT2VrT8yvRt6khaw9V04/sqNZGv8ny+dEossR6zcVWDEjTeSoCtKLyitBEvQ=="],
+    "@next/bundle-analyzer": ["@next/bundle-analyzer@16.3.2", "", { "dependencies": { "webpack-bundle-analyzer": "4.10.1" } }, "sha512-1WSK3fjvlZzA3cpP6XsM9JW2/LDWWlldlYN5sL/h2kvAQCu2KeXLxNkqfI/0ac+ikOYFzWuuBpL9O0Cu3mrfww=="],
 
     "@next/env": ["@next/env@16.3.2", "", {}, "sha512-8k4YoG8cM7LWlkfzGNYCRBbFNlernLiMw4s0btVl+CmmWqn3VpYypA72/5Feb1UWdxe6tHqr5KHP4p4Y4m9luA=="],
 
