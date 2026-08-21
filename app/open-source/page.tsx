@@ -93,9 +93,6 @@ function ContributionRow({ contrib }: { contrib: OpenSource }) {
 					)}
 				</div>
 			</div>
-			{contrib.summary && (
-				<p className="text-gray-500 mt-1">{contrib.summary}</p>
-			)}
 		</Link>
 	);
 }

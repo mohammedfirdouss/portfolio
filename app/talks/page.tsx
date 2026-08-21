@@ -49,9 +49,6 @@ export default function TalksPage() {
 								</>
 							)}
 						</div>
-						{talk.summary && (
-							<p className="text-lg text-gray-500 mt-2">{talk.summary}</p>
-						)}
 					</div>
 				))}
 			</div>
