@@ -41,7 +41,7 @@ export default async function TagPage({ params }: Props) {
 			<ul>
 				{posts.map((post) => {
 					const isExternal = !!post.url;
-					const href = isExternal ? post.url! : `/blog/${post.slug}`;
+					const href = post.url || `/blog/${post.slug}`;
 					return (
 						<li key={post.slug} className="mb-6">
 							<div className="text-lg leading-tight flex flex-col gap-1">

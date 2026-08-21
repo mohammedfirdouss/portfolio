@@ -125,6 +125,7 @@ export default function Image() {
 			{/* Right: profile photo */}
 			<img
 				src={profileSrc}
+				alt="Mohammed Firdous"
 				style={{
 					width: "280px",
 					height: "280px",

@@ -143,7 +143,7 @@ const components = {
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
 				className={clsx("rounded-lg my-6 cursor-zoom-in", className)}
-				alt={alt}
+				alt={alt || ""}
 				src={typeof src === "string" ? withBasePath(src) : src}
 				{...props}
 			/>

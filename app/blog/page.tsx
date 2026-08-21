@@ -34,7 +34,7 @@ export default async function BlogPage() {
 						sorted[index - 1]?.publishedAt,
 					);
 					const isExternal = !!post.url;
-					const href = isExternal ? post.url! : `/blog/${post.slug}`;
+					const href = post.url || `/blog/${post.slug}`;
 					const wordCount = post.body.raw.split(/\s+/).filter(Boolean).length;
 					const readingTime = !isExternal && wordCount > 100 ? Math.ceil(wordCount / 200) : null;
 

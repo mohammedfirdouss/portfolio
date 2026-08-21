@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 
-export default function Error({
+export default function ErrorPage({
 	error,
 	reset,
 }: {
@@ -26,6 +26,7 @@ export default function Error({
 			</p>
 			<div className="flex gap-4">
 				<button
+					type="button"
 					onClick={reset}
 					className="px-6 py-3 text-sm font-medium text-white bg-sky-600 rounded-lg hover:bg-sky-700 transition"
 				>

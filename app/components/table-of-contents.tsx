@@ -53,6 +53,7 @@ function TocList({
 				const isActive = item.slug === activeSlug;
 				return (
 					<li key={item.slug}>
+						{/* rome-ignore lint/a11y/useValidAnchor: real fragment link (in-page section nav) — onClick only closes the mobile TOC after navigating, doesn't replace href */}
 						<a
 							href={`#${item.slug}`}
 							onClick={onNavigate}

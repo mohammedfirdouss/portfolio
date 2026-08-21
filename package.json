@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "fmt": "bun rome format . --write",
+    "lint": "bun rome check .",
     "preview": "bun run build && bunx wrangler pages dev out",
     "deploy": "bun run build && bunx wrangler pages deploy out --project-name=portfolio",
     "sync-github": "bun scripts/sync-github.ts"

@@ -27,7 +27,7 @@ export async function GET() {
 		items.push({
 			title: post.title,
 			description: post.description,
-			href: external ? (post.url ?? post.externalUrl)! : `/blog/${post.slug}`,
+			href: post.url || post.externalUrl || `/blog/${post.slug}`,
 			type: "blog",
 			tags: post.tags,
 			external,

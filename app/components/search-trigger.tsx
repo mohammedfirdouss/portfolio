@@ -89,14 +89,15 @@ export function SearchTrigger() {
 				grep
 			</button>
 			{open && (
-				<div
-					className="fixed inset-0 z-50 bg-black/30 flex items-start justify-center pt-24 px-4"
-					onClick={() => setOpen(false)}
-				>
-					<div
-						className="w-full max-w-lg bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden"
-						onClick={(e) => e.stopPropagation()}
-					>
+				<div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4">
+					<button
+						type="button"
+						aria-label="Close search"
+						tabIndex={-1}
+						className="absolute inset-0 bg-black/30 cursor-default"
+						onClick={() => setOpen(false)}
+					/>
+					<div className="relative w-full max-w-lg bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
 						<div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100 font-mono text-sm text-gray-400">
 							<span>grep</span>
 							<input
