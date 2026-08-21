@@ -42,19 +42,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 	const projectEntries = allProjects
 		.filter((project) => project.published)
-		.map((project) => ({ url: `${siteUrl}/projects/${project.slug}` }));
+		.map((project) => ({
+			url: `${siteUrl}/projects/${project.slug}`,
+			...(project.date && { lastModified: new Date(project.date) }),
+		}));
 
 	const openSourceEntries = allOpenSources
 		.filter((item) => item.published !== false)
-		.map((item) => ({ url: `${siteUrl}/open-source/${item.slug}` }));
+		.map((item) => ({
+			url: `${siteUrl}/open-source/${item.slug}`,
+			...(item.date && { lastModified: new Date(item.date) }),
+		}));
 
 	const diagramEntries = allDiagrams
 		.filter((item) => item.published !== false)
-		.map((item) => ({ url: `${siteUrl}/diagrams/${item.slug}` }));
+		.map((item) => ({
+			url: `${siteUrl}/diagrams/${item.slug}`,
+			...(item.date && { lastModified: new Date(item.date) }),
+		}));
 
 	const talkEntries = allTalks
 		.filter((talk) => talk.published !== false)
-		.map((talk) => ({ url: `${siteUrl}/talks/${talk.slug}` }));
+		.map((talk) => ({
+			url: `${siteUrl}/talks/${talk.slug}`,
+			lastModified: new Date(talk.date),
+		}));
 
 	const tagEntries = [...getTagIndex().keys()].map((tag) => ({
 		url: `${siteUrl}/tags/${tag}`,

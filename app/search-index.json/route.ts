@@ -18,8 +18,41 @@ type SearchItem = {
 	external?: boolean;
 };
 
+const staticPages: SearchItem[] = [
+	{
+		title: "About",
+		description: "Bio, background, and how to get in touch.",
+		href: "/about",
+		type: "page",
+	},
+	{
+		title: "Experience",
+		description: "Work history and roles.",
+		href: "/experience",
+		type: "page",
+	},
+	{
+		title: "Systems Design",
+		description: "Notes on systems design.",
+		href: "/systems-design",
+		type: "page",
+	},
+	{
+		title: "Certifications",
+		description: "Cloud and infrastructure certifications.",
+		href: "/certifications",
+		type: "page",
+	},
+	{
+		title: "Tags",
+		description: "Browse blog posts by topic.",
+		href: "/tags",
+		type: "page",
+	},
+];
+
 export async function GET() {
-	const items: SearchItem[] = [];
+	const items: SearchItem[] = [...staticPages];
 
 	for (const post of allBlogs) {
 		if (post.draft) continue;
