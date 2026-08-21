@@ -21,6 +21,8 @@
 		"ignore": [
 			"node_modules",
 			".next",
+			".contentlayer",
+			"out",
 			"dist",
 			".devcontainer",
 			".vscode",
@@ -32,6 +34,8 @@
 		"ignore": [
 			"node_modules",
 			".next",
+			".contentlayer",
+			"out",
 			"dist",
 			".devcontainer",
 			".vscode",

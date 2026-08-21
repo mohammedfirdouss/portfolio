@@ -141,6 +141,7 @@ const components = {
 	}: React.ImgHTMLAttributes<HTMLImageElement>) => (
 		<Zoom>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
+			{/* rome-ignore lint/a11y/useAltText: alt is author-provided per-image via MDX ![alt](src) syntax, not a static value Rome can verify */}
 			<img
 				className={clsx("rounded-lg my-6 cursor-zoom-in", className)}
 				alt={alt || ""}
