@@ -6,7 +6,7 @@ export const metadata = {
 export default function SystemsDesignPage() {
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">
 				systems design
 			</h1>
 		</div>

@@ -14,7 +14,7 @@ const components = {
 	h1: ({ className, ...props }) => (
 		<h1
 			className={clsx(
-				"mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-gray-900",
+				"mt-2 scroll-m-20 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100",
 				className,
 			)}
 			{...props}
@@ -23,7 +23,7 @@ const components = {
 	h2: ({ className, ...props }) => (
 		<h2
 			className={clsx(
-				"mt-10 scroll-m-20 border-b border-b-gray-200 pb-1 text-3xl font-semibold tracking-tight text-gray-900 first:mt-0",
+				"mt-10 scroll-m-20 border-b border-b-gray-200 pb-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100 first:mt-0",
 				className,
 			)}
 			{...props}
@@ -32,7 +32,7 @@ const components = {
 	h3: ({ className, ...props }) => (
 		<h3
 			className={clsx(
-				"mt-8 scroll-m-20 text-2xl font-semibold tracking-tight text-gray-900",
+				"mt-8 scroll-m-20 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100",
 				className,
 			)}
 			{...props}
@@ -41,7 +41,7 @@ const components = {
 	h4: ({ className, ...props }) => (
 		<h4
 			className={clsx(
-				"mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-gray-900",
+				"mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100",
 				className,
 			)}
 			{...props}
@@ -50,7 +50,7 @@ const components = {
 	h5: ({ className, ...props }) => (
 		<h5
 			className={clsx(
-				"mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-gray-900",
+				"mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-gray-900 dark:text-gray-100",
 				className,
 			)}
 			{...props}
@@ -59,7 +59,7 @@ const components = {
 	h6: ({ className, ...props }) => (
 		<h6
 			className={clsx(
-				"mt-8 scroll-m-20 text-base font-semibold tracking-tight text-gray-900",
+				"mt-8 scroll-m-20 text-base font-semibold tracking-tight text-gray-900 dark:text-gray-100",
 				className,
 			)}
 			{...props}
@@ -67,7 +67,7 @@ const components = {
 	),
 	strong: ({ className, ...props }) => (
 		<strong
-			className={clsx("font-semibold text-gray-900", className)}
+			className={clsx("font-semibold text-gray-900 dark:text-gray-100", className)}
 			{...props}
 		/>
 	),
@@ -79,7 +79,7 @@ const components = {
 			return (
 				<a
 					className={clsx(
-						"font-medium text-sky-600 underline underline-offset-4 hover:text-sky-800 transition-colors",
+						"font-medium text-sky-600 dark:text-sky-400 underline underline-offset-4 hover:text-sky-800 hover:dark:text-sky-300 transition-colors",
 						className,
 					)}
 					href={href}
@@ -92,7 +92,7 @@ const components = {
 		return (
 			<Link
 				className={clsx(
-					"font-medium text-sky-600 underline underline-offset-4 hover:text-sky-800 transition-colors",
+					"font-medium text-sky-600 dark:text-sky-400 underline underline-offset-4 hover:text-sky-800 hover:dark:text-sky-300 transition-colors",
 					className,
 				)}
 				href={href ?? ""}
@@ -103,7 +103,7 @@ const components = {
 	p: ({ className, ...props }) => (
 		<p
 			className={clsx(
-				"leading-7 text-gray-700 [&:not(:first-child)]:mt-6",
+				"leading-7 text-gray-700 dark:text-gray-300 [&:not(:first-child)]:mt-6",
 				className,
 			)}
 			{...props}
@@ -111,23 +111,23 @@ const components = {
 	),
 	ul: ({ className, ...props }) => (
 		<ul
-			className={clsx("my-6 ml-6 list-disc text-gray-700", className)}
+			className={clsx("my-6 ml-6 list-disc text-gray-700 dark:text-gray-300", className)}
 			{...props}
 		/>
 	),
 	ol: ({ className, ...props }) => (
 		<ol
-			className={clsx("my-6 ml-6 list-decimal text-gray-700", className)}
+			className={clsx("my-6 ml-6 list-decimal text-gray-700 dark:text-gray-300", className)}
 			{...props}
 		/>
 	),
 	li: ({ className, ...props }) => (
-		<li className={clsx("mt-2 text-gray-700", className)} {...props} />
+		<li className={clsx("mt-2 text-gray-700 dark:text-gray-300", className)} {...props} />
 	),
 	blockquote: ({ className, ...props }) => (
 		<blockquote
 			className={clsx(
-				"mt-6 border-l-2 border-gray-300 pl-6 italic text-gray-600 [&>*]:text-gray-500",
+				"mt-6 border-l-2 border-gray-300 dark:border-gray-600 pl-6 italic text-gray-600 dark:text-gray-400 [&>*]:text-gray-500 dark:text-gray-400",
 				className,
 			)}
 			{...props}
@@ -151,17 +151,17 @@ const components = {
 		</Zoom>
 	),
 	hr: ({ ...props }) => (
-		<hr className="my-4 border-gray-200 md:my-8" {...props} />
+		<hr className="my-4 border-gray-200 dark:border-gray-700 md:my-8" {...props} />
 	),
 	table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
 		<div className="w-full my-6 overflow-y-auto">
-			<table className={clsx("w-full text-gray-700", className)} {...props} />
+			<table className={clsx("w-full text-gray-700 dark:text-gray-300", className)} {...props} />
 		</div>
 	),
 	tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
 		<tr
 			className={clsx(
-				"m-0 border-t border-gray-200 p-0 even:bg-gray-50",
+				"m-0 border-t border-gray-200 dark:border-gray-700 p-0 even:bg-gray-50 even:dark:bg-gray-900",
 				className,
 			)}
 			{...props}
@@ -170,7 +170,7 @@ const components = {
 	th: ({ className, ...props }) => (
 		<th
 			className={clsx(
-				"border border-gray-200 px-4 py-2 text-left font-bold text-gray-900 [&[align=center]]:text-center [&[align=right]]:text-right",
+				"border border-gray-200 dark:border-gray-700 px-4 py-2 text-left font-bold text-gray-900 dark:text-gray-100 [&[align=center]]:text-center [&[align=right]]:text-right",
 				className,
 			)}
 			{...props}
@@ -179,7 +179,7 @@ const components = {
 	td: ({ className, ...props }) => (
 		<td
 			className={clsx(
-				"border border-gray-200 px-4 py-2 text-left text-gray-700 [&[align=center]]:text-center [&[align=right]]:text-right",
+				"border border-gray-200 dark:border-gray-700 px-4 py-2 text-left text-gray-700 dark:text-gray-300 [&[align=center]]:text-center [&[align=right]]:text-right",
 				className,
 			)}
 			{...props}
@@ -188,7 +188,7 @@ const components = {
 	pre: ({ className, ...props }) => (
 		<pre
 			className={clsx(
-				"mt-6 mb-4 overflow-x-auto rounded-lg bg-gray-50 border border-gray-200 py-4",
+				"mt-6 mb-4 overflow-x-auto rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 py-4",
 				className,
 			)}
 			{...props}
@@ -197,7 +197,7 @@ const components = {
 	code: ({ className, ...props }) => (
 		<code
 			className={clsx(
-				"relative rounded bg-gray-100 px-[0.3rem] py-[0.2rem] font-mono text-sm text-gray-800",
+				"relative rounded bg-gray-100 dark:bg-gray-800 px-[0.3rem] py-[0.2rem] font-mono text-sm text-gray-800 dark:text-gray-200",
 				className,
 			)}
 			{...props}

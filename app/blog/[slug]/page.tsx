@@ -50,15 +50,15 @@ export default async function PostPage({ params }: Props) {
 	return (
 		<div id="top">
 			<div className="mb-6">
-				<Link href="/blog" className="text-sm text-gray-400 hover:text-gray-600 transition-colors">
+				<Link href="/blog" className="text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 hover:dark:text-gray-400 transition-colors">
 					← blog
 				</Link>
 			</div>
 			<div className="mb-12">
-				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
 					{blog.title}
 				</h1>
-				<div className="text-gray-500 mt-2 text-sm flex gap-2 items-center flex-wrap">
+				<div className="text-gray-500 dark:text-gray-400 mt-2 text-sm flex gap-2 items-center flex-wrap">
 					<time>
 						{new Date(blog.publishedAt).toLocaleDateString("en-us", {
 							year: "numeric",
@@ -79,7 +79,7 @@ export default async function PostPage({ params }: Props) {
 								{blog.tags.map((tag) => (
 									<span
 										key={tag}
-										className="bg-gray-100 px-2 py-px text-sky-600 rounded text-xs"
+										className="bg-gray-100 dark:bg-gray-800 px-2 py-px text-sky-600 dark:text-sky-400 rounded text-xs"
 									>
 										{tag}
 									</span>
@@ -105,7 +105,7 @@ export default async function PostPage({ params }: Props) {
 					</div>
 				</aside>
 			</div>
-			<div className="mt-12 pt-8 border-t border-gray-100 text-sm font-mono text-gray-500 space-y-1.5">
+			<div className="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800 text-sm font-mono text-gray-500 dark:text-gray-400 space-y-1.5">
 				{olderPost && (
 					<div>
 						<Link href={`/blog/${olderPost.slug}`} className="prose-link">

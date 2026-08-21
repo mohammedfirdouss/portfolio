@@ -13,7 +13,7 @@ export default function ExperiencePage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">experience</h1>
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">experience</h1>
 			<div className="divide-y divide-gray-100">
 				{experiences.map((exp) => {
 					const start = new Date(exp.startDate).toLocaleDateString("en-us", {
@@ -29,10 +29,10 @@ export default function ExperiencePage() {
 
 					return (
 						<div key={exp.slug} className="pt-10 first:pt-0">
-							<h2 className="text-lg font-semibold text-gray-900">
+							<h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
 								{exp.role}
 							</h2>
-							<div className="text-sm text-gray-500 mt-1">
+							<div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
 								{exp.companyUrl ? (
 									<a
 										href={exp.companyUrl}
@@ -47,10 +47,10 @@ export default function ExperiencePage() {
 								)}
 								{exp.location && <span> · {exp.location}</span>}
 							</div>
-							<div className="text-sm text-gray-400 mt-1">
+							<div className="text-sm text-gray-400 dark:text-gray-500 mt-1">
 								{start} · {end}
 							</div>
-							<p className="text-gray-600 mt-2">{exp.description}</p>
+							<p className="text-gray-600 dark:text-gray-400 mt-2">{exp.description}</p>
 							{exp.body?.code && (
 								<div className="mt-3 prose prose-sm prose-gray max-w-none">
 									<Mdx code={exp.body.code} />

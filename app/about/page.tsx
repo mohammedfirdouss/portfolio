@@ -27,11 +27,11 @@ const startHere = [
 export default function AboutPage() {
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">
 				about
 			</h1>
 
-			<div className="text-lg text-gray-700 space-y-4">
+			<div className="text-lg text-gray-700 dark:text-gray-300 space-y-4">
 				<p>
 					I&apos;m a software engineer focused on cloud infrastructure and
 					AI. Most recently I was a CNCF LFX Mentee building the
@@ -49,8 +49,8 @@ export default function AboutPage() {
 				</p>
 			</div>
 
-			<div className="border-t border-gray-100 pt-12 mt-12">
-				<h2 className="xl:text-6xl md:text-5xl text-3xl font-display text-gray-200 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-6 -z-10">
+			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
+				<h2 className="xl:text-6xl md:text-5xl text-3xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-6 -z-10">
 					start here
 				</h2>
 				<ul className="mt-8">
@@ -59,13 +59,13 @@ export default function AboutPage() {
 							<Link href={item.href} className="prose-link text-xl">
 								{item.title}
 							</Link>
-							<p className="text-gray-500 mt-1">{item.note}</p>
+							<p className="text-gray-500 dark:text-gray-400 mt-1">{item.note}</p>
 						</li>
 					))}
 				</ul>
 			</div>
 
-			<div className="border-t border-gray-100 pt-8 mt-8 text-gray-700">
+			<div className="border-t border-gray-100 dark:border-gray-800 pt-8 mt-8 text-gray-700 dark:text-gray-300">
 				<p>
 					If you want to get in touch, I&apos;m easiest to reach on{" "}
 					<a

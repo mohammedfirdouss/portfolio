@@ -31,10 +31,10 @@ export default async function TalkDetailPage({ params }: Props) {
 	return (
 		<div>
 			<div className="mb-8">
-				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
 					{talk.title}
 				</h1>
-				<div className="text-gray-400 mt-2 text-sm flex gap-2 items-center flex-wrap">
+				<div className="text-gray-400 dark:text-gray-500 mt-2 text-sm flex gap-2 items-center flex-wrap">
 					<time>
 						{new Date(talk.date).toLocaleDateString("en-us", {
 							year: "numeric",
@@ -59,12 +59,12 @@ export default async function TalkDetailPage({ params }: Props) {
 					)}
 				</div>
 				{talk.summary && (
-					<p className="text-gray-500 mt-4 text-lg">{talk.summary}</p>
+					<p className="text-gray-500 dark:text-gray-400 mt-4 text-lg">{talk.summary}</p>
 				)}
 			</div>
 			{embedId && (
 				<div className="mb-8">
-					<div className="relative w-full aspect-video overflow-hidden rounded-lg border border-gray-100">
+					<div className="relative w-full aspect-video overflow-hidden rounded-lg border border-gray-100 dark:border-gray-800">
 						<iframe
 							src={`https://www.youtube-nocookie.com/embed/${embedId}`}
 							title={talk.title}
@@ -91,7 +91,7 @@ export default async function TalkDetailPage({ params }: Props) {
 			<article className="prose max-w-none">
 				<Mdx code={talk.body.code} />
 			</article>
-			<div className="mt-8 text-sm font-mono text-gray-500">
+			<div className="mt-8 text-sm font-mono text-gray-500 dark:text-gray-400">
 				<Link href="/talks" className="prose-link">
 					cd ..
 				</Link>

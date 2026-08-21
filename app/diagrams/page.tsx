@@ -18,8 +18,8 @@ export default function DiagramsPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">diagrams</h1>
-			<div className="text-lg text-gray-700 mb-12">
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">diagrams</h1>
+			<div className="text-lg text-gray-700 dark:text-gray-300 mb-12">
 				<p>
 					Architecture diagrams for projects I've built, useful for
 					understanding how the pieces fit together.
@@ -33,7 +33,7 @@ export default function DiagramsPage() {
 						className="block group"
 					>
 						{diagram.screenshot && (
-							<div className="mb-3 overflow-hidden rounded-lg border border-gray-100">
+							<div className="mb-3 overflow-hidden rounded-lg border border-gray-100 dark:border-gray-800">
 								<img
 									src={withBasePath(diagram.screenshot)}
 									alt={diagram.title}
@@ -42,11 +42,11 @@ export default function DiagramsPage() {
 							</div>
 						)}
 						<div className="flex items-baseline gap-3 flex-wrap">
-							<span className="text-lg font-semibold text-gray-900 group-hover:text-sky-600 transition-colors">
+							<span className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-sky-600 group-hover:dark:text-sky-400 transition-colors">
 								{diagram.title}
 							</span>
 							{diagram.date && (
-								<span className="text-sm text-gray-400">
+								<span className="text-sm text-gray-400 dark:text-gray-500">
 									{new Date(diagram.date).toLocaleDateString("en-us", {
 										year: "numeric",
 										month: "short",
@@ -55,9 +55,9 @@ export default function DiagramsPage() {
 							)}
 						</div>
 						{diagram.summary && (
-							<p className="text-gray-500 mt-1">{diagram.summary}</p>
+							<p className="text-gray-500 dark:text-gray-400 mt-1">{diagram.summary}</p>
 						)}
-						<span className="inline-block mt-2 text-sm text-sky-600 group-hover:underline">
+						<span className="inline-block mt-2 text-sm text-sky-600 dark:text-sky-400 group-hover:underline">
 							View diagram →
 						</span>
 					</Link>

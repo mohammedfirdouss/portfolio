@@ -26,10 +26,10 @@ export default async function DiagramDetailPage({ params }: Props) {
 	return (
 		<div>
 			<div className="mb-8">
-				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
 					{item.title}
 				</h1>
-				<div className="text-gray-400 mt-2 text-sm flex gap-2 items-center flex-wrap">
+				<div className="text-gray-400 dark:text-gray-500 mt-2 text-sm flex gap-2 items-center flex-wrap">
 					{item.date && (
 						<time>
 							{new Date(item.date).toLocaleDateString("en-us", {
@@ -57,13 +57,13 @@ export default async function DiagramDetailPage({ params }: Props) {
 					)}
 				</div>
 				{item.summary && (
-					<p className="text-gray-500 mt-4 text-lg">{item.summary}</p>
+					<p className="text-gray-500 dark:text-gray-400 mt-4 text-lg">{item.summary}</p>
 				)}
 			</div>
 			<article className="prose max-w-none">
 				<Mdx code={item.body.code} />
 			</article>
-			<div className="mt-8 text-sm font-mono text-gray-500">
+			<div className="mt-8 text-sm font-mono text-gray-500 dark:text-gray-400">
 				<Link href="/diagrams" className="prose-link">
 					cd ..
 				</Link>

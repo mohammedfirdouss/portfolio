@@ -11,7 +11,7 @@ export const Navigation: React.FC = () => {
 			<div className="flex-shrink-0">
 				<Link
 					href="/"
-					className="nav-link font-medium text-xl hover:text-gray-800"
+					className="nav-link font-medium text-xl hover:text-gray-800 hover:dark:text-gray-200"
 				>
 					mohammed firdous
 				</Link>
@@ -23,7 +23,7 @@ export const Navigation: React.FC = () => {
 						href={link.href}
 						className={`nav-link pb-0.5 ${
 							pathname?.startsWith(link.href)
-								? "text-sky-600 border-b-2 border-sky-500"
+								? "text-sky-600 dark:text-sky-400 border-b-2 border-sky-500 dark:border-sky-400"
 								: "opacity-60 hover:opacity-100 border-b-2 border-transparent"
 						}`}
 					>

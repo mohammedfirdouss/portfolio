@@ -84,7 +84,7 @@ export function SearchTrigger() {
 			<button
 				type="button"
 				onClick={() => setOpen(true)}
-				className="prose-link text-sm text-gray-400 font-mono"
+				className="prose-link text-sm text-gray-400 dark:text-gray-500 font-mono"
 			>
 				grep
 			</button>
@@ -97,27 +97,27 @@ export function SearchTrigger() {
 						className="absolute inset-0 bg-black/30 cursor-default"
 						onClick={() => setOpen(false)}
 					/>
-					<div className="relative w-full max-w-lg bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
-						<div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100 font-mono text-sm text-gray-400">
+					<div className="relative w-full max-w-lg bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+						<div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100 dark:border-gray-800 font-mono text-sm text-gray-400 dark:text-gray-500">
 							<span>grep</span>
 							<input
 								ref={inputRef}
 								value={query}
 								onChange={(e) => setQuery(e.target.value)}
 								placeholder="search posts, projects, talks..."
-								className="flex-1 outline-none text-gray-900 font-sans text-base"
+								className="flex-1 outline-none text-gray-900 dark:text-gray-100 font-sans text-base"
 							/>
-							<kbd className="text-xs border border-gray-200 rounded px-1.5 py-0.5">
+							<kbd className="text-xs border border-gray-200 dark:border-gray-700 rounded px-1.5 py-0.5">
 								esc
 							</kbd>
 						</div>
 						<div className="max-h-96 overflow-y-auto">
 							{items === null ? (
-								<div className="px-4 py-6 text-sm text-gray-400">
+								<div className="px-4 py-6 text-sm text-gray-400 dark:text-gray-500">
 									Loading…
 								</div>
 							) : results.length === 0 ? (
-								<div className="px-4 py-6 text-sm text-gray-400">
+								<div className="px-4 py-6 text-sm text-gray-400 dark:text-gray-500">
 									No matches.
 								</div>
 							) : (
@@ -126,21 +126,21 @@ export function SearchTrigger() {
 										key={`${item.type}-${item.href}`}
 										type="button"
 										onClick={() => go(item)}
-										className="w-full text-left px-4 py-3 hover:bg-gray-50 border-b border-gray-50 last:border-0"
+										className="w-full text-left px-4 py-3 hover:bg-gray-50 hover:dark:bg-gray-800 border-b border-gray-50 dark:border-gray-900 last:border-0"
 									>
 										<div className="flex items-center gap-2">
-											<span className="text-xs uppercase tracking-wide text-sky-600">
+											<span className="text-xs uppercase tracking-wide text-sky-600 dark:text-sky-400">
 												{item.type}
 											</span>
-											<span className="text-gray-900 font-medium">
+											<span className="text-gray-900 dark:text-gray-100 font-medium">
 												{item.title}
 											</span>
 											{item.external && (
-												<span className="text-gray-400 text-xs">↗</span>
+												<span className="text-gray-400 dark:text-gray-500 text-xs">↗</span>
 											)}
 										</div>
 										{item.description && (
-											<div className="text-sm text-gray-500 mt-0.5 line-clamp-1">
+											<div className="text-sm text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
 												{item.description}
 											</div>
 										)}

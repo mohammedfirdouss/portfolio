@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 const projectColors: Record<string, string> = {
-	PipeCD: "text-sky-600 border-sky-200 bg-sky-50",
+	PipeCD: "text-sky-600 dark:text-sky-400 border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950",
 	GitLab: "text-orange-600 border-orange-200 bg-orange-50",
 };
 
@@ -25,14 +25,14 @@ export default function OpenSourcePage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">open source</h1>
-			<div className="text-lg text-gray-700 mb-12">
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">open source</h1>
+			<div className="text-lg text-gray-700 dark:text-gray-300 mb-12">
 				<p>I contribute where I can, mostly CNCF and cloud-native projects.</p>
 			</div>
 
 			{featured.length > 0 && (
 				<div className="mb-12">
-					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">
+					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6">
 						Notable contributions
 					</h2>
 					<div className="divide-y divide-gray-100">
@@ -47,7 +47,7 @@ export default function OpenSourcePage() {
 
 			{rest.length > 0 && (
 				<div>
-					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">
+					<h2 className="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6">
 						All contributions
 					</h2>
 					<div className="divide-y divide-gray-100">
@@ -67,12 +67,12 @@ function ContributionRow({ contrib }: { contrib: OpenSource }) {
 	const badgeClass =
 		contrib.project && projectColors[contrib.project]
 			? projectColors[contrib.project]
-			: "text-gray-500 border-gray-200 bg-gray-50";
+			: "text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900";
 
 	return (
 		<Link href={`/open-source/${contrib.slug}`} className="block group">
 			<div className="flex items-baseline gap-3 flex-wrap">
-				<span className="text-lg font-semibold text-gray-900 group-hover:text-sky-600 transition-colors">
+				<span className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-sky-600 group-hover:dark:text-sky-400 transition-colors">
 					{contrib.title}
 				</span>
 				<div className="flex items-center gap-2">
@@ -84,7 +84,7 @@ function ContributionRow({ contrib }: { contrib: OpenSource }) {
 						</span>
 					)}
 					{contrib.date && (
-						<span className="text-sm text-gray-400">
+						<span className="text-sm text-gray-400 dark:text-gray-500">
 							{new Date(contrib.date).toLocaleDateString("en-us", {
 								year: "numeric",
 								month: "short",

@@ -36,16 +36,16 @@ export function OutcomeProofBlock({
 	];
 
 	return (
-		<section className="mb-10 border-t border-b border-gray-200 py-6">
+		<section className="mb-10 border-t border-b border-gray-200 dark:border-gray-700 py-6">
 			<div className="space-y-6">
 				{sections.map(
 					(section) =>
 						section.items.length > 0 && (
 							<div key={section.title}>
-								<h2 className="text-sm font-semibold text-gray-900 mb-2">
+								<h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
 									{section.title}
 								</h2>
-								<ul className="list-disc pl-5 space-y-2 text-base leading-relaxed text-gray-700">
+								<ul className="list-disc pl-5 space-y-2 text-base leading-relaxed text-gray-700 dark:text-gray-300">
 									{section.items.map((item) => (
 										<li key={item}>{item}</li>
 									))}
@@ -55,11 +55,11 @@ export function OutcomeProofBlock({
 				)}
 				{proofLinks.length > 0 && (
 					<div>
-						<h2 className="text-sm font-semibold text-gray-900 mb-2">Links</h2>
+						<h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">Links</h2>
 						<div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
 							{proofLinks.map((item) => {
 								const isExternal = /^https?:\/\//.test(item.href);
-								const className = "text-sky-700 hover:underline";
+								const className = "text-sky-700 dark:text-sky-400 hover:underline";
 								return isExternal ? (
 									<a
 										key={`${item.label}-${item.href}`}

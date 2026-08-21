@@ -23,12 +23,12 @@ export function ProjectList({ projects }: { projects: Project[] }) {
 					onMouseEnter={() => setHoveredSlug(project.slug)}
 					onMouseLeave={() => setHoveredSlug(null)}
 				>
-					<div className="text-2xl leading-normal text-gray-900">
+					<div className="text-2xl leading-normal text-gray-900 dark:text-gray-100">
 						<Link href={`/projects/${project.slug}`} className="prose-link">
 							{project.title}
 						</Link>
 					</div>
-					<div className="flex items-center gap-1 flex-wrap text-gray-400 text-sm">
+					<div className="flex items-center gap-1 flex-wrap text-gray-400 dark:text-gray-500 text-sm">
 						{project.date && (
 							<time>
 								{new Date(project.date).toLocaleDateString("en-us", {
@@ -55,7 +55,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
 							</>
 						)}
 					</div>
-					<div className="text-lg text-gray-500 mt-2">{project.description}</div>
+					<div className="text-lg text-gray-500 dark:text-gray-400 mt-2">{project.description}</div>
 				</div>
 			))}
 
@@ -69,12 +69,12 @@ export function ProjectList({ projects }: { projects: Project[] }) {
 					<img
 						src={withBasePath(preview.banner)}
 						alt={preview.title}
-						className="w-72 h-44 object-cover rounded-xl shadow-xl border border-gray-100"
+						className="w-72 h-44 object-cover rounded-xl shadow-xl border border-gray-100 dark:border-gray-800"
 					/>
 				) : preview ? (
-					<div className="w-64 rounded-xl shadow-xl border border-gray-100 bg-white p-4">
-						<p className="text-sm font-semibold text-gray-900">{preview.title}</p>
-						<p className="text-xs text-gray-500 mt-1 line-clamp-3">
+					<div className="w-64 rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-4">
+						<p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{preview.title}</p>
+						<p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-3">
 							{preview.description}
 						</p>
 					</div>

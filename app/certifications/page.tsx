@@ -13,17 +13,17 @@ export default function CertificationsPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 mb-8">
+			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">
 				certifications
 			</h1>
 			<div className="divide-y divide-gray-100">
 				{certs.map((cert) => {
 					const inner = (
 						<>
-							<h2 className="text-lg font-semibold text-gray-900 group-hover:text-sky-600 transition-colors">
+							<h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-sky-600 group-hover:dark:text-sky-400 transition-colors">
 								{cert.title}
 							</h2>
-							<div className="text-sm text-gray-500 mt-1">
+							<div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
 								{cert.organization} ·{" "}
 								{new Date(cert.date).toLocaleDateString("en-us", {
 									year: "numeric",

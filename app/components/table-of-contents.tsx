@@ -48,7 +48,7 @@ function TocList({
 	truncateLabels?: boolean;
 }) {
 	return (
-		<ul className="space-y-1 border-l border-gray-200">
+		<ul className="space-y-1 border-l border-gray-200 dark:border-gray-700">
 			{toc.map((item) => {
 				const isActive = item.slug === activeSlug;
 				return (
@@ -62,8 +62,8 @@ function TocList({
 								truncateLabels ? "truncate" : ""
 							} ${item.depth === 3 ? "pl-6" : "pl-3"} ${
 								isActive
-									? "rounded-r border-sky-600 bg-sky-50 font-medium text-sky-700"
-									: "border-transparent text-gray-500 hover:text-gray-800"
+									? "rounded-r border-sky-600 dark:border-sky-500 bg-sky-50 dark:bg-sky-950 font-medium text-sky-700 dark:text-sky-400"
+									: "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-200"
 							}`}
 						>
 							{item.value}
@@ -83,7 +83,7 @@ export function TableOfContents({ toc }: { toc: TocItem[] }) {
 
 	return (
 		<nav aria-label="Table of contents" className="text-sm">
-			<p className="font-semibold text-gray-900 mb-3">Table of Contents</p>
+			<p className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Table of Contents</p>
 			<TocList toc={toc} activeSlug={activeSlug} truncateLabels />
 		</nav>
 	);
@@ -99,11 +99,11 @@ export function MobileTableOfContents({ toc }: { toc: TocItem[] }) {
 
 	return (
 		<details
-			className="mb-8 rounded-lg border border-gray-200 xl:hidden"
+			className="mb-8 rounded-lg border border-gray-200 dark:border-gray-700 xl:hidden"
 			open={open}
 			onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}
 		>
-			<summary className="cursor-pointer select-none px-4 py-3 text-sm font-semibold text-gray-900">
+			<summary className="cursor-pointer select-none px-4 py-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
 				Table of Contents
 			</summary>
 			<nav aria-label="Table of contents" className="px-4 pb-4 text-sm">
