@@ -82,7 +82,7 @@ export default function Image() {
 							letterSpacing: "-0.3px",
 						}}
 					>
-						Cloud Engineer
+						Software Engineer, Cloud Infrastructure & AI
 					</div>
 
 					<div

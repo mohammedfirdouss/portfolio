@@ -5,17 +5,19 @@ import { Navigation } from "./components/nav";
 import Footer from "./components/footer";
 import { siteUrl } from "./lib/site";
 
+const description =
+	"Software engineer focused on cloud infrastructure and AI, building open source software.";
+
 export const metadata: Metadata = {
 	metadataBase: new URL(siteUrl),
 	title: {
 		default: "Mohammed Firdous",
 		template: "%s | Mohammed Firdous",
 	},
-	description: "Cloud Engineer building infrastructure, AI systems, and open source tools.",
+	description,
 	openGraph: {
 		title: "Mohammed Firdous",
-		description:
-			"Cloud Engineer building infrastructure, AI systems, and open source tools.",
+		description,
 		url: siteUrl,
 		siteName: "Mohammed Firdous",
 		images: [{ url: "/opengraph-image" }],
@@ -36,8 +38,7 @@ export const metadata: Metadata = {
 	twitter: {
 		title: "Mohammed Firdous",
 		card: "summary_large_image",
-		description:
-			"Cloud Engineer building infrastructure, AI systems, and open source tools.",
+		description,
 		images: ["/opengraph-image"],
 	},
 	icons: {

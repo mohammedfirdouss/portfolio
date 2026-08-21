@@ -7,8 +7,10 @@ export const metadata = {
 };
 
 export default function TagsPage() {
-	const tags = [...getTagIndex().entries()].sort((a, b) =>
-		a[1].label.localeCompare(b[1].label),
+	const tags = [...getTagIndex().entries()].sort(
+		(a, b) =>
+			b[1].posts.length - a[1].posts.length ||
+			a[1].label.localeCompare(b[1].label),
 	);
 
 	return (

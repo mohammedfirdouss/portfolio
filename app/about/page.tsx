@@ -3,7 +3,7 @@ import Link from "next/link";
 export const metadata = {
 	title: "About",
 	description:
-		"Cloud Engineer building infrastructure, AI systems, and open source tools.",
+		"Software engineer focused on cloud infrastructure and AI, building open source software.",
 };
 
 const startHere = [
@@ -33,15 +33,15 @@ export default function AboutPage() {
 
 			<div className="text-lg text-gray-700 space-y-4">
 				<p>
-					I&apos;m a Cloud Engineer working on infrastructure, AI systems, and
-					open source. Most recently I was a CNCF LFX Mentee building the
+					I&apos;m a software engineer focused on cloud infrastructure and
+					AI. Most recently I was a CNCF LFX Mentee building the
 					Kubernetes multi-cluster plugin for PipeCD, and I hold the CNCF
 					Kubernetes and Cloud Native Associate (KCNA) certification.
 				</p>
 				<p>
-					I like fixing things at the layer most people don&apos;t look at —
-					build pipelines, container images, deployment plugins — and writing
-					about what I find there. Full work history is on the{" "}
+					I like fixing things that most people don&apos;t look at, like
+					build pipelines, container images, and deployment plugins. I write
+					about what I find. Full work history is on the{" "}
 					<Link href="/experience" className="prose-link">
 						experience
 					</Link>{" "}

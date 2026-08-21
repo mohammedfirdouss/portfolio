@@ -32,6 +32,21 @@ export default async function PostPage({ params }: Props) {
 	const wordCount = blog.body.raw.split(/\s+/).filter(Boolean).length;
 	const readingTime = wordCount > 100 ? Math.ceil(wordCount / 200) : null;
 
+	// Only cycle through posts that actually live on this site — cross-posted
+	// entries link out, so they don't belong in an on-site reading sequence.
+	const internalPosts = allBlogs
+		.filter((post) => !post.draft && !post.url && !post.externalUrl)
+		.sort(
+			(a, b) =>
+				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+		);
+	const currentIndex = internalPosts.findIndex((post) => post.slug === slug);
+	const newerPost = currentIndex > 0 ? internalPosts[currentIndex - 1] : null;
+	const olderPost =
+		currentIndex !== -1 && currentIndex < internalPosts.length - 1
+			? internalPosts[currentIndex + 1]
+			: null;
+
 	return (
 		<div>
 			<div className="mb-6">
@@ -90,6 +105,30 @@ export default async function PostPage({ params }: Props) {
 					</div>
 				</aside>
 			</div>
+			{(olderPost || newerPost) && (
+				<div className="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row gap-6 sm:justify-between">
+					{olderPost ? (
+						<Link
+							href={`/blog/${olderPost.slug}`}
+							className="group sm:max-w-[48%]"
+						>
+							<div className="text-xs text-gray-400 mb-1">← Older</div>
+							<div className="prose-link text-base">{olderPost.title}</div>
+						</Link>
+					) : (
+						<div />
+					)}
+					{newerPost && (
+						<Link
+							href={`/blog/${newerPost.slug}`}
+							className="group sm:max-w-[48%] sm:text-right"
+						>
+							<div className="text-xs text-gray-400 mb-1">Newer →</div>
+							<div className="prose-link text-base">{newerPost.title}</div>
+						</Link>
+					)}
+				</div>
+			)}
 			<div className="mt-8 text-sm font-mono text-gray-500">
 				<Link href="/blog" className="prose-link">
 					cd ..
