@@ -2,6 +2,8 @@
 
 A personal portfolio site: projects, blog, open source contributions, talks, and diagrams, written in MDX and rendered with Next.js.
 
+Dark mode follows the visitor's OS setting automatically (`prefers-color-scheme`, no toggle) — compiled by Tailwind's `dark:` variant, no JS involved.
+
 ## Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org/) App Router, static export
