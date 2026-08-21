@@ -3,6 +3,7 @@ import { Mdx } from "@/app/components/mdx";
 import "./mdx.css";
 import { allProjects } from "contentlayer/generated";
 import Link from "next/link";
+import { withBasePath } from "@/app/lib/asset-path";
 
 type Props = {
 	params: Promise<{ slug: string }>;
@@ -60,7 +61,7 @@ export default async function PostPage({ params }: Props) {
 				{project.banner && (
 					<div className="my-4">
 						<img
-							src={project.banner}
+							src={withBasePath(project.banner)}
 							alt={project.title}
 							className="rounded-xl w-full"
 						/>
