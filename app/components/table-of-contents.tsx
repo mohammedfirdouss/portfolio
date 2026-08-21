@@ -40,10 +40,12 @@ function TocList({
 	toc,
 	activeSlug,
 	onNavigate,
+	truncateLabels = false,
 }: {
 	toc: TocItem[];
 	activeSlug: string | null;
 	onNavigate?: () => void;
+	truncateLabels?: boolean;
 }) {
 	return (
 		<ul className="space-y-1 border-l border-gray-200">
@@ -54,9 +56,10 @@ function TocList({
 						<a
 							href={`#${item.slug}`}
 							onClick={onNavigate}
+							title={truncateLabels ? item.value : undefined}
 							className={`block -ml-px border-l-2 py-1.5 transition-colors ${
-								item.depth === 3 ? "pl-6" : "pl-3"
-							} ${
+								truncateLabels ? "truncate" : ""
+							} ${item.depth === 3 ? "pl-6" : "pl-3"} ${
 								isActive
 									? "rounded-r border-sky-600 bg-sky-50 font-medium text-sky-700"
 									: "border-transparent text-gray-500 hover:text-gray-800"
@@ -71,7 +74,7 @@ function TocList({
 	);
 }
 
-// Sticky sidebar version — used on wide (2xl+) viewports.
+// Sticky sidebar version — used on wide (xl+) viewports.
 export function TableOfContents({ toc }: { toc: TocItem[] }) {
 	const activeSlug = useActiveHeading(toc);
 
@@ -80,12 +83,12 @@ export function TableOfContents({ toc }: { toc: TocItem[] }) {
 	return (
 		<nav aria-label="Table of contents" className="text-sm">
 			<p className="font-semibold text-gray-900 mb-3">Table of Contents</p>
-			<TocList toc={toc} activeSlug={activeSlug} />
+			<TocList toc={toc} activeSlug={activeSlug} truncateLabels />
 		</nav>
 	);
 }
 
-// Collapsible version — used below the 2xl breakpoint, where there's no
+// Collapsible version — used below the xl breakpoint, where there's no
 // room for a fixed sidebar.
 export function MobileTableOfContents({ toc }: { toc: TocItem[] }) {
 	const activeSlug = useActiveHeading(toc);
@@ -95,7 +98,7 @@ export function MobileTableOfContents({ toc }: { toc: TocItem[] }) {
 
 	return (
 		<details
-			className="mb-8 rounded-lg border border-gray-200 2xl:hidden"
+			className="mb-8 rounded-lg border border-gray-200 xl:hidden"
 			open={open}
 			onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}
 		>

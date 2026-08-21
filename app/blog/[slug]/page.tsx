@@ -84,7 +84,7 @@ export default async function PostPage({ params }: Props) {
 				<article className="prose max-w-none prose-headings:mt-8 prose-headings:mb-3">
 					<Mdx code={blog.body.code} />
 				</article>
-				<aside className="hidden 2xl:block absolute top-0 right-full mr-16 w-64">
+				<aside className="hidden xl:block absolute top-0 right-full mr-6 w-48">
 					<div className="sticky top-24">
 						<TableOfContents toc={blog.toc} />
 					</div>
