@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useRef } from "react";
 import { type Project } from "contentlayer/generated";
+import { withBasePath } from "@/app/lib/asset-path";
 
 export function ProjectList({ projects }: { projects: Project[] }) {
 	const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
@@ -66,7 +67,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
 			>
 				{preview?.banner ? (
 					<img
-						src={preview.banner}
+						src={withBasePath(preview.banner)}
 						alt={preview.title}
 						className="w-72 h-44 object-cover rounded-xl shadow-xl border border-gray-100"
 					/>

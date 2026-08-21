@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { withBasePath } from "@/app/lib/asset-path";
 
 function clsx(...args: (string | undefined | null | false)[]): string {
 	return args.filter(Boolean).join(" ");
@@ -143,7 +144,7 @@ const components = {
 			<img
 				className={clsx("rounded-lg my-6 cursor-zoom-in", className)}
 				alt={alt}
-				src={src}
+				src={typeof src === "string" ? withBasePath(src) : src}
 				{...props}
 			/>
 		</Zoom>

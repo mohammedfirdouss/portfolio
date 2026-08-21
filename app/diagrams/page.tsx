@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { allDiagrams } from "contentlayer/generated";
+import { withBasePath } from "@/app/lib/asset-path";
 
 export const metadata = {
 	title: "Diagrams",
@@ -34,7 +35,7 @@ export default function DiagramsPage() {
 						{diagram.screenshot && (
 							<div className="mb-3 overflow-hidden rounded-lg border border-gray-100">
 								<img
-									src={diagram.screenshot}
+									src={withBasePath(diagram.screenshot)}
 									alt={diagram.title}
 									className="w-full h-40 object-cover object-top group-hover:opacity-90 transition-opacity"
 								/>
