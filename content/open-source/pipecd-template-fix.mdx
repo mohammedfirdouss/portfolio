@@ -25,29 +25,29 @@ This mismatch meant:
 
 ## My Solution
 
-I identified and fixed the root cause in `metrics_analyzer.go`:
+I found and fixed the root cause in `metrics_analyzer.go`:
 
-**Before**: Only `CANARY_BASELINE` strategy was calling `renderQuery()` to process templates  
-**After**: All strategies (`CANARY_BASELINE`, `THRESHOLD`, `PREVIOUS`) now use `renderQuery()` consistently
+**Before**: Only the `CANARY_BASELINE` strategy called `renderQuery()` to process templates  
+**After**: All strategies (`CANARY_BASELINE`, `THRESHOLD`, `PREVIOUS`) now use `renderQuery()` in the same way
 
-The fix was surgical and focused:
-- Updated the `THRESHOLD` strategy to call `renderQuery` before executing queries
-- Updated the `PREVIOUS` strategy to call `renderQuery` before executing queries
-- Unified the behavior across all analysis stage strategies
+The fix was small and focused:
+- Updated the `THRESHOLD` strategy to call `renderQuery` before running queries
+- Updated the `PREVIOUS` strategy to call `renderQuery` before running queries
+- Made all analysis stage strategies behave the same way
 - No breaking changes - purely a bug fix that made things work as users expected
 
 ## Review Process
 
-The review process was collaborative and thorough:
+The review was collaborative and thorough:
 
-**Warashi** (PipeCD maintainer) provided excellent guidance:
-- Helped identify the exact issue location and solution approach
-- Requested proper commit signing for the project (security best practice)
-- Tested the changes with actual PipeCD deployments
-- Provided before/after screenshots showing the fix working in production
-- Approved the implementation after validation
+**Warashi** (PipeCD maintainer) gave great guidance:
+- Helped find the exact place of the issue and the right approach to fix it
+- Asked for proper commit signing, a security best practice for the project
+- Tested the changes with real PipeCD deployments
+- Shared before/after screenshots showing the fix working in production
+- Approved the change after testing it
 
-**ffjlabo** performed the final review and merged the PR, confirming it met all project standards.
+**ffjlabo** did the final review and merged the PR, confirming it met all project standards.
 
 ## Technical Impact
 

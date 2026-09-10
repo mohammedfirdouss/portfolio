@@ -21,9 +21,9 @@ The 3-tier architecture splits the application into three separate layers:
 
 ## Why This Architecture?
 
-This design is a standard for building enterprise-level applications for several reasons:
+This design is a standard for enterprise applications for several reasons:
 
--   **Security:** By placing the application and database layers in private subnets, you protect them from direct internet access, significantly reducing the attack surface.
--   **Scalability:** Each layer can be scaled independently. If your application logic becomes a bottleneck, you can add more application servers without touching the other layers.
--   **Maintainability:** The separation of concerns makes the application easier to develop, update, and maintain. Different teams can work on different layers simultaneously.
--   **Automation:** Using AWS CloudFormation to define this infrastructure as code allows for fast, reliable, and repeatable deployments, eliminating manual configuration errors.
+-   **Security:** The app and database layers sit in private subnets, so the internet cannot reach them directly. This greatly reduces the attack surface.
+-   **Scalability:** Each layer scales on its own. If the app logic becomes a bottleneck, you can add more app servers without touching the other layers.
+-   **Maintainability:** Keeping the layers separate makes the application easier to build, update, and maintain. Different teams can work on different layers at the same time.
+-   **Automation:** AWS CloudFormation defines the infrastructure as code. Deployments become fast, reliable, and repeatable, and manual configuration errors go away.
