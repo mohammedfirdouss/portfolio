@@ -4,7 +4,6 @@ import {
 	allOpenSources,
 	allDiagrams,
 	allTalks,
-	allCertifications,
 } from "contentlayer/generated";
 
 export const dynamic = "force-static";
@@ -32,9 +31,9 @@ const staticPages: SearchItem[] = [
 		type: "page",
 	},
 	{
-		title: "Certifications",
-		description: "Cloud and infrastructure certifications.",
-		href: "/certifications",
+		title: "Uses",
+		description: "Hardware, software, and tools I rely on.",
+		href: "/uses",
 		type: "page",
 	},
 	{
@@ -98,16 +97,6 @@ export async function GET() {
 			description: diagram.summary ?? "",
 			href: `/diagrams/${diagram.slug}`,
 			type: "diagram",
-		});
-	}
-
-	for (const cert of allCertifications) {
-		items.push({
-			title: cert.title,
-			description: cert.organization,
-			href: cert.credentialUrl ?? "/certifications",
-			type: "certification",
-			external: !!cert.credentialUrl,
 		});
 	}
 

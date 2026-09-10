@@ -20,7 +20,7 @@ const staticRoutes = [
 	"/open-source",
 	"/diagrams",
 	"/talks",
-	"/certifications",
+	"/uses",
 	"/tags",
 ];
 
