@@ -37,14 +37,14 @@ This section looks closely at the architecture of the Cruddur microblogging plat
 
 ## Architectural Overview
 
-The Cruddur architecture is designed to be a modern, scalable, and cost-effective web application. It separates the user interface (frontend) from the business logic (backend).
+Cruddur is built as a modern, scalable, and low-cost web application. The user interface (frontend) is separate from the business logic (backend).
 
--   The **frontend** is a React application that users interact with in their browser.
--   The **backend** is a Python Flask application that handles tasks like creating posts, managing user data, and sending messages. It runs in Docker containers managed by AWS Fargate, which automatically handles the server infrastructure.
--   **Data** is stored in two different databases based on its type:
+-   The **frontend** is a React application that users open in their browser.
+-   The **backend** is a Python Flask application. It handles tasks like creating posts, managing user data, and sending messages. It runs in Docker containers on AWS Fargate, which manages the server infrastructure for you.
+-   **Data** lives in two databases, chosen by data type:
     -   **PostgreSQL (RDS):** For structured data like user profiles and posts.
-    -   **DynamoDB:** For real-time chat messages, which require very fast reads and writes.
--   **Security** is handled by AWS Cognito for user sign-in and sign-up.
+    -   **DynamoDB:** For real-time chat messages, which need very fast reads and writes.
+-   **Security** uses AWS Cognito for user sign-in and sign-up.
 
 ## Why This Architecture?
 
