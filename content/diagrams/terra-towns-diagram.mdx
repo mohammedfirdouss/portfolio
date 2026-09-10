@@ -13,16 +13,16 @@ This diagram explains the cloud architecture for the Terra Towns project.
 
 ## Architectural Overview
 
-The Terra Towns architecture is designed for simplicity and scalability, using a combination of AWS services and Terraform for infrastructure management.
+The Terra Towns architecture is built to be simple and scalable. It uses AWS services plus Terraform to manage the infrastructure.
 
--   **Content Delivery:** Amazon CloudFront is used as the content delivery network (CDN). It caches the website content at locations around the world, ensuring that users have fast access no matter where they are.
--   **Website Hosting:** The website itself is a static site hosted in an Amazon S3 bucket. This is a reliable and cost-effective way to host websites that don't require a traditional server.
--   **Infrastructure as Code:** The entire cloud infrastructure is defined and managed using Terraform. This allows for automated, repeatable, and version-controlled infrastructure deployments.
+-   **Content Delivery:** Amazon CloudFront works as the content delivery network (CDN). It caches the website content at locations around the world, so users get fast access wherever they are.
+-   **Website Hosting:** The website is a static site stored in an Amazon S3 bucket. This is a reliable, low-cost way to host a website that does not need a traditional server.
+-   **Infrastructure as Code:** All the cloud infrastructure is defined and managed with Terraform. Deployments are automated, repeatable, and version-controlled.
 
 ## Why This Architecture?
 
-This design was chosen for its efficiency and reliability:
+This design was chosen because it is efficient and reliable:
 
--   **High Availability:** Both S3 and CloudFront are highly available services, ensuring the website is always accessible.
--   **Global Scale:** CloudFront provides a global network, which means the platform can scale to serve a worldwide audience with low latency.
--   **Automated Management:** Using Terraform for infrastructure as code means that the entire environment can be created, updated, or replicated automatically, reducing manual effort and potential errors.
+-   **High Availability:** S3 and CloudFront are both highly available services, so the website stays reachable.
+-   **Global Scale:** CloudFront runs a global network, so the platform can serve users worldwide with low latency.
+-   **Automated Management:** With Terraform as infrastructure as code, the whole environment can be created, updated, or copied automatically. This cuts manual work and errors.

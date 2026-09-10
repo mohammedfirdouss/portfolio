@@ -6,11 +6,11 @@ summary: "An AI-powered multi-agent system for infrastructure issue reporting an
 
 # InfraAlert
 
-InfraAlert is an **AI-powered multi-agent system** designed for infrastructure issue reporting and response coordination. Built on Google Cloud Platform using the Agent Development Kit (ADK), it transforms citizen reports into coordinated responses through intelligent analysis and automation.
+InfraAlert is an **AI-powered multi-agent system** for reporting infrastructure problems and coordinating the response. It is built on Google Cloud Platform with the Agent Development Kit (ADK). It takes reports from citizens, analyzes them with AI, and turns them into coordinated responses.
 
 ## Core Architecture
 
-The system follows a microservice architecture where each agent is an independent Cloud Run service, coordinated by a central Orchestrator:
+The system uses a microservice design: each agent is its own Cloud Run service, and a central Orchestrator coordinates them.
 
 1.  **Orchestrator Agent**: The central workflow coordinator.
 2.  **Issue Detection Agent**: Analyzes and classifies issues using Vision API, NLP, Speech-to-Text, and Gemini AI.
