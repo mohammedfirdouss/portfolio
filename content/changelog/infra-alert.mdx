@@ -13,19 +13,19 @@ InfraAlert is an **AI-powered multi-agent system** for reporting infrastructure 
 The system uses a microservice design: each agent is its own Cloud Run service, and a central Orchestrator coordinates them.
 
 1.  **Orchestrator Agent**: The central workflow coordinator.
-2.  **Issue Detection Agent**: Analyzes and classifies issues using Vision API, NLP, Speech-to-Text, and Gemini AI.
-3.  **Priority Analysis Agent**: Calculates priority scores based on severity, urgency, and historical patterns.
-4.  **Resource Coordination Agent**: Handles proximity-based team matching and resource allocation.
-5.  **Platform Integration Agent**: Manages external notifications, including cost-effective SMS via Africa's Talking.
-6.  **Policy Agent (RAG)**: Provides RAG-powered Q&A from infrastructure policy documents.
+2.  **Issue Detection Agent**: Reads and classifies issues using Vision API, NLP, Speech-to-Text, and Gemini AI.
+3.  **Priority Analysis Agent**: Scores each issue's priority based on how severe and urgent it is, and on past patterns.
+4.  **Resource Coordination Agent**: Matches issues to nearby teams and assigns resources.
+5.  **Platform Integration Agent**: Sends notifications to outside services, including low-cost SMS via Africa's Talking.
+6.  **Policy Agent (RAG)**: Answers questions from infrastructure policy documents using RAG (retrieval-augmented generation).
 
 ## Key Features
 
-- **Multi-Channel Intake**: Support for web, mobile, and voice reports in English, Yoruba, Hausa, and Igbo.
-- **AI-Driven Analysis**: Real-time processing of text, photos, and audio to detect and categorize infrastructure failures.
-- **Intelligent Prioritization**: Automated severity assessment to ensure critical issues are addressed first.
-- **Real-Time Tracking**: A citizen-facing web application built with React and Vite for reporting and monitoring issue status.
-- **Serverless & Scalable**: Entirely serverless stack using Cloud Run, Firestore, and BigQuery, scaling to zero when idle.
+- **Multi-Channel Intake**: Takes web, mobile, and voice reports in English, Yoruba, Hausa, and Igbo.
+- **AI-Driven Analysis**: Processes text, photos, and audio in real time to detect and sort infrastructure failures.
+- **Intelligent Prioritization**: Rates how serious each issue is automatically, so critical issues are handled first.
+- **Real-Time Tracking**: A web application for citizens, built with React and Vite, to report issues and follow their status.
+- **Serverless & Scalable**: A fully serverless stack using Cloud Run, Firestore, and BigQuery, which scales to zero when idle.
 
 ## Tech Stack
 
