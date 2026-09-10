@@ -51,15 +51,15 @@ The review was collaborative and thorough:
 
 ## Technical Impact
 
-The fix ensures consistent behavior across all analysis strategies:
-- ✅ Users now see actual application names instead of `{{ .App.Name }}`
-- ✅ Monitoring queries execute with proper values (e.g., actual service names, namespaces)
-- ✅ All analysis strategies follow the same template rendering pattern
-- ✅ Improved debugging experience for PipeCD users across all deployment strategies
-- ✅ Quick cherry-pick to v0.52.2 release demonstrates importance to users
+The fix makes all analysis strategies behave the same way:
+- ✅ Users now see real application names instead of `{{ .App.Name }}`
+- ✅ Monitoring queries run with real values (e.g., actual service names, namespaces)
+- ✅ All analysis strategies fill in templates in the same way
+- ✅ Debugging is easier for PipeCD users across all deployment strategies
+- ✅ The quick cherry-pick into the v0.52.2 release shows it mattered to users
 
 ## Community Recognition
 
-The contribution was quickly cherry-picked to the v0.52.2 release, demonstrating its importance for existing users. The PipeCD maintainers encouraged me to continue contributing to the project, which led to several more contributions in documentation and tooling.
+The fix was quickly cherry-picked into the v0.52.2 release, which shows how much it mattered for existing users. The PipeCD maintainers encouraged me to keep contributing, and that led to several more contributions in documentation and tooling.
 
 **Links:** [Pull Request #6010](https://github.com/pipe-cd/pipecd/pull/6010) • [Issue #6005](https://github.com/pipe-cd/pipecd/issues/6005) • [Repository](https://github.com/pipe-cd/pipecd)
