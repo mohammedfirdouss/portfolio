@@ -39,7 +39,6 @@ export const metadata: Metadata = {
 		title: "Mohammed Firdous",
 		card: "summary_large_image",
 		description,
-		images: ["/opengraph-image"],
 	},
 	icons: {
 		icon: "/favicon.svg",
