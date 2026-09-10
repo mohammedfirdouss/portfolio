@@ -7,6 +7,6 @@ location: Remote
 description: Developed the Kubernetes multi-cluster plugin for PipeCD as a CNCF LFX Mentee, building six production pipeline stages for progressive delivery (step-by-step, safer rollouts) across clusters in different regions.
 ---
 
-*   Built the full `kubernetes_multicluster` plugin for PipeCD with six pipeline stages: canary rollout, baseline rollout, primary rollout, traffic routing, canary clean, and baseline clean. This lets PipeCD roll out changes step by step across multiple Kubernetes clusters.
-*   Made deployments safer by using `pipecd.dev/variant` labels to keep resources separate, so canary and baseline workloads can be cleaned up on their own without touching production resources.
-*   Made multi-cluster operations more reliable by running cluster operations in parallel with Go's `errgroup` pattern, and by adding per-route logging so traffic routing is fully visible.
+*   Enabled PipeCD to roll out changes step by step across multiple Kubernetes clusters by building the full `kubernetes_multicluster` plugin, with six production pipeline stages: canary rollout, baseline rollout, primary rollout, traffic routing, canary clean, and baseline clean.
+*   Removed the risk of cleanup touching production workloads by isolating resources with `pipecd.dev/variant` labels, so canary and baseline variants can be cleaned up independently.
+*   Sped up multi-cluster operations by running them in parallel with Go's `errgroup` pattern, and made traffic routing fully visible with per-route logging.
