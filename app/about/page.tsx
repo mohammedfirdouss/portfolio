@@ -62,9 +62,9 @@ export default function AboutPage() {
 					certification.
 				</p>
 				<p>
-					I like fixing things that most people don&apos;t look at, like
-					build pipelines, container images, and deployment plugins. I write
-					about what I find. Full work history is on the{" "}
+					I like working on new problems, like building pipelines,
+					infrastructure, and deployment plugins. I write about what I find.
+					Full work history is on the{" "}
 					<Link href="/experience" className="prose-link">
 						experience
 					</Link>{" "}
