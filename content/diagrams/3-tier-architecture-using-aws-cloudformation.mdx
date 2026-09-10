@@ -5,7 +5,7 @@ summary: "Web, app, and database tiers on AWS, automated with CloudFormation."
 screenshot: "/3-tier.webp"
 ---
 
-This diagram explains a classic 3-tier web architecture, a fundamental pattern for building robust and scalable applications. This implementation is deployed on AWS and automated with CloudFormation.
+This diagram explains a classic 3-tier web architecture. It is a common pattern for building solid, scalable applications. This version runs on AWS and is automated with CloudFormation.
 
 ![Diagram of a 3-tier AWS architecture: public ALB and web tier, private app tier on EC2, and private RDS database across subnets](/3-tier.webp)
 
@@ -13,11 +13,11 @@ This diagram explains a classic 3-tier web architecture, a fundamental pattern f
 
 ## Architectural Overview
 
-The 3-tier architecture separates the application into three logical and physical layers:
+The 3-tier architecture splits the application into three separate layers:
 
--   **Presentation Layer (Web Tier):** This is the layer that users interact with. It includes a load balancer that distributes traffic and web servers that serve the user interface. This layer lives in a public subnet, making it accessible from the internet.
--   **Application Layer (App Tier):** This layer contains the business logic of the application. It runs on application servers (like EC2 instances) in a private subnet. It is not directly accessible from the internet, which enhances security.
--   **Data Layer (Database Tier):** This layer stores the application's data. It consists of a database (like Amazon RDS) in a separate, private subnet, making it the most secure part of the architecture.
+-   **Presentation Layer (Web Tier):** The layer users interact with. It has a load balancer that spreads traffic and web servers that serve the user interface. This layer lives in a public subnet, so the internet can reach it.
+-   **Application Layer (App Tier):** This layer holds the business logic. It runs on application servers (like EC2 instances) in a private subnet. The internet cannot reach it directly, which improves security.
+-   **Data Layer (Database Tier):** This layer stores the application's data. It has a database (like Amazon RDS) in its own private subnet, making it the most protected part of the architecture.
 
 ## Why This Architecture?
 

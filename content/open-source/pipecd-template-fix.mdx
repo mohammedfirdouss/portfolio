@@ -1,27 +1,27 @@
 ---
 title: PipeCD - Analysis Stage Template Rendering Fix
-summary: Fixed critical bug in PipeCD's analysis stage where template variables weren't being rendered for THRESHOLD and PREVIOUS strategies, causing raw template strings to appear in logs and queries.
+summary: "Fixed a critical bug in PipeCD's analysis stage: template variables were not filled in for the THRESHOLD and PREVIOUS strategies, so raw template text showed up in logs and queries."
 date: 2025-07-08
 published: true
 project: PipeCD
 featured: true
 ---
 
-I contributed to PipeCD, a CNCF Sandbox GitOps continuous deployment tool, by fixing a bug where template variables weren't being rendered in certain analysis strategies, causing raw template strings to appear in logs and queries instead of actual values.
+I contributed to PipeCD, a CNCF Sandbox GitOps continuous deployment tool. I fixed a bug where some analysis strategies did not fill in template variables, so logs and queries showed raw template text instead of real values.
 
 ## What is PipeCD?
 
-PipeCD is a CNCF Sandbox project that provides GitOps continuous deployment for Kubernetes, ECS, Lambda, and other platforms. It offers progressive delivery features like canary deployments, blue-green deployments, and automated analysis stages that monitor metrics during deployments.
+PipeCD is a CNCF Sandbox project. It provides GitOps continuous deployment for Kubernetes, ECS, Lambda, and other platforms. It supports progressive delivery (rolling out changes step by step) with features like canary deployments, blue-green deployments, and automated analysis stages that watch metrics during a deployment.
 
 ## The Problem
 
-PipeCD's analysis stage supports different strategies for monitoring deployments: `CANARY_BASELINE`, `THRESHOLD`, and `PREVIOUS`. The `CANARY_BASELINE` strategy correctly rendered template variables like `{{ .App.Name }}` into actual values, but `THRESHOLD` and `PREVIOUS` strategies were displaying raw template strings in logs and queries.
+PipeCD's analysis stage supports different strategies for monitoring deployments: `CANARY_BASELINE`, `THRESHOLD`, and `PREVIOUS`. The `CANARY_BASELINE` strategy correctly turned template variables like `{{ .App.Name }}` into real values. But the `THRESHOLD` and `PREVIOUS` strategies showed the raw template text in logs and queries.
 
-This inconsistency meant:
-- Users saw confusing template variables instead of actual application names in logs
-- Monitoring queries contained unprocessed template syntax like `{{ .App.Name }}`
-- Different analysis strategies behaved inconsistently, breaking user expectations
-- Debugging deployments was significantly harder with meaningless template strings
+This mismatch meant:
+- Users saw confusing template variables in logs instead of real application names
+- Monitoring queries still contained raw template text like `{{ .App.Name }}`
+- The strategies behaved differently from each other, which broke user expectations
+- Debugging deployments was much harder because the template text carried no meaning
 
 ## My Solution
 
