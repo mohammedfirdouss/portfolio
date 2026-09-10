@@ -43,7 +43,7 @@ export default function Home() {
 					hi !
 				</h1>
 				<p className="text-gray-900 dark:text-gray-100 text-2xl sm:text-3xl lg:text-4xl tracking-tight">
-					I&apos;m <span>Mohammed Firdous</span>, and I build software
+					I&apos;m <span>Mohammed Firdous</span>, and I build software.
 				</p>
 			</div>
 			<div className="text-lg text-gray-700 dark:text-gray-300 space-y-4">
