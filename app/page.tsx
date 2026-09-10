@@ -48,12 +48,11 @@ export default function Home() {
 			</div>
 			<div className="text-lg text-gray-700 dark:text-gray-300 space-y-4">
 				<p>
-					I&apos;m a software engineer focused on{" "}
-					<span className="font-medium">cloud infrastructure</span> and{" "}
-					<span className="font-medium">AI</span>, contributing to{" "}
+					I work on <span className="font-medium">cloud infrastructure</span>{" "}
+					and <span className="font-medium">AI</span>, contribute to{" "}
 					<span className="font-medium">open source</span> and{" "}
-					<span className="font-medium">research</span>, alongside being a 3×
-					hackathon winner.
+					<span className="font-medium">research</span>, and have won three
+					hackathons so far.
 				</p>
 			</div>
 
