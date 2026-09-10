@@ -32,12 +32,6 @@ const staticPages: SearchItem[] = [
 		type: "page",
 	},
 	{
-		title: "Systems Design",
-		description: "Notes on systems design.",
-		href: "/systems-design",
-		type: "page",
-	},
-	{
 		title: "Certifications",
 		description: "Cloud and infrastructure certifications.",
 		href: "/certifications",

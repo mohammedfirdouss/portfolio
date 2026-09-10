@@ -12,9 +12,11 @@ type Props = {
 export const dynamicParams = false;
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-	return allProjects.map((project) => ({
-		slug: project.slug,
-	}));
+	return allProjects
+		.filter((project) => project.published)
+		.map((project) => ({
+			slug: project.slug,
+		}));
 }
 
 export default async function PostPage({ params }: Props) {

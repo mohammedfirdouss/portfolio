@@ -50,9 +50,10 @@ export default function Home() {
 				<p>
 					I&apos;m a software engineer focused on{" "}
 					<span className="font-medium">cloud infrastructure</span> and{" "}
-					<span className="font-medium">AI</span>. I&apos;m also interested
-					in <span className="font-medium">open source</span> and{" "}
-					<span className="font-medium">research</span>. 3× hackathon winner.
+					<span className="font-medium">AI</span>, with a deep interest in{" "}
+					<span className="font-medium">open source</span> and{" "}
+					<span className="font-medium">research</span>, alongside being a 3×
+					hackathon winner.
 				</p>
 			</div>
 

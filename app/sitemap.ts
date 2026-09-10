@@ -21,7 +21,6 @@ const staticRoutes = [
 	"/diagrams",
 	"/talks",
 	"/certifications",
-	"/systems-design",
 	"/tags",
 ];
 
