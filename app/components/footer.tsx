@@ -25,9 +25,9 @@ const socialLinks = [
 ];
 
 const pageLinks = [
-	{ text: "certifications", href: "/certifications" },
 	{ text: "talks", href: "/talks" },
 	{ text: "diagrams", href: "/diagrams" },
+	{ text: "uses", href: "/uses" },
 	{ text: "tags", href: "/tags" },
 	{ text: "rss", href: "/rss.xml" },
 ];

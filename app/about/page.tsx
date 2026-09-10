@@ -24,6 +24,21 @@ const startHere = [
 	},
 ];
 
+const hackathonWins = [
+	{
+		title: "Solana Students Africa Hackathon — 1st place",
+		note: "My team won the Campus Tools with Solana Pay track of this month-long hackathon with Konnect, a campus payments product.",
+	},
+	{
+		title: "Festival of Change Hackathon 2025 — 1st place",
+		note: "Won first place at this edtech hackathon.",
+	},
+	{
+		title: "ECX 5.0 Hackathon — 2nd place",
+		note: "Placed 2nd out of more than 40 teams at the 5th edition of the Engineering Career Expo.",
+	},
+];
+
 export default function AboutPage() {
 	return (
 		<div>
@@ -35,8 +50,16 @@ export default function AboutPage() {
 				<p>
 					I&apos;m a software engineer focused on cloud infrastructure and
 					AI. Most recently I was a CNCF LFX Mentee building the
-					Kubernetes multi-cluster plugin for PipeCD, and I hold the CNCF
-					Kubernetes and Cloud Native Associate (KCNA) certification.
+					Kubernetes multi-cluster plugin for PipeCD, and I hold the CNCF{" "}
+					<a
+						href="https://www.credly.com/badges/3bf4d5f8-2010-4de3-9d89-503c7dad658e"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="prose-link"
+					>
+						Kubernetes and Cloud Native Associate (KCNA)
+					</a>{" "}
+					certification.
 				</p>
 				<p>
 					I like fixing things that most people don&apos;t look at, like
@@ -47,6 +70,22 @@ export default function AboutPage() {
 					</Link>{" "}
 					page.
 				</p>
+			</div>
+
+			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
+				<h2 className="xl:text-6xl md:text-5xl text-3xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-6 -z-10">
+					hackathon wins
+				</h2>
+				<ul className="mt-8">
+					{hackathonWins.map((item) => (
+						<li key={item.title} className="mb-6">
+							<span className="text-xl text-gray-900 dark:text-gray-100">
+								{item.title}
+							</span>
+							<p className="text-gray-500 dark:text-gray-400 mt-1">{item.note}</p>
+						</li>
+					))}
+				</ul>
 			</div>
 
 			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
