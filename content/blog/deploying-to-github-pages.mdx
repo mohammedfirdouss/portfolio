@@ -1,27 +1,27 @@
 ---
 title: "Deploying This Site to GitHub Pages"
-description: "Notes on standing up a temporary GitHub Pages deployment for this portfolio while the old domain gets sorted out, and what it took to make a Cloudflare-flavored Next.js export work there too."
+description: "Notes on setting up a temporary GitHub Pages deployment for this portfolio while I replace the old domain, and how I made the same Next.js static export work on both GitHub Pages and Cloudflare."
 publishedAt: "2026-08-21"
 tags: ["Next.js", "GitHub Pages", "Cloudflare", "Deployment"]
 ---
 
-My old domain expired, so this site needed a home while I sort out a new one. Rather than wait, I set up GitHub Pages as a temporary deployment target alongside the existing Cloudflare Pages setup. Here's what that actually involved.
+My old domain expired, so this site needed a home while I get a new one. Instead of waiting, I set up GitHub Pages as a temporary deployment target next to the existing Cloudflare Pages setup. Here is what that involved.
 
 ## Why Run Two Deployments
 
-The site was already deploying to Cloudflare Pages as a static export, triggered on every push to `master`. Rather than rip that out, I added GitHub Pages as a second, independent deployment target:
+The site already deployed to Cloudflare Pages as a static export on every push to `master`. Instead of removing that, I added GitHub Pages as a second, independent deployment target:
 
-- Cloudflare keeps deploying exactly as before, no changes to that workflow.
+- Cloudflare keeps deploying exactly as before. That workflow does not change.
 - A new GitHub Actions workflow builds the same static export and publishes it to GitHub Pages.
-- Once a new domain is in place, the GitHub Pages deployment can be dropped without touching anything Cloudflare-related.
+- Once I have a new domain, I can drop the GitHub Pages deployment without touching anything on the Cloudflare side.
 
 ## Making One Build Work for Both Hosts
 
-The two hosts don't serve the site from the same place. Cloudflare serves it from the domain root; GitHub Pages serves a project site from a `/portfolio` subpath, since the URL is `username.github.io/portfolio`. Next.js handles this with `basePath` and `assetPrefix`, but those need to differ per deployment target from the exact same codebase.
+The two hosts do not serve the site from the same place. Cloudflare serves it from the domain root. GitHub Pages serves a project site from a `/portfolio` subpath, because the URL is `username.github.io/portfolio`. Next.js handles this with `basePath` and `assetPrefix`. But these values must be different for each host, while the code stays the same.
 
 ### Conditional Base Path
 
-The fix was a single environment variable read at build time:
+The fix was one environment variable, read at build time:
 
 ```js
 const isGithubPages = process.env.GITHUB_PAGES === "true";
@@ -32,12 +32,12 @@ const nextConfig = {
 };
 ```
 
-The GitHub Pages workflow sets `GITHUB_PAGES=true` before running the build; the Cloudflare workflow doesn't set it at all, so it falls through to the root-relative behavior it already had.
+The GitHub Pages workflow sets `GITHUB_PAGES=true` before the build. The Cloudflare workflow does not set it at all, so it keeps the root-relative behavior it already had.
 
 ### Static Export and Image Optimization
 
-Next.js's built-in image optimizer needs a server to run on. Neither deployment target has one for this static export, which meant `next/image` usage anywhere in the app would silently 404 in production. Setting `images.unoptimized: true` was the fix — it was arguably already a latent bug on Cloudflare, just one that hadn't been noticed yet.
+The built-in Next.js image optimizer needs a server to run on. Neither host has one for this static export. So any use of `next/image` in the app would silently return a 404 in production. Setting `images.unoptimized: true` was the fix. This was arguably already a hidden bug on Cloudflare — it just had not been noticed yet.
 
 ## What's Next
 
-Once a new domain is bought and pointed at Cloudflare, the GitHub Pages workflow and this temporary URL go away, and the canonical site URL swaps back over. Until then, this is the live version.
+Once I buy a new domain and point it at Cloudflare, the GitHub Pages workflow and this temporary URL go away, and the main site URL switches back. Until then, this is the live version.

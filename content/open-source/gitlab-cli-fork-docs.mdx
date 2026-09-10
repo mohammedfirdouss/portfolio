@@ -7,16 +7,16 @@ project: GitLab
 featured: false
 ---
 
-I documented how `glab stack sync` behaves on fork-based workflows after the underlying bug fix shipped.
+I documented how `glab stack sync` works when you use a forked repository, after the related bug fix shipped.
 
-The original fix prevented broken merge requests, but users still needed clear guidance on why fork users are prompted to choose a repository and what to pick.
+The bug fix stopped broken merge requests, but users still needed a clear answer to two questions: why does the tool ask fork users to choose a repository, and which one should they pick?
 
 I updated the CLI docs to explain:
 
-- when the prompt appears in fork flows,
-- how to choose the correct remote safely,
-- and how this avoids syncing to the wrong project.
+- when the prompt appears if you work from a fork,
+- how to pick the correct remote safely,
+- and how this stops you from syncing to the wrong project.
 
-This was my first merged OSS contribution and went through normal maintainer review before merge.
+This was my first merged open source contribution. It went through normal maintainer review before merge.
 
 **Links:** [MR !1723](https://gitlab.com/gitlab-org/cli/-/merge_requests/1723) • [Issue #7660](https://gitlab.com/gitlab-org/cli/-/issues/7660) • [Related fix !1687](https://gitlab.com/gitlab-org/cli/-/merge_requests/1687)

@@ -22,13 +22,12 @@ export default async function ProjectsPage() {
 			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">projects</h1>
 			<div className="text-lg text-gray-700 dark:text-gray-300">
 				<p>
-					I build things I can use or reference, or that others can. Here are
-					some I actually &quot;finished&quot;; some polished, some quick
-					experiments. Happy to chat,{" "}
+					These are projects I have built and finished. Some are polished,
+					some are quick experiments. If you want to talk about any of them,{" "}
 					<a href="mailto:mohammedfirdous682@gmail.com" className="prose-link">
-						hit me up
+						send me an email
 					</a>
-					!
+					.
 				</p>
 			</div>
 			<ProjectList projects={projects} />

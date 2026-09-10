@@ -7,12 +7,12 @@ project: GitLab
 featured: false
 ---
 
-I fixed a broken onboarding path in GitLab’s developer tutorials by replacing an outdated search target that no longer existed in the codebase.
+I fixed a broken step in GitLab’s developer tutorials. The tutorials asked readers to search for text that no longer existed in the codebase.
 
-Both GDK and Gitpod setup docs told contributors to look for old text (`Customize the color of GitLab`), which made the exercise fail for new contributors.
+Both the GDK and Gitpod setup docs told contributors to look for old text (`Customize the color of GitLab`), so the exercise failed for new contributors.
 
-I updated the tutorials to use a current, searchable string (`Syntax highlighting theme`) so new contributors can complete setup steps without dead ends.
+I updated the tutorials to use text that still exists (`Syntax highlighting theme`), so new contributors can finish the setup steps without hitting a dead end.
 
-This removed a small but real contributor-friction point and was merged after docs review.
+It was a small fix, but it removed a real pain point for new contributors. It was merged after docs review.
 
 **Links:** [MR !187663](https://gitlab.com/gitlab-org/gitlab/-/merge_requests/187663) • [Issue #526914](https://gitlab.com/gitlab-org/gitlab/-/issues/526914)

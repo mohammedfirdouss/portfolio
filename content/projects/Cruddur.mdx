@@ -39,14 +39,14 @@ Cruddur is a microblogging platform with user authentication, feeds, profiles, a
 
 ## How It's Built
 
--   **Observability:** The system is instrumented for monitoring and debugging with a combination of tools:
+-   **Observability:** The system uses several tools for monitoring and debugging:
     -   **AWS X-Ray:** For tracing requests across services.
     -   **CloudWatch Logs:** For centralized logging.
     -   **OpenTelemetry (Honeycomb):** For distributed tracing and observability.
     -   **Rollbar:** For real-time error monitoring.
--   **CI/CD:** A complete CI/CD pipeline using GitHub Actions automates testing, building, and deploying the frontend and backend services.
--   **Configuration:** AWS Systems Manager (SSM) Parameter Store is used for managing secrets and configuration, ensuring that no sensitive data is hardcoded in the application.
--   **Networking:** An Application Load Balancer (ALB) distributes traffic to the backend services, with health checks to ensure reliability.
+-   **CI/CD:** A full CI/CD pipeline with GitHub Actions tests, builds, and deploys the frontend and backend services.
+-   **Configuration:** AWS Systems Manager (SSM) Parameter Store holds secrets and configuration, so no sensitive data is hardcoded in the application.
+-   **Networking:** An Application Load Balancer (ALB) sends traffic to the backend services and uses health checks to keep the system reliable.
 
 ## Screenshots
 

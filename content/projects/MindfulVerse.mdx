@@ -1,0 +1,37 @@
+---
+title: MindfulVerse
+description: A quiet web app for reflecting on the Qur'an, with guided reflections, dhikr, and a private journal. Works offline with no sign-up.
+date: "2026-09-04"
+repository: mohammedfirdouss/MindfulVerse
+published: true
+outcomes:
+  - Shipped a free, offline-first Qur'an reflection app with no sign-up and no server.
+  - Bundled all 114 surahs with Arabic text, English translation, and Ibn Kathir's commentary.
+  - Kept every journal entry on the user's own device, tied to the verse it was written about.
+roleHighlights:
+  - I built the app with React, TypeScript, and Vite, with a service worker for offline use.
+  - I wrote the data pipeline that turns raw Qur'an datasets into the app's bundled data.
+  - I designed the daily check-in, guided tadabbur sessions, and the dhikr breathing tool.
+proofLinks:
+  - label: Live app
+    href: https://mindfulverse.vercel.app
+  - label: Repository
+    href: https://github.com/mohammedfirdouss/MindfulVerse
+---
+
+MindfulVerse is a quiet app for reflecting on the Qur'an. You can read verses with translation and commentary, sit with a short guided reflection, count your dhikr with a paced breathing circle, and keep a private journal. It runs in the browser, needs no sign-up, works offline, and is free.
+
+## What it is
+
+- **Daily check-in:** A verse for today, a gentle mood picker, and a place to journal.
+- **Tadabbur sessions:** 20 short guided reflections, each with a theme, a few verses, and a prompt.
+- **Dhikr and breath:** A breathing circle paced to remembrance, with tap counting.
+- **Read:** All 114 surahs with Arabic, English translation, and Ibn Kathir's commentary.
+- **Search and topics:** Search the translation or find verses by topic, then jump into the reader.
+- **Journal:** Reflections saved on your device, linked to the verse they were written about.
+
+The app shows all Qur'an text, translation, and commentary exactly as it is. It never rewrites or generates religious content.
+
+## How it's built
+
+React, TypeScript, and Vite, with a service worker for offline use. There is no server: all data ships with the app, and the journal lives in the browser. A build script turns raw datasets from the Quranic Universal Library into the app's data files. The English translation is ClearQuran by Talal Itani, and the Arabic typeface is the KFGQPC Uthmanic Hafs script.

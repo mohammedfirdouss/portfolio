@@ -1,6 +1,6 @@
 ---
 title: GitLab AI Gateway Contribution
-summary: My contribution to GitLab's AI Gateway, refactoring middleware code for better organization and maintainability.
+summary: "My contribution to GitLab's AI Gateway: I reorganized middleware code so it is easier to find and maintain."
 date: 2025-04-29
 published: true
 project: GitLab
@@ -20,16 +20,16 @@ proofLinks:
     href: https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/issues/859
 ---
 
-I refactored `InternalEventMiddleware` in GitLab AI Gateway by moving it from a crowded base module into a dedicated middleware file, with tests moved alongside it.
+I refactored `InternalEventMiddleware` in GitLab AI Gateway. I moved it out of a crowded base module into its own middleware file, and moved its tests with it.
 
-This was part of an ongoing cleanup effort to make middleware easier to locate, test, and maintain without breaking existing imports.
+This was part of a wider cleanup to make middleware easier to find, test, and maintain, without breaking existing imports.
 
 What I shipped in MR !2291:
 
-- extracted middleware into `ai_gateway/api/middleware/internal_event.py`,
-- split and updated tests into the middleware test module,
-- kept compatibility by re-exporting where needed.
+- moved the middleware into `ai_gateway/api/middleware/internal_event.py`,
+- split and updated the tests in the middleware test module,
+- kept old imports working by re-exporting where needed.
 
-During review, I fixed a circular import and logger-related test failures flagged by maintainers, then merged after final approval.
+During review, maintainers flagged a circular import and some logger-related test failures. I fixed both, and the MR merged after final approval.
 
 **Links:** [MR !2291](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2291) • [Issue #859](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/issues/859)

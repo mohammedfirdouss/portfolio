@@ -1,36 +1,36 @@
 ---
 title: Qwen3.5-4B Base Blind Spots
-description: A rigorous evaluation framework that probes Qwen3.5-4B-Base across 84 structured prompts in 12 reasoning categories, using dual-axis failure classification and surfacing a critical float16 overflow issue.
+description: A careful evaluation framework that tests Qwen3.5-4B-Base with 84 structured prompts in 12 reasoning categories. It labels failures on two axes and found a critical float16 overflow issue.
 date: "2026-06-08"
-repository: mohammedfirdouss/fatima-fellowship-technical-task
+repository: mohammedfirdouss/blind-spots-of-frontier-models
 published: true
 outcomes:
-  - Identified a critical float16 numerical overflow that produces incoherent output across all 12 categories, bfloat16 is required for valid evaluation of Qwen-class models.
-  - Quantified category-level failure rates using 84 prompts (5 failure probes + 2 success controls per category), producing measurable gaps rather than anecdotal examples.
-  - Delivered concrete fine-tuning recommendations, with specific datasets and scale ranges, mapped to each root cause for targeted model improvement.
+  - Found a critical float16 numerical overflow that makes output unreadable across all 12 categories. bfloat16 is required for valid evaluation of Qwen-class models.
+  - Measured failure rates per category using 84 prompts (5 failure probes + 2 success controls per category), giving numbers instead of one-off examples.
+  - Gave concrete fine-tuning advice, with specific datasets and scale ranges, mapped to each root cause.
 roleHighlights:
-  - I designed the 84-prompt evaluation suite and dual-axis classification scheme separating coherence failures from correctness failures.
-  - I discovered and documented the float16 overflow issue as a reproducible, quantified finding across all 12 reasoning categories.
-  - I produced a training dataset with per-dtype outputs and auto-labels published to Hugging Face for reuse.
+  - I designed the 84-prompt test suite and a two-axis labelling scheme that separates coherence failures from correctness failures.
+  - I found and documented the float16 overflow issue as a repeatable, measured finding across all 12 reasoning categories.
+  - I built a training dataset with per-dtype outputs and auto-labels, published to Hugging Face for reuse.
 proofLinks:
   - label: Repository
-    href: https://github.com/mohammedfirdouss/fatima-fellowship-technical-task
+    href: https://github.com/mohammedfirdouss/blind-spots-of-frontier-models
   - label: Dataset
     href: https://huggingface.co/datasets/mohammedfirdouss/qwen35-4b-base-blind-spots
   - label: Model tested
     href: https://huggingface.co/Qwen/Qwen3.5-4B-Base
 ---
 
-Qwen3.5-4B Base Blind Spots is a systematic evaluation framework for probing failure modes in Qwen3.5-4B-Base, a 4B-parameter pre-trained model with Gated DeltaNet attention and sparse MoE architecture. Rather than collecting anecdotal failures, it runs 84 structured prompts across 12 reasoning categories and produces quantified failure rates with actionable remediation paths.
+Qwen3.5-4B Base Blind Spots is an evaluation framework that finds where Qwen3.5-4B-Base fails. The model is a 4B-parameter pre-trained model with Gated DeltaNet attention and a sparse MoE architecture. Instead of collecting one-off failure examples, the framework runs 84 structured prompts across 12 reasoning categories and reports measured failure rates with clear paths to fix them.
 
 ## What it is
 
-A reproducible LLM failure-mode evaluation framework with:
+A repeatable LLM failure-mode evaluation framework with:
 
 - **84-Prompt Test Suite:** 5 failure probes + 2 success controls per category across 12 reasoning domains: arithmetic, logic, commonsense, coreference, Bayesian reasoning, Winograd schema, and more.
-- **Dual-Axis Classification:** Each output labelled independently for coherence (intelligible?) and correctness (accurate?), separating format failures from reasoning failures to make remediation more targeted.
-- **Critical dtype Finding:** float16 triggers numerical overflow across all 12 categories, producing incoherent output even on trivial controls. bfloat16 is required; float16 results are preserved as a reference.
-- **Fine-Tuning Roadmap:** Category-level failure analysis maps each root cause to specific training datasets and scale ranges for targeted improvement.
+- **Two-Axis Labelling:** Each output is labelled separately for coherence (is it readable?) and correctness (is it accurate?). This separates format failures from reasoning failures, which makes fixes more targeted.
+- **Critical dtype Finding:** float16 causes numerical overflow across all 12 categories, producing unreadable output even on simple controls. bfloat16 is required; the float16 results are kept as a reference.
+- **Fine-Tuning Roadmap:** Failure analysis per category maps each root cause to specific training datasets and scale ranges.
 
 ## How It's Built
 
@@ -42,7 +42,7 @@ A reproducible LLM failure-mode evaluation framework with:
 
 ## What I Learned
 
-- **dtype Is a Hard Correctness Requirement:** float16 overflow is not subtle degradation, it invalidates all results. Dtype selection must be verified before any evaluation is trusted.
-- **Structured Probing Over Anecdote:** Controlled failure/success pairs per category turn vague quality concerns into measurable, comparable failure rates.
-- **Dual-Axis Taxonomy Drives Different Fixes:** Coherence failures point to inference config or instruction tuning; correctness failures point to chain-of-thought or domain-specific data. Conflating them wastes remediation effort.
-- **Small Benchmarks Can Be High Signal:** 84 prompts across 12 categories surface recurring blind spots faster than large-scale evaluation suites when the goal is targeted fine-tuning.
+- **dtype Is a Hard Correctness Requirement:** float16 overflow is not a small quality drop; it makes all results invalid. Check the dtype before trusting any evaluation.
+- **Structured Probing Over One-Off Examples:** Controlled failure/success pairs per category turn vague quality concerns into failure rates you can measure and compare.
+- **Two-Axis Labels Point to Different Fixes:** Coherence failures point to inference config or instruction tuning. Correctness failures point to chain-of-thought or domain-specific data. Mixing them up wastes effort.
+- **Small Benchmarks Can Be High Signal:** When the goal is targeted fine-tuning, 84 prompts across 12 categories surface repeat blind spots faster than large evaluation suites.

@@ -1,21 +1,21 @@
 ---
 title: PipeCD - Codegen Image Security Hardening
-summary: Hardened PipeCD's codegen Docker image by fixing CVEs, reducing image size from 800MB to 500MB, and switching to debian:bookworm-slim base while preserving all functionality.
+summary: "Made PipeCD's codegen Docker image more secure: fixed CVEs (known security flaws), cut the image size from 800MB to 500MB, and switched to a debian:bookworm-slim base while keeping everything working."
 date: 2026-03-11
 published: true
 project: PipeCD
 featured: true
 ---
 
-I hardened PipeCD’s codegen image by moving from `golang:1.25.2` to a slimmer `debian:bookworm-slim` runtime while preserving the full toolchain used by `tool/codegen/codegen.sh`.
+I made PipeCD’s codegen image more secure. I moved it from `golang:1.25.2` to the smaller `debian:bookworm-slim` base, while keeping the full toolchain that `tool/codegen/codegen.sh` needs.
 
-The result was a safer, leaner image (about 800MB → 500MB) without breaking protobuf generation or mockgen workflows.
+The result was a safer and smaller image (about 800MB → 500MB), with protobuf generation and mockgen workflows still working.
 
 Key implementation points:
-- multi-stage build that copies required Go runtime pieces,
-- installed protobuf headers/standard `.proto` dependencies,
-- preserved cross-arch support and existing plugins.
+- a multi-stage build that copies only the needed Go runtime pieces,
+- installed the protobuf headers and standard `.proto` dependencies,
+- kept cross-architecture support and existing plugins working.
 
-The patch was reviewed with validation evidence (build, binary availability, compile path checks) and merged.
+I submitted the patch with proof that it worked (build checks, checks that the binaries exist, and compile path checks), and it was reviewed and merged.
 
 **Links:** [PR #6461](https://github.com/pipe-cd/pipecd/pull/6461) • [Issue #6429](https://github.com/pipe-cd/pipecd/issues/6429)

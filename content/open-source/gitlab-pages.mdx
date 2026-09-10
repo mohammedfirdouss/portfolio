@@ -1,21 +1,21 @@
 ---
 title: GitLab Pages TLS Refactoring
-summary: Contributed to GitLab Pages by refactoring TLS certificate handling code to improve organization and maintainability.
+summary: Contributed to GitLab Pages by moving TLS certificate handling code into its own package, making it easier to organize and maintain.
 date: 2025-05-07
 published: true
 project: GitLab
 featured: true
 ---
 
-I refactored TLS certificate lookup code in GitLab Pages by moving domain certificate retrieval out of `app.go` into a dedicated `internal/tls` package.
+I refactored the TLS certificate lookup code in GitLab Pages. I moved the code that fetches a domain's certificate out of `app.go` and into its own `internal/tls` package.
 
-The goal was to reduce coupling in the main application path and make certificate logic easier to test and extend.
+The goal was to keep the main application code simpler, and to make the certificate logic easier to test and extend.
 
 What shipped:
-- extracted `GetCertificateForDomain`,
-- updated TLS config wiring to use the new package,
-- added tests and fixed type/import issues during review.
+- moved `GetCertificateForDomain` into the new package,
+- updated the TLS config to use the new package,
+- added tests and fixed type and import issues during review.
 
-Maintainers requested iterative improvements on signatures, error handling, and coverage before merge, which improved the final patch quality.
+Maintainers asked for several rounds of improvements to function signatures, error handling, and test coverage before merge. This made the final patch better.
 
 **Links:** [MR !1139](https://gitlab.com/gitlab-org/gitlab-pages/-/merge_requests/1139) • [Issue #708](https://gitlab.com/gitlab-org/gitlab-pages/-/issues/708)

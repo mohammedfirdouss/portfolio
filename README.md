@@ -2,7 +2,7 @@
 
 A personal portfolio site: projects, blog, open source contributions, talks, and diagrams, written in MDX and rendered with Next.js.
 
-Dark mode follows the visitor's OS setting automatically (`prefers-color-scheme`, no toggle) — compiled by Tailwind's `dark:` variant, no JS involved.
+Dark mode follows the visitor's OS setting (`prefers-color-scheme`). There is no toggle and no JavaScript — Tailwind's `dark:` variant handles it.
 
 ## Tech Stack
 
@@ -32,9 +32,9 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-`dev`/`build` run on Webpack, not Turbopack (Next 16's new default) —
-Contentlayer's `withContentlayer()` wrapper injects its own webpack config,
-which Turbopack refuses to build under.
+`dev` and `build` run on Webpack, not Turbopack (Next 16's new default).
+This is because Contentlayer's `withContentlayer()` wrapper adds its own
+webpack config, which Turbopack cannot build.
 
 ### Formatting and Linting
 

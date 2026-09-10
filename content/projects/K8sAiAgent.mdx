@@ -1,0 +1,42 @@
+---
+title: AI Kubernetes Troubleshooting Agent
+description: An AI platform that investigates Kubernetes failures, finds the root cause, and suggests fixes through a web dashboard.
+date: "2026-09-10"
+repository: mohammedfirdouss/k8s-ai-agent
+published: true
+outcomes:
+  - Turned manual Kubernetes debugging into one-click investigations with a clear diagnosis at the end.
+  - Combined pod, log, event, deployment, and network checks into a single evidence report for the AI to reason over.
+  - Gave each diagnosis a confidence score and a concrete fix, such as a kubectl command or a YAML change.
+roleHighlights:
+  - I built the investigation layer with five inspectors that collect pods, logs, events, deployments, and network state.
+  - I designed the AI agent flow that turns raw cluster evidence into a root cause, a fix, and a confidence score.
+  - I wired the InsForge backend for auth, investigation history, and realtime progress updates in the dashboard.
+proofLinks:
+  - label: Repository
+    href: https://github.com/mohammedfirdouss/k8s-ai-agent
+  - label: Related systems design case
+    href: /systems-design
+---
+
+AI Kubernetes Troubleshooting Agent is a platform that debugs a Kubernetes cluster for you. You click "Investigate", it gathers evidence from the cluster, an AI agent reasons over that evidence, and you get back the root cause, a suggested fix, and a confidence score. Every investigation is saved, so the team can look back at past incidents.
+
+## What it is
+
+A Kubernetes debugging assistant with:
+
+- **Automatic investigations:** One request kicks off checks on pods, logs, events, deployments, and networking.
+- **Root cause analysis:** An LLM reads the collected evidence and names the main problem, such as an OOMKilled container or a service selector mismatch.
+- **Suggested fixes:** Each diagnosis comes with a concrete next step, like a kubectl command or a YAML update.
+- **History and live progress:** Past investigations are stored, and the dashboard shows each step as it runs.
+
+## How it's built
+
+- **Investigation layer:** Five inspectors that talk to the Kubernetes API and collect debugging evidence.
+- **AI agent:** A prompt builder, LLM reasoning through OpenRouter (Claude, GPT, DeepSeek), a root cause analyzer, a fix engine, and confidence scoring.
+- **Backend:** InsForge for auth, APIs, investigation history, and realtime updates.
+- **Frontend:** A public web dashboard to start investigations and view results.
+
+## Example
+
+A checkout API keeps restarting under load. The agent checks pod status, collects logs, and reads events. It finds the container was OOMKilled: the memory limit is 128Mi but the app peaks near 300Mi. It suggests raising the limit to 512Mi and adding memory alerts, with 91% confidence.

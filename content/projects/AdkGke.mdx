@@ -1,32 +1,32 @@
 ---
 title: ADK Investment Research Agent on GKE
-description: A hierarchical multi-agent system that researches companies, refines investment theses through an analyst-critic loop, and produces parallel bull/bear reports, deployed on GKE Autopilot.
+description: A multi-agent system that researches companies, improves its investment thesis with an analyst-critic loop, and writes bull and bear reports in parallel. It runs on GKE Autopilot.
 date: "2026-05-13"
 repository: mohammedfirdouss/adk-gke
 published: true
 outcomes:
-  - Built a sequential orchestrator with a looping analyst-critic feedback cycle that iteratively refines investment theses.
-  - Parallelised bull and bear case generation as concurrent agent branches within the same pipeline.
-  - Deployed the multi-agent system as a containerised FastAPI service on GKE Autopilot with Cloud Logging.
+  - Built an orchestrator that runs an analyst-critic loop to improve the investment thesis step by step.
+  - Made the bull and bear cases run at the same time as two parallel agent branches in one pipeline.
+  - Deployed the system as a containerised FastAPI service on GKE Autopilot with Cloud Logging.
 roleHighlights:
-  - "I designed the hierarchical agent topology using Google ADK: orchestrator, research team, and parallel writers."
-  - I wired the Wikipedia API via LangChain as the research tool and Gemini 2.5 Flash as the LLM backend.
-  - I handled containerisation, GKE Autopilot configuration, and Cloud Logging integration for observability.
+  - "I designed the agent structure with Google ADK: an orchestrator, a research team, and parallel writers."
+  - I connected the Wikipedia API through LangChain as the research tool and used Gemini 2.5 Flash as the LLM.
+  - I set up the container, the GKE Autopilot config, and Cloud Logging so the system is easy to observe.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/adk-gke
 ---
 
-ADK Investment Research Agent is a multi-agent pipeline that accepts a company name or stock ticker and returns a structured investment report. It uses Google's Agent Development Kit to coordinate a team of specialised agents: researcher, analyst, critic, and parallel case writers, running on Google Kubernetes Engine Autopilot.
+ADK Investment Research Agent is a multi-agent pipeline. You give it a company name or stock ticker, and it returns a structured investment report. It uses Google's Agent Development Kit (ADK) to run a team of agents: a researcher, an analyst, a critic, and two parallel case writers. It runs on Google Kubernetes Engine Autopilot.
 
 ## What it is
 
 A production-ready multi-agent research system with:
 
-- **Hierarchical Orchestration:** A sequential root agent drives a looping research team (up to 3 refinement iterations) before handing off to report writers.
-- **Analyst-Critic Loop:** An analyst proposes an investment thesis; a critic challenges it; the loop runs until the thesis is validated or the iteration cap is hit.
-- **Parallel Case Writing:** Bull and bear scenarios are generated concurrently as independent agent branches.
-- **GKE Autopilot Deployment:** The full pipeline runs as a containerised FastAPI service with Cloud Logging for observability.
+- **Orchestration:** A sequential root agent runs a research team in a loop (up to 3 rounds), then hands the result to the report writers.
+- **Analyst-Critic Loop:** The analyst proposes an investment thesis. The critic challenges it. The loop repeats until the thesis passes or the round limit is reached.
+- **Parallel Case Writing:** The bull and bear cases are written at the same time by two separate agent branches.
+- **GKE Autopilot Deployment:** The full pipeline runs as a containerised FastAPI service with Cloud Logging.
 
 ## How It's Built
 
@@ -39,7 +39,7 @@ A production-ready multi-agent research system with:
 
 ## What I Learned
 
-- **Multi-Agent Topology:** Composing sequential, looping, and parallel agent patterns within a single ADK pipeline.
-- **Feedback Loops in AI Systems:** Designing critic agents that drive iterative refinement without infinite loops.
-- **Cloud-Native AI Deployment:** Packaging an agentic workload for GKE Autopilot and wiring up structured logging.
-- **State Management:** Threading structured state across agent boundaries cleanly in a stateful pipeline.
+- **Multi-Agent Design:** How to combine sequential, looping, and parallel agent patterns in one ADK pipeline.
+- **Feedback Loops in AI Systems:** How to design critic agents that improve results step by step without looping forever.
+- **Cloud-Native AI Deployment:** How to package an agent workload for GKE Autopilot and set up structured logging.
+- **State Management:** How to pass structured state between agents cleanly in a stateful pipeline.

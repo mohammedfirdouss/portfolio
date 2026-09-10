@@ -1,23 +1,23 @@
 ---
 title: Kubernetes Multicluster Deployment Samples
-description: A collection of PipeCD deployment manifests that validates multicluster pipeline patterns, canary, baseline, traffic shifting, Kustomize overlays, and Helm across geographically distributed clusters.
+description: A set of PipeCD deployment manifests that tests multicluster pipeline patterns — canary, baseline, traffic shifting, Kustomize overlays, and Helm — across clusters in different regions.
 date: "2026-05-28"
 repository: mohammedfirdouss/kubernetes-multicluster-samples
 published: true
 outcomes:
-  - Validated canary, baseline, and primary rollout strategies across two geographically separated clusters (cluster-eu, cluster-us).
-  - Demonstrated per-stage cluster filtering so canary traffic stays isolated to a single region before full rollout.
+  - Tested canary, baseline, and primary rollout strategies across two clusters in different regions (cluster-eu, cluster-us).
+  - Showed per-stage cluster filtering, so canary traffic stays in one region until the full rollout starts.
   - Covered StatefulSet, DaemonSet, Init Container, and CronJob workload types alongside standard Deployments.
 roleHighlights:
-  - I authored app manifests and PipeCD pipeline configs for each deployment pattern.
+  - I wrote the app manifests and PipeCD pipeline configs for each deployment pattern.
   - I tested Kustomize per-target overlays and Helm chart integration within the multicluster plugin.
-  - I validated partial failure handling so a single cluster failure does not abort the full multi-target rollout.
+  - I checked partial failure handling, so one failed cluster does not stop the full multi-target rollout.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/kubernetes-multicluster-samples
 ---
 
-Kubernetes Multicluster Samples is a test suite for PipeCD's `kubernetes_multicluster` plugin. Each folder is a self-contained application with a PipeCD pipeline config and Kubernetes manifests, covering the full range of deployment strategies the plugin supports across two clusters.
+Kubernetes Multicluster Samples is a test suite for PipeCD's `kubernetes_multicluster` plugin. Each folder is a self-contained application with a PipeCD pipeline config and Kubernetes manifests. Together, they cover the full range of deployment strategies the plugin supports across two clusters.
 
 ## What it is
 
@@ -25,10 +25,10 @@ A multicluster CD validation suite with:
 
 - **Deployment Strategies:** Canary (with and without service creation), primary rollout, and baseline deployments for A/B scenarios.
 - **Traffic Routing:** PodSelector-based and Istio-based traffic shifting across clusters.
-- **Per-Stage Filtering:** Canary stages scoped to `cluster-eu` only, with full rollout unlocked in a subsequent stage.
+- **Per-Stage Filtering:** Canary stages run only on `cluster-eu`; a later stage unlocks the full rollout.
 - **Workload Coverage:** Deployment, StatefulSet, DaemonSet, Init Container image extraction, and CronJob health checks.
 - **Config Flexibility:** Kustomize per-target overlays and Helm chart integration with custom values.
-- **Resilience Testing:** Partial failure handling so one cluster error does not kill the entire multi-target pipeline.
+- **Resilience Testing:** Partial failure handling, so one cluster error does not stop the entire multi-target pipeline.
 
 ## How It's Built
 
@@ -40,6 +40,6 @@ A multicluster CD validation suite with:
 
 ## What I Learned
 
-- **Multicluster CD Complexity:** Traffic isolation between regions requires explicit per-stage target filtering, blanket rollouts carry more risk than they appear to.
-- **Plugin Validation Practice:** Writing targeted manifests per deployment pattern is more reliable than relying on end-to-end tests alone.
-- **Partial Failure Semantics:** Defining what "success" means in a multi-target rollout (all clusters vs. quorum) is a design decision that affects rollback behaviour.
+- **Multicluster CD Complexity:** Keeping traffic separate between regions needs explicit per-stage target filtering. Rolling out to all clusters at once carries more risk than it appears to.
+- **Plugin Validation Practice:** Writing focused manifests for each deployment pattern is more reliable than relying on end-to-end tests alone.
+- **Partial Failure Semantics:** Deciding what "success" means in a multi-target rollout (all clusters vs. quorum) is a design choice that affects rollback behaviour.
