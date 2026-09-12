@@ -1,0 +1,34 @@
+---
+title: SmartKey
+description: A key-management platform that replaced the paper logbook at the University of Lagos Senate Building with real-time tracking, an immutable audit trail, and AI-assisted security.
+date: "2026-08-01"
+repository: ayobami11/smartkey
+published: true
+banner: /smartkey-landing.webp
+screenshot: /smartkey-cso-dashboard.webp
+outcomes:
+  - Cut key processing time by up to 50% by building a backend of 40+ Next.js API routes and 25+ Postgres RPCs on Supabase.
+  - Automated risk detection and reporting for security staff by integrating 3 AI features - rule-based risk scoring, Gemini shift reports, and signature verification.
+  - Achieved zero missing or altered records by writing every state change and its audit entry in one atomic database transaction.
+roleHighlights:
+  - I designed and built the backend - API routes, transactional Postgres RPCs, and Row-Level Security across all database tables.
+  - I built the AI security layer, including pixel-level signature verification and Gemini-generated shift reports with a deterministic fallback.
+  - I implemented four role-specific dashboards for security officers, deans, verifiers, and staff requesters.
+proofLinks:
+  - label: Repository
+    href: https://github.com/ayobami11/smartkey
+---
+
+SmartKey is a digital key-management system for the University of Lagos Senate Building. It replaces a paper logbook with real-time tracking, role-based access, and an immutable audit trail for every key in the building.
+
+## What it is
+
+Staff request a key, collect it at the security desk with a one-time code, and return it the same way — every step logged, timestamped, and auditable. Four role-specific dashboards (Chief Security Officer, Dean, Verifier, Requester) cover the full lifecycle, and three AI components — rule-based risk scoring, Gemini-generated shift reports, and pixel-level signature verification — flag anomalies that paper could never catch.
+
+Built with Next.js, TypeScript, and Supabase (Postgres with Row-Level Security), with the Google Gemini API for AI features.
+
+## Screenshots
+
+![CSO dashboard flagging a signature mismatch](/smartkey-signature-mismatch.webp)
+
+![Key issued at the security desk](/smartkey-key-issued.webp)
