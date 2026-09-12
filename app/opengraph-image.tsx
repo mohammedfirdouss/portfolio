@@ -10,7 +10,7 @@ export const contentType = "image/png";
 
 export default function Image() {
 	const profileImg = readFileSync(
-		join(process.cwd(), "public/profile prod.png"),
+		join(process.cwd(), "assets/profile-prod.png"),
 	);
 	const profileSrc = `data:image/png;base64,${profileImg.toString("base64")}`;
 

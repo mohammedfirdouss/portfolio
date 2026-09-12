@@ -5,7 +5,7 @@ import { siteUrl } from "./site";
 
 export const ogSize = { width: 1200, height: 630 };
 
-const profileImg = readFileSync(join(process.cwd(), "public/profile prod.png"));
+const profileImg = readFileSync(join(process.cwd(), "assets/profile-prod.png"));
 const profileSrc = `data:image/png;base64,${profileImg.toString("base64")}`;
 
 /**

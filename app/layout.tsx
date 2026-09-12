@@ -1,5 +1,6 @@
 import "../global.css";
 import LocalFont from "next/font/local";
+import Script from "next/script";
 import { Metadata } from "next";
 import { Navigation } from "./components/nav";
 import Footer from "./components/footer";
@@ -73,6 +74,15 @@ export default function RootLayout({
 				<Navigation />
 				<main className="grow mx-auto py-10 px-6 max-w-3xl">{children}</main>
 				<Footer />
+				{process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && (
+					<Script
+						src="https://static.cloudflareinsights.com/beacon.min.js"
+						data-cf-beacon={JSON.stringify({
+							token: process.env.NEXT_PUBLIC_CF_BEACON_TOKEN,
+						})}
+						strategy="lazyOnload"
+					/>
+				)}
 			</body>
 		</html>
 	);
