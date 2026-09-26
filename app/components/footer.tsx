@@ -1,4 +1,7 @@
+import Link from "next/link";
 import { Fragment } from "react";
+import { footerLinks } from "./navigation-links";
+import { SearchTrigger } from "./search-trigger";
 
 const socialLinks = [
 	{
@@ -38,6 +41,15 @@ export default function Footer() {
 						</a>
 					</Fragment>
 				))}
+			</p>
+			<p>
+				{footerLinks.map((link) => (
+					<Fragment key={link.href}>
+						<Link href={link.href}>{link.name}</Link>
+						{sep}
+					</Fragment>
+				))}
+				<SearchTrigger />
 			</p>
 		</footer>
 	);
