@@ -3,6 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 import { navigationLinks as navLinks } from "./navigation-links";
+import { newsletterUrl } from "../lib/site";
+import { withBasePath } from "../lib/asset-path";
 
 export const Navigation: React.FC = () => {
 	const pathname = usePathname();
@@ -20,9 +22,16 @@ export const Navigation: React.FC = () => {
 				</p>
 			)}
 			<nav className="site-nav">
-				{navLinks.map((link, i) => (
+				{newsletterUrl ? (
+					<a href={newsletterUrl} target="_blank" rel="noopener noreferrer">
+						subscribe
+					</a>
+				) : (
+					<a href={withBasePath("/rss.xml")}>subscribe</a>
+				)}
+				{navLinks.map((link) => (
 					<Fragment key={link.href}>
-						{i > 0 && <span aria-hidden="true"> │ </span>}
+						<span aria-hidden="true"> │ </span>
 						<Link
 							href={link.href}
 							aria-current={
