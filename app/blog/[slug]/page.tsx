@@ -5,7 +5,6 @@ import {
 	TableOfContents,
 	MobileTableOfContents,
 } from "@/app/components/table-of-contents";
-import "./mdx.css";
 import { allBlogs } from "contentlayer/generated";
 import Link from "next/link";
 import { Fragment } from "react";

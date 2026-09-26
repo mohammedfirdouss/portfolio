@@ -8,7 +8,6 @@ import {
 	neighbours,
 	repositoryUrl,
 } from "@/app/components/post-layout";
-import "./mdx.css";
 import { allProjects } from "contentlayer/generated";
 import { withBasePath } from "@/app/lib/asset-path";
 
