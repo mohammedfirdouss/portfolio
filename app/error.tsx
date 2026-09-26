@@ -18,23 +18,23 @@ export default function ErrorPage({
 
 	return (
 		<div className="flex flex-col items-center justify-center py-24 text-center">
-			<h1 className="text-4xl font-bold text-[color:var(--fg)] mb-4">
+			<h1 className="page-title">
 				Something went wrong
 			</h1>
 			<p className="text-lg text-[color:var(--muted)] mb-8">
 				An unexpected error occurred. Please try again.
 			</p>
-			<div className="flex gap-4">
+			<div className="flex gap-6">
 				<button
 					type="button"
 					onClick={reset}
-					className="px-6 py-3 text-sm font-medium text-white bg-sky-600 dark:bg-sky-500 rounded-lg hover:bg-sky-700 hover:dark:bg-sky-600 transition"
+					className="link-button"
 				>
 					Try again
 				</button>
 				<Link
 					href="/"
-					className="px-6 py-3 text-sm font-medium text-[color:var(--fg)] border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 hover:dark:bg-gray-900 transition"
+					className="prose-link"
 				>
 					Go back home
 				</Link>

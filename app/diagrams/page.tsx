@@ -19,7 +19,7 @@ export default function DiagramsPage() {
 	return (
 		<div>
 			<h1 className="page-title">diagrams</h1>
-			<div className="text-lg text-[color:var(--fg)] mb-12">
+			<div className="mb-12">
 				<p>
 					Architecture diagrams for projects I have built. They show how the
 					pieces fit together.
@@ -42,7 +42,7 @@ export default function DiagramsPage() {
 							</div>
 						)}
 						<div className="flex items-baseline gap-3 flex-wrap">
-							<span className="text-lg font-semibold text-[color:var(--fg)] group-hover:text-sky-600 group-hover:dark:text-sky-400 transition-colors">
+							<span className="post-title prose-link">
 								{diagram.title}
 							</span>
 							{diagram.date && (
@@ -57,9 +57,6 @@ export default function DiagramsPage() {
 						{diagram.summary && (
 							<p className="text-[color:var(--muted)] mt-1">{diagram.summary}</p>
 						)}
-						<span className="inline-block mt-2 text-sm text-sky-600 dark:text-sky-400 group-hover:underline">
-							View diagram →
-						</span>
 					</Link>
 				))}
 			</div>

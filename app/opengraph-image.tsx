@@ -17,7 +17,7 @@ export default function Image() {
 	return new ImageResponse(
 		<div
 			style={{
-				background: "#ffffff",
+				background: "#f0efef",
 				width: "100%",
 				height: "100%",
 				display: "flex",
@@ -35,22 +35,6 @@ export default function Image() {
 					flex: 1,
 				}}
 			>
-				{/* Big faint watermark letter */}
-				<div
-					style={{
-						fontSize: "200px",
-						fontWeight: 700,
-						color: "#f3f4f6",
-						lineHeight: 1,
-						position: "absolute",
-						top: "20px",
-						left: "60px",
-						letterSpacing: "-8px",
-						zIndex: 0,
-					}}
-				>
-					hi!
-				</div>
 
 				<div
 					style={{
@@ -63,8 +47,8 @@ export default function Image() {
 					<div
 						style={{
 							fontSize: "56px",
-							fontWeight: 700,
-							color: "#111827",
+							fontWeight: 900,
+							color: "#000000",
 							letterSpacing: "-2px",
 							lineHeight: 1.1,
 							marginBottom: "16px",
@@ -96,9 +80,9 @@ export default function Image() {
 							<div
 								key={tag}
 								style={{
-									background: "#f0f9ff",
-									border: "1px solid #bae6fd",
-									color: "#0284c7",
+									background: "transparent",
+									border: "1px solid #007acc",
+									color: "#007acc",
 									fontSize: "18px",
 									padding: "6px 16px",
 									borderRadius: "6px",

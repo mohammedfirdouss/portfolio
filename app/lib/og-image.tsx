@@ -10,8 +10,8 @@ const profileSrc = `data:image/png;base64,${profileImg.toString("base64")}`;
 
 /**
  * Renders a per-page Open Graph image in the same visual style as the root
- * `app/opengraph-image.tsx`: white background, faint watermark, sky-blue
- * accent chips, and the profile photo on the right.
+ * `app/opengraph-image.tsx`: off-white background, black title, blue
+ * accent chip, and the profile photo on the right.
  */
 export function renderPageOgImage({
 	title,
@@ -28,7 +28,7 @@ export function renderPageOgImage({
 	return new ImageResponse(
 		<div
 			style={{
-				background: "#ffffff",
+				background: "#f0efef",
 				width: "100%",
 				height: "100%",
 				display: "flex",
@@ -46,22 +46,6 @@ export function renderPageOgImage({
 					flex: 1,
 				}}
 			>
-				{/* Big faint watermark letter */}
-				<div
-					style={{
-						fontSize: "200px",
-						fontWeight: 700,
-						color: "#f3f4f6",
-						lineHeight: 1,
-						position: "absolute",
-						top: "20px",
-						left: "60px",
-						letterSpacing: "-8px",
-						zIndex: 0,
-					}}
-				>
-					hi!
-				</div>
 
 				<div
 					style={{
@@ -79,9 +63,9 @@ export function renderPageOgImage({
 					>
 						<div
 							style={{
-								background: "#f0f9ff",
-								border: "1px solid #bae6fd",
-								color: "#0284c7",
+								background: "transparent",
+								border: "1px solid #007acc",
+								color: "#007acc",
 								fontSize: "18px",
 								padding: "6px 16px",
 								borderRadius: "6px",
@@ -95,8 +79,8 @@ export function renderPageOgImage({
 					<div
 						style={{
 							fontSize: `${titleSize}px`,
-							fontWeight: 700,
-							color: "#111827",
+							fontWeight: 900,
+							color: "#000000",
 							letterSpacing: "-2px",
 							lineHeight: 1.1,
 							marginBottom: "24px",

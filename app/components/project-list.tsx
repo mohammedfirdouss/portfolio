@@ -72,7 +72,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
 						className="w-72 h-44 object-cover rounded-xl shadow-xl border border-[color:var(--rule)]"
 					/>
 				) : preview ? (
-					<div className="w-64 rounded-xl shadow-xl border border-[color:var(--rule)] bg-white dark:bg-gray-900 p-4">
+					<div className="w-64 rounded shadow-xl border border-[color:var(--rule)] bg-[color:var(--bg)] p-4">
 						<p className="text-sm font-semibold text-[color:var(--fg)]">{preview.title}</p>
 						<p className="text-xs text-[color:var(--muted)] mt-1 line-clamp-3">
 							{preview.description}
