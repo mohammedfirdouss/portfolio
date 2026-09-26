@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">projects</h1>
+			<h1 className="page-title">projects</h1>
 			<div className="text-lg text-gray-700 dark:text-gray-300">
 				<p>
 					These are projects I have built and finished. Some are polished,

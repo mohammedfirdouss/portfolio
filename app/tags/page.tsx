@@ -15,7 +15,7 @@ export default function TagsPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">
+			<h1 className="page-title">
 				tags
 			</h1>
 			<div className="flex flex-wrap gap-3">

@@ -1,36 +1,40 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Fragment } from "react";
 import { navigationLinks as navLinks } from "./navigation-links";
 
 export const Navigation: React.FC = () => {
 	const pathname = usePathname();
+	const isHome = pathname === "/";
 
 	return (
-		<header className="text-lg max-w-3xl mx-auto px-6 flex flex-wrap mt-8 justify-between items-center gap-x-6 gap-y-3">
-			<div className="flex-shrink-0">
-				<Link
-					href="/"
-					className="nav-link font-medium text-xl hover:text-gray-800 hover:dark:text-gray-200"
-				>
-					mohammed firdous
-				</Link>
-			</div>
-			<nav className="flex flex-wrap gap-6 justify-end">
-				{navLinks.map((link) => (
-					<Link
-						key={link.href}
-						href={link.href}
-						className={`nav-link pb-0.5 ${
-							pathname?.startsWith(link.href)
-								? "text-sky-600 dark:text-sky-400 border-b-2 border-sky-500 dark:border-sky-400"
-								: "opacity-60 hover:opacity-100 border-b-2 border-transparent"
-						}`}
-					>
-						{link.name}
-					</Link>
+		<header className="site-header">
+			{isHome ? (
+				<h1 className="site-title">
+					<Link href="/">mohammed firdous</Link>
+				</h1>
+			) : (
+				<p className="site-title site-title--small">
+					<Link href="/">mohammed firdous</Link>
+				</p>
+			)}
+			<nav className="site-nav">
+				{navLinks.map((link, i) => (
+					<Fragment key={link.href}>
+						{i > 0 && <span aria-hidden="true"> │ </span>}
+						<Link
+							href={link.href}
+							aria-current={
+								pathname?.startsWith(link.href) ? "page" : undefined
+							}
+						>
+							{link.name}
+						</Link>
+					</Fragment>
 				))}
 			</nav>
+			<hr />
 		</header>
 	);
 };

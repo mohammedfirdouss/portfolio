@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { SearchTrigger } from "./search-trigger";
 
 const socialLinks = [
@@ -32,34 +33,32 @@ const pageLinks = [
 	{ text: "rss", href: "/rss.xml" },
 ];
 
+const sep = <span aria-hidden="true"> │ </span>;
+
 export default function Footer() {
 	return (
-		<footer className="w-full px-6 pt-4 pb-12 max-w-3xl mx-auto">
-			<div className="flex flex-wrap gap-x-4 gap-y-2 mb-3">
-				{socialLinks.map((link) => (
-					<a
-						key={link.text}
-						href={link.href}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="prose-link"
-					>
-						{link.text}
-					</a>
+		<footer className="site-footer">
+			<hr />
+			<p>
+				{socialLinks.map((link, i) => (
+					<Fragment key={link.text}>
+						{i > 0 && sep}
+						<a href={link.href} target="_blank" rel="noopener noreferrer">
+							{link.text}
+						</a>
+					</Fragment>
 				))}
-			</div>
-			<div className="flex flex-wrap gap-x-4 gap-y-2 items-center">
-				{pageLinks.map((link) => (
-					<Link
-						key={link.text}
-						href={link.href}
-						className="prose-link text-sm text-gray-400 dark:text-gray-500"
-					>
-						{link.text}
-					</Link>
+			</p>
+			<p>
+				{pageLinks.map((link, i) => (
+					<Fragment key={link.text}>
+						{i > 0 && sep}
+						<Link href={link.href}>{link.text}</Link>
+					</Fragment>
 				))}
+				{sep}
 				<SearchTrigger />
-			</div>
+			</p>
 		</footer>
 	);
 }

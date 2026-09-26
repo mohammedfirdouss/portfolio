@@ -84,9 +84,9 @@ export function SearchTrigger() {
 			<button
 				type="button"
 				onClick={() => setOpen(true)}
-				className="prose-link text-sm text-gray-400 dark:text-gray-500 font-mono"
+				className="link-button"
 			>
-				grep
+				search
 			</button>
 			{open && (
 				<div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4">

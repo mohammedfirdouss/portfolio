@@ -42,7 +42,7 @@ const hackathonWins = [
 export default function AboutPage() {
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">
+			<h1 className="page-title">
 				about
 			</h1>
 
@@ -73,7 +73,7 @@ export default function AboutPage() {
 			</div>
 
 			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
-				<h2 className="xl:text-6xl md:text-5xl text-3xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-6 -z-10">
+				<h2 className="section-title">
 					hackathon wins
 				</h2>
 				<ul className="mt-8">
@@ -89,7 +89,7 @@ export default function AboutPage() {
 			</div>
 
 			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
-				<h2 className="xl:text-6xl md:text-5xl text-3xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-6 -z-10">
+				<h2 className="section-title">
 					start here
 				</h2>
 				<ul className="mt-8">

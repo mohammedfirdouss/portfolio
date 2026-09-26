@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { allBlogs } from "contentlayer/generated";
+import { slugifyTag } from "../lib/tags";
 
 export const metadata = {
 	title: "Blog",
@@ -20,92 +22,71 @@ export default async function BlogPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">blog</h1>
-			<div className="text-lg text-gray-700 dark:text-gray-300 mb-12">
-				<p>
-					Writing on cloud infrastructure, AI systems, and open source. Some
-					pieces are cross-posted from dev.to or Medium.
-				</p>
-			</div>
-			<ul>
-				{sorted.map((post, index) => {
-					const showYear = !isSameYear(
-						post.publishedAt,
-						sorted[index - 1]?.publishedAt,
-					);
-					const isExternal = !!post.url;
-					const href = post.url || `/blog/${post.slug}`;
-					const wordCount = post.body.raw.split(/\s+/).filter(Boolean).length;
-					const readingTime = !isExternal && wordCount > 100 ? Math.ceil(wordCount / 200) : null;
+			<h1 className="page-title">blog</h1>
+			<p className="mb-7">
+				Writing on cloud infrastructure, AI systems, and open source. Some
+				pieces are cross-posted from dev.to or Medium.
+			</p>
+			{sorted.map((post, index) => {
+				const showYear = !isSameYear(
+					post.publishedAt,
+					sorted[index - 1]?.publishedAt,
+				);
+				const isExternal = !!post.url;
+				const href = post.url || `/blog/${post.slug}`;
+				const wordCount = post.body.raw.split(/\s+/).filter(Boolean).length;
+				const readingTime =
+					!isExternal && wordCount > 100 ? Math.ceil(wordCount / 200) : null;
 
-					return (
-						<li key={post.slug} className="mb-6">
-							{showYear && (
-								<div className="select-none relative h-18 pointer-events-none">
-									<span className="text-7xl -ml-2 xl:-ml-18 absolute top-0 relative -z-10 font-display text-gray-200 dark:text-gray-800">
-										{new Date(post.publishedAt).getFullYear()}
-									</span>
-								</div>
-							)}
-							<div className="text-lg leading-tight flex flex-col gap-1">
-								<div className="flex items-baseline gap-2 flex-wrap">
-									{isExternal ? (
-										<a
-											href={href}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="prose-link text-2xl"
-										>
-											{post.title}
-											<span className="text-base ml-1 text-gray-400 dark:text-gray-500">↗</span>
-										</a>
-									) : (
-										<Link href={href} className="prose-link text-2xl">
-											{post.title}
+				return (
+					<Fragment key={post.slug}>
+						{showYear && (
+							<>
+								{index > 0 && <hr />}
+								<h2 className="section-title">
+									{new Date(post.publishedAt).getFullYear()}
+								</h2>
+							</>
+						)}
+						<article>
+							<h3 className="post-title">
+								{isExternal ? (
+									<a
+										href={href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="prose-link"
+									>
+										{post.title} ↗
+									</a>
+								) : (
+									<Link href={href} className="prose-link">
+										{post.title}
+									</Link>
+								)}
+							</h3>
+							<p className="post-meta">
+								{new Date(post.publishedAt).toLocaleDateString("en-us", {
+									year: "numeric",
+									month: "long",
+									day: "numeric",
+								})}
+								{readingTime && ` · ${readingTime} min read`}
+								{post.source && ` · ${post.source}`}
+								{post.tags && post.tags.length > 0 && " │ "}
+								{post.tags?.map((tag, i) => (
+									<Fragment key={tag}>
+										{i > 0 && ", "}
+										<Link href={`/tags/${slugifyTag(tag)}`} className="prose-link">
+											{tag}
 										</Link>
-									)}
-								</div>
-								<div className="text-gray-400 dark:text-gray-500 text-sm flex gap-1 items-center flex-wrap">
-									<time>
-										{new Date(post.publishedAt).toLocaleDateString("en-us", {
-											year: "numeric",
-											month: "short",
-											day: "numeric",
-										})}
-									</time>
-									{readingTime && (
-										<>
-											<span>·</span>
-											<span>{readingTime} min read</span>
-										</>
-									)}
-									{post.source && (
-										<>
-											<span>·</span>
-											<span className="text-gray-400 dark:text-gray-500">{post.source}</span>
-										</>
-									)}
-									{post.tags && post.tags.length > 0 && (
-										<>
-											<span>·</span>
-											<div className="flex gap-1 flex-wrap">
-												{post.tags.map((tag) => (
-													<span
-														key={tag}
-														className="bg-gray-100 dark:bg-gray-800 px-2 py-px text-sky-600 dark:text-sky-400 rounded text-xs"
-													>
-														{tag}
-													</span>
-												))}
-											</div>
-										</>
-									)}
-								</div>
-							</div>
-						</li>
-					);
-				})}
-			</ul>
+									</Fragment>
+								))}
+							</p>
+						</article>
+					</Fragment>
+				);
+			})}
 		</div>
 	);
 }

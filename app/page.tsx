@@ -1,199 +1,145 @@
 import Link from "next/link";
-import React from "react";
+import React, { Fragment } from "react";
 import {
 	allProjects,
 	allBlogs,
 	allTalks,
 	allOpenSources,
 } from "contentlayer/generated";
+import { slugifyTag } from "./lib/tags";
+
+type Entry = {
+	key: string;
+	title: string;
+	href: string;
+	date?: string;
+	dateStyle: "day" | "month";
+	tags?: { label: string; href?: string }[];
+};
+
+function formatDate(date: string, style: Entry["dateStyle"]) {
+	return new Date(date).toLocaleDateString("en-us", {
+		year: "numeric",
+		month: "long",
+		day: style === "day" ? "numeric" : undefined,
+	});
+}
+
+function Section({
+	title,
+	entries,
+	viewAll,
+}: {
+	title: string;
+	entries: Entry[];
+	viewAll: string;
+}) {
+	return (
+		<section>
+			<h2 className="section-title">{title}</h2>
+			{entries.map((entry) => (
+				<article key={entry.key}>
+					<h3 className="post-title">
+						<Link href={entry.href} className="prose-link">
+							{entry.title}
+						</Link>
+					</h3>
+					<p className="post-meta">
+						{entry.date && formatDate(entry.date, entry.dateStyle)}
+						{entry.date && entry.tags && entry.tags.length > 0 && " │ "}
+						{entry.tags?.map((tag, i) => (
+							<Fragment key={tag.label}>
+								{i > 0 && ", "}
+								{tag.href ? (
+									<Link href={tag.href} className="prose-link">
+										{tag.label}
+									</Link>
+								) : (
+									tag.label
+								)}
+							</Fragment>
+						))}
+					</p>
+				</article>
+			))}
+			<p className="view-all">
+				<Link href={viewAll} className="prose-link">
+					View all →
+				</Link>
+			</p>
+			<hr />
+		</section>
+	);
+}
+
+const byDateDesc = (a?: string, b?: string) =>
+	new Date(b ?? 0).getTime() - new Date(a ?? 0).getTime();
 
 export default function Home() {
-	const blogs = allBlogs
-		.sort(
-			(a, b) =>
-				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-		)
-		.slice(0, 8);
+	const blogs: Entry[] = allBlogs
+		.filter((p) => !p.draft)
+		.sort((a, b) => byDateDesc(a.publishedAt, b.publishedAt))
+		.slice(0, 8)
+		.map((post) => ({
+			key: post.slug,
+			title: post.title,
+			href: `/blog/${post.slug}`,
+			date: post.publishedAt,
+			dateStyle: "day",
+			tags: post.tags?.map((t) => ({
+				label: t,
+				href: `/tags/${slugifyTag(t)}`,
+			})),
+		}));
 
-	const projects = allProjects
+	const projects: Entry[] = allProjects
 		.filter((p) => p.published)
-		.sort(
-			(a, b) =>
-				new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime(),
-		)
-		.slice(0, 6);
+		.sort((a, b) => byDateDesc(a.date, b.date))
+		.slice(0, 6)
+		.map((project) => ({
+			key: project.slug,
+			title: project.title,
+			href: `/projects/${project.slug}`,
+			date: project.date,
+			dateStyle: "month",
+		}));
 
-	const openSource = allOpenSources
+	const openSource: Entry[] = allOpenSources
 		.filter((c) => c.published !== false)
-		.sort(
-			(a, b) =>
-				new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime(),
-		)
-		.slice(0, 3);
+		.sort((a, b) => byDateDesc(a.date, b.date))
+		.slice(0, 3)
+		.map((contrib) => ({
+			key: contrib.slug,
+			title: contrib.title,
+			href: `/open-source/${contrib.slug}`,
+			date: contrib.date,
+			dateStyle: "month",
+		}));
 
-	const talks = allTalks
+	const talks: Entry[] = allTalks
 		.filter((t) => t.published !== false)
-		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-		.slice(0, 3);
+		.sort((a, b) => byDateDesc(a.date, b.date))
+		.slice(0, 3)
+		.map((talk) => ({
+			key: talk.slug,
+			title: talk.title,
+			href: `/talks/${talk.slug}`,
+			date: talk.date,
+			dateStyle: "month",
+		}));
 
 	return (
-		<div className="text-xl mt-8">
-			<div className="mb-8 text-3xl">
-				<h1 className="xl:text-9xl md:text-7xl text-6xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-12 -z-10">
-					hi !
-				</h1>
-				<p className="text-gray-900 dark:text-gray-100 text-2xl sm:text-3xl lg:text-4xl tracking-tight">
-					I&apos;m <span>Mohammed Firdous</span>, and I build software.
-				</p>
-			</div>
-			<div className="text-lg text-gray-700 dark:text-gray-300 space-y-4">
-				<p>
-					I work on <span className="font-medium">cloud infrastructure</span>{" "}
-					and <span className="font-medium">AI</span>, contribute to{" "}
-					<span className="font-medium">open source</span> and{" "}
-					<span className="font-medium">research</span>, and have won three
-					hackathons so far.
-				</p>
-			</div>
-
-			{/* Blog posts mini list */}
-			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
-				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
-					blog
-				</h2>
-				<ul>
-					{blogs.map((post) => (
-						<li key={post.slug} className="mb-4">
-							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg -mx-3 px-3 py-1 rounded-lg hover:bg-gray-50 hover:dark:bg-gray-900 transition-colors">
-								<time className="w-32 text-sm text-gray-400 dark:text-gray-500 flex-none">
-									{new Date(post.publishedAt).toLocaleDateString("en-us", {
-										year: "numeric",
-										month: "short",
-										day: "numeric",
-									})}
-								</time>
-								<Link
-									href={`/blog/${post.slug}`}
-									className="prose-link text-lg"
-								>
-									{post.title}
-								</Link>
-							</div>
-						</li>
-					))}
-				</ul>
-				<div className="mt-3">
-					<Link href="/blog" className="text-sm text-sky-600 dark:text-sky-400 hover:underline">
-						View all →
-					</Link>
-				</div>
-			</div>
-
-			{/* Projects mini list */}
-			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
-				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
-					projects
-				</h2>
-				<ul>
-					{projects.map((project) => (
-						<li key={project.slug} className="mb-4">
-							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg -mx-3 px-3 py-1 rounded-lg hover:bg-gray-50 hover:dark:bg-gray-900 transition-colors">
-								<time className="w-32 text-sm text-gray-400 dark:text-gray-500 flex-none">
-									{project.date
-										? new Date(project.date).toLocaleDateString("en-us", {
-												year: "numeric",
-												month: "short",
-										  })
-										: ""}
-								</time>
-								<Link
-									href={`/projects/${project.slug}`}
-									className="prose-link text-lg"
-								>
-									{project.title}
-								</Link>
-							</div>
-						</li>
-					))}
-				</ul>
-				<div className="mt-3">
-					<Link
-						href="/projects"
-						className="text-sm text-sky-600 dark:text-sky-400 hover:underline"
-					>
-						View all →
-					</Link>
-				</div>
-			</div>
-
-			{/* Open source mini list */}
-			<div className="border-t border-gray-100 dark:border-gray-800 pt-8 mt-8">
-				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
-					open source
-				</h2>
-				<ul>
-					{openSource.map((contrib) => (
-						<li key={contrib.slug} className="mb-4">
-							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg -mx-3 px-3 py-1 rounded-lg hover:bg-gray-50 hover:dark:bg-gray-900 transition-colors">
-								<time className="w-32 text-sm text-gray-400 dark:text-gray-500 flex-none">
-									{contrib.date
-										? new Date(contrib.date).toLocaleDateString("en-us", {
-												year: "numeric",
-												month: "short",
-										  })
-										: ""}
-								</time>
-								<Link
-									href={`/open-source/${contrib.slug}`}
-									className="prose-link text-lg"
-								>
-									{contrib.title}
-								</Link>
-							</div>
-						</li>
-					))}
-				</ul>
-				<div className="mt-3">
-					<Link
-						href="/open-source"
-						className="text-sm text-sky-600 dark:text-sky-400 hover:underline"
-					>
-						View all →
-					</Link>
-				</div>
-			</div>
-
-			{/* Talks mini list */}
-			<div className="border-t border-gray-100 dark:border-gray-800 pt-8 mt-8">
-				<h2 className="xl:text-7xl md:text-6xl text-4xl font-display text-gray-200 dark:text-gray-800 relative -ml-2 -mb-4 xl:-ml-18 xl:-mb-8 -z-10">
-					talks
-				</h2>
-				<ul>
-					{talks.map((talk) => (
-						<li key={talk.slug} className="mb-4">
-							<div className="flex flex-col md:flex-row md:items-center md:gap-0 text-lg -mx-3 px-3 py-1 rounded-lg hover:bg-gray-50 hover:dark:bg-gray-900 transition-colors">
-								<time className="w-32 text-sm text-gray-400 dark:text-gray-500 flex-none">
-									{new Date(talk.date).toLocaleDateString("en-us", {
-										year: "numeric",
-										month: "short",
-									})}
-								</time>
-								<Link
-									href={`/talks/${talk.slug}`}
-									className="prose-link text-lg"
-								>
-									{talk.title}
-								</Link>
-							</div>
-						</li>
-					))}
-				</ul>
-				<div className="mt-3">
-					<Link href="/talks" className="text-sm text-sky-600 dark:text-sky-400 hover:underline">
-						View all →
-					</Link>
-				</div>
-			</div>
+		<div>
+			<p className="mb-7">
+				I&apos;m Mohammed Firdous, and I build software. I work on cloud
+				infrastructure and AI, contribute to open source and research, and
+				have won three hackathons so far.
+			</p>
+			<hr />
+			<Section title="writing" entries={blogs} viewAll="/blog" />
+			<Section title="projects" entries={projects} viewAll="/projects" />
+			<Section title="open source" entries={openSource} viewAll="/open-source" />
+			<Section title="talks" entries={talks} viewAll="/talks" />
 		</div>
 	);
 }

@@ -18,7 +18,7 @@ export default function UsesPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">
+			<h1 className="page-title">
 				uses
 			</h1>
 			<div className="mb-8">

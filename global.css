@@ -2,31 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Layout and typography modelled on seangoedecke.com: one narrow serif
+ * column, a heavy sans name, "│"-separated link rows and hairline rules.
+ */
+:root {
+  --bg: #f0efef;
+  --fg: hsla(0, 0%, 0%, 0.9);
+  --muted: rgba(0, 0, 0, 0.6);
+  --rule: hsla(0, 0%, 0%, 0.2);
+  --link: #007acc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #222;
+    --fg: hsla(0, 0%, 100%, 0.88);
+    --muted: hsla(0, 0%, 100%, 0.7);
+    --rule: hsla(0, 0%, 100%, 0.2);
+    --link: #add8e6;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-size: 100%;
+    line-height: 1.75;
+    overflow-y: scroll;
   }
 
   body {
-    background-color: white;
-    color: #1f2937;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: "Merriweather", Georgia, serif;
+    font-kerning: normal;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 0 1.75rem;
   }
 
   ::selection {
-    background-color: rgba(14, 165, 233, 0.2);
-    color: #0c4a6e;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #030712;
-      color: #d1d5db;
-    }
-
-    ::selection {
-      background-color: rgba(56, 189, 248, 0.25);
-      color: #e0f2fe;
-    }
+    background-color: rgba(0, 122, 204, 0.2);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -39,44 +60,124 @@
 }
 
 @layer components {
+  .site-shell {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 2.625rem 1.3125rem;
+  }
+
+  .site-title {
+    font-family: var(--font-inter), "Montserrat", sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin: 0 0 0.875rem;
+  }
+
+  @media (min-width: 640px) {
+    .site-title {
+      font-size: 3.95rem;
+    }
+  }
+
+  .site-title--small {
+    font-size: 1.75rem;
+  }
+
+  .site-title a {
+    color: inherit;
+    box-shadow: none;
+  }
+
+  .site-nav,
+  .site-footer p {
+    margin: 0 0 0.875rem;
+  }
+
+  .site-nav a,
+  .site-footer a,
+  .link-button {
+    color: var(--link);
+    box-shadow: 0 1px 0 0 currentColor;
+  }
+
+  .site-nav a:hover,
+  .site-footer a:hover,
+  .link-button:hover,
+  .site-nav a[aria-current="page"] {
+    box-shadow: none;
+  }
+
+  .site-nav a[aria-current="page"] {
+    color: var(--fg);
+  }
+
+  .site-header hr {
+    margin-top: 0.875rem;
+  }
+
+  .site-footer {
+    margin-top: 3.5rem;
+  }
+
+  .page-title {
+    font-weight: 900;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin: 0 0 1.75rem;
+  }
+
+  .section-title {
+    font-weight: 900;
+    font-size: 1.73rem;
+    line-height: 1.1;
+    margin: 0 0 1.75rem;
+  }
+
+  .post-title {
+    font-weight: 900;
+    font-size: 1.44rem;
+    line-height: 1.1;
+    margin: 0 0 0.4375rem;
+  }
+
+  .post-title a {
+    box-shadow: none;
+  }
+
+  .post-meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0 0 1.75rem;
+  }
+
+  .view-all {
+    margin: 0.875rem 0 1.75rem;
+  }
+
+  .view-all a {
+    box-shadow: none;
+  }
+
   .prose-link {
-    color: #0284c7;
+    color: var(--link);
     text-decoration: none;
-    border-bottom: 1px solid rgba(2, 132, 199, 0.3);
-    transition: border-color 0.2s ease;
+    box-shadow: 0 1px 0 0 currentColor;
   }
 
   .prose-link:hover {
-    border-bottom-color: #0284c7;
+    box-shadow: none;
+  }
+
+  .post-title .prose-link,
+  .view-all .prose-link {
+    box-shadow: none;
   }
 
   .nav-link {
-    color: #374151;
-    transition: color 0.2s ease;
+    color: var(--link);
     cursor: pointer;
-  }
-
-  .nav-link:hover {
-    color: #0284c7;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .prose-link {
-      color: #38bdf8;
-      border-bottom-color: rgba(56, 189, 248, 0.3);
-    }
-
-    .prose-link:hover {
-      border-bottom-color: #38bdf8;
-    }
-
-    .nav-link {
-      color: #d1d5db;
-    }
-
-    .nav-link:hover {
-      color: #38bdf8;
-    }
   }
 }
 

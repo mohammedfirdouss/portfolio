@@ -35,7 +35,7 @@ export default async function TagPage({ params }: Props) {
 					← tags
 				</Link>
 			</div>
-			<h1 className="font-display text-4xl sm:text-5xl text-gray-900 dark:text-gray-100 mb-8">
+			<h1 className="page-title">
 				{entry.label}
 			</h1>
 			<ul>

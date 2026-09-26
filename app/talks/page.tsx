@@ -14,7 +14,7 @@ export default function TalksPage() {
 
 	return (
 		<div>
-			<h1 className="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-gray-200 dark:text-gray-800 mb-8">talks</h1>
+			<h1 className="page-title">talks</h1>
 			<div className="text-lg text-gray-700 dark:text-gray-300 mb-12">
 				<p>I talk sometimes. Here are some of my past presentations.</p>
 			</div>
