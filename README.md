@@ -77,7 +77,3 @@ The site is a static export (`next build` → `out/`) deployed to two targets:
 - **GitHub Pages**: built with `GITHUB_PAGES=true` so Next.js serves it from the `/portfolio` subpath
 
 Both deploy automatically on push to `master` via GitHub Actions (`.github/workflows/deploy.yml` and `gh-pages.yml`). `ci.yml` runs the build on other branches and pull requests, and `preview.yml` deploys a preview for each pull request.
-
-## Attribution
-
-Original design and inspiration by [Boris Tane](https://boristane.com).
