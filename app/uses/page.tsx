@@ -22,11 +22,11 @@ export default function UsesPage() {
 				uses
 			</h1>
 			<div className="mb-8">
-				<p className="text-gray-500 dark:text-gray-400 text-lg">
+				<p className="text-[color:var(--muted)] text-lg">
 					{page.description}
 				</p>
 				{page.updatedAt && (
-					<p className="text-gray-400 dark:text-gray-500 mt-2 text-sm">
+					<p className="text-[color:var(--muted)] mt-2 text-sm">
 						Last updated{" "}
 						{new Date(page.updatedAt).toLocaleDateString("en-us", {
 							year: "numeric",
@@ -35,7 +35,7 @@ export default function UsesPage() {
 					</p>
 				)}
 			</div>
-			<article className="prose max-w-none">
+			<article>
 				<Mdx code={page.body.code} />
 			</article>
 		</div>

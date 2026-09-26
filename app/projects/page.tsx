@@ -20,7 +20,7 @@ export default async function ProjectsPage() {
 	return (
 		<div>
 			<h1 className="page-title">projects</h1>
-			<div className="text-lg text-gray-700 dark:text-gray-300">
+			<div className="text-lg text-[color:var(--fg)]">
 				<p>
 					These are projects I have built and finished. Some are polished,
 					some are quick experiments. If you want to talk about any of them,{" "}

@@ -18,8 +18,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #222;
-    --fg: hsla(0, 0%, 100%, 0.88);
-    --muted: hsla(0, 0%, 100%, 0.7);
+    --fg: #fff;
+    --muted: hsla(0, 0%, 100%, 0.75);
     --rule: hsla(0, 0%, 100%, 0.2);
     --link: #add8e6;
     --code-bg: rgba(255, 255, 255, 0.1);

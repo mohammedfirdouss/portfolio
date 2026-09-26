@@ -23,10 +23,10 @@ export default function TagsPage() {
 					<Link
 						key={slug}
 						href={`/tags/${slug}`}
-						className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-800 text-sky-600 dark:text-sky-400 rounded-full hover:bg-gray-200 hover:dark:bg-gray-700 transition-colors"
+						className="prose-link"
 					>
-						{label}
-						<span className="text-gray-400 dark:text-gray-500">{posts.length}</span>
+						{label}{" "}
+						<span className="text-[color:var(--muted)]">({posts.length})</span>
 					</Link>
 				))}
 			</div>

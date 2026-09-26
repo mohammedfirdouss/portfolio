@@ -14,7 +14,7 @@ export default function ExperiencePage() {
 	return (
 		<div>
 			<h1 className="page-title">experience</h1>
-			<div className="divide-y divide-gray-100">
+			<div>
 				{experiences.map((exp) => {
 					const start = new Date(exp.startDate).toLocaleDateString("en-us", {
 						year: "numeric",
@@ -28,11 +28,11 @@ export default function ExperiencePage() {
 						: "Present";
 
 					return (
-						<div key={exp.slug} className="pt-10 first:pt-0">
-							<h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+						<section key={exp.slug} className="mb-7">
+							<h2 className="post-title">
 								{exp.role}
 							</h2>
-							<div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+							<p className="post-meta !mb-0">
 								{exp.companyUrl ? (
 									<a
 										href={exp.companyUrl}
@@ -46,17 +46,18 @@ export default function ExperiencePage() {
 									exp.company
 								)}
 								{exp.location && <span> · {exp.location}</span>}
-							</div>
-							<div className="text-sm text-gray-400 dark:text-gray-500 mt-1">
-								{start} · {end}
-							</div>
-							<p className="text-gray-600 dark:text-gray-400 mt-2">{exp.description}</p>
+							</p>
+							<p className="post-meta">
+								{start} – {end}
+							</p>
+							<p className="mb-4">{exp.description}</p>
 							{exp.body?.code && (
-								<div className="mt-3 prose prose-sm prose-gray max-w-none">
+								<div>
 									<Mdx code={exp.body.code} />
 								</div>
 							)}
-						</div>
+							<hr />
+						</section>
 					);
 				})}
 			</div>

@@ -1,0 +1,41 @@
+---
+title: StreamSense
+description: A guided survey that lets volunteers check the health of a city stream in about 10 minutes, with an AI photo assistant that suggests answers but never decides.
+date: "2026-09-26"
+repository: mohammedfirdouss/streamsense
+published: true
+banner: /streamsense-home.webp
+outcomes:
+  - Made volunteer stream data easier to trust by keeping the health score in a fixed, published formula that the AI can read but cannot change.
+  - Sent unusual reports, and any report where the volunteer and the AI disagree, to a human reviewer before publishing.
+  - Kept the app usable without an API key through a clearly marked demo mode that works offline.
+roleHighlights:
+  - I built the 10-question survey protocol, scoring rules and data checks as tested modules in `src/lib/`.
+  - I integrated Google Gemini for photo suggestions and a plain-English second opinion, with structured output validated by Zod.
+  - I built the expert review queue, which shows the volunteer's choice next to the AI's suggestion and why the report was flagged.
+proofLinks:
+  - label: Live app
+    href: https://streamsense-vert.vercel.app
+  - label: Repository
+    href: https://github.com/mohammedfirdouss/streamsense
+---
+
+City streams suffer from sewage, dirty runoff, litter and loss of wildlife. Volunteers can watch far more streams than experts can, but their data is often seen as unreliable, they rarely get feedback, and science words can put new people off.
+
+StreamSense helps anyone check a stream in about 10 minutes. The rule is simple: the AI suggests, people decide.
+
+## How it works
+
+The survey has 10 simple questions, each showing the science word behind it and why it matters. Add a photo and the AI suggests answers, with how confident it is and what it saw. It says "can't tell" instead of guessing, and it never guesses smell or water chemistry. Nothing is filled in until you accept or change a suggestion.
+
+![A suggestion beside the question, with its confidence and what the AI saw](/streamsense-ai-suggestion.webp)
+
+The app then works out a health score with a fixed formula and links what you saw to risks for people, animals and nature, such as toxic algae and dogs, or sewage and children playing in the water.
+
+![The stream report: the health score, what lowered it, and the health alerts](/streamsense-report.webp)
+
+Reports that look unusual, or where you and the AI disagree, go to an expert before they are published.
+
+![The review queue: the volunteer's choice next to the AI's suggestion, and why it was flagged](/streamsense-review-queue.webp)
+
+Built with Next.js 16, TypeScript, Tailwind CSS 4, the Google Gen AI SDK, Zod and Vitest.

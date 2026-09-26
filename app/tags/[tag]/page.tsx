@@ -30,7 +30,7 @@ export default async function TagPage({ params }: Props) {
 			<div className="mb-6">
 				<Link
 					href="/tags"
-					className="text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 hover:dark:text-gray-400 transition-colors"
+					className="text-sm text-[color:var(--muted)] transition-colors"
 				>
 					← tags
 				</Link>
@@ -53,17 +53,17 @@ export default async function TagPage({ params }: Props) {
 										className="prose-link text-2xl"
 									>
 										{post.title}
-										<span className="text-base ml-1 text-gray-400 dark:text-gray-500">↗</span>
+										<span className="text-base ml-1 text-[color:var(--muted)]">↗</span>
 									</a>
 								) : (
 									<Link href={href} className="prose-link text-2xl">
 										{post.title}
 									</Link>
 								)}
-								<div className="text-gray-500 dark:text-gray-400 text-base">
+								<div className="text-[color:var(--muted)] text-base">
 									{post.description}
 								</div>
-								<time className="text-gray-400 dark:text-gray-500 text-sm">
+								<time className="text-[color:var(--muted)] text-sm">
 									{new Date(post.publishedAt).toLocaleDateString("en-us", {
 										year: "numeric",
 										month: "short",

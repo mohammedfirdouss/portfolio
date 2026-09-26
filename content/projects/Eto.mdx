@@ -1,0 +1,46 @@
+---
+title: Ẹ̀tọ́
+description: A Lagos tenancy-rights tool that keeps the law in force separate from the bill still in committee, with every sentence cited to its section.
+date: "2026-09-15"
+repository: mohammedfirdouss/eto
+published: true
+banner: /eto-home.webp
+outcomes:
+  - Grounded every answer in the stored statute and bill (49 sections and 45 clauses, each hashed with SHA-256), so a citation that does not resolve fails the answer instead of shipping it.
+  - Moved all date and notice-period arithmetic into deterministic code covered by 41 unit tests, with no AI model in the app at runtime.
+  - Shipped a 736 KB static app that works offline after the first visit, needs no account, and sends nothing the user types anywhere.
+roleHighlights:
+  - I built the whole project solo for the OSF × Andela "Information you can trust" challenge, from corpus extraction to UI.
+  - I wrote the BM25 retrieval layer and tuned its refusal threshold against real test queries, so out-of-scope questions get a plain "we can't answer that".
+  - I designed the city "pack" format, so supporting another city means writing a new corpus pack, not rewriting the engine.
+proofLinks:
+  - label: Live app
+    href: https://eto-eight.vercel.app
+  - label: Repository
+    href: https://github.com/mohammedfirdouss/eto
+---
+
+Since 2025, the news has told Lagos renters that rent is now paid monthly, that agency fees are capped, and that illegal eviction carries a heavy fine. None of that is law yet. The bill behind the headlines is still in committee at the Lagos State House of Assembly, and the law that governs every Lagos tenancy today is the Tenancy Law, Cap. T1, Laws of Lagos State 2015.
+
+Ẹ̀tọ́ (Yoruba for "right, entitlement, what is due to you") keeps the two apart.
+
+## What it does
+
+You pick your situation (a rent increase, a quit notice, a lock-out, an agency fee, or checking an agent's registration) in English or Nigerian Pidgin. The tool asks only for the facts it needs, including where the house is, because the current law does not apply in Apapa, Ikeja GRA, Ikoyi or Victoria Island.
+
+Every answer shows two panels that are never mixed: green for the law in force and amber for the bill. Each panel is stamped with the date its status was last checked, and every point links to the exact section text and its official source.
+
+![A quit notice answer: the law in force and the bill in separate panels, every point cited to its section](/eto-dual-panel.webp)
+
+Every answer ends with something you can act on: a computed date, the right office with a verified address, and a letter or case file you can download.
+
+![A generated reply to a short quit notice, filled in with the user's dates and the exact shortfall](/eto-letter.webp)
+
+## How it stays accurate
+
+- The statute and the bill live in the repository with SHA-256 hashes and full provenance. Answers never come from a live web search.
+- Status is a data field (`IN_FORCE`, `PROPOSED_COMMITTEE`), not a turn of phrase.
+- Where press reports disagree, such as 10% against 5% on agency fees, the app shows the disagreement and lets the primary text settle it.
+- When it does not know, it says so and points you to the Citizens' Mediation Centre or a lawyer.
+
+Built with Next.js, TypeScript and Vitest, with Python tools for corpus extraction and status refreshes.

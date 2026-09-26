@@ -46,7 +46,7 @@ export default function AboutPage() {
 				about
 			</h1>
 
-			<div className="text-lg text-gray-700 dark:text-gray-300 space-y-4">
+			<div className="text-lg text-[color:var(--fg)] space-y-4">
 				<p>
 					I&apos;m a software engineer focused on cloud infrastructure and
 					AI. Most recently I was a CNCF LFX Mentee building the
@@ -72,23 +72,23 @@ export default function AboutPage() {
 				</p>
 			</div>
 
-			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
+			<div className="border-t border-[color:var(--rule)] pt-12 mt-12">
 				<h2 className="section-title">
 					hackathon wins
 				</h2>
 				<ul className="mt-8">
 					{hackathonWins.map((item) => (
 						<li key={item.title} className="mb-6">
-							<span className="text-xl text-gray-900 dark:text-gray-100">
+							<span className="text-xl text-[color:var(--fg)]">
 								{item.title}
 							</span>
-							<p className="text-gray-500 dark:text-gray-400 mt-1">{item.note}</p>
+							<p className="text-[color:var(--muted)] mt-1">{item.note}</p>
 						</li>
 					))}
 				</ul>
 			</div>
 
-			<div className="border-t border-gray-100 dark:border-gray-800 pt-12 mt-12">
+			<div className="border-t border-[color:var(--rule)] pt-12 mt-12">
 				<h2 className="section-title">
 					start here
 				</h2>
@@ -98,13 +98,13 @@ export default function AboutPage() {
 							<Link href={item.href} className="prose-link text-xl">
 								{item.title}
 							</Link>
-							<p className="text-gray-500 dark:text-gray-400 mt-1">{item.note}</p>
+							<p className="text-[color:var(--muted)] mt-1">{item.note}</p>
 						</li>
 					))}
 				</ul>
 			</div>
 
-			<div className="border-t border-gray-100 dark:border-gray-800 pt-8 mt-8 text-gray-700 dark:text-gray-300">
+			<div className="border-t border-[color:var(--rule)] pt-8 mt-8 text-[color:var(--fg)]">
 				<p>
 					If you want to get in touch, I&apos;m easiest to reach on{" "}
 					<a
