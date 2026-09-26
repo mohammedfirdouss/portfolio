@@ -1,8 +1,14 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
+import {
+	PostHeader,
+	PostFooter,
+	formatMonth,
+	neighbours,
+	repositoryUrl,
+} from "@/app/components/post-layout";
 import "./mdx.css";
 import { allProjects } from "contentlayer/generated";
-import Link from "next/link";
 import { withBasePath } from "@/app/lib/asset-path";
 
 type Props = {
@@ -27,58 +33,37 @@ export default async function PostPage({ params }: Props) {
 		notFound();
 	}
 
+	const { previous, next } = neighbours(
+		allProjects.filter((p) => p.published),
+		slug,
+		"/projects",
+	);
+
 	return (
 		<div>
-			<div className="mb-12">
-				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
-					{project.title}
-				</h1>
-				<div className="text-gray-400 dark:text-gray-500 mt-2 text-sm flex gap-2 items-center flex-wrap">
-					{project.date && (
-						<time>
-							{new Date(project.date).toLocaleDateString("en-us", {
-								year: "numeric",
-								month: "long",
-							})}
-						</time>
-					)}
-					{project.repository && (
-						<>
-							<span>·</span>
-							<a
-								href={
-									project.repository.startsWith("http")
-										? project.repository
-										: `https://github.com/${project.repository}`
-								}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="prose-link text-sm"
-							>
-								source
-							</a>
-						</>
-					)}
-				</div>
-				{project.banner && (
-					<div className="my-4">
-						<img
-							src={withBasePath(project.banner)}
-							alt={project.title}
-							className="rounded-xl w-full"
-						/>
-					</div>
-				)}
-				<p className="text-gray-500 dark:text-gray-400 mt-4 text-lg">{project.description}</p>
-			</div>
-			<article className="prose max-w-none prose-headings:mt-8 prose-headings:mb-3">
+			<PostHeader
+				title={project.title}
+				meta={[
+					project.date && formatMonth(project.date),
+					project.repository && (
+						<a href={repositoryUrl(project.repository)} target="_blank" rel="noopener noreferrer" className="prose-link">
+							source
+						</a>
+					),
+				]}
+				summary={project.description}
+			/>
+			{project.banner && (
+				<img
+					src={withBasePath(project.banner)}
+					alt={project.title}
+					className="w-full mb-7"
+				/>
+			)}
+			<article>
 				<Mdx code={project.body.code} />
 			</article>
-			<div className="mt-8 text-sm font-mono text-gray-500 dark:text-gray-400">
-				<Link href="/projects" className="prose-link">
-					cd ..
-				</Link>
-			</div>
+			<PostFooter previous={previous} next={next} />
 		</div>
 	);
 }

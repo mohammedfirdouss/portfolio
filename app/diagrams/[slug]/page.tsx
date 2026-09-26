@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
+import {
+	PostHeader,
+	PostFooter,
+	formatMonth,
+	neighbours,
+	repositoryUrl,
+} from "@/app/components/post-layout";
 import { allDiagrams } from "contentlayer/generated";
-import Link from "next/link";
 
 type Props = {
 	params: Promise<{ slug: string }>;
@@ -23,51 +29,26 @@ export default async function DiagramDetailPage({ params }: Props) {
 		notFound();
 	}
 
+	const { previous, next } = neighbours(allDiagrams, slug, "/diagrams");
+
 	return (
 		<div>
-			<div className="mb-8">
-				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
-					{item.title}
-				</h1>
-				<div className="text-gray-400 dark:text-gray-500 mt-2 text-sm flex gap-2 items-center flex-wrap">
-					{item.date && (
-						<time>
-							{new Date(item.date).toLocaleDateString("en-us", {
-								year: "numeric",
-								month: "long",
-							})}
-						</time>
-					)}
-					{item.repository && (
-						<>
-							<span>·</span>
-							<a
-								href={
-									item.repository.startsWith("http")
-										? item.repository
-										: `https://github.com/${item.repository}`
-								}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="prose-link text-sm"
-							>
-								source
-							</a>
-						</>
-					)}
-				</div>
-				{item.summary && (
-					<p className="text-gray-500 dark:text-gray-400 mt-4 text-lg">{item.summary}</p>
-				)}
-			</div>
-			<article className="prose max-w-none">
+			<PostHeader
+				title={item.title}
+				meta={[
+					item.date && formatMonth(item.date),
+					item.repository && (
+						<a href={repositoryUrl(item.repository)} target="_blank" rel="noopener noreferrer" className="prose-link">
+							source
+						</a>
+					),
+				]}
+				summary={item.summary}
+			/>
+			<article>
 				<Mdx code={item.body.code} />
 			</article>
-			<div className="mt-8 text-sm font-mono text-gray-500 dark:text-gray-400">
-				<Link href="/diagrams" className="prose-link">
-					cd ..
-				</Link>
-			</div>
+			<PostFooter previous={previous} next={next} />
 		</div>
 	);
 }

@@ -10,6 +10,24 @@ import { withBasePath } from "@/app/lib/asset-path";
 function clsx(...args: (string | undefined | null | false)[]): string {
 	return args.filter(Boolean).join(" ");
 }
+const ZoomImage = ({
+	className,
+	alt,
+	src,
+	...props
+}: React.ImgHTMLAttributes<HTMLImageElement>) => (
+	<Zoom>
+		{/* eslint-disable-next-line @next/next/no-img-element */}
+		{/* rome-ignore lint/a11y/useAltText: alt is author-provided per-image via MDX ![alt](src) syntax, not a static value Rome can verify */}
+		<img
+			className={clsx("cursor-zoom-in", className)}
+			alt={alt || ""}
+			src={typeof src === "string" ? withBasePath(src) : src}
+			{...props}
+		/>
+	</Zoom>
+);
+
 // Typography for these elements lives in the `.post-body` scope in
 // global.css; only behaviour (external links, zoomable images) is set here.
 const components = {
@@ -24,23 +42,19 @@ const components = {
 		}
 		return <Link href={href ?? ""} {...props} />;
 	},
-	img: ({
-		className,
-		alt,
-		src,
-		...props
-	}: React.ImgHTMLAttributes<HTMLImageElement>) => (
-		<Zoom>
-			{/* eslint-disable-next-line @next/next/no-img-element */}
-			{/* rome-ignore lint/a11y/useAltText: alt is author-provided per-image via MDX ![alt](src) syntax, not a static value Rome can verify */}
-			<img
-				className={clsx("cursor-zoom-in", className)}
-				alt={alt || ""}
-				src={typeof src === "string" ? withBasePath(src) : src}
-				{...props}
-			/>
-		</Zoom>
-	),
+	img: ZoomImage,
+	// Zoom renders a <div>, which can't sit inside a <p>, so paragraphs that
+	// hold an image become a block wrapper instead.
+	p: ({ children, ...props }) =>
+		React.Children.toArray(children).some(
+			(child) => React.isValidElement(child) && child.type === ZoomImage,
+		) ? (
+			<div className="mdx-figure" {...props}>
+				{children}
+			</div>
+		) : (
+			<p {...props}>{children}</p>
+		),
 	Image,
 };
 

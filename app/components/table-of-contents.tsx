@@ -48,7 +48,7 @@ function TocList({
 	truncateLabels?: boolean;
 }) {
 	return (
-		<ul className="space-y-1 border-l border-gray-200 dark:border-gray-700">
+		<ul className="border-l border-[color:var(--rule)]">
 			{toc.map((item) => {
 				const isActive = item.slug === activeSlug;
 				return (
@@ -58,12 +58,12 @@ function TocList({
 							href={`#${item.slug}`}
 							onClick={onNavigate}
 							title={truncateLabels ? item.value : undefined}
-							className={`block -ml-px border-l-2 py-1.5 transition-colors ${
+							className={`block -ml-px border-l-2 py-1 transition-colors ${
 								truncateLabels ? "truncate" : ""
 							} ${item.depth === 3 ? "pl-6" : "pl-3"} ${
 								isActive
-									? "rounded-r border-sky-600 dark:border-sky-500 bg-sky-50 dark:bg-sky-950 font-medium text-sky-700 dark:text-sky-400"
-									: "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 hover:dark:text-gray-200"
+									? "border-current font-bold text-[color:var(--fg)]"
+									: "border-transparent text-[color:var(--muted)] hover:text-[color:var(--link)]"
 							}`}
 						>
 							{item.value}
@@ -83,7 +83,7 @@ export function TableOfContents({ toc }: { toc: TocItem[] }) {
 
 	return (
 		<nav aria-label="Table of contents" className="text-sm">
-			<p className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Table of Contents</p>
+			<p className="font-bold mb-3">contents</p>
 			<TocList toc={toc} activeSlug={activeSlug} truncateLabels />
 		</nav>
 	);
@@ -99,14 +99,14 @@ export function MobileTableOfContents({ toc }: { toc: TocItem[] }) {
 
 	return (
 		<details
-			className="mb-8 rounded-lg border border-gray-200 dark:border-gray-700 xl:hidden"
+			className="mb-7 xl:hidden"
 			open={open}
 			onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}
 		>
-			<summary className="cursor-pointer select-none px-4 py-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
-				Table of Contents
+			<summary className="cursor-pointer select-none text-sm font-bold">
+				contents
 			</summary>
-			<nav aria-label="Table of contents" className="px-4 pb-4 text-sm">
+			<nav aria-label="Table of contents" className="pt-3 text-sm">
 				<TocList
 					toc={toc}
 					activeSlug={activeSlug}

@@ -88,7 +88,7 @@
 
   .site-title a {
     color: inherit;
-    box-shadow: none;
+    text-decoration: none;
   }
 
   .site-nav,
@@ -100,14 +100,16 @@
   .site-footer a,
   .link-button {
     color: var(--link);
-    box-shadow: 0 1px 0 0 currentColor;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
   }
 
   .site-nav a:hover,
   .site-footer a:hover,
   .link-button:hover,
   .site-nav a[aria-current="page"] {
-    box-shadow: none;
+    text-decoration: none;
   }
 
   .site-nav a[aria-current="page"] {
@@ -144,7 +146,7 @@
   }
 
   .post-title a {
-    box-shadow: none;
+    text-decoration: none;
   }
 
   .post-meta {
@@ -159,7 +161,7 @@
   }
 
   .view-all a {
-    box-shadow: none;
+    text-decoration: none;
   }
 
   /* Article pages: header, body copy and prev/next footer. */
@@ -190,6 +192,7 @@
   }
 
   .post-body p,
+  .post-body .mdx-figure,
   .post-body ul,
   .post-body ol,
   .post-body pre,
@@ -227,16 +230,18 @@
   .post-body h3 a,
   .post-body h4 a {
     color: inherit;
-    box-shadow: none;
+    text-decoration: none;
   }
 
   .post-body a {
     color: var(--link);
-    box-shadow: 0 1px 0 0 currentColor;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
   }
 
   .post-body a:hover {
-    box-shadow: none;
+    text-decoration: none;
   }
 
   .post-body strong {
@@ -275,6 +280,10 @@
   .post-body img {
     max-width: 100%;
     margin: 0 0 1.75rem;
+  }
+
+  .post-body .mdx-figure img {
+    margin: 0;
   }
 
   .post-body hr {
@@ -321,6 +330,13 @@
     font-weight: 700;
   }
 
+  .post-body .proof-heading {
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 0.875rem;
+  }
+
   .post-footer {
     margin-top: 3.5rem;
   }
@@ -337,26 +353,29 @@
 
   .post-nav a {
     color: var(--link);
-    box-shadow: 0 1px 0 0 currentColor;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
   }
 
   .post-nav a:hover {
-    box-shadow: none;
+    text-decoration: none;
   }
 
   .prose-link {
     color: var(--link);
-    text-decoration: none;
-    box-shadow: 0 1px 0 0 currentColor;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
   }
 
   .prose-link:hover {
-    box-shadow: none;
+    text-decoration: none;
   }
 
   .post-title .prose-link,
   .view-all .prose-link {
-    box-shadow: none;
+    text-decoration: none;
   }
 
   .nav-link {

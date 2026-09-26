@@ -45,6 +45,7 @@ export function PostFooter({
 	previous?: NavLink | null;
 	next?: NavLink | null;
 }) {
+	if (!previous && !next) return null;
 	return (
 		<footer className="post-footer">
 			<hr />
