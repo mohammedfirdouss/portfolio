@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/mdx";
+import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
 import {
 	PostHeader,
 	PostFooter,
@@ -60,6 +61,11 @@ export default async function PostPage({ params }: Props) {
 					className="w-full mb-7"
 				/>
 			)}
+			<OutcomeProofBlock
+				outcomes={project.outcomes}
+				roleHighlights={project.roleHighlights}
+				proofLinks={project.proofLinks}
+			/>
 			<article>
 				<Mdx code={project.body.code} />
 			</article>
