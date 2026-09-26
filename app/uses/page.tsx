@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function UsesPage() {
 	const page = allPages.find(
-		(entry) => entry._raw.flattenedPath === "uses/index",
+		(entry) => entry._raw.sourceFilePath === "uses/index.mdx",
 	);
 
 	if (!page) {
