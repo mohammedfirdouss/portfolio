@@ -1,0 +1,42 @@
+name: Sync GitHub projects
+
+# Weekly check for public repos that aren't on the site yet. New repos get a
+# draft project page (published: false) in a pull request for review.
+on:
+  schedule:
+    - cron: "0 8 * * 1" # Mondays 08:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+
+      # The script only uses fetch and fs, so no `bun install` is needed.
+      - name: Draft pages for new repos
+        run: bun scripts/sync-github.ts --check-dates
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: sync-github/new-projects
+          delete-branch: true
+          commit-message: "feat: draft project pages for new GitHub repos"
+          title: "Draft project pages for new GitHub repos"
+          body: |
+            The weekly sync found public repos that aren't on the site yet and
+            drafted a page for each one (`published: false`).
+
+            Before merging, fill in the description, outcomes and write-up,
+            then set `published: true`. To hide a repo for good, add it to
+            `IGNORED_REPOS` in `scripts/sync-github.ts` instead.
+          add-paths: content/projects/*.mdx
