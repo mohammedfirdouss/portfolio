@@ -31,12 +31,6 @@ const staticPages: SearchItem[] = [
 		type: "page",
 	},
 	{
-		title: "Uses",
-		description: "Hardware, software, and tools I rely on.",
-		href: "/uses",
-		type: "page",
-	},
-	{
 		title: "Tags",
 		description: "Browse blog posts by topic.",
 		href: "/tags",

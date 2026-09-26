@@ -6,7 +6,6 @@ import {
 	navigationLinks as navLinks,
 	secondaryLinks,
 } from "./navigation-links";
-import { SearchTrigger } from "./search-trigger";
 import { newsletterUrl } from "../lib/site";
 import { withBasePath } from "../lib/asset-path";
 
@@ -48,8 +47,9 @@ export const Navigation: React.FC = () => {
 				))}
 			</nav>
 			<nav className="site-nav" aria-label="More">
-				{secondaryLinks.map((link) => (
+				{secondaryLinks.map((link, i) => (
 					<Fragment key={link.href}>
+						{i > 0 && <span aria-hidden="true"> │ </span>}
 						<Link
 							href={link.href}
 							aria-current={
@@ -58,10 +58,8 @@ export const Navigation: React.FC = () => {
 						>
 							{link.name}
 						</Link>
-						<span aria-hidden="true"> │ </span>
 					</Fragment>
 				))}
-				<SearchTrigger />
 			</nav>
 			<hr />
 		</header>
