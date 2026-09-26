@@ -96,6 +96,10 @@
     margin: 0 0 0.875rem;
   }
 
+  .site-nav + .site-nav {
+    margin-top: -0.5rem;
+  }
+
   .site-nav a,
   .site-footer a,
   .link-button {

@@ -1,6 +1,4 @@
-import Link from "next/link";
 import { Fragment } from "react";
-import { SearchTrigger } from "./search-trigger";
 
 const socialLinks = [
 	{
@@ -25,14 +23,6 @@ const socialLinks = [
 	},
 ];
 
-const pageLinks = [
-	{ text: "talks", href: "/talks" },
-	{ text: "diagrams", href: "/diagrams" },
-	{ text: "uses", href: "/uses" },
-	{ text: "tags", href: "/tags" },
-	{ text: "rss", href: "/rss.xml" },
-];
-
 const sep = <span aria-hidden="true"> │ </span>;
 
 export default function Footer() {
@@ -48,16 +38,6 @@ export default function Footer() {
 						</a>
 					</Fragment>
 				))}
-			</p>
-			<p>
-				{pageLinks.map((link, i) => (
-					<Fragment key={link.text}>
-						{i > 0 && sep}
-						<Link href={link.href}>{link.text}</Link>
-					</Fragment>
-				))}
-				{sep}
-				<SearchTrigger />
 			</p>
 		</footer>
 	);

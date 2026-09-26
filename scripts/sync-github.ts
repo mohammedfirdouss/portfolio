@@ -14,6 +14,23 @@ import { join } from "path";
 
 const GITHUB_USER = "mohammedfirdouss";
 const PROJECTS_DIR = join(process.cwd(), "content/projects");
+// Any `repository:` in these folders counts as already on the site.
+const CONTENT_DIRS = ["projects", "open-source", "diagrams"].map((d) =>
+	join(process.cwd(), "content", d),
+);
+
+// Repos that are not portfolio projects (profile, practice, meta, or
+// unfinished). Without this list, the weekly sync would draft them every run.
+const IGNORED_REPOS = new Set([
+	"portfolio",
+	"mohammedfirdouss",
+	"dsa-practice",
+	"golang-learning",
+	"my-talks",
+	"open-source-contributions",
+	"github-docs-example",
+	"free-genai-bootcamp-2025",
+]);
 const CHECK_DATES = process.argv.includes("--check-dates");
 
 interface GithubRepo {
@@ -52,22 +69,27 @@ async function fetchAllRepos(): Promise<GithubRepo[]> {
 		page++;
 	}
 
-	return repos.filter((r) => !r.fork && !r.private && !r.archived);
+	return repos.filter(
+		(r) => !r.fork && !r.private && !r.archived && !IGNORED_REPOS.has(r.name),
+	);
 }
 
 async function getExistingRepos(): Promise<
 	Map<string, { file: string; date: string; published: boolean }>
 > {
-	const files = await readdir(PROJECTS_DIR);
 	const map = new Map<string, { file: string; date: string; published: boolean }>();
 
-	for (const file of files) {
-		if (!file.endsWith(".mdx")) continue;
-		const content = await readFile(join(PROJECTS_DIR, file), "utf-8");
-		const repo = content.match(/^repository:\s*(.+)$/m)?.[1]?.trim();
-		const date = content.match(/^date:\s*"?([^"\n]+)"?/m)?.[1]?.trim() ?? "";
-		const published = content.match(/^published:\s*(.+)$/m)?.[1]?.trim() !== "false";
-		if (repo) map.set(repo, { file, date, published });
+	for (const dir of CONTENT_DIRS) {
+		for (const file of await readdir(dir)) {
+			if (!file.endsWith(".mdx")) continue;
+			const content = await readFile(join(dir, file), "utf-8");
+			const repo = content.match(/^repository:\s*(.+)$/m)?.[1]?.trim();
+			const date = content.match(/^date:\s*"?([^"\n]+)"?/m)?.[1]?.trim() ?? "";
+			const published =
+				content.match(/^published:\s*(.+)$/m)?.[1]?.trim() !== "false";
+			// GitHub repo names are case-insensitive.
+			if (repo) map.set(repo.toLowerCase(), { file, date, published });
+		}
 	}
 
 	return map;
@@ -120,7 +142,9 @@ async function main() {
 	console.log(`  ${existing.size} projects in portfolio\n`);
 
 	// ── New repos ──────────────────────────────────────────────────────────────
-	const newRepos = repos.filter((r) => !existing.has(r.full_name));
+	const newRepos = repos.filter(
+		(r) => !existing.has(r.full_name.toLowerCase()),
+	);
 
 	if (newRepos.length === 0) {
 		console.log("✓ No new repos to add.");
@@ -142,7 +166,7 @@ async function main() {
 		let staleCount = 0;
 
 		for (const repo of repos) {
-			const entry = existing.get(repo.full_name);
+			const entry = existing.get(repo.full_name.toLowerCase());
 			if (!entry || !entry.published) continue;
 
 			const githubDate = repo.pushed_at.split("T")[0];
