@@ -2,7 +2,7 @@
 
 A personal portfolio site: projects, blog, open source contributions, talks, and diagrams, written in MDX and rendered with Next.js.
 
-The layout follows [seangoedecke.com](https://www.seangoedecke.com/): one narrow serif column, a heavy sans-serif name, `│`-separated link rows, and hairline rules between sections.
+The layout is a single narrow serif column, with a heavy sans-serif name, `│`-separated link rows, and hairline rules between sections.
 
 Dark mode follows the visitor's OS setting (`prefers-color-scheme`). There is no toggle and no JavaScript. Colours are CSS variables on `:root` in `global.css`, redefined for dark mode.
 
@@ -80,4 +80,4 @@ Both deploy automatically on push to `master` via GitHub Actions (`.github/workf
 
 ## Attribution
 
-Layout inspired by [Sean Goedecke](https://www.seangoedecke.com/). Original design and inspiration by [Boris Tane](https://boristane.com).
+Original design and inspiration by [Boris Tane](https://boristane.com).
