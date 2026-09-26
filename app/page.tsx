@@ -5,8 +5,10 @@ import {
 	allBlogs,
 	allTalks,
 	allOpenSources,
+	type Blog,
 } from "contentlayer/generated";
 import { slugifyTag } from "./lib/tags";
+import { postLinks, type ExternalLink } from "./lib/posts";
 
 type Entry = {
 	key: string;
@@ -15,6 +17,7 @@ type Entry = {
 	date?: string;
 	dateStyle: "day" | "month";
 	tags?: { label: string; href?: string }[];
+	links?: ExternalLink[];
 };
 
 function formatDate(date: string, style: Entry["dateStyle"]) {
@@ -32,7 +35,7 @@ function Section({
 }: {
 	title: string;
 	entries: Entry[];
-	viewAll: string;
+	viewAll?: string;
 }) {
 	return (
 		<section>
@@ -59,14 +62,29 @@ function Section({
 								)}
 							</Fragment>
 						))}
+						{entry.links?.map((link, i) => (
+							<Fragment key={link.href}>
+								{i === 0 ? " │ " : ", "}
+								<a
+									href={link.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="prose-link"
+								>
+									{link.label} ↗
+								</a>
+							</Fragment>
+						))}
 					</p>
 				</article>
 			))}
-			<p className="view-all">
-				<Link href={viewAll} className="prose-link">
-					View all →
-				</Link>
-			</p>
+			{viewAll && (
+				<p className="view-all">
+					<Link href={viewAll} className="prose-link">
+						View all →
+					</Link>
+				</p>
+			)}
 			<hr />
 		</section>
 	);
@@ -76,21 +94,51 @@ const byDateDesc = (a?: string, b?: string) =>
 	new Date(b ?? 0).getTime() - new Date(a ?? 0).getTime();
 
 export default function Home() {
+	const toBlogEntry = (post: Blog): Entry => ({
+		key: post.slug,
+		title: post.title,
+		href: `/blog/${post.slug}`,
+		date: post.publishedAt,
+		dateStyle: "day",
+		tags: post.tags?.map((t) => ({
+			label: t,
+			href: `/tags/${slugifyTag(t)}`,
+		})),
+		links: postLinks(post),
+	});
+
 	const blogs: Entry[] = allBlogs
 		.filter((p) => !p.draft)
 		.sort((a, b) => byDateDesc(a.publishedAt, b.publishedAt))
 		.slice(0, 8)
-		.map((post) => ({
-			key: post.slug,
-			title: post.title,
-			href: `/blog/${post.slug}`,
-			date: post.publishedAt,
-			dateStyle: "day",
-			tags: post.tags?.map((t) => ({
-				label: t,
-				href: `/tags/${slugifyTag(t)}`,
+		.map(toBlogEntry);
+
+	// Hand-picked with `featured: true`, like the "popular" list on
+	// seangoedecke.com. Projects first, then writing.
+	const featured: Entry[] = [
+		...allProjects
+			.filter((p) => p.published && p.featured)
+			.sort((a, b) => byDateDesc(a.date, b.date))
+			.map(
+				(project): Entry => ({
+					key: `project-${project.slug}`,
+					title: project.title,
+					href: `/projects/${project.slug}`,
+					date: project.date,
+					dateStyle: "month",
+					tags: [{ label: "project", href: "/projects" }],
+				}),
+			),
+		...allBlogs
+			.filter((p) => !p.draft && p.featured)
+			.sort((a, b) => byDateDesc(a.publishedAt, b.publishedAt))
+			.map((post) => ({
+				...toBlogEntry(post),
+				key: `blog-${post.slug}`,
+				dateStyle: "month" as const,
+				tags: [{ label: "writing", href: "/blog" }],
 			})),
-		}));
+	];
 
 	const projects: Entry[] = allProjects
 		.filter((p) => p.published)
@@ -136,6 +184,7 @@ export default function Home() {
 				have won three hackathons so far.
 			</p>
 			<hr />
+			{featured.length > 0 && <Section title="featured" entries={featured} />}
 			<Section title="writing" entries={blogs} viewAll="/blog" />
 			<Section title="projects" entries={projects} viewAll="/projects" />
 			<Section title="open source" entries={openSource} viewAll="/open-source" />

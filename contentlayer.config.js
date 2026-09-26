@@ -68,6 +68,7 @@ export const Project = defineDocumentType(() => ({
 	contentType: "mdx",
 	fields: {
 		published: { type: "boolean" },
+		featured: { type: "boolean" },
 		title: { type: "string", required: true },
 		description: { type: "string", required: true },
 		date: { type: "date" },
@@ -221,7 +222,10 @@ export const Blog = defineDocumentType(() => ({
 		externalUrl: { type: "string" },
 		source: { type: "string" },
 		draft: { type: "boolean" },
+		featured: { type: "boolean" },
 		tags: { type: "list", of: { type: "string" } },
+		// Threads where the post was discussed (Hacker News, LinkedIn, ...).
+		discussions: { type: "list", of: ProofLink },
 		outcomes: { type: "list", of: { type: "string" } },
 		roleHighlights: { type: "list", of: { type: "string" } },
 		proofLinks: {

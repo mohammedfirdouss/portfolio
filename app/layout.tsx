@@ -57,11 +57,6 @@ const inter = LocalFont({
 	display: "swap",
 });
 
-const calSans = LocalFont({
-	src: "../public/fonts/CalSans-SemiBold.ttf",
-	variable: "--font-calsans",
-	display: "swap",
-});
 
 export default function RootLayout({
 	children,
@@ -69,7 +64,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
+		<html lang="en" className={inter.variable}>
 			<body className="min-h-screen w-full">
 				<div className="site-shell">
 					<Navigation />

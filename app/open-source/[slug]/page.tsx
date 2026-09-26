@@ -8,7 +8,6 @@ import {
 	repositoryUrl,
 } from "@/app/components/post-layout";
 import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
-import "./mdx.css";
 import { allOpenSources } from "contentlayer/generated";
 
 type Props = {

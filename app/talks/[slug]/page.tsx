@@ -7,7 +7,6 @@ import {
 } from "@/app/components/post-layout";
 import { OutcomeProofBlock } from "@/app/components/outcome-proof-block";
 import { getYoutubeEmbedId } from "@/app/lib/youtube";
-import "@/app/blog/[slug]/mdx.css";
 import { allTalks } from "contentlayer/generated";
 
 type Props = {

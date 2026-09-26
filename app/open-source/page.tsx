@@ -7,11 +7,6 @@ export const metadata = {
 		"Contributions to open source projects, bug fixes, documentation, features, and mentorship through programs like LFX.",
 };
 
-const projectColors: Record<string, string> = {
-	PipeCD: "text-sky-600 dark:text-sky-400 border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-950",
-	GitLab: "text-orange-600 border-orange-200 bg-orange-50",
-};
-
 export default function OpenSourcePage() {
 	const contributions = allOpenSources
 		.filter((c) => c.published !== false)
@@ -26,18 +21,18 @@ export default function OpenSourcePage() {
 	return (
 		<div>
 			<h1 className="page-title">open source</h1>
-			<div className="text-lg text-[color:var(--fg)] mb-12">
+			<div className="mb-12">
 				<p>I contribute where I can, mostly CNCF and cloud-native projects.</p>
 			</div>
 
 			{featured.length > 0 && (
 				<div className="mb-12">
-					<h2 className="text-xs font-semibold uppercase tracking-widest text-[color:var(--muted)] mb-6">
-						Notable contributions
+					<h2 className="section-title">
+						notable
 					</h2>
-					<div className="divide-y divide-[color:var(--rule)]">
+					<div>
 						{featured.map((contrib) => (
-							<div key={contrib.slug} className="pt-6 first:pt-0">
+							<div key={contrib.slug}>
 								<ContributionRow contrib={contrib} />
 							</div>
 						))}
@@ -47,12 +42,12 @@ export default function OpenSourcePage() {
 
 			{rest.length > 0 && (
 				<div>
-					<h2 className="text-xs font-semibold uppercase tracking-widest text-[color:var(--muted)] mb-6">
-						All contributions
+					<h2 className="section-title">
+						all contributions
 					</h2>
-					<div className="divide-y divide-[color:var(--rule)]">
+					<div>
 						{rest.map((contrib) => (
-							<div key={contrib.slug} className="pt-6 first:pt-0">
+							<div key={contrib.slug}>
 								<ContributionRow contrib={contrib} />
 							</div>
 						))}
@@ -64,35 +59,23 @@ export default function OpenSourcePage() {
 }
 
 function ContributionRow({ contrib }: { contrib: OpenSource }) {
-	const badgeClass =
-		contrib.project && projectColors[contrib.project]
-			? projectColors[contrib.project]
-			: "text-[color:var(--muted)] border-[color:var(--rule)]";
+	const meta = [
+		contrib.project,
+		contrib.date &&
+			new Date(contrib.date).toLocaleDateString("en-us", {
+				year: "numeric",
+				month: "long",
+			}),
+	].filter(Boolean);
 
 	return (
-		<Link href={`/open-source/${contrib.slug}`} className="block group">
-			<div className="flex items-baseline gap-3 flex-wrap">
-				<span className="text-lg font-semibold text-[color:var(--fg)] group-hover:text-sky-600 group-hover:dark:text-sky-400 transition-colors">
+		<article>
+			<h3 className="post-title">
+				<Link href={`/open-source/${contrib.slug}`} className="prose-link">
 					{contrib.title}
-				</span>
-				<div className="flex items-center gap-2">
-					{contrib.project && (
-						<span
-							className={`inline-flex items-center px-2 py-px text-xs border rounded-full ${badgeClass}`}
-						>
-							{contrib.project}
-						</span>
-					)}
-					{contrib.date && (
-						<span className="text-sm text-[color:var(--muted)]">
-							{new Date(contrib.date).toLocaleDateString("en-us", {
-								year: "numeric",
-								month: "short",
-							})}
-						</span>
-					)}
-				</div>
-			</div>
-		</Link>
+				</Link>
+			</h3>
+			<p className="post-meta">{meta.join(" │ ")}</p>
+		</article>
 	);
 }

@@ -5,12 +5,12 @@ import {
 	TableOfContents,
 	MobileTableOfContents,
 } from "@/app/components/table-of-contents";
-import "./mdx.css";
 import { allBlogs } from "contentlayer/generated";
 import Link from "next/link";
 import { Fragment } from "react";
 import { PostHeader, PostFooter } from "@/app/components/post-layout";
 import { slugifyTag } from "@/app/lib/tags";
+import { postLinks } from "@/app/lib/posts";
 
 type Props = {
 	params: Promise<{ slug: string }>;
@@ -65,6 +65,23 @@ export default async function PostPage({ params }: Props) {
 									<Link href={`/tags/${slugifyTag(tag)}`} className="prose-link">
 										{tag}
 									</Link>
+								</Fragment>
+							))}
+						</>
+					),
+					postLinks(blog).length > 0 && (
+						<>
+							{postLinks(blog).map((link, i) => (
+								<Fragment key={link.href}>
+									{i > 0 && ", "}
+									<a
+										href={link.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="prose-link"
+									>
+										{link.label} ↗
+									</a>
 								</Fragment>
 							))}
 						</>

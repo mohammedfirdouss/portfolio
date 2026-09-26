@@ -1,6 +1,5 @@
 import { allExperiences } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
-import "@/app/blog/[slug]/mdx.css";
 
 export const metadata = {
 	title: "Experience",

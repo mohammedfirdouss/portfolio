@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { allBlogs } from "contentlayer/generated";
 import { slugifyTag } from "../lib/tags";
+import { postLinks } from "../lib/posts";
 
 export const metadata = {
 	title: "Blog",
@@ -72,7 +73,6 @@ export default async function BlogPage() {
 									day: "numeric",
 								})}
 								{readingTime && ` · ${readingTime} min read`}
-								{post.source && ` · ${post.source}`}
 								{post.tags && post.tags.length > 0 && " │ "}
 								{post.tags?.map((tag, i) => (
 									<Fragment key={tag}>
@@ -80,6 +80,19 @@ export default async function BlogPage() {
 										<Link href={`/tags/${slugifyTag(tag)}`} className="prose-link">
 											{tag}
 										</Link>
+									</Fragment>
+								))}
+								{postLinks(post).map((link, i) => (
+									<Fragment key={link.href}>
+										{i === 0 ? " │ " : ", "}
+										<a
+											href={link.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="prose-link"
+										>
+											{link.label} ↗
+										</a>
 									</Fragment>
 								))}
 							</p>
