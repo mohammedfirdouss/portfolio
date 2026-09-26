@@ -2,10 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
-import {
-	navigationLinks as navLinks,
-	secondaryLinks,
-} from "./navigation-links";
+import { navigationLinks as navLinks } from "./navigation-links";
 import { newsletterUrl } from "../lib/site";
 import { withBasePath } from "../lib/asset-path";
 
@@ -35,21 +32,6 @@ export const Navigation: React.FC = () => {
 				{navLinks.map((link) => (
 					<Fragment key={link.href}>
 						<span aria-hidden="true"> │ </span>
-						<Link
-							href={link.href}
-							aria-current={
-								pathname?.startsWith(link.href) ? "page" : undefined
-							}
-						>
-							{link.name}
-						</Link>
-					</Fragment>
-				))}
-			</nav>
-			<nav className="site-nav" aria-label="More">
-				{secondaryLinks.map((link, i) => (
-					<Fragment key={link.href}>
-						{i > 0 && <span aria-hidden="true"> │ </span>}
 						<Link
 							href={link.href}
 							aria-current={
