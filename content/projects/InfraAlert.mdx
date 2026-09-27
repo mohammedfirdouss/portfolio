@@ -1,17 +1,33 @@
 ---
 title: InfraAlert
-description: A system for reporting infrastructure issues and coordinating responses in Nigeria.
-date: "2025-10-31"
+description: A city service where citizens report potholes, leaks and broken streetlights on a map, and staff triage them and send repair crews. A language model reads each report, code sets the priority, and a person decides who goes.
+date: "2026-09-26"
 repository: mohammedfirdouss/InfraAlert
 published: true
+banner: /infraalert-report.webp
 outcomes:
-  - Built a flow that classifies each report, routes it to the right authority, and tracks its priority and status.
+  - Kept the model out of decisions. It only turns a report into structured facts, and a published formula sets the priority, with a floor that lifts any life-safety hazard to critical.
+  - Grouped reports of the same problem into one incident, so staff triage a pothole once instead of once per report.
 roleHighlights:
-  - I designed the flow from a citizen's report to updates from the authorities, and built the backend logic for classification, routing and progress tracking.
-  - I decided where the system acts on its own and where people step in, to balance speed with human oversight.
+  - I built it as one FastAPI service with a React frontend on Cloud Run, backed by Postgres and PostGIS, with slow work sent through Cloud Tasks.
+  - I designed the priority formula and the dispatch screen that shows why an incident ranks where it does and which nearby team has the right skills.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/InfraAlert
 ---
 
-A burst pipe or a broken streetlight often goes unfixed because the report never reaches the right office, or the person who reported it never hears back. InfraAlert is built around how people in Nigeria report these problems. AI sorts and routes the reports, and both sides can see where each issue stands.
+InfraAlert has two sides. Citizens drop a pin on the map, describe the problem in their own words and add photos, with no account needed. City staff get a control room: a queue of incidents on a map, and the tools to triage them and dispatch a repair crew.
+
+![The staff queue: incidents ranked by priority, with the suggested team for each and a map of where they are](/infraalert-queue.webp)
+
+## Who decides what
+
+The model reads each report and pulls out the issue type, any hazards, and how confident it is. It decides nothing. Priority comes from a fixed formula that weighs the hazard, the issue type, nearby sensitive places such as hospitals and clinics, and how many people reported the problem. Any life-safety hazard lifts the score to critical, whatever the sum. Staff see exactly how each score was built.
+
+![A pothole incident: the priority score broken down by component, with the nearby sensitive places and the suggested team](/infraalert-priority.webp)
+
+A dispatcher picks the team, and the system suggests the nearest one with the right skills. When the model can't read a report, it goes to a person to classify. The citizen's status page follows each step, without the staff-only detail.
+
+![The citizen's status page after a team was assigned](/infraalert-status.webp)
+
+Built with FastAPI, React, Postgres and PostGIS, Gemini on Vertex AI, Cloud Tasks and Cloud Run.

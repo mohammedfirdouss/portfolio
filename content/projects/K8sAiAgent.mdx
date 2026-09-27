@@ -4,6 +4,7 @@ description: An AI platform that investigates Kubernetes failures, finds the roo
 date: "2026-09-10"
 repository: mohammedfirdouss/k8s-ai-agent
 published: true
+banner: /k8s-agent-diagnosis.webp
 outcomes:
   - Turned manual Kubernetes debugging into a one-click investigation that ends with a root cause, a concrete fix and a confidence score.
   - Saved every investigation, so the team can look back at past incidents.
@@ -20,8 +21,12 @@ When a pod keeps failing, the answer is usually spread across its status, its lo
 
 ## Example
 
-A checkout API keeps restarting under load. The agent checks pod status, collects logs, and reads events. It finds the container was OOMKilled: the memory limit is 128Mi but the app peaks near 300Mi. It suggests raising the limit to 512Mi and adding memory alerts, with 91% confidence.
+On a test cluster with three broken apps, it found each problem separately: a missing `DATABASE_URL` crashing the payment service, an image tag that doesn't exist, and an analytics worker in a crash loop with empty logs. It gave kubectl commands for the first two, and said its confidence was lower for the third because the evidence was thin.
+
+![Each step of the investigation ticks off live in the dashboard](/k8s-agent-progress.webp)
 
 ## How it's built
 
 Five inspectors talk to the Kubernetes API and gather their findings into one evidence report. A prompt builder passes the report to an LLM through OpenRouter (Claude, GPT or DeepSeek), and the agent returns the root cause, a fix such as a kubectl command or a YAML change, and a confidence score. InsForge handles auth, investigation history and the live progress updates in the dashboard.
+
+![Past investigations are saved with their root cause and confidence](/k8s-agent-history.webp)
