@@ -5,13 +5,11 @@ date: "2026-06-08"
 repository: mohammedfirdouss/blind-spots-of-frontier-models
 published: true
 outcomes:
-  - Found a critical float16 numerical overflow that makes output unreadable across all 12 categories. bfloat16 is required for valid evaluation of Qwen-class models.
-  - Measured failure rates per category using 84 prompts (5 failure probes + 2 success controls per category), giving numbers instead of one-off examples.
-  - Gave concrete fine-tuning advice, with specific datasets and scale ranges, mapped to each root cause.
+  - Showed that float16 overflows in all 12 categories and makes the output unreadable, so a float16 evaluation of a Qwen-class model is invalid. bfloat16 is required.
+  - Turned vague quality concerns into failure rates for each category, with a fine-tuning dataset and scale range mapped to each root cause.
 roleHighlights:
-  - I designed the 84-prompt test suite and a two-axis labelling scheme that separates coherence failures from correctness failures.
-  - I found and documented the float16 overflow issue as a repeatable, measured finding across all 12 reasoning categories.
-  - I built a training dataset with per-dtype outputs and auto-labels, published to Hugging Face for reuse.
+  - I designed the prompt suite and the two-axis labels that separate coherence failures from correctness failures.
+  - I published the outputs for both dtypes, with auto-labels, as a dataset on Hugging Face.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/blind-spots-of-frontier-models
@@ -21,28 +19,16 @@ proofLinks:
     href: https://huggingface.co/Qwen/Qwen3.5-4B-Base
 ---
 
-Qwen3.5-4B Base Blind Spots is an evaluation framework that finds where Qwen3.5-4B-Base fails. The model is a 4B-parameter pre-trained model with Gated DeltaNet attention and a sparse MoE architecture. Instead of collecting one-off failure examples, the framework runs 84 structured prompts across 12 reasoning categories and reports measured failure rates with clear paths to fix them.
+A handful of failure examples says little about a model. It doesn't tell you how often the model fails, or whether the fix is more data or a different setting. So instead of collecting examples, this project runs a small, structured suite against Qwen3.5-4B-Base, a 4B-parameter pre-trained model with Gated DeltaNet attention and a sparse MoE.
 
-## What it is
+Each of the 12 reasoning categories, including arithmetic, logic, commonsense, coreference, Bayesian reasoning and Winograd schemas, gets 7 prompts: 5 that probe for a failure and 2 controls the model should pass. For a targeted fine-tune, that is enough to find the repeat blind spots faster than a large benchmark would.
 
-A repeatable LLM failure-mode evaluation framework with:
+## Two labels, two kinds of fix
 
-- **84-Prompt Test Suite:** 5 failure probes + 2 success controls per category across 12 reasoning domains: arithmetic, logic, commonsense, coreference, Bayesian reasoning, Winograd schema, and more.
-- **Two-Axis Labelling:** Each output is labelled separately for coherence (is it readable?) and correctness (is it accurate?). This separates format failures from reasoning failures, which makes fixes more targeted.
-- **Critical dtype Finding:** float16 causes numerical overflow across all 12 categories, producing unreadable output even on simple controls. bfloat16 is required; the float16 results are kept as a reference.
-- **Fine-Tuning Roadmap:** Failure analysis per category maps each root cause to specific training datasets and scale ranges.
+Every output gets two separate labels: is it readable (coherence), and is it right (correctness)? The split matters because the fixes are different. Coherence failures point to inference settings or instruction tuning. Correctness failures point to chain-of-thought or domain-specific data. Mixing them up wastes fine-tuning effort.
 
-## How It's Built
+## The dtype finding
 
-- **Model:** `Qwen/Qwen3.5-4B-Base` via Hugging Face Transformers.
-- **Execution:** `colab_notebook.ipynb` (Google Colab L4/A10G, bfloat16) or `modal_runner.py` for cloud GPU.
-- **Decoding:** Greedy sampling for reproducibility.
-- **Data Format:** JSONL: `prompts.jsonl` (84 canonical inputs), `train.jsonl` (full records with per-dtype outputs and auto-labels), `blind_spots_data.jsonl` (labelled results).
-- **Published Artifact:** Training dataset released on Hugging Face for reuse and extension.
+In float16, the model failed across every category, even on the easy controls. The cause was numerical overflow, not reasoning. For this model, float16 isn't a small drop in quality: it makes every result invalid. The float16 outputs stay in the dataset as a reference, and the lesson is to check the dtype before trusting any evaluation.
 
-## What I Learned
-
-- **dtype Is a Hard Correctness Requirement:** float16 overflow is not a small quality drop; it makes all results invalid. Check the dtype before trusting any evaluation.
-- **Structured Probing Over One-Off Examples:** Controlled failure/success pairs per category turn vague quality concerns into failure rates you can measure and compare.
-- **Two-Axis Labels Point to Different Fixes:** Coherence failures point to inference config or instruction tuning. Correctness failures point to chain-of-thought or domain-specific data. Mixing them up wastes effort.
-- **Small Benchmarks Can Be High Signal:** When the goal is targeted fine-tuning, 84 prompts across 12 categories surface repeat blind spots faster than large evaluation suites.
+Built with Hugging Face Transformers and greedy decoding for reproducible runs, on Google Colab (L4 or A10G) or Modal. Prompts, full records and labelled results are stored as JSONL.

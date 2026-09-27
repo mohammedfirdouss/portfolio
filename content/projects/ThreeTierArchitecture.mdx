@@ -7,20 +7,13 @@ published: true
 banner: https://raw.githubusercontent.com/mohammedfirdouss/3-Tier-Architecture-with-AWS-CloudFormation/main/diagram/Screenshot%20(707).png
 screenshot: https://raw.githubusercontent.com/mohammedfirdouss/3-Tier-Architecture-with-AWS-CloudFormation/main/diagram/Screenshot%20(707).png
 outcomes:
-  - Built a repeatable three-tier AWS setup with CloudFormation templates.
-  - Added load balancing, private subnets, and a Multi-AZ database setup.
-  - Kept infrastructure setup in code so it can be recreated easily.
+  - Kept the whole setup in version-controlled templates, so it can be recreated from code.
 roleHighlights:
-  - I designed the full VPC and tier separation for security and availability.
-  - I built and refined CloudFormation templates for networking, compute, and data layers.
-  - I documented deployment structure and architecture decisions for easier reuse.
+  - I designed the VPC and the separation between tiers for security and availability.
+  - I wrote the CloudFormation templates for networking, compute, and data, and documented the architecture decisions.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/3-Tier-Architecture-with-AWS-CloudFormation
-  - label: Architecture diagram
-    href: https://raw.githubusercontent.com/mohammedfirdouss/3-Tier-Architecture-with-AWS-CloudFormation/main/diagram/Screenshot%20(707).png
 ---
 
-This project shows a three-tier web application on AWS using CloudFormation. It uses a classic LAMP stack across web, app, and database tiers.
-
-CloudFormation templates define the full infrastructure in code, so setup is repeatable and version-controlled.
+A classic LAMP stack split into web, app and database tiers, with a load balancer in front, private subnets, and a Multi-AZ database. The diagram above shows how they connect.

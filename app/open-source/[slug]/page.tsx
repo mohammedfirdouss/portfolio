@@ -54,6 +54,7 @@ export default async function OpenSourceDetailPage({ params }: Props) {
 				outcomes={item.outcomes}
 				roleHighlights={item.roleHighlights}
 				proofLinks={item.proofLinks}
+				repository={item.repository}
 			/>
 			<article>
 				<Mdx code={item.body.code} />

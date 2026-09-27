@@ -5,9 +5,8 @@ date: "2026-04-16"
 repository: mohammedfirdouss/k8s-health-ai
 published: false
 outcomes:
-  - Automated diagnosis for pod crashes, init errors, and scheduling failures.
-  - Captured logs, events, and spec context into a single diagnosis record.
-  - Added pluggable AI backends so the operator can work across providers.
+  - Automated diagnosis for pod crashes, init errors, and scheduling failures, with logs, events and spec context in one record.
+  - Made the AI backend pluggable, so the operator works with cloud or local models.
 roleHighlights:
   - I built the operator flow using controller-runtime and a custom CRD.
   - I implemented failure classification and context collection for better diagnosis quality.
@@ -19,23 +18,8 @@ proofLinks:
     href: https://github.com/mohammedfirdouss/k8s-health-ai/blob/main/docs/configuration.md
 ---
 
-K8s Health AI is an operator-style project for Kubernetes troubleshooting. It watches failing workloads, gathers runtime context, calls a configurable AI backend, and writes diagnosis output into a `ClusterDiagnosis` custom resource.
+When a pod fails, someone has to collect its events, spec and logs by hand, usually under pressure. K8s Health AI does that work instead. It watches for failing workloads, gathers the context, asks an AI backend for a diagnosis, and writes the result into a `ClusterDiagnosis` custom resource the whole team can see.
 
-Instead of manually collecting pod events, specs, and logs under pressure, the system does that work in one place and returns concise guidance for each failure type.
+The backend can be OpenAI, Bedrock, Vertex, Azure OpenAI, Ollama, or a mock for testing. A Prometheus metric (`diagnoses_total`) and a small CLI (`diagctl`) cover day-to-day operations.
 
-## What it is
-
-A Kubernetes diagnostics assistant with:
-
-- **Failure Detection:** Watches for common pod failure states and classifies root patterns.
-- **Context Collection:** Pulls events, pod spec details, and logs automatically.
-- **Diagnosis CRD:** Writes findings into `ClusterDiagnosis` objects for team visibility.
-- **Provider Flexibility:** Supports mock and multiple cloud/local AI providers.
-
-## How It's Built
-
-- **Operator Runtime:** Go + controller-runtime for reconciliation and event handling.
-- **Custom Resource:** `ClusterDiagnosis` API to persist diagnosis and status.
-- **Collection Layer:** Internal modules for logs, events, and workload metadata.
-- **LLM Layer:** Pluggable adapters (OpenAI, Bedrock, Vertex, Azure OpenAI, Ollama, mock).
-- **Operations:** Prometheus metric `diagnoses_total` and `diagctl` CLI for quick inspection.
+Built in Go with controller-runtime.

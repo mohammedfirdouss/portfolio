@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { repositoryUrl } from "@/app/components/post-layout";
 
 type ProofLink = {
 	label: string;
@@ -9,13 +10,21 @@ type Props = {
 	outcomes?: string[];
 	roleHighlights?: string[];
 	proofLinks?: ProofLink[];
+	// Already linked as "source" in the header, so it is left out of Links.
+	repository?: string;
 };
 
 export function OutcomeProofBlock({
 	outcomes = [],
 	roleHighlights = [],
-	proofLinks = [],
+	proofLinks: allProofLinks = [],
+	repository,
 }: Props) {
+	const headerLink = repository && repositoryUrl(repository).replace(/\/$/, "");
+	const proofLinks = allProofLinks.filter(
+		(item) => item.href.replace(/\/$/, "") !== headerLink,
+	);
+
 	if (
 		outcomes.length === 0 &&
 		roleHighlights.length === 0 &&

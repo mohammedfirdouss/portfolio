@@ -7,12 +7,10 @@ published: true
 banner: /terratowns.webp
 screenshot: /terratowns.webp
 outcomes:
-  - Built and ran a Terraform-based platform for publishing Terra Houses.
-  - Added infrastructure flows that combine a custom provider with AWS services.
-  - Added local development and testing paths for provider and platform features.
+  - Each user deploys a personal site from their own Terraform code, and it joins the TerraTowns network.
+  - The provider and platform can be developed and tested locally against a mock server.
 roleHighlights:
-  - I developed and integrated infrastructure code to provision platform resources end to end.
-  - I worked across provider and application layers to support publishing workflows.
+  - I worked across the custom provider and the AWS side to provision each site end to end.
   - I organized the project to make onboarding easier for developers.
 proofLinks:
   - label: Repository
@@ -21,4 +19,6 @@ proofLinks:
     href: /diagrams/terra-towns-diagram
 ---
 
-TerraTowns is a community project inspired by the self-hosted spirit of Geocities. Developers ("Terraformers") use Infrastructure as Code to launch their own personal websites, called "Terra Houses." The project started as a hands-on Terraform bootcamp. Each user writes Terraform code to set up and deploy a simple CMS, which then joins the TerraTowns network. Behind it are a custom Go provider, AWS (S3, CloudFront, Lambda), and a Ruby mock server for local development.
+TerraTowns takes after the self-hosted spirit of Geocities. It started as a hands-on Terraform bootcamp: each "Terraformer" writes Terraform code that sets up and deploys a simple CMS, their "Terra House".
+
+Behind it are a custom Go provider, AWS (S3, CloudFront and Lambda), and a Ruby mock server for local development.

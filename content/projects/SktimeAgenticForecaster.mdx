@@ -7,12 +7,10 @@ published: true
 banner: https://raw.githubusercontent.com/mohammedfirdouss/sktime-agentic-forecaster/main/assets/02_pipeline_and_predictions.png
 screenshot: https://raw.githubusercontent.com/mohammedfirdouss/sktime-agentic-forecaster/main/assets/03_forecast_plot.png
 outcomes:
-  - Converted text forecasting requests into runnable sktime pipelines.
-  - Added support for multiple AI backends while keeping sktime as the core engine.
-  - Returned predictions with short reasons to make results easier to review.
+  - Returned predictions with short explanations, so results are easier to review.
+  - Supported several AI backends while keeping sktime as the forecasting engine.
 roleHighlights:
-  - I designed the flow from user prompt to finished pipeline.
-  - I built estimator selection and pipeline assembly with sktime components.
+  - I designed the flow from prompt to finished pipeline, including estimator selection and pipeline assembly.
   - I built one interface that works with Anthropic, OpenAI, Gemini, and LangChain.
 proofLinks:
   - label: Repository
@@ -21,6 +19,6 @@ proofLinks:
     href: https://github.com/sktime/sktime/issues/9721
 ---
 
-Sktime Agentic Forecaster is a Python project that takes a forecasting task in plain English, picks suitable `sktime` estimators, builds a pipeline, trains it, and returns predictions with short explanations.
+Describe a forecasting task in plain English, and the tool picks suitable `sktime` estimators, builds a pipeline, trains it, and forecasts.
 
 The goal is to make time-series work faster without hiding how the model works. The output is a real sktime pipeline you can inspect, reuse, and improve.

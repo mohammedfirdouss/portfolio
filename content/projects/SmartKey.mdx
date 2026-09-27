@@ -20,15 +20,9 @@ proofLinks:
     href: https://github.com/ayobami11/smartkey
 ---
 
-SmartKey is a digital key-management system for the University of Lagos Senate Building. It replaces a paper logbook with real-time tracking, role-based access, and an immutable audit trail for every key in the building.
-
-## What it is
-
-Staff request a key, collect it at the security desk with a one-time code, and return it the same way. Every step is logged, timestamped, and auditable. Four role-specific dashboards (Chief Security Officer, Dean, Verifier, Requester) cover the full lifecycle, and three AI components flag anomalies that paper could never catch: rule-based risk scoring, Gemini-generated shift reports, and pixel-level signature verification.
+Staff request a key, collect it at the security desk with a one-time code, and return it the same way. Every step is logged and timestamped, and the AI features flag what a paper logbook never could, such as a signature that doesn't match.
 
 Built with Next.js, TypeScript, and Supabase (Postgres with Row-Level Security), with the Google Gemini API for AI features.
-
-## Screenshots
 
 ![CSO dashboard flagging a signature mismatch](/smartkey-signature-mismatch.webp)
 

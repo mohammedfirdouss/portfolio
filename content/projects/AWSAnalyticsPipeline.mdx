@@ -6,18 +6,13 @@ repository: mohammedfirdouss/aws-analytics-pipeline-viz
 banner: https://github.com/mohammedfirdouss/aws-analytics-pipeline-viz/assets/124298708/5a458ebf-73c4-4e2d-829e-a190b315b9f7
 published: true
 outcomes:
-  - Built a full data flow from raw files to dashboards.
   - Improved query speed with partitioning and better file formats.
   - Kept costs low with pay-per-query services.
 roleHighlights:
-  - I designed the S3, Glue, Athena, and QuickSight setup.
-  - I built the ETL and data catalog flow.
-  - I tuned the flow for better speed and lower cost.
+  - I designed the setup, built the ETL and data catalog flow, and tuned it for speed and cost.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/aws-analytics-pipeline-viz
 ---
 
-This project shows a full data analytics flow on AWS using managed services. It ingests raw data, transforms it, makes it queryable, and creates interactive visualizations without managing servers.
-
-The setup provides a practical way to build analytics on AWS with low maintenance.
+Raw data lands in S3. Glue transforms it and adds it to the data catalog, Athena makes it queryable with SQL, and QuickSight turns the results into interactive dashboards. Every step is a managed service, so there are no servers to run.

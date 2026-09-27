@@ -7,13 +7,11 @@ published: true
 banner: https://raw.githubusercontent.com/mohammedfirdouss/api-rag/main/assets/chat-demo.png
 screenshot: https://raw.githubusercontent.com/mohammedfirdouss/api-rag/main/assets/sources-panel.png
 outcomes:
-  - Turned API docs search into a chat workflow with grounded, sourced answers.
-  - Built a reusable pipeline for OpenAPI ingestion, retrieval, and response generation.
-  - Added both a Gradio UI and MCP server mode for developer workflows.
+  - Turned API docs search into a chat where every answer shows the snippets it came from, so it can be checked.
+  - Served the same retrieval pipeline to people through a chat UI and to coding assistants through an MCP server.
 roleHighlights:
-  - I built the end-to-end RAG flow from spec ingestion to cited responses.
-  - I implemented retrieval with Vertex AI Search and answer generation with Gemini.
-  - I added MCP tools so coding assistants can query API docs directly.
+  - I built the pipeline end to end, from OpenAPI ingestion to retrieval with Vertex AI Search and cited answers from Gemini.
+  - I added the MCP tools so coding assistants can query API docs directly.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/api-rag
@@ -21,23 +19,12 @@ proofLinks:
     href: https://github.com/mohammedfirdouss/api-rag/blob/main/notebooks/api_rag_colab.ipynb
 ---
 
-API RAG is a documentation assistant that lets you ask API questions in plain English and get direct answers with source citations.
+API docs are long, and their search boxes match words, not questions. API RAG lets you ask about an API in plain English and answers from the docs themselves.
 
-It ingests an OpenAPI spec, indexes endpoint/schema chunks in Vertex AI Search, retrieves relevant context, and uses Gemini to generate grounded responses. The same retrieval pipeline is also exposed as an MCP server for assistant-driven coding workflows.
+## How it works
 
-## What it is
+Point it at an OpenAPI spec, by URL or as a local file. It splits the spec into endpoint and schema chunks, saves them as JSONL, and indexes them in Vertex AI Search. When you ask a question, it retrieves the relevant chunks and Gemini writes the answer from them instead of guessing.
 
-A practical API docs assistant focused on reliable answers:
+There are two ways in: a Gradio chat with streaming answers and a sources panel, or an MCP server with `search_docs` and `get_schema` tools for coding assistants.
 
-- **Grounded Answers:** Uses retrieved documentation chunks instead of free-form guessing.
-- **Citations Included:** Shows source snippets so answers are easy to verify.
-- **OpenAPI Ingestion:** Supports URL or local specs and outputs JSONL chunks.
-- **Two Interfaces:** Works as a web app and as an MCP server.
-
-## How It's Built
-
-- **Python Pipeline:** Ingestion, retrieval, and generation logic.
-- **Vertex AI Search:** Indexes endpoint and schema chunks for fast retrieval.
-- **Gemini Integration:** Produces structured responses from retrieved context.
-- **Gradio UI:** Chat interface with source panel and streaming answers.
-- **MCP Tools:** `search_docs` and `get_schema` for assistant integrations.
+Built in Python with Vertex AI Search, Gemini, Gradio and MCP.

@@ -10,36 +10,22 @@ outcomes:
   - Covered StatefulSet, DaemonSet, Init Container, and CronJob workload types alongside standard Deployments.
 roleHighlights:
   - I wrote the app manifests and PipeCD pipeline configs for each deployment pattern.
-  - I tested Kustomize per-target overlays and Helm chart integration within the multicluster plugin.
   - I checked partial failure handling, so one failed cluster does not stop the full multi-target rollout.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/kubernetes-multicluster-samples
 ---
 
-Kubernetes Multicluster Samples is a test suite for PipeCD's `kubernetes_multicluster` plugin. Each folder is a self-contained application with a PipeCD pipeline config and Kubernetes manifests. Together, they cover the full range of deployment strategies the plugin supports across two clusters.
+PipeCD's `kubernetes_multicluster` plugin deploys one application to several clusters at once. This repo tests it. Each folder is a self-contained app with a pipeline config (`app.pipecd.yaml`) and Kubernetes manifests, and together they cover the strategies the plugin supports.
 
-## What it is
+Besides the rollout strategies above, the samples cover:
 
-A multicluster CD validation suite with:
+- Canary with and without service creation, and baseline deployments for A/B tests
+- Traffic shifting with both PodSelector and Istio VirtualService
+- Kustomize per-target overlays, Helm charts with custom values, and Go Template manifests
 
-- **Deployment Strategies:** Canary (with and without service creation), primary rollout, and baseline deployments for A/B scenarios.
-- **Traffic Routing:** PodSelector-based and Istio-based traffic shifting across clusters.
-- **Per-Stage Filtering:** Canary stages run only on `cluster-eu`; a later stage unlocks the full rollout.
-- **Workload Coverage:** Deployment, StatefulSet, DaemonSet, Init Container image extraction, and CronJob health checks.
-- **Config Flexibility:** Kustomize per-target overlays and Helm chart integration with custom values.
-- **Resilience Testing:** Partial failure handling, so one cluster error does not stop the entire multi-target pipeline.
+## What I learned
 
-## How It's Built
-
-- **CD Platform:** PipeCD with the `kubernetes_multicluster` plugin.
-- **Clusters:** `cluster-eu` and `cluster-us` as named targets in each pipeline config.
-- **Config Format:** `app.pipecd.yaml` defines pipeline stages; `deployment.yaml` and `service.yaml` define workloads.
-- **Templating:** Go Template manifests for dynamic per-target configuration.
-- **Traffic Management:** Both native PodSelector and Istio VirtualService approaches covered.
-
-## What I Learned
-
-- **Multicluster CD Complexity:** Keeping traffic separate between regions needs explicit per-stage target filtering. Rolling out to all clusters at once carries more risk than it appears to.
-- **Plugin Validation Practice:** Writing focused manifests for each deployment pattern is more reliable than relying on end-to-end tests alone.
-- **Partial Failure Semantics:** Deciding what "success" means in a multi-target rollout (all clusters vs. quorum) is a design choice that affects rollback behaviour.
+- Keeping traffic in one region needs explicit per-stage target filtering. Rolling out to every cluster at once is riskier than it looks.
+- Focused manifests for each pattern catch more than end-to-end tests alone.
+- What counts as "success" in a multi-target rollout, every cluster or a quorum, is a design choice, and it changes how rollback works.

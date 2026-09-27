@@ -64,6 +64,7 @@ export default async function PostPage({ params }: Props) {
 				outcomes={project.outcomes}
 				roleHighlights={project.roleHighlights}
 				proofLinks={project.proofLinks}
+				repository={project.repository}
 			/>
 			<article>
 				<Mdx code={project.body.code} />

@@ -7,13 +7,10 @@ published: true
 banner: /cruddur-banner.webp
 screenshot: /cruddur-screenshot.webp
 outcomes:
-  - Reworked Cruddur on AWS with separate frontend and backend services.
-  - Added auth, media handling, monitoring, and CI/CD.
-  - Improved reliability and scaling using managed AWS services.
+  - Moved auth, data, media and delivery onto managed AWS services, improving reliability and scaling.
 roleHighlights:
-  - I led architecture decisions and integrated core AWS services.
-  - I implemented backend, frontend, and infrastructure workflows for deployment and operations.
-  - I added monitoring, tracing, and automated delivery pipelines.
+  - I led the architecture decisions and built across the backend, frontend and infrastructure.
+  - I added monitoring, tracing, and the automated delivery pipeline.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/aws-bootcamp-cruddur-2023
@@ -21,32 +18,15 @@ proofLinks:
     href: /diagrams/cruddur
 ---
 
-Cruddur is a demo microblogging application. I rebuilt it on AWS so it can scale better and run more reliably.
+Cruddur started as a demo microblogging app, with feeds, profiles and direct messages. I rebuilt it on AWS as an API-driven app so it could scale and be maintained more easily.
 
-I made the app API-driven with separate frontend and backend services. This improved scaling and maintenance. I used AWS services for auth, data storage, and media uploads.
+## Architecture
 
-## What it is
+A React frontend talks to a Flask API that runs on AWS Fargate behind an Application Load Balancer, which health-checks the backend. Amazon Cognito handles sign-up and sign-in. Posts and profiles live in PostgreSQL on RDS. Direct messages live in DynamoDB, where Streams and a Lambda keep each conversation's ordering up to date. Images and avatars go to S3 and are served through CloudFront.
 
-Cruddur is a microblogging platform with user authentication, feeds, profiles, and direct messaging.
+## Running it
 
--   **Frontend:** A React application that provides the user interface.
--   **Backend:** A Flask API that handles business logic, running on AWS Fargate.
--   **Authentication:** Amazon Cognito for secure user sign-up and sign-in.
--   **Databases:**
-    -   PostgreSQL (on Amazon RDS) for structured data like user profiles and posts.
-    -   DynamoDB for real-time messaging, using Streams and Lambda to update message group orderings.
--   **Media:** Amazon S3 for storing user-uploaded images and avatars, with Amazon CloudFront for fast delivery.
-
-## How It's Built
-
--   **Observability:** The system uses several tools for monitoring and debugging:
-    -   **AWS X-Ray:** For tracing requests across services.
-    -   **CloudWatch Logs:** For centralized logging.
-    -   **OpenTelemetry (Honeycomb):** For distributed tracing and observability.
-    -   **Rollbar:** For real-time error monitoring.
--   **CI/CD:** A full CI/CD pipeline with GitHub Actions tests, builds, and deploys the frontend and backend services.
--   **Configuration:** AWS Systems Manager (SSM) Parameter Store holds secrets and configuration, so no sensitive data is hardcoded in the application.
--   **Networking:** An Application Load Balancer (ALB) sends traffic to the backend services and uses health checks to keep the system reliable.
+GitHub Actions tests, builds and deploys both services. Secrets and config sit in SSM Parameter Store, not in the code. Requests are traced with AWS X-Ray and OpenTelemetry (Honeycomb), logs go to CloudWatch, and errors go to Rollbar.
 
 ## Screenshots
 

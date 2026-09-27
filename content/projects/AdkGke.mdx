@@ -7,41 +7,22 @@ banner: https://raw.githubusercontent.com/mohammedfirdouss/adk-gke/main/docs/scr
 screenshot: https://raw.githubusercontent.com/mohammedfirdouss/adk-gke/main/docs/screenshots/2026-05-13-04-cluster-observability-metrics.png
 published: true
 outcomes:
-  - Built an orchestrator that runs an analyst-critic loop to improve the investment thesis step by step.
-  - Made the bull and bear cases run at the same time as two parallel agent branches in one pipeline.
+  - Combined sequential, looping and parallel agent patterns in one ADK pipeline.
   - Deployed the system as a containerised FastAPI service on GKE Autopilot with Cloud Logging.
 roleHighlights:
-  - "I designed the agent structure with Google ADK: an orchestrator, a research team, and parallel writers."
-  - I connected the Wikipedia API through LangChain as the research tool and used Gemini 2.5 Flash as the LLM.
-  - I set up the container, the GKE Autopilot config, and Cloud Logging so the system is easy to observe.
+  - I designed the agent structure with Google ADK and used Gemini 2.5 Flash for every reasoning step, with Wikipedia (through LangChain) as the research tool.
+  - I set up the container, the GKE Autopilot config, and structured logging so the system is easy to observe.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/adk-gke
 ---
 
-ADK Investment Research Agent is a multi-agent pipeline. You give it a company name or stock ticker, and it returns a structured investment report. It uses Google's Agent Development Kit (ADK) to run a team of agents: a researcher, an analyst, a critic, and two parallel case writers. It runs on Google Kubernetes Engine Autopilot.
+Give it a company name or a stock ticker, and it returns an investment report with a bull case and a bear case.
 
-## What it is
+## How the agents work together
 
-A production-ready multi-agent research system with:
+A researcher gathers background on the company. An analyst turns it into an investment thesis, and a critic pushes back. They go around again until the critic accepts the thesis or three rounds have passed. The limit keeps the loop from running forever. Then two writers take the final thesis and write the bull and bear cases at the same time.
 
-- **Orchestration:** A sequential root agent runs a research team in a loop (up to 3 rounds), then hands the result to the report writers.
-- **Analyst-Critic Loop:** The analyst proposes an investment thesis. The critic challenges it. The loop repeats until the thesis passes or the round limit is reached.
-- **Parallel Case Writing:** The bull and bear cases are written at the same time by two separate agent branches.
-- **GKE Autopilot Deployment:** The full pipeline runs as a containerised FastAPI service with Cloud Logging.
+In ADK terms, the root is a `SequentialAgent` and the research team is a `LoopAgent`. The thesis moves between agents through shared state: `PROMPT` → `research` → `INVESTMENT_THESIS`.
 
-## How It's Built
-
-- **Agent Framework:** Google Agent Development Kit (ADK) 1.27.5 with a `SequentialAgent` root and a `LoopAgent` research team.
-- **LLM Backend:** Gemini 2.5 Flash for all reasoning steps.
-- **Research Tool:** Wikipedia API via LangChain Community integration.
-- **Serving Layer:** FastAPI + Uvicorn, containerised for Kubernetes.
-- **Infrastructure:** GKE Autopilot with Cloud Logging for structured log output.
-- **State Flow:** `PROMPT` → `research` → `INVESTMENT_THESIS` passed through shared agent state.
-
-## What I Learned
-
-- **Multi-Agent Design:** How to combine sequential, looping, and parallel agent patterns in one ADK pipeline.
-- **Feedback Loops in AI Systems:** How to design critic agents that improve results step by step without looping forever.
-- **Cloud-Native AI Deployment:** How to package an agent workload for GKE Autopilot and set up structured logging.
-- **State Management:** How to pass structured state between agents cleanly in a stateful pipeline.
+Built with Google ADK 1.27.5, Gemini 2.5 Flash, LangChain, FastAPI and Uvicorn, running on GKE Autopilot.

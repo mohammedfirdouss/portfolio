@@ -7,20 +7,15 @@ published: true
 banner: https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/02-product-catalog.png
 screenshot: https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/05-argocd-apps.png
 outcomes:
-  - Built an e-commerce platform with Go services on Kubernetes.
-  - Set up deployment and operations patterns for scaling and reliable routing.
+  - Split the core e-commerce features into independent Go services.
   - Added logging, metrics, and CI/CD for day-to-day operations.
 roleHighlights:
-  - I defined service boundaries and implemented core backend services in Go.
-  - I wrote and organized Kubernetes deployment files.
-  - I designed the platform for easier maintenance and scaling.
+  - I defined the service boundaries, wrote the core services in Go, and organized the Kubernetes deployment files.
 proofLinks:
   - label: Repository
     href: https://github.com/mohammedfirdouss/ecommerce-k8s
-  - label: Argo CD apps view
-    href: https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/05-argocd-apps.png
 ---
 
-This project is an e-commerce platform built with microservices and deployed on Kubernetes.
+The screenshot above is the product catalog. Behind it, each feature runs as its own service on Kubernetes, and Argo CD deploys them.
 
-Written in Go, it covers core e-commerce features across independent services.
+![The Argo CD apps view](https://raw.githubusercontent.com/mohammedfirdouss/ecommerce-k8s/main/docs/images/05-argocd-apps.png)
