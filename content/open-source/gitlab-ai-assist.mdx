@@ -18,6 +18,10 @@ proofLinks:
     href: https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2291
   - label: Related issue
     href: https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/issues/859
+  - label: Merge request !2726
+    href: https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2726
+  - label: Merge request !4586
+    href: https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/4586
 ---
 
 I refactored `InternalEventMiddleware` in GitLab AI Gateway. I moved it out of a crowded base module into its own middleware file, and moved its tests with it.
@@ -32,4 +36,9 @@ What I shipped in MR !2291:
 
 During review, maintainers flagged a circular import and some logger-related test failures. I fixed both, and the MR merged after final approval.
 
-**Links:** [MR !2291](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2291) • [Issue #859](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/issues/859)
+I followed up with two more merged MRs:
+
+- [!2726](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2726) extracted `DistributedTraceMiddleware` into its own file in the same way,
+- [!4586](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/4586) added tests that validate every flow config YAML file.
+
+**Links:** [MR !2291](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2291) • [Issue #859](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/issues/859) • [MR !2726](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/2726) • [MR !4586](https://gitlab.com/gitlab-org/modelops/applied-ml/code-suggestions/ai-assist/-/merge_requests/4586)

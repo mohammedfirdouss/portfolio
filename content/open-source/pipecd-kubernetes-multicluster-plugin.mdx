@@ -1,0 +1,60 @@
+---
+title: PipeCD - Kubernetes Multi-Cluster Plugin
+summary: "Built the kubernetes_multicluster plugin for PipeCD during my LFX Mentorship, across more than 30 merged PRs: canary, primary and baseline rollouts, traffic routing, rollback, plan preview, drift detection and per-cluster deploy status."
+date: 2026-07-14
+published: true
+project: PipeCD
+repository: pipe-cd/pipecd
+featured: true
+outcomes:
+  - Shipped progressive delivery (canary, primary, baseline and traffic routing) across multiple Kubernetes clusters.
+  - Added per-target deploy statuses to the plugin SDK, so operators can see which cluster failed.
+  - Brought the plugin to release standard with docs and a README.
+roleHighlights:
+  - I was the LFX Mentee for the multi-cluster plugin (LFX Mentorship Term 1, 2026).
+  - I designed and implemented the stages, fixes and SDK changes in more than 30 merged PRs.
+  - I wrote the plugin's announcement post on the PipeCD blog.
+proofLinks:
+  - label: LFX Mentorship issue #6446
+    href: https://github.com/pipe-cd/pipecd/issues/6446
+  - label: PipeCD blog post
+    href: https://pipecd.dev/blog/2026/04/10/building-the-kubernetes-multi-cluster-plugin-for-pipecd-lfx-mentorship/
+  - label: All merged PRs
+    href: https://github.com/pipe-cd/pipecd/pulls?q=is%3Apr+author%3Amohammedfirdouss+is%3Amerged+%22Multi_K8s-Plugin%22
+---
+
+I built the `kubernetes_multicluster` plugin for PipeCD as my LFX Mentorship project. The plugin lets a single PipeCD application deploy to several Kubernetes clusters at once, with the same progressive delivery stages that the single-cluster plugin supports.
+
+## Stages
+
+I implemented the core deployment stages one at a time:
+
+- **Canary:** rollout and clean ([#6583](https://github.com/pipe-cd/pipecd/pull/6583), [#6589](https://github.com/pipe-cd/pipecd/pull/6589))
+- **Primary:** rollout ([#6591](https://github.com/pipe-cd/pipecd/pull/6591))
+- **Baseline:** rollout and clean ([#6606](https://github.com/pipe-cd/pipecd/pull/6606), [#6607](https://github.com/pipe-cd/pipecd/pull/6607))
+- **Traffic routing:** splitting traffic between variants, plus log updates ([#6629](https://github.com/pipe-cd/pipecd/pull/6629), [#6648](https://github.com/pipe-cd/pipecd/pull/6648))
+
+## Correctness and operations
+
+- Fixed rollback variant cleanup and added pruning of orphaned resources on rollback ([#6660](https://github.com/pipe-cd/pipecd/pull/6660), [#6748](https://github.com/pipe-cd/pipecd/pull/6748))
+- Made strategy selection multi-target aware ([#6672](https://github.com/pipe-cd/pipecd/pull/6672))
+- Fixed livestate drift detection and resource filtering ([#6673](https://github.com/pipe-cd/pipecd/pull/6673), [#6783](https://github.com/pipe-cd/pipecd/pull/6783))
+- Implemented plan preview ([#6685](https://github.com/pipe-cd/pipecd/pull/6685))
+- Added config hashing for StatefulSets and DaemonSets, and health status for DaemonSets, ReplicaSets and Pods ([#6697](https://github.com/pipe-cd/pipecd/pull/6697), [#6807](https://github.com/pipe-cd/pipecd/pull/6807))
+
+## Configuration
+
+- Per-target `kustomizeDir`, `kustomizeVersion` and `kustomizeOptions` ([#6718](https://github.com/pipe-cd/pipecd/pull/6718), [#6749](https://github.com/pipe-cd/pipecd/pull/6749))
+- Per-stage `multiTarget` filtering ([#6757](https://github.com/pipe-cd/pipecd/pull/6757))
+- Config validation for `KubernetesApplicationSpec` ([#6747](https://github.com/pipe-cd/pipecd/pull/6747))
+- An initializer hook for Helm repo and OCI registry auth ([#6723](https://github.com/pipe-cd/pipecd/pull/6723))
+
+## Per-cluster deploy status
+
+When a stage deploys to several clusters and one fails, operators used to see only "stage failed". I added a `DeployTargetStatus` type to the plugin SDK and extended `ExecuteStageResponse` with per-target statuses, in both PipeCD and the standalone Go SDK. The plugin now reports which cluster failed ([#6861](https://github.com/pipe-cd/pipecd/pull/6861), [piped-plugin-sdk-go #6](https://github.com/pipe-cd/piped-plugin-sdk-go/pull/6), [#6812](https://github.com/pipe-cd/pipecd/pull/6812)).
+
+## Release
+
+I also renamed stages to avoid conflicts with the single-cluster plugin, added tests and cleanup PRs, and wrote the plugin documentation page and README to release standard ([#6880](https://github.com/pipe-cd/pipecd/pull/6880), [#6878](https://github.com/pipe-cd/pipecd/pull/6878), [#6977](https://github.com/pipe-cd/pipecd/pull/6977)). I wrote about the project on the [PipeCD blog](https://pipecd.dev/blog/2026/04/10/building-the-kubernetes-multi-cluster-plugin-for-pipecd-lfx-mentorship/).
+
+**Links:** [LFX issue #6446](https://github.com/pipe-cd/pipecd/issues/6446) • [Merged PRs](https://github.com/pipe-cd/pipecd/pulls?q=is%3Apr+author%3Amohammedfirdouss+is%3Amerged+%22Multi_K8s-Plugin%22) • [Repository](https://github.com/pipe-cd/pipecd)

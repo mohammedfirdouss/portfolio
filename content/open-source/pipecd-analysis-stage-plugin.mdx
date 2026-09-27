@@ -1,0 +1,21 @@
+---
+title: PipeCD - Analysis Stage Plugin Foundation
+summary: "Laid the foundation for the Analysis stage plugin in PipeCD's new plugin architecture (pipedv1): plugin structure, stage definitions, config decoding and tests."
+date: 2025-08-08
+published: true
+project: PipeCD
+repository: pipe-cd/pipecd
+featured: false
+---
+
+PipeCD was moving its built-in stages into plugins for its new `pipedv1` architecture. I wrote the first PR for the Analysis stage plugin, which watches metrics during a deployment.
+
+What shipped in [#6097](https://github.com/pipe-cd/pipecd/pull/6097):
+
+- a new stage plugin under `pkg/app/pipedv1/plugin/analysis/`, following the same pattern as the existing `scriptrun` plugin,
+- stage definitions and pipeline sync stage building,
+- config decoding, with tests for empty and invalid configs.
+
+It was planned as the first of several PRs, keeping the analysis logic itself for later work so the structure could be reviewed on its own.
+
+**Links:** [PR #6097](https://github.com/pipe-cd/pipecd/pull/6097) • [Issue #6068](https://github.com/pipe-cd/pipecd/issues/6068)

@@ -1,0 +1,15 @@
+---
+title: "Meshery: Video Controls on Large Screens"
+summary: Fixed video modals on meshery.io so the player's controls stay visible on large screens.
+date: 2025-10-18
+published: true
+project: Meshery
+repository: meshery/meshery.io
+featured: false
+---
+
+On large screens, the video modals on meshery.io (the site for the CNCF Meshery project) pushed the player's controls out of view.
+
+I centered the modal overlay with flexbox across the full viewport, capped its height so it scrolls internally, and made the video scale to the modal width with a max height. The native controls now stay visible at every screen size.
+
+**Links:** [PR #2326](https://github.com/meshery/meshery.io/pull/2326) • [Issue #1776](https://github.com/meshery/meshery.io/issues/1776)

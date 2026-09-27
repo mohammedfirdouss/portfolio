@@ -1,0 +1,18 @@
+---
+title: "sktime-mcp: GitHub Actions CI"
+summary: Added the first CI pipeline to sktime-mcp, the MCP server for the sktime time-series library, with linting and tests across Python 3.9 to 3.12.
+date: 2026-04-03
+published: true
+project: sktime
+repository: sktime/sktime-mcp
+featured: false
+---
+
+`sktime-mcp` exposes the sktime time-series library through the Model Context Protocol. It had no CI, so I added a GitHub Actions workflow that runs on every push and PR:
+
+- a **lint** job running `ruff` and `black --check` with the project's existing config,
+- a **test** job running `pytest` on Python 3.9, 3.10, 3.11 and 3.12, with `fail-fast` off so every version reports.
+
+It added no new dependencies, since the tools were already in the project's dev extras.
+
+**Links:** [PR #20](https://github.com/sktime/sktime-mcp/pull/20) • [Issue #19](https://github.com/sktime/sktime-mcp/issues/19)

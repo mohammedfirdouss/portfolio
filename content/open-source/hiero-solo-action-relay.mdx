@@ -1,0 +1,15 @@
+---
+title: "Hiero Solo Action: JSON-RPC Relay Support"
+summary: Added an option to the Hiero Solo GitHub Action to install a JSON-RPC relay when spinning up a local Hedera network in CI.
+date: 2024-10-14
+published: true
+project: Hiero (LF Decentralized Trust)
+repository: hiero-ledger/hiero-solo-action
+featured: false
+---
+
+The Hiero Solo Action starts a local Hedera network inside GitHub Actions for testing. I added an `installRelay` input that also installs the JSON-RPC relay, so projects can test Ethereum-compatible tooling against the network.
+
+During review I removed the separate `setup.sh` script and moved the relay and mirror node installs into conditional steps in `action.yml`. I tested both the default and the relay-enabled path, and updated the README.
+
+**Links:** [PR #8](https://github.com/hiero-ledger/hiero-solo-action/pull/8) • [Issue #2](https://github.com/hiero-ledger/hiero-solo-action/issues/2)

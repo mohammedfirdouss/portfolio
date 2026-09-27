@@ -1,0 +1,16 @@
+---
+title: "timestamper-python: Refactor, CLI and CI"
+summary: Split a single-file YouTube chapter generator into modules, added CLI options, and set up lint, format and type-check workflows.
+date: 2025-08-25
+published: true
+project: timestamper-python
+repository: madebygps/timestamper-python
+featured: false
+---
+
+`timestamper-python` generates YouTube chapter timestamps from captions, using OpenAI to title each chapter. All the logic lived in one script.
+
+- **Refactor and CLI** ([#1](https://github.com/madebygps/timestamper-python/pull/1)): split the code into `captions`, `chapters`, `titles`, `utils` and `cli` modules, added type hints and logging, and added command-line arguments for settings like the caption language. Behavior stayed the same.
+- **CI** ([#2](https://github.com/madebygps/timestamper-python/pull/2)): added GitHub Actions workflows for `ruff`, `black --check` and `mypy` on every push and PR.
+
+**Links:** [PR #1](https://github.com/madebygps/timestamper-python/pull/1) • [PR #2](https://github.com/madebygps/timestamper-python/pull/2)

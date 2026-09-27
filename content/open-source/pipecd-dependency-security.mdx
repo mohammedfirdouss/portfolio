@@ -1,0 +1,18 @@
+---
+title: PipeCD - Dependency and Vulnerability Scanning
+summary: "Added Dependabot and govulncheck to PipeCD's CI, cut Dependabot noise with grouped monthly updates, and fixed dependency bumps that closed security alerts."
+date: 2026-09-26
+published: true
+project: PipeCD
+repository: pipe-cd/pipecd
+featured: false
+---
+
+I set up and maintain automated dependency and vulnerability checks for PipeCD.
+
+- **Scanning in CI** ([#6435](https://github.com/pipe-cd/pipecd/pull/6435)): added a Dependabot config for Go and npm dependencies, and ran `govulncheck` across Go modules as matrix jobs in the lint workflow.
+- **Less noise** ([#7362](https://github.com/pipe-cd/pipecd/pull/7362)): merged 13 separate Go module entries into one (adding the ECS plugin module that was missing), grouped related bumps into single PRs, and moved to a monthly schedule. Security updates still arrive right away.
+- **Fixing bumps that broke tests** ([#7214](https://github.com/pipe-cd/pipecd/pull/7214)): the Dependabot PR for `go-yaml` v1.19.2 only changed the version. I updated the Kubernetes plugin's `yamlprocessor` tests for the library's corrected parsing and output.
+- **Closing alerts** ([#7423](https://github.com/pipe-cd/pipecd/pull/7423)): bumped `copy-webpack-plugin` from v11 to v14, which pulled in a fixed `serialize-javascript` and closed a high-severity RCE alert and a medium CPU DoS alert. I checked every breaking change between the two versions first.
+
+**Links:** [PR #6435](https://github.com/pipe-cd/pipecd/pull/6435) • [PR #7362](https://github.com/pipe-cd/pipecd/pull/7362) • [PR #7214](https://github.com/pipe-cd/pipecd/pull/7214) • [PR #7423](https://github.com/pipe-cd/pipecd/pull/7423) • [Issue #6409](https://github.com/pipe-cd/pipecd/issues/6409)

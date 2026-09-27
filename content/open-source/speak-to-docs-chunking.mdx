@@ -1,0 +1,15 @@
+---
+title: "Speak to Docs: RAG Document Chunking"
+summary: Added a chunking step to the Speak to Docs RAG app so queries retrieve the most relevant parts of uploaded documents.
+date: 2024-10-16
+published: true
+project: Speak to Docs
+repository: mlsanigeria/speak-to-docs
+featured: false
+---
+
+Speak to Docs lets users upload documents and ask questions about them with retrieval-augmented generation (RAG).
+
+I added a `chunk_document` function that splits uploaded documents with LangChain's `RecursiveCharacterTextSplitter`, and called it from `extract_contents_from_doc`. Smaller chunks mean retrieval can return the sections that actually answer the question.
+
+**Links:** [PR #31](https://github.com/mlsanigeria/speak-to-docs/pull/31)
