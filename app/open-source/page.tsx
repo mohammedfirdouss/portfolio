@@ -22,7 +22,10 @@ export default function OpenSourcePage() {
 		<div>
 			<h1 className="page-title">open source</h1>
 			<div className="mb-12">
-				<p>I contribute where I can, mostly CNCF and cloud-native projects.</p>
+				<p>
+					I contribute where I can, mostly to PipeCD (a CNCF project) so far and
+					GitLab, across features, fixes and docs.
+				</p>
 			</div>
 
 			{featured.length > 0 && (

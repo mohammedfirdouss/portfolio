@@ -4,7 +4,7 @@ import { allTalks } from "contentlayer/generated";
 export const metadata = {
 	title: "Talks",
 	description:
-		"Conference talks and presentations on AWS, serverless, and cloud.",
+		"Talks and presentations on AWS, serverless, and cloud.",
 };
 
 export default function TalksPage() {
@@ -16,7 +16,20 @@ export default function TalksPage() {
 		<div>
 			<h1 className="page-title">talks</h1>
 			<div className="text-lg text-[color:var(--fg)] mb-12">
-				<p>I talk sometimes. Here are some of my past presentations.</p>
+				<p>
+					I give talks on AWS, serverless and cloud infrastructure. Here are
+					some of my past presentations. If you&apos;d like me to speak at your
+					event, reach out on{" "}
+					<a
+						href="https://www.linkedin.com/in/mohammedfirdousaraoye/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="prose-link"
+					>
+						LinkedIn
+					</a>
+					.
+				</p>
 			</div>
 			<div className="divide-y divide-[color:var(--rule)]">
 				{talks.map((talk) => (
