@@ -179,9 +179,9 @@ export default function Home() {
 	return (
 		<div>
 			<p className="mb-7">
-				I&apos;m Mohammed Firdous, and I build software. I work on cloud
-				infrastructure and AI, contribute to open source and research, and
-				have won three hackathons so far.
+				I&apos;m Mohammed Firdous, a software engineer working on cloud
+				infrastructure and AI. I&apos;m a CNCF LFX Mentor on PipeCD,
+				contribute to open source, and have won three hackathons so far.
 			</p>
 			<hr />
 			{featured.length > 0 && <Section title="featured" entries={featured} />}
