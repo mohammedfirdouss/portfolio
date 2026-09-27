@@ -49,8 +49,19 @@ export default function AboutPage() {
 			<div className="text-lg text-[color:var(--fg)] space-y-4">
 				<p>
 					I&apos;m a software engineer focused on cloud infrastructure and
-					AI. Most recently I was a CNCF LFX Mentee building the
-					Kubernetes multi-cluster plugin for PipeCD, and I hold the CNCF{" "}
+					AI. I like working on new problems, especially building
+					pipelines, infrastructure, deployments and the systems around
+					them. Lately that means AI agents that run on and operate
+					Kubernetes. I write when I have time, and my full work history is
+					on the{" "}
+					<Link href="/experience" className="prose-link">
+						experience
+					</Link>{" "}
+					page.
+				</p>
+				<p>
+					I mostly write Python, Go and TypeScript, and work day to day with
+					Kubernetes, AWS, GCP and Terraform. I hold the CNCF{" "}
 					<a
 						href="https://www.credly.com/badges/3bf4d5f8-2010-4de3-9d89-503c7dad658e"
 						target="_blank"
@@ -62,13 +73,29 @@ export default function AboutPage() {
 					certification.
 				</p>
 				<p>
-					I like working on new problems, like building pipelines,
-					infrastructure, and deployment plugins. I write about what I find.
-					Full work history is on the{" "}
-					<Link href="/experience" className="prose-link">
-						experience
+					Most recently I was a CNCF LFX Mentee, where I{" "}
+					<Link
+						href="/blog/pipecd-kubernetes-multi-cluster-plugin-lfx"
+						className="prose-link"
+					>
+						built the Kubernetes multi-cluster plugin for PipeCD
+					</Link>
+					. I&apos;m now an{" "}
+					<a
+						href="https://mentorship.lfx.linuxfoundation.org/project/a92ac5b3-b28c-4927-8e88-df0a6a8fa817"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="prose-link"
+					>
+						LFX Mentor for Term 3
+					</a>
+					, guiding work on a PipeCD plugin for Headlamp, the Kubernetes UI.
+					I also contribute to GitLab&apos;s AI Gateway and CLI, and I&apos;ve
+					given{" "}
+					<Link href="/talks" className="prose-link">
+						talks
 					</Link>{" "}
-					page.
+					on AWS and serverless.
 				</p>
 			</div>
 
