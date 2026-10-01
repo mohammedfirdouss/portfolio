@@ -17,7 +17,7 @@ export default function Image() {
 	return new ImageResponse(
 		<div
 			style={{
-				background: "#f0efef",
+				background: "#eae6cd",
 				width: "100%",
 				height: "100%",
 				display: "flex",
@@ -48,7 +48,7 @@ export default function Image() {
 						style={{
 							fontSize: "56px",
 							fontWeight: 900,
-							color: "#000000",
+							color: "#1f2933",
 							letterSpacing: "-2px",
 							lineHeight: 1.1,
 							marginBottom: "16px",
@@ -60,7 +60,7 @@ export default function Image() {
 					<div
 						style={{
 							fontSize: "26px",
-							color: "#6b7280",
+							color: "#4b5563",
 							fontWeight: 400,
 							marginBottom: "40px",
 							letterSpacing: "-0.3px",
@@ -81,8 +81,8 @@ export default function Image() {
 								key={tag}
 								style={{
 									background: "transparent",
-									border: "1px solid #007acc",
-									color: "#007acc",
+									border: "1px solid #8a4f00",
+									color: "#8a4f00",
 									fontSize: "18px",
 									padding: "6px 16px",
 									borderRadius: "6px",
@@ -98,7 +98,7 @@ export default function Image() {
 						style={{
 							marginTop: "48px",
 							fontSize: "18px",
-							color: "#9ca3af",
+							color: "#6b7280",
 						}}
 					>
 						{siteUrl.replace(/^https?:\/\//, "")}
