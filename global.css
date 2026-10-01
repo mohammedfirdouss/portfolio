@@ -420,6 +420,19 @@
     text-decoration: none;
   }
 
+  /* Titles in lists stay text-coloured and only turn amber on hover. */
+  .post-title a,
+  .post-title.prose-link {
+    color: var(--fg);
+    transition: color 0.15s;
+  }
+
+  .post-title a:hover,
+  .post-title a:focus-visible,
+  .group:hover .post-title.prose-link {
+    color: var(--link);
+  }
+
   .nav-link {
     color: var(--link);
     cursor: pointer;
