@@ -1,0 +1,41 @@
+---
+title: NetPulse
+description: A network prober in Go that measures latency, jitter and packet loss over ICMP, TCP and DNS, with Prometheus alerts tested against real injected faults and a BGP failover lab.
+date: "2026-09-28"
+repository: mohammedfirdouss/netpulse
+published: true
+banner: /netpulse-grafana-fault.webp
+outcomes:
+  - Proved the alerts work by injecting real faults with `tc netem` (100ms delay, 10% loss). The first alert fired within 136–161s across two runs, and ICMP measured the added delay to within 3ms.
+  - Showed that a TCP-only monitor hides packet loss. Dropped SYNs are resent after 1s, so the probes reported 0% loss while their p95 latency jumped from 16ms to 1.35s.
+  - Measured BGP failover after a silent link failure, cutting the outage from 170s with default timers to 1.9s with BFD and a strict hold time.
+roleHighlights:
+  - I built the ICMP, TCP and DNS probers with one goroutine per target, so a slow target never delays the others, and every probe has a hard deadline that covers name resolution too.
+  - I designed the metrics so loss and percentiles stay correct over any time window, using sent/received counters and latency histograms that Prometheus can aggregate.
+  - I wrote the fault-injection script and the containerlab BGP lab (three FRRouting routers) that turn each claim into a measured result.
+proofLinks:
+  - label: Repository
+    href: https://github.com/mohammedfirdouss/netpulse
+---
+
+Most uptime checks answer one question: is it up? NetPulse asks how well the network is working. It probes each target over ICMP, TCP or DNS and exports latency, jitter and packet loss to Prometheus, with Grafana dashboards and alerts for outages, loss and slow p95 latency.
+
+## Testing it against real faults
+
+A monitor is only useful if it catches real problems, so I broke the network on purpose. A script runs `tc netem` inside the container to add 100ms of delay and 10% packet loss, watches Prometheus for alerts, and writes a report with time-to-detect and before/during numbers.
+
+ICMP matched the fault closely. TCP was the surprise: the probes showed no loss at all, because the kernel quietly resends a dropped SYN and the handshake still finishes, just a second late. The loss only shows up as a jump in TCP p95, which is why NetPulse watches TCP latency alongside ICMP loss.
+
+![Alerts firing about 3.5 minutes into the fault](/netpulse-prometheus-alerts.webp)
+
+## BGP failover lab
+
+The second part is a lab with three FRRouting routers in an eBGP triangle, with NetPulse probing across it. I black-holed the direct link while leaving it "up", which is the hard kind of failure to detect, and measured how long traffic took to move to the backup path.
+
+![Outages for default timers, tuned timers, BFD and BFD strict, to scale](/netpulse-bgp-all-modes.webp)
+
+Default timers took 170s. Tuned timers took 6.5s. Turning on BFD alone took 31s, because FRR waits a 30s hold time after BFD spots the failure, and adding a strict hold time brought it down to 1.9s. The lab also showed that `ping` can't be trusted to time outages, because it slows down while replies go missing.
+
+## How it's built
+
+Go, Prometheus and Grafana run in Docker Compose. NetPulse uses unprivileged ping sockets, so it runs as a non-root user in a distroless image with no extra privileges. Config is checked at startup, and the tests run with the race detector on.
