@@ -7,22 +7,26 @@
  * column, a heavy sans name, "│"-separated link rows and hairline rules.
  */
 :root {
-  --bg: #f0efef;
-  --fg: hsla(0, 0%, 0%, 0.9);
-  --muted: rgba(0, 0, 0, 0.6);
-  --rule: hsla(0, 0%, 0%, 0.2);
-  --link: #007acc;
-  --code-bg: rgba(0, 0, 0, 0.06);
+  --bg: #eae6cd;
+  --fg: #1f2933;
+  --muted: rgba(31, 41, 51, 0.7);
+  --rule: rgba(31, 41, 51, 0.2);
+  --link: #8a4f00;
+  --accent: #d4890a;
+  --selection: rgba(224, 160, 0, 0.3);
+  --code-bg: rgba(31, 41, 51, 0.07);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #222;
-    --fg: #fff;
-    --muted: hsla(0, 0%, 100%, 0.75);
-    --rule: hsla(0, 0%, 100%, 0.2);
-    --link: #add8e6;
-    --code-bg: rgba(255, 255, 255, 0.1);
+    --bg: #1e1c17;
+    --fg: #eae6cd;
+    --muted: rgba(234, 230, 205, 0.75);
+    --rule: rgba(234, 230, 205, 0.2);
+    --link: #e8a33d;
+    --accent: #b8791f;
+    --selection: rgba(232, 163, 61, 0.3);
+    --code-bg: rgba(234, 230, 205, 0.08);
   }
 }
 
@@ -49,7 +53,7 @@
   }
 
   ::selection {
-    background-color: rgba(0, 122, 204, 0.2);
+    background-color: var(--selection);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -102,6 +106,7 @@
     color: var(--link);
     text-decoration: underline;
     text-decoration-thickness: 1px;
+    text-decoration-color: var(--accent);
     text-underline-offset: 0.2em;
   }
 
@@ -237,6 +242,7 @@
     color: var(--link);
     text-decoration: underline;
     text-decoration-thickness: 1px;
+    text-decoration-color: var(--accent);
     text-underline-offset: 0.2em;
   }
 
@@ -355,6 +361,7 @@
     color: var(--link);
     text-decoration: underline;
     text-decoration-thickness: 1px;
+    text-decoration-color: var(--accent);
     text-underline-offset: 0.2em;
   }
 
@@ -400,6 +407,7 @@
     color: var(--link);
     text-decoration: underline;
     text-decoration-thickness: 1px;
+    text-decoration-color: var(--accent);
     text-underline-offset: 0.2em;
   }
 
