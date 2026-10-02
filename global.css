@@ -136,7 +136,11 @@
     margin: 0 0 1.75rem;
   }
 
+  /* Sans and amber, like the site title, so sections stand apart from the
+     serif entry titles listed under them. */
   .section-title {
+    font-family: var(--font-inter), "Montserrat", sans-serif;
+    color: var(--link);
     font-weight: 900;
     font-size: 1.73rem;
     line-height: 1.1;
