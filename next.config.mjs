@@ -5,9 +5,6 @@ const bundleAnalyzer = withBundleAnalyzer({
 	enabled: process.env.ANALYZE === "true",
 });
 
-// GitHub Pages serves this repo from /portfolio instead of the domain root.
-const isGithubPages = process.env.GITHUB_PAGES === "true";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	output: "export",
@@ -19,15 +16,8 @@ const nextConfig = {
 	compress: true,
 	productionBrowserSourceMaps: false,
 	poweredByHeader: false,
-	basePath: isGithubPages ? "/portfolio" : undefined,
-	assetPrefix: isGithubPages ? "/portfolio/" : undefined,
-	env: {
-		// Client components can't see `basePath` from next.config — expose it
-		// explicitly for fetches to static files like /search-index.json.
-		NEXT_PUBLIC_BASE_PATH: isGithubPages ? "/portfolio" : "",
-	},
 	images: {
-		// Static export has no image optimization server on either host.
+		// Static export has no image optimization server.
 		unoptimized: true,
 		formats: ["image/webp", "image/avif"],
 		remotePatterns: [

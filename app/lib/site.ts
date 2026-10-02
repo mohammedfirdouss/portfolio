@@ -1,7 +1,5 @@
 export const siteUrl =
-	process.env.NEXT_PUBLIC_SITE_URL ||
-	// "https://mohammedfirdous.me", // domain expired — swap back once a new one is bought
-	"https://mohammedfirdouss.github.io/portfolio";
+	process.env.NEXT_PUBLIC_SITE_URL || "https://mohammedfirdous.fyi";
 
 // Where the "subscribe" nav link goes. Set this to your newsletter's signup
 // page (e.g. "https://buttondown.com/<name>") once you have one; until then

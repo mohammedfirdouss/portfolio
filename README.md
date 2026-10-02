@@ -71,9 +71,6 @@ The `sync-github.yml` workflow runs this every Monday (or on demand) and opens a
 
 ## Deployment
 
-The site is a static export (`next build` → `out/`) deployed to two targets:
+The site is a static export (`next build` → `out/`) deployed to Cloudflare Pages at [mohammedfirdous.fyi](https://mohammedfirdous.fyi) with `bun run deploy` (runs `wrangler pages deploy`).
 
-- **Cloudflare Pages**: `bun run deploy` (runs `wrangler pages deploy`)
-- **GitHub Pages**: built with `GITHUB_PAGES=true` so Next.js serves it from the `/portfolio` subpath
-
-Both deploy automatically on push to `master` via GitHub Actions (`.github/workflows/deploy.yml` and `gh-pages.yml`). `ci.yml` runs the build on other branches and pull requests, and `preview.yml` deploys a preview for each pull request.
+It deploys automatically on push to `master` via GitHub Actions (`.github/workflows/deploy.yml`). `ci.yml` runs the build on other branches and pull requests, and `preview.yml` deploys a preview for each pull request.
