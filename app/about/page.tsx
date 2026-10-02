@@ -46,7 +46,7 @@ export default function AboutPage() {
 				about
 			</h1>
 
-			<div className="text-lg text-[color:var(--fg)] space-y-4">
+			<div className="text-lg text-[color:var(--fg)] space-y-4 text-justify text-pretty">
 				<p>
 					I&apos;m a software engineer focused on cloud infrastructure and
 					AI. I like working on new problems, especially building

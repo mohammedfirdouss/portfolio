@@ -178,7 +178,7 @@ export default function Home() {
 
 	return (
 		<div>
-			<p className="mb-7">
+			<p className="mb-7 text-justify text-pretty">
 				I&apos;m Mohammed Firdous, a software engineer working on cloud
 				infrastructure and AI. I am currently mentoring on PipeCD through
 				CNCF LFX. I also contribute to open source and have won three

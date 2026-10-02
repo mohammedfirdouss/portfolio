@@ -67,7 +67,7 @@
 
 @layer components {
   .site-shell {
-    max-width: 42rem;
+    max-width: 50rem;
     margin: 0 auto;
     padding: 2.625rem 1.3125rem;
   }
