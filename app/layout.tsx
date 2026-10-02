@@ -7,7 +7,7 @@ import Footer from "./components/footer";
 import { siteUrl } from "./lib/site";
 
 const description =
-	"Software engineer focused on cloud infrastructure and AI, building open source software.";
+	"Software engineer working on cloud infrastructure and AI, with a focus on agents. LFX Mentor for PipeCD and open source contributor.";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(siteUrl),
@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 		template: "%s | Mohammed Firdous",
 	},
 	description,
+	authors: [{ name: "Mohammed Firdous", url: siteUrl }],
+	creator: "Mohammed Firdous",
 	openGraph: {
 		title: "Mohammed Firdous",
 		description,
