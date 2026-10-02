@@ -48,12 +48,15 @@ export default function AboutPage() {
 
 			<div className="text-lg text-[color:var(--fg)] space-y-4 text-justify text-pretty">
 				<p>
-					I&apos;m a software engineer focused on cloud infrastructure and
-					AI. I like working on new problems, especially building
-					pipelines, infrastructure, deployments and the systems around
-					them. Lately that means AI agents that run on and operate
-					Kubernetes. I write when I have time, and my full work history is
-					on the{" "}
+					I&apos;m a software engineer working on cloud infrastructure and
+					AI. I like working on new problems, especially building software,
+					pipelines, deployments and the systems around them. Lately my
+					focus has been on AI and everything that comes with it,
+					specifically agents: how they&apos;re built, deployed and run in
+					production, and the infrastructure that keeps them reliable and
+					observable. I&apos;m also learning more about how to build reliable
+					systems. I write when I have the time, and my full work
+					history is on the{" "}
 					<Link href="/experience" className="prose-link">
 						experience
 					</Link>{" "}
@@ -61,19 +64,10 @@ export default function AboutPage() {
 				</p>
 				<p>
 					I mostly write Python, Go and TypeScript, and work day to day with
-					Kubernetes, AWS, GCP and Terraform. I hold the CNCF{" "}
-					<a
-						href="https://www.credly.com/badges/3bf4d5f8-2010-4de3-9d89-503c7dad658e"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="prose-link"
-					>
-						Kubernetes and Cloud Native Associate (KCNA)
-					</a>{" "}
-					certification.
+					Kubernetes, AWS, GCP and Terraform.
 				</p>
 				<p>
-					Most recently I was a CNCF LFX Mentee, where I{" "}
+					Earlier this year I was a CNCF LFX Mentee, where I{" "}
 					<Link
 						href="/blog/pipecd-kubernetes-multi-cluster-plugin-lfx"
 						className="prose-link"
@@ -95,7 +89,7 @@ export default function AboutPage() {
 					<Link href="/talks" className="prose-link">
 						talks
 					</Link>{" "}
-					on AWS and serverless.
+					on AWS services, serverless and more.
 				</p>
 			</div>
 
