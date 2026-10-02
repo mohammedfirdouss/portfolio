@@ -1,9 +1,14 @@
-name: Deploy to GitHub Pages
+name: Redirect GitHub Pages to mohammedfirdous.fyi
 
+# The site moved to https://mohammedfirdous.fyi (Cloudflare Pages). GitHub
+# Pages now serves only a redirect, so old /portfolio/... links keep working.
+# GitHub Pages serves 404.html for every unknown path, which covers deep links.
 on:
   push:
     branches:
       - master
+    paths:
+      - .github/workflows/gh-pages.yml
   workflow_dispatch:
 
 permissions:
@@ -19,26 +24,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: oven-sh/setup-bun@v1
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
-          restore-keys: ${{ runner.os }}-bun-
-
-      - run: bun install
-
-      - name: Build
-        env:
-          GITHUB_PAGES: "true"
-        run: bun run build
-
-      - name: Add .nojekyll
-        run: touch out/.nojekyll
+      - name: Write redirect pages
+        run: |
+          mkdir -p out
+          cat > out/index.html <<'EOF'
+          <!doctype html>
+          <html lang="en">
+          <head>
+          <meta charset="utf-8">
+          <title>Moved to mohammedfirdous.fyi</title>
+          <link rel="canonical" href="https://mohammedfirdous.fyi/">
+          <meta name="robots" content="noindex">
+          <meta http-equiv="refresh" content="0; url=https://mohammedfirdous.fyi/">
+          <script>
+            var path = location.pathname.replace(/^\/portfolio/, "") || "/";
+            location.replace("https://mohammedfirdous.fyi" + path + location.search + location.hash);
+          </script>
+          </head>
+          <body>
+          <p>This site has moved to <a href="https://mohammedfirdous.fyi/">mohammedfirdous.fyi</a>.</p>
+          </body>
+          </html>
+          EOF
+          cp out/index.html out/404.html
+          touch out/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
         with:

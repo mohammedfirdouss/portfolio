@@ -73,4 +73,4 @@ The `sync-github.yml` workflow runs this every Monday (or on demand) and opens a
 
 The site is a static export (`next build` → `out/`) deployed to Cloudflare Pages at [mohammedfirdous.fyi](https://mohammedfirdous.fyi) with `bun run deploy` (runs `wrangler pages deploy`).
 
-It deploys automatically on push to `master` via GitHub Actions (`.github/workflows/deploy.yml`). `ci.yml` runs the build on other branches and pull requests, and `preview.yml` deploys a preview for each pull request.
+It deploys automatically on push to `master` via GitHub Actions (`.github/workflows/deploy.yml`). The old GitHub Pages URL only redirects to the new domain (`gh-pages.yml`). `ci.yml` runs the build on other branches and pull requests, and `preview.yml` deploys a preview for each pull request.
