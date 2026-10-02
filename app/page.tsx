@@ -180,9 +180,9 @@ export default function Home() {
 		<div>
 			<p className="mb-7 text-justify text-pretty">
 				I&apos;m Mohammed Firdous, a software engineer working on cloud
-				infrastructure and AI. I am currently mentoring on PipeCD through
-				CNCF LFX. I also contribute to open source and have won three
-				hackathons so far.
+				infrastructure and AI, with a focus on agents lately. I&apos;m
+				currently an LFX Mentor for PipeCD, a CNCF project. I also
+				contribute to open source and have won three hackathons so far.
 			</p>
 			<hr />
 			{featured.length > 0 && <Section title="featured" entries={featured} />}
