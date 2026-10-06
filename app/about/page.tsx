@@ -8,9 +8,9 @@ export const metadata = {
 
 const startHere = [
 	{
-		title: "PipeCD: Codegen Image Security Hardening",
+		title: "PipeCD: Slimming the Codegen Image",
 		href: "/open-source/pipecd-security-hardening",
-		note: "Cut a CNCF Sandbox project's Docker image from 800MB to 500MB while closing out its CVEs.",
+		note: "Fixed a reverted attempt to slim a CNCF Sandbox project's codegen image (~800MB to ~500MB), clearing Snyk-flagged base-image CVEs.",
 	},
 	{
 		title: "PipeCD: Analysis Stage Template Rendering Fix",

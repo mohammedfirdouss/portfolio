@@ -1,21 +1,24 @@
 ---
-title: PipeCD - Codegen Image Security Hardening
-summary: "Made PipeCD's codegen Docker image more secure: fixed CVEs (known security flaws), cut the image size from 800MB to 500MB, and switched to a debian:bookworm-slim base while keeping everything working."
+title: PipeCD - Slimming the Codegen Image
+summary: "Fixed a reverted attempt to move PipeCD's codegen Docker image to debian:bookworm-slim, clearing Snyk-flagged curl CVEs from the base image and cutting it from ~800MB to ~500MB without breaking protoc or mockgen."
 date: 2026-03-11
 published: true
 project: PipeCD
 featured: true
 ---
 
-I made PipeCD’s codegen image more secure. I moved it from `golang:1.25.2` to the smaller `debian:bookworm-slim` base, while keeping the full toolchain that `tool/codegen/codegen.sh` needs.
+PipeCD's codegen image (used by contributors to generate protobuf code and mocks) was built on `golang:1.25.2`, which pulled in curl-related CVEs flagged by Snyk. An earlier PR ([#6402](https://github.com/pipe-cd/pipecd/pull/6402)) switched it to `debian:bookworm-slim`, but it had to be reverted ([#6404](https://github.com/pipe-cd/pipecd/pull/6404)) because it broke two things:
 
-The result was a safer and smaller image (about 800MB → 500MB), with protobuf generation and mockgen workflows still working.
+1. `protoc` could no longer find the standard `google/protobuf/*.proto` files.
+2. `mockgen` needs the `go` command at runtime, which the slim image didn't have.
 
-Key implementation points:
-- a multi-stage build that copies only the needed Go runtime pieces,
-- installed the protobuf headers and standard `.proto` dependencies,
-- kept cross-architecture support and existing plugins working.
+I fixed both in a single Dockerfile change:
+- installed `libprotobuf-dev` to bring back the standard `.proto` files,
+- used a multi-stage build that copies the Go toolchain from `golang:1.25.2` into the slim image, so mockgen keeps working,
+- kept the x86_64 and aarch64 `protoc-gen-js` binaries and the existing protoc plugins.
 
-I submitted the patch with proof that it worked (build checks, checks that the binaries exist, and compile path checks), and it was reviewed and merged.
+The image went from about 800MB to about 500MB. This is a development-tooling change only, with no effect on PipeCD users.
+
+Before submitting, I checked that the image builds, that every binary and proto file is present, that protoc compiles a real proto file, and that the full `codegen.sh` script runs. A maintainer reviewed it and it was merged.
 
 **Links:** [PR #6461](https://github.com/pipe-cd/pipecd/pull/6461) • [Issue #6429](https://github.com/pipe-cd/pipecd/issues/6429)
