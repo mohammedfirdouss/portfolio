@@ -4,6 +4,7 @@ description: A price-time priority limit order book and matching engine in C++20
 date: "2026-10-01"
 repository: mohammedfirdouss/orderbook
 published: true
+featured: true
 outcomes:
   - Measured about 94M operations a second (10.7 ns per operation) on 5M mixed orders, against about 57M for the std::map version on the same order flow.
   - Showed the gap grows with book width, from 1.5x at 40 price levels to 3.8x at about 6,000, and explained why with cache behavior.

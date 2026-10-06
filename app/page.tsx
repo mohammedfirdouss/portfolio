@@ -90,6 +90,10 @@ function Section({
 	);
 }
 
+// `featured` on open source means "notable" on /open-source, so the home
+// page picks its one open source entry by slug.
+const FEATURED_OPEN_SOURCE = "pipecd-kubernetes-multicluster-plugin";
+
 const byDateDesc = (a?: string, b?: string) =>
 	new Date(b ?? 0).getTime() - new Date(a ?? 0).getTime();
 
@@ -114,8 +118,20 @@ export default function Home() {
 		.map(toBlogEntry);
 
 	// Hand-picked with `featured: true`, like the "popular" list on
-	// seangoedecke.com. Projects first, then writing.
+	// seangoedecke.com. Open source first, then projects, then writing.
 	const featured: Entry[] = [
+		...allOpenSources
+			.filter((c) => c.slug === FEATURED_OPEN_SOURCE)
+			.map(
+				(contrib): Entry => ({
+					key: `open-source-${contrib.slug}`,
+					title: contrib.title,
+					href: `/open-source/${contrib.slug}`,
+					date: contrib.date,
+					dateStyle: "month",
+					tags: [{ label: "open source", href: "/open-source" }],
+				}),
+			),
 		...allProjects
 			.filter((p) => p.published && p.featured)
 			.sort((a, b) => byDateDesc(a.date, b.date))
@@ -140,20 +156,13 @@ export default function Home() {
 			})),
 	];
 
-	const projects: Entry[] = allProjects
-		.filter((p) => p.published)
-		.sort((a, b) => byDateDesc(a.date, b.date))
-		.slice(0, 6)
-		.map((project) => ({
-			key: project.slug,
-			title: project.title,
-			href: `/projects/${project.slug}`,
-			date: project.date,
-			dateStyle: "month",
-		}));
-
+	// No "projects" section: non-featured projects are archived on /projects.
 	const openSource: Entry[] = allOpenSources
-		.filter((c) => c.published !== false)
+		.filter(
+			(c) =>
+				c.published !== false &&
+				c.slug !== FEATURED_OPEN_SOURCE,
+		)
 		.sort((a, b) => byDateDesc(a.date, b.date))
 		.slice(0, 3)
 		.map((contrib) => ({
@@ -187,7 +196,6 @@ export default function Home() {
 			<hr />
 			{featured.length > 0 && <Section title="featured" entries={featured} />}
 			<Section title="writing" entries={blogs} viewAll="/blog" />
-			<Section title="projects" entries={projects} viewAll="/projects" />
 			<Section title="open source" entries={openSource} viewAll="/open-source" />
 			<Section title="talks" entries={talks} viewAll="/talks" />
 		</div>
