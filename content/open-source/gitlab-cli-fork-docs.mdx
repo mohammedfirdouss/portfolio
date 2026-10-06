@@ -1,7 +1,7 @@
 ---
 title: "GitLab CLI: Fork Documentation"
-summary: My first open source contribution, documenting how glab stack sync works with forked repositories.
-date: 2025-04-23
+summary: Documented how glab stack sync works with forked repositories, in both the command help and the docs.
+date: 2024-10-16
 published: true
 project: GitLab
 featured: false
@@ -11,12 +11,12 @@ I documented how `glab stack sync` works when you use a forked repository, after
 
 The bug fix stopped broken merge requests, but users still needed a clear answer to two questions: why does the tool ask fork users to choose a repository, and which one should they pick?
 
-I updated the CLI docs to explain:
+I updated the command help text in `stack_sync.go` and the CLI docs to explain:
 
 - when the prompt appears if you work from a fork,
 - how to pick the correct remote safely,
 - and how this stops you from syncing to the wrong project.
 
-This was my first merged open source contribution. It went through normal maintainer review before merge.
+It went through normal maintainer review before merge.
 
 **Links:** [MR !1723](https://gitlab.com/gitlab-org/cli/-/merge_requests/1723) • [Issue #7660](https://gitlab.com/gitlab-org/cli/-/issues/7660) • [Related fix !1687](https://gitlab.com/gitlab-org/cli/-/merge_requests/1687)

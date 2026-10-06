@@ -1,19 +1,17 @@
 ---
-title: "GitLab CLI: Run Command Help Formatting"
-summary: Updated help examples for run commands to match the project's CLI style guide for consistent formatting.
+title: "GitLab CLI: Release Command Help Formatting"
+summary: Updated help examples for release commands to match the project's CLI style guide for consistent formatting.
 date: 2025-04-23
 published: true
 project: GitLab
 featured: false
 ---
 
-I updated the help examples for GitLab CLI run commands to match the project’s doc style (`$` for commands, `>` for output, `#` for comments).
+I updated the help examples for GitLab CLI release commands to match the project’s doc style (`$` for commands, `>` for output, `#` for comments).
 
 This was a small docs cleanup, but it makes the help text easier to scan and keeps it consistent across the CLI.
 
-I updated:
-- `commands/run/run.go`
-- `commands/run/trace.go`
+I updated the `create`, `delete`, `download`, `upload` and `view` commands under `commands/release/`, and regenerated their pages in `docs/source/release/`.
 
 Merged quickly after maintainer review.
 

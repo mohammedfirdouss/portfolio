@@ -1,6 +1,6 @@
 ---
 title: PipeCD - Analysis Stage Template Rendering Fix
-summary: "Fixed a critical bug in PipeCD's analysis stage: template variables were not filled in for the THRESHOLD and PREVIOUS strategies, so raw template text showed up in logs and queries."
+summary: "Fixed a bug in PipeCD's analysis stage: template variables were not filled in for the THRESHOLD and PREVIOUS strategies, so raw template text showed up in logs and queries."
 date: 2025-07-08
 published: true
 project: PipeCD
@@ -38,13 +38,13 @@ The fix was small and focused:
 
 ## Review Process
 
-The review was collaborative and thorough:
+The review:
 
 **Warashi** (PipeCD maintainer) gave great guidance:
-- Helped find the exact place of the issue and the right approach to fix it
-- Asked for proper commit signing, a security best practice for the project
-- Tested the changes with real PipeCD deployments
-- Shared before/after screenshots showing the fix working in production
+- Filed the original issue describing the bug
+- Asked me to sign off my commits (DCO), which the project requires
+- Tested the fix with the `THRESHOLD` strategy on the latest piped
+- Shared stage-log screenshots showing the rendered values
 - Approved the change after testing it
 
 **ffjlabo** did the final review and merged the PR, confirming it met all project standards.
@@ -56,10 +56,9 @@ The fix makes all analysis strategies behave the same way:
 - ✅ Monitoring queries run with real values (e.g., actual service names, namespaces)
 - ✅ All analysis strategies fill in templates in the same way
 - ✅ Debugging is easier for PipeCD users across all deployment strategies
-- ✅ The quick cherry-pick into the v0.52.2 release shows it mattered to users
 
 ## Community Recognition
 
-The fix was quickly cherry-picked into the v0.52.2 release, which shows how much it mattered for existing users. The PipeCD maintainers encouraged me to keep contributing, and that led to several more contributions in documentation and tooling.
+The fix was cherry-picked into the v0.52.2 release. The PipeCD maintainers encouraged me to keep contributing, and that led to several more contributions in documentation and tooling.
 
 **Links:** [Pull Request #6010](https://github.com/pipe-cd/pipecd/pull/6010) • [Issue #6005](https://github.com/pipe-cd/pipecd/issues/6005) • [Repository](https://github.com/pipe-cd/pipecd)

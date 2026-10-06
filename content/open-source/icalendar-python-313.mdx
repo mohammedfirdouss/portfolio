@@ -8,10 +8,9 @@ repository: collective/icalendar
 featured: false
 ---
 
-I added Python 3.13 to icalendar's supported versions:
+I worked on Python 3.13 support for icalendar. My PR added 3.13 to the test matrix, tox config, classifiers and README, but a parallel change landed the test setup on `main` while it was in review. After merging `main`, my final contribution was:
 
-- added 3.13 to the GitHub Actions test matrix and the tox config,
-- updated the classifiers in `pyproject.toml` and the README,
-- documented how to add a new Python version in `docs/maintenance.rst`, so the next upgrade is easier.
+- documenting how to add a new Python version in `docs/maintenance.rst`, so the next upgrade is easier,
+- the changelog entry for 3.13 support.
 
 **Links:** [PR #729](https://github.com/collective/icalendar/pull/729) • [Issue #723](https://github.com/collective/icalendar/issues/723)
