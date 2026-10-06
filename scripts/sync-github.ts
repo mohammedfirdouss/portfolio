@@ -23,6 +23,7 @@ const CONTENT_DIRS = ["projects", "open-source", "diagrams"].map((d) =>
 // unfinished). Without this list, the weekly sync would draft them every run.
 const IGNORED_REPOS = new Set([
 	"portfolio",
+	"oop-python",
 	"mohammedfirdouss",
 	"dsa-practice",
 	"golang-learning",
