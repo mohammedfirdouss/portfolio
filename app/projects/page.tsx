@@ -16,6 +16,8 @@ export default async function ProjectsPage() {
 				new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
 				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
 		);
+	const featured = projects.filter((p) => p.featured);
+	const archive = projects.filter((p) => !p.featured);
 
 	return (
 		<div>
@@ -30,7 +32,23 @@ export default async function ProjectsPage() {
 					.
 				</p>
 			</div>
-			<ProjectList projects={projects} />
+
+			{featured.length > 0 && (
+				<div className="mt-12">
+					<h2 className="section-title">featured</h2>
+					<ProjectList projects={featured} />
+				</div>
+			)}
+
+			{archive.length > 0 && (
+				<div className="mt-12">
+					<h2 className="section-title">archive</h2>
+					<p className="text-[color:var(--muted)]">
+						Earlier projects, experiments and hackathon builds.
+					</p>
+					<ProjectList projects={archive} />
+				</div>
+			)}
 		</div>
 	);
 }
