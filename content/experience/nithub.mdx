@@ -1,12 +1,14 @@
 ---
-role: DevOps Engineer
-company: Nithub · Internship
-startDate: 2025-05-01
-endDate: 2025-10-01
-location: Lagos State, Nigeria · Hybrid
-description: Automated CI/CD with GitHub Actions and maintained code quality across backend services.
+role: Junior DevOps Engineer
+company: NitHub
+companyUrl: https://nithub.unilag.edu.ng/
+startDate: 2025-04-01
+endDate: 2025-11-01
+location: Remote
+description: Built the booking engine and security layer for NitHub's space-management API, and automated CI/CD with GitHub Actions.
 ---
 
-*   Reduced manual QA work and improved deployment stability by setting up GitHub Actions pipelines running linting, builds, and 50+ Jest tests on every pull request.
-*   Supported a product launch by building 40+ API endpoints (Node.js, TypeScript, Express) for authentication, booking, and space tracking.
-*   Improved security and speed by adding JWT authentication and rate limiting, and by using database indexes and Redis caching.
+*   Built the booking engine for NitHub's space-management API, enforcing advance-booking, minimum-duration and buffer rules for 3 space types, by implementing a Strategy-pattern validator, cached availability checks and pessimistic booking locks to guard against concurrent double bookings.
+*   Let guests book event spaces without an account through 5 endpoints, holding each booking for a 15-minute payment window, by expiring sessions with MongoDB TTL indexes and a cron cleanup job, with idempotency keys for payments and a 10/hour per-IP limit.
+*   Capped login attempts at 5 per 15 minutes and registrations and password resets at 3 per hour by adding Redis-backed rate limiting, with Helmet (CSP, HSTS), a CORS origin allow-list and httpOnly refresh-token cookies.
+*   Reduced manual QA work by setting up GitHub Actions pipelines running linting, builds, and 50+ Jest tests on every pull request.

@@ -7,7 +7,7 @@ import Footer from "./components/footer";
 import { siteUrl } from "./lib/site";
 
 const description =
-	"Software engineer working on cloud infrastructure and AI, with a focus on agents. LFX Mentor for PipeCD and open source contributor.";
+	"Software engineer working on cloud infrastructure and AI, with a focus on agents. Maintainer and LFX Mentor for PipeCD (CNCF) and open source contributor.";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(siteUrl),

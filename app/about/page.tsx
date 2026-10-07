@@ -74,7 +74,8 @@ export default function AboutPage() {
 					>
 						built the Kubernetes multi-cluster plugin for PipeCD
 					</Link>
-					. I&apos;m now an{" "}
+					. I&apos;m now a
+					maintainer of PipeCD and an{" "}
 					<a
 						href="https://mentorship.lfx.linuxfoundation.org/project/a92ac5b3-b28c-4927-8e88-df0a6a8fa817"
 						target="_blank"
